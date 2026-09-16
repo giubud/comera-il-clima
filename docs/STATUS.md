@@ -1,15 +1,22 @@
 # Stato del progetto
 
 Ultimo aggiornamento: 16 settembre 2026
-Fase attiva: Fase 7 — GitHub e GitHub Pages
-Fasi completate: Fase 0 — Preparazione; Fase 1 — Prova della fonte; Fase 2 — Scaffold e calcoli; Fase 3 — Pipeline reale; Fase 4 — Interfaccia essenziale; Fase 5 — Grafico, condivisione e accessibilità; Fase 6 — Qualità e documentazione
+Fase attiva: Nessuna — progetto pubblicato
+Fasi completate: Fasi 0–7 complete
 File modificati: applicazione completa in `src/`; pipeline in `scripts/`; dati in `public/data/`; test unitari ed E2E; screenshot; documentazione e workflow GitHub.
-Comandi eseguiti ed esito: `data:validate`, `typecheck`, 13 test unitari/dati, build e 5 test E2E superati; screenshot a 1440, 768 e 360 px acquisiti senza overflow.
-Verifiche manuali realmente effettuate: Roma 1961 ricontrollata; cambio rapido città verificato; struttura accessibile e console browser ispezionate; screenshot desktop e mobile esaminati; grafico, tabella e contenitori responsive corretti visivamente.
+Comandi eseguiti ed esito: suite locale finale superata; CI GitHub superata; workflow Pages 35128276013 superato con typecheck, test, validazione dati, build, Chromium ed E2E; deploy completato.
+Verifiche manuali realmente effettuate: Roma 1961 ricontrollata; cambio rapido città verificato; screenshot a 1440, 768 e 360 px esaminati; sito pubblico, manifest, JSON di Roma e query Milano/giorni caldi restituiscono 200; selezione e dati corretti nel browser pubblico; nessun errore console.
 Decisioni aggiuntive: ritmo downloader ridotto dopo HTTP 429; direzione grafica editoriale senza immagini.
-Blocchi e prove del problema: 429 risolto con cache, rallentamento e ripresa; precisione binaria nel primo CSV rilevata dal test E2E e corretta; metadati Git temporaneamente rinominati per l'helper sandbox.
-Prossima azione concreta: eseguire la suite finale, ripristinare `.git`, creare e inviare `giubud/comera-il-clima`, attivare Pages e verificare URL, dati, asset e query condivisa.
-Commit, se disponibile: non ancora disponibile.
+Blocchi e prove del problema: 429 risolto con cache, rallentamento e ripresa; precisione binaria nel primo CSV corretta; primo deploy avviato prima dell'attivazione Pages fallito come previsto, quindi Pages è stato attivato e il secondo deploy è riuscito; workaround locale per l'helper sandbox risolto.
+Prossima azione concreta: nessuna. Per una futura sessione, riprendere soltanto da una nuova richiesta o da un controllo di manutenzione esplicito.
+Commit, se disponibile: `11c3679` prima dell'aggiornamento finale dello stato.
+
+## Pubblicazione
+
+- Repository: https://github.com/giubud/comera-il-clima
+- Sito verificato: https://giubud.github.io/comera-il-clima/
+- Query verificata: https://giubud.github.io/comera-il-clima/?city=milano&metric=hotDays
+- Workflow riuscito: https://github.com/giubud/comera-il-clima/actions/runs/35128276013
 
 ## Inventario iniziale
 

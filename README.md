@@ -8,7 +8,9 @@ Mostra tre indicatori ricavati da ERA5: temperatura media estiva, giorni con mas
 
 ## Stato
 
-L’applicazione locale è completa e preparata per GitHub Pages. Repository previsto: <https://github.com/giubud/comera-il-clima>. La demo pubblica verrà indicata qui dopo il primo deploy verificato.
+L’applicazione è pubblicata su **<https://giubud.github.io/comera-il-clima/>**.
+
+Repository: <https://github.com/giubud/comera-il-clima>.
 
 Versione logica dei dati: `f7a18f7fd9b26685` (generata il 16 settembre 2026).
 
