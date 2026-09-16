@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-16T16:48:05.313Z",
+  "dataVersion": "f7a18f7fd9b26685",
+  "season": "JJA",
+  "periods": {
+    "a": [
+      1961,
+      1990
+    ],
+    "b": [
+      1991,
+      2020
+    ]
+  },
+  "hotDayThresholdC": 30,
+  "units": {
+    "meanTemperatureC": "°C",
+    "hotDays": "days",
+    "precipitationMm": "mm"
+  },
+  "attribution": {
+    "label": "Open-Meteo Historical Weather API · ERA5",
+    "url": "https://open-meteo.com/en/docs/historical-weather-api",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "cities": [
+    {
+      "id": "torino",
+      "name": "Torino",
+      "file": "torino.json",
+      "sha256": "939f95b29a23b15728568712cb4f6a6c52f0caa5eee71af81d5c39535cd98837"
+    },
+    {
+      "id": "milano",
+      "name": "Milano",
+      "file": "milano.json",
+      "sha256": "32d5f99e7f50403e274919b063a85dd566230ed20d2992bb759b1a8dd29a9851"
+    },
+    {
+      "id": "venezia",
+      "name": "Venezia",
+      "file": "venezia.json",
+      "sha256": "fe7c83a11e7644b352b403b57ef27de0d47a9ba38d0542484ade97e8d6d5b092"
+    },
+    {
+      "id": "bologna",
+      "name": "Bologna",
+      "file": "bologna.json",
+      "sha256": "3c89f2526a04860580258d91013087fadde45c724ec7b7013c62b0ef6f2d35f8"
+    },
+    {
+      "id": "firenze",
+      "name": "Firenze",
+      "file": "firenze.json",
+      "sha256": "0ea969d73bb5fa1a4987593e217c58987e394f8e3300997337aff618fe4812bc"
+    },
+    {
+      "id": "roma",
+      "name": "Roma",
+      "file": "roma.json",
+      "sha256": "150bc91181b0fe6cd3201b7ccbe7b515673ed757211a1f9450348e2971c306f1"
+    },
+    {
+      "id": "napoli",
+      "name": "Napoli",
+      "file": "napoli.json",
+      "sha256": "b6fc3dbbd11f4111688c7312064a667755ca6116689f6f7c424e01582778e2f4"
+    },
+    {
+      "id": "bari",
+      "name": "Bari",
+      "file": "bari.json",
+      "sha256": "d8f6696ec4b0d58873339cbc01381e51c21c28fc292a90cda2aebaec90eea69c"
+    },
+    {
+      "id": "palermo",
+      "name": "Palermo",
+      "file": "palermo.json",
+      "sha256": "5774a21d601be41e45c7045b0e95629368fdea59517032802d5abb95164e1b33"
+    },
+    {
+      "id": "cagliari",
+      "name": "Cagliari",
+      "file": "cagliari.json",
+      "sha256": "0edcdbf1bb75f5cac66270323ad5d4afede7d5e94c645e19d965fdbaa980b7c6"
+    }
+  ]
+}
