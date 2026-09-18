@@ -38,6 +38,7 @@ async function main(): Promise<void> {
     for (const key of ['a', 'b'] as const) {
       for (const metric of metrics) {
         if (!near(dataset.periods[key][metric], calculated[key][metric])) throw new Error(`Riepilogo errato: ${entry.id} ${key} ${metric}.`);
+        if (!near(entry.periods[key][metric], dataset.periods[key][metric])) throw new Error(`Riepilogo manifest errato: ${entry.id} ${key} ${metric}.`);
       }
     }
     logicalContent.push({ cityId: dataset.cityId, years: dataset.years, periods: dataset.periods });

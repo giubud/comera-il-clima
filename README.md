@@ -12,7 +12,7 @@ L’applicazione è pubblicata su **<https://giubud.github.io/comera-il-clima/>*
 
 Repository: <https://github.com/giubud/comera-il-clima>.
 
-Versione logica dei dati: `f7a18f7fd9b26685` (generata il 16 settembre 2026).
+Versione logica dei dati: `f7a18f7fd9b26685` (manifest rigenerato il 18 settembre 2026).
 
 ## Avvio locale
 

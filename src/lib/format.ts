@@ -17,10 +17,14 @@ export function formatValue(value: number): string {
   return formatter.format(normalizeDisplayed(value));
 }
 
+export function formatSigned(value: number): string {
+  const displayed = normalizeDisplayed(value);
+  return `${displayed > 0 ? '+' : displayed < 0 ? '−' : ''}${formatValue(Math.abs(displayed))}`;
+}
+
 export function deltaWording(value: number): 'più alta' | 'più bassa' | 'uguale' {
   const displayed = normalizeDisplayed(value);
   if (displayed > 0) return 'più alta';
   if (displayed < 0) return 'più bassa';
   return 'uguale';
 }
-

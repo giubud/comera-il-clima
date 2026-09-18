@@ -1,15 +1,15 @@
 # Stato del progetto
 
-Ultimo aggiornamento: 16 settembre 2026
-Fase attiva: Nessuna — progetto pubblicato
+Ultimo aggiornamento: 18 settembre 2026
+Fase attiva: Aggiornamento grafico completato localmente; pubblicazione in corso
 Fasi completate: Fasi 0–7 complete
-File modificati: applicazione completa in `src/`; pipeline in `scripts/`; dati in `public/data/`; test unitari ed E2E; screenshot; documentazione e workflow GitHub.
-Comandi eseguiti ed esito: suite locale finale superata; CI GitHub superata; workflow Pages 35128276013 superato con typecheck, test, validazione dati, build, Chromium ed E2E; deploy completato.
-Verifiche manuali realmente effettuate: Roma 1961 ricontrollata; cambio rapido città verificato; screenshot a 1440, 768 e 360 px esaminati; sito pubblico, manifest, JSON di Roma e query Milano/giorni caldi restituiscono 200; selezione e dati corretti nel browser pubblico; nessun errore console.
-Decisioni aggiuntive: ritmo downloader ridotto dopo HTTP 429; direzione grafica editoriale senza immagini.
+File modificati: nuova console in `src/`; riepiloghi di periodo nel manifest; test E2E e screenshot aggiornati; documentazione.
+Comandi eseguiti ed esito: `data:build`, `typecheck`, 13 test unitari, `data:validate`, `build` e 7 test E2E superati; screenshot chiaro/scuro a 1440 px e responsivi a 768/360 px acquisiti senza overflow della pagina.
+Verifiche manuali realmente effettuate: screenshot desktop, mobile e dark esaminati; 10 righe città, navigazione rapida, persistenza tema/densità, classifica pioggia, CSV e tastiera coperti dai test.
+Decisioni aggiuntive: lo ZIP Claude Design è riferimento visivo; dati e logica del prototipo non sono stati importati; il manifest espone riepiloghi reali precomputati.
 Blocchi e prove del problema: 429 risolto con cache, rallentamento e ripresa; precisione binaria nel primo CSV corretta; primo deploy avviato prima dell'attivazione Pages fallito come previsto, quindi Pages è stato attivato e il secondo deploy è riuscito; workaround locale per l'helper sandbox risolto.
-Prossima azione concreta: nessuna. Per una futura sessione, riprendere soltanto da una nuova richiesta o da un controllo di manutenzione esplicito.
-Commit, se disponibile: `11c3679` prima dell'aggiornamento finale dello stato.
+Prossima azione concreta: commit, push, verifica workflow e sito pubblico.
+Commit, se disponibile: da creare.
 
 ## Pubblicazione
 

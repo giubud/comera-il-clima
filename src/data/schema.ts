@@ -39,7 +39,7 @@ export type Manifest = {
   hotDayThresholdC: 30;
   units: Record<Metric, string>;
   attribution: { label: string; url: string; licence: string; licenceUrl: string };
-  cities: { id: string; name: string; file: string; sha256: string }[];
+  cities: { id: string; name: string; file: string; sha256: string; periods: { a: PeriodSummary; b: PeriodSummary } }[];
 };
 
 export type DailyResponse = {
@@ -86,4 +86,3 @@ export function assertCityDataset(value: unknown): asserts value is CityDataset 
     throw new Error('Dataset non valido: riepiloghi dei periodi incompleti.');
   }
 }
-

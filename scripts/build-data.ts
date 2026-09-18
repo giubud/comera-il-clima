@@ -68,7 +68,7 @@ async function main(): Promise<void> {
     const json = stableJson(dataset);
     await writeFile(join(stage, `${city.id}.json`), json, 'utf8');
     datasets.push(dataset);
-    cityEntries.push({ id: city.id, name: city.name, file: `${city.id}.json`, sha256: sha256(json) });
+    cityEntries.push({ id: city.id, name: city.name, file: `${city.id}.json`, sha256: sha256(json), periods: dataset.periods });
   }
   const logicalContent = datasets.map(({ cityId, years, periods }) => ({ cityId, years, periods }));
   const manifest: Manifest = {
@@ -106,4 +106,3 @@ async function main(): Promise<void> {
 }
 
 await main();
-

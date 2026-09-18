@@ -1,148 +1,101 @@
 import './styles.css';
 import { getCity } from './data/cities';
-import { assertCityDataset, type CityDataset, type Metric } from './data/schema';
+import { assertCityDataset, type CityDataset, type Manifest, type Metric } from './data/schema';
 import { parseUrlState, searchForState, type UrlState } from './lib/url-state';
-import { metricMeta } from './lib/format';
+import { applyAppearance, loadAppearance, type Density, type Theme } from './lib/theme';
 import { cardsMarkup } from './ui/cards';
 import { chartMarkup } from './ui/chart';
-import { cityOptions, metricControls } from './ui/controls';
+import { metricControls } from './ui/controls';
+import { railMarkup } from './ui/rail';
+import { rankingMarkup } from './ui/ranking';
+import { stripesMarkup } from './ui/stripes';
 import { datasetCsv, tableMarkup } from './ui/table';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 if (!app) throw new Error('Elemento principale non trovato.');
 
 let state: UrlState = parseUrlState(window.location.search);
+let { theme, density } = loadAppearance();
+let manifest: Manifest | null = null;
+let currentDataset: CityDataset | null = null;
 let activeRequest = 0;
 const cache = new Map<string, CityDataset>();
 
+function appearanceButton(kind: 'theme' | 'density', value: string, label: string, active: boolean): string {
+  return `<button type="button" class="tab" data-${kind}="${value}" aria-pressed="${active}">${label}</button>`;
+}
+
 app.innerHTML = `
-  <a class="skip-link" href="#confronto">Vai al confronto</a>
-  <main>
-    <header class="masthead">
-      <div>
-        <p class="eyebrow">Prima edizione · Le estati</p>
-        <h1>Com’era il clima</h1>
-        <p class="subtitle">La memoria delle stagioni</p>
-      </div>
-      <p class="intro">Come sono cambiate le estati nella tua città?</p>
-    </header>
-
-    <section class="control-panel" aria-labelledby="city-heading">
-      <div>
-        <p class="section-number" aria-hidden="true">01</p>
-        <h2 id="city-heading">Scegli una città</h2>
-      </div>
-      <label class="select-label" for="city-select">Città italiana
-        <select id="city-select">${cityOptions(state.city)}</select>
-      </label>
-      <div class="period-note">
-        <strong>60 estati a confronto</strong>
-        <span>1961–1990 <i>contro</i> 1991–2020</span>
-        <small>Estate = 1 giugno–31 agosto</small>
-      </div>
-    </section>
-
-    <section id="confronto" class="comparison" aria-labelledby="comparison-heading">
-      <div class="section-heading">
-        <div><p class="section-number" aria-hidden="true">02</p><h2 id="comparison-heading">Il confronto</h2></div>
-        <div class="metric-tabs" role="radiogroup" aria-label="Indicatore">${metricControls(state.metric)}</div>
-      </div>
-      <p id="loading" class="status" role="status">Caricamento dei dati…</p>
-      <div id="error" class="error" role="alert" hidden></div>
-      <div id="results" hidden></div>
-    </section>
-  </main>
+  <a class="skip-link" href="#console">Vai ai dati</a>
+  <header class="topbar">
+    <div class="brand"><span>C</span><strong>Com’era il clima</strong><small>ERA5 · JJA · 1961—2020</small></div>
+    <div class="toolbar">
+      <div class="toolbar-group"><span>Densità</span><div role="group" aria-label="Densità" id="density-controls"></div></div>
+      <div class="toolbar-group"><span>Tema</span><div role="group" aria-label="Tema" id="theme-controls"></div></div>
+      <button type="button" class="download" id="download-csv" disabled>CSV ↓</button>
+    </div>
+  </header>
+  <main id="console"><div class="initial-status" role="status">Caricamento della console climatica…</div></main>
+  <footer class="site-footer"><span>Com’era il clima — la memoria delle stagioni</span><span>10 città · 600 estati · aggregazioni del progetto</span></footer>
 `;
 
-const citySelect = document.querySelector<HTMLSelectElement>('#city-select')!;
-const results = document.querySelector<HTMLDivElement>('#results')!;
-const loading = document.querySelector<HTMLParagraphElement>('#loading')!;
-const errorBox = document.querySelector<HTMLDivElement>('#error')!;
+const consoleRoot = document.querySelector<HTMLElement>('#console')!;
+const download = document.querySelector<HTMLButtonElement>('#download-csv')!;
 
-function updateMetricButtons(): void {
-  document.querySelectorAll<HTMLButtonElement>('[data-metric]').forEach((button) => {
-    button.setAttribute('aria-checked', String(button.dataset.metric === state.metric));
-  });
+function updateAppearance(): void {
+  applyAppearance(theme, density);
+  document.querySelector('#theme-controls')!.innerHTML =
+    appearanceButton('theme', 'light', 'Chiaro', theme === 'light') + appearanceButton('theme', 'dark', 'Scuro', theme === 'dark');
+  document.querySelector('#density-controls')!.innerHTML =
+    appearanceButton('density', 'comfortable', 'Comoda', density === 'comfortable') + appearanceButton('density', 'compact', 'Compatta', density === 'compact');
+}
+
+function methodsMarkup(): string {
+  return `<section class="methods panel" aria-labelledby="methods-heading"><div class="panel-bar"><h3 id="methods-heading">Metodo e limiti</h3></div>
+    <div class="methods-grid">
+      <article><h4>Cosa confrontiamo</h4><p>Due trentenni consecutivi, 1961—1990 e 1991—2020. Ogni estate copre i 92 giorni dal 1 giugno al 31 agosto.</p></article>
+      <article><h4>Da dove arrivano</h4><p>ERA5 è una rianalisi su griglia di circa 0,25°. Ogni città usa la cella più vicina, senza correzione altimetrica: non è una stazione meteo.</p></article>
+      <article><h4>Come sono calcolati</h4><p>Media dei 92 valori giornalieri, conteggio delle massime oltre 30 °C, somma delle precipitazioni. Le medie di periodo sono su 30 estati.</p></article>
+      <article class="sources"><h4>Fonti</h4><p><a href="https://open-meteo.com/en/docs/historical-weather-api" rel="noreferrer">Open-Meteo Historical Weather API</a>, modello ERA5, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noreferrer">CC BY 4.0</a>. Codice su <a href="https://github.com/giubud/comera-il-clima" rel="noreferrer">GitHub</a>.</p></article>
+    </div>
+  </section>`;
+}
+
+function loadingMarkup(source: Manifest): string {
+  return `<div class="dashboard-grid">${railMarkup(source, state.city)}<section class="kpi-panel panel loading-panel" aria-live="polite"><div class="panel-bar"><h2>${getCity(state.city)?.name} · estate</h2></div><p>Caricamento dei dati…</p><div class="placeholder"></div></section></div>`;
 }
 
 function render(dataset: CityDataset): void {
+  if (!manifest) return;
   const city = getCity(dataset.cityId);
   if (!city) throw new Error('Città non riconosciuta nel dataset.');
-  results.innerHTML = `
-    <p class="metric-name">${metricMeta[state.metric].label}</p>
-    ${cardsMarkup(dataset, city.name, state.metric)}
-    <section class="history" aria-labelledby="history-heading">
-      <div class="subheading"><p class="section-number" aria-hidden="true">03</p><h2 id="history-heading">Estate per estate</h2></div>
-      ${chartMarkup(dataset, city.name, state.metric)}
-    </section>
-    <section class="data-section" aria-labelledby="data-heading">
-      <div class="data-heading-row">
-        <div class="subheading"><p class="section-number" aria-hidden="true">04</p><h2 id="data-heading">I dati annuali</h2></div>
-        <div class="actions">
-          <button type="button" class="action-button" id="download-csv">Scarica CSV</button>
-          <button type="button" class="action-button" id="copy-link">Copia collegamento</button>
-        </div>
-      </div>
-      <p id="action-status" class="sr-only" aria-live="polite"></p>
-      <div id="copy-fallback" class="copy-fallback" hidden>
-        <label for="share-url">Copia manualmente questo collegamento</label>
-        <input id="share-url" type="text" readonly value="${window.location.href}">
-      </div>
-      ${tableMarkup(dataset, city.name)}
-      <p class="data-credit">Dati: <a href="https://open-meteo.com/en/docs/historical-weather-api" rel="noreferrer">Open-Meteo Historical Weather API</a>, modello ERA5 · <a href="https://creativecommons.org/licenses/by/4.0/" rel="noreferrer">CC BY 4.0</a>. Aggregazioni del progetto.</p>
-    </section>
-    <details class="methodology">
-      <summary>Come leggere questi dati</summary>
-      <div class="methodology-grid">
-        <div><h3>Che cosa confrontiamo</h3><p>Due periodi consecutivi di 30 estati: 1961–1990 e 1991–2020. Ogni estate comprende i 92 giorni dal 1 giugno al 31 agosto.</p></div>
-        <div><h3>Da dove arrivano i valori</h3><p>ERA5 è una rianalisi su griglia di circa 0,25°. La città identifica la cella più vicina, senza correzione altimetrica locale: non è una stazione né la media del comune.</p></div>
-        <div><h3>Come sono calcolati</h3><p>Temperatura media dei 92 valori giornalieri; conteggio delle massime strettamente superiori a 30 °C; somma delle precipitazioni. Le medie di periodo sono calcolate sulle 30 estati.</p></div>
-      </div>
-    </details>
-    <footer class="site-footer">
-      <p>Progetto open source · <a href="https://github.com/giubud/comera-il-clima">Codice e documentazione su GitHub</a></p>
-    </footer>
+  currentDataset = dataset;
+  consoleRoot.innerHTML = `
+    <div class="dashboard-grid">
+      ${railMarkup(manifest, state.city)}
+      <section class="kpi-panel panel" aria-labelledby="kpi-heading">
+        <div class="panel-bar kpi-bar"><h2 id="kpi-heading">${city.name}<span> · estate</span></h2><div class="metric-tabs" role="radiogroup" aria-label="Indicatore">${metricControls(state.metric)}</div></div>
+        ${cardsMarkup(dataset, state.metric)}
+        ${stripesMarkup(dataset, state.metric)}
+      </section>
+    </div>
+    ${chartMarkup(dataset, city.name, state.metric)}
+    <div class="lower-grid">${rankingMarkup(manifest, state.metric, state.city)}${tableMarkup(dataset, city.name)}</div>
+    ${methodsMarkup()}
   `;
-  results.hidden = false;
-  loading.hidden = true;
-  errorBox.hidden = true;
-  document.querySelector<HTMLButtonElement>('#download-csv')?.addEventListener('click', () => {
-    const blob = new Blob([datasetCsv(dataset)], { type: 'text/csv;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `comera-il-clima-${dataset.cityId}.csv`;
-    anchor.click();
-    URL.revokeObjectURL(url);
-    const status = document.querySelector('#action-status');
-    if (status) status.textContent = `CSV di ${city.name} preparato.`;
-  });
-  document.querySelector<HTMLButtonElement>('#copy-link')?.addEventListener('click', async () => {
-    const button = document.querySelector<HTMLButtonElement>('#copy-link')!;
-    const fallback = document.querySelector<HTMLDivElement>('#copy-fallback')!;
-    const input = document.querySelector<HTMLInputElement>('#share-url')!;
-    const status = document.querySelector('#action-status');
-    input.value = window.location.href;
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      button.textContent = 'Collegamento copiato';
-      fallback.hidden = true;
-      if (status) status.textContent = 'Collegamento copiato negli appunti.';
-    } catch {
-      fallback.hidden = false;
-      input.focus();
-      input.select();
-      if (status) status.textContent = 'Copia automatica non disponibile: il collegamento è selezionato.';
-    }
-  });
+  download.disabled = false;
+}
+
+function persistState(): void {
+  history.replaceState(null, '', `${window.location.pathname}${searchForState(state)}`);
 }
 
 async function loadCity(cityId: string): Promise<void> {
+  if (!manifest) return;
   const requestId = ++activeRequest;
-  results.hidden = true;
-  errorBox.hidden = true;
-  loading.hidden = false;
-  loading.textContent = `Caricamento dei dati di ${getCity(cityId)?.name ?? 'questa città'}…`;
+  currentDataset = null;
+  download.disabled = true;
+  consoleRoot.innerHTML = loadingMarkup(manifest);
   try {
     let dataset = cache.get(cityId);
     if (!dataset) {
@@ -158,33 +111,64 @@ async function loadCity(cityId: string): Promise<void> {
     render(dataset);
   } catch (error) {
     if (requestId !== activeRequest) return;
-    loading.hidden = true;
-    results.hidden = true;
-    errorBox.hidden = false;
     const message = error instanceof Error ? error.message : 'Errore inatteso.';
-    errorBox.innerHTML = `<p>Non è stato possibile caricare i dati. ${message}</p><button type="button" id="retry">Riprova</button>`;
-    document.querySelector<HTMLButtonElement>('#retry')?.addEventListener('click', () => void loadCity(state.city));
+    consoleRoot.innerHTML = `<div class="dashboard-grid">${railMarkup(manifest, state.city)}<section class="kpi-panel panel error" role="alert"><div class="panel-bar"><h2>Dati non disponibili</h2></div><p>Non è stato possibile caricare i dati. ${message}</p><button type="button" id="retry">Riprova</button></section></div>`;
   }
 }
 
-function persistState(): void {
-  history.replaceState(null, '', `${window.location.pathname}${searchForState(state)}`);
+app.addEventListener('click', (event) => {
+  const target = event.target as HTMLElement;
+  const cityButton = target.closest<HTMLButtonElement>('[data-city]');
+  if (cityButton) {
+    state = { ...state, city: cityButton.dataset.city! };
+    persistState();
+    void loadCity(state.city);
+    return;
+  }
+  const metricButton = target.closest<HTMLButtonElement>('[data-metric]');
+  if (metricButton && currentDataset) {
+    state = { ...state, metric: metricButton.dataset.metric as Metric };
+    persistState();
+    render(currentDataset);
+    return;
+  }
+  const themeButton = target.closest<HTMLButtonElement>('button[data-theme]');
+  if (themeButton) {
+    theme = themeButton.dataset.theme as Theme;
+    updateAppearance();
+    return;
+  }
+  const densityButton = target.closest<HTMLButtonElement>('button[data-density]');
+  if (densityButton) {
+    density = densityButton.dataset.density as Density;
+    updateAppearance();
+    return;
+  }
+  if (target.closest('#retry')) void loadCity(state.city);
+});
+
+download.addEventListener('click', () => {
+  if (!currentDataset) return;
+  const url = URL.createObjectURL(new Blob([datasetCsv(currentDataset)], { type: 'text/csv;charset=utf-8' }));
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = `comera-il-clima-${currentDataset.cityId}.csv`;
+  anchor.click();
+  URL.revokeObjectURL(url);
+});
+
+async function start(): Promise<void> {
+  updateAppearance();
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}data/manifest.json`);
+    if (!response.ok) throw new Error(`Manifest non disponibile (${response.status}).`);
+    manifest = await response.json() as Manifest;
+    if (manifest.schemaVersion !== 1 || manifest.cities.length !== 10 || manifest.cities.some((city) => !city.periods)) throw new Error('Manifest non valido.');
+    await loadCity(state.city);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Errore inatteso.';
+    consoleRoot.innerHTML = `<section class="initial-status error" role="alert">Non è stato possibile avviare la console. ${message}</section>`;
+  }
 }
 
-citySelect.addEventListener('change', () => {
-  state = { ...state, city: citySelect.value };
-  persistState();
-  void loadCity(state.city);
-});
-
-document.querySelector('.metric-tabs')?.addEventListener('click', (event) => {
-  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-metric]');
-  if (!button) return;
-  state = { ...state, metric: button.dataset.metric as Metric };
-  updateMetricButtons();
-  persistState();
-  const dataset = cache.get(state.city);
-  if (dataset) render(dataset);
-});
-
-void loadCity(state.city);
+void start();
