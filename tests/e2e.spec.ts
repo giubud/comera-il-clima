@@ -82,3 +82,15 @@ test('i controlli principali sono raggiungibili da tastiera', async ({ page }) =
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: 'Napoli · estate' })).toBeVisible();
 });
+
+test('mostra licenze, attribuzioni e limiti insieme ai dati', async ({ page }) => {
+  await page.goto('?city=roma&metric=meanTemperatureC');
+  await expect(page.getByRole('heading', { name: 'Roma · estate' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Fonti, licenze e avvertenze' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'CC BY 4.0' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/4.0/');
+  await expect(page.getByRole('link', { name: 'MIT' })).toHaveAttribute('href', /\/LICENSE$/);
+  await expect(page.getByRole('link', { name: /ERA5 del Copernicus Climate Change Service/ })).toHaveAttribute('href', /cds\.climate\.copernicus\.eu/);
+  await expect(page.getByText(/Contiene informazioni modificate del Copernicus Climate Change Service/)).toBeVisible();
+  await expect(page.getByText(/Né la Commissione europea né ECMWF sono responsabili/)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Licenze e attribuzioni complete' })).toHaveAttribute('href', /DATA_LICENSE\.md$/);
+});

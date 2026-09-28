@@ -31,3 +31,9 @@
 - L'impostazione editoriale è sostituita da una console dati full-width fedele all'handoff: rail delle città, quattro KPI, strisce di anomalia, serie annuale, classifica, tabella, tema chiaro/scuro e densità.
 - Restano invariati stack, sorgente ERA5, formule, schema dei dataset cittadini, CSV e stato URL. Il manifest include ora i riepiloghi di periodo già verificati, così rail e classifica non richiedono il caricamento dei dieci dataset.
 - Tema e densità sono preferenze locali (comera-console) e non entrano nel collegamento condivisibile.
+
+## 2026-09-28 — Crediti e avvertenze
+
+- Verificati termini Open-Meteo, CC BY 4.0 e licenza Copernicus sulle fonti ufficiali. Il README e il sito riportano fonte, modifiche ai dati, licenze distinte per dati e codice, credito C3S/ECMWF e la nota di responsabilità prevista dalla licenza Copernicus.
+- La restrizione non commerciale riguarda l'uso dell'API gratuita Open-Meteo; il riuso dei dati ottenuti tramite l'API è descritto secondo CC BY 4.0.
+- Sono accreditati il design consegnato dal proprietario con Claude Design e i font IBM Plex (SIL OFL 1.1). Le avvertenze distinguono la cella ERA5 dalla misura di stazione e chiariscono che le differenze tra periodi non provano causalità.

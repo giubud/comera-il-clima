@@ -6,7 +6,7 @@ export function railMarkup(manifest: Manifest, selected: string): string {
   const maximum = Math.max(...deltas);
   const average = deltas.reduce((total, value) => total + value, 0) / deltas.length;
   return `<aside class="city-rail panel" aria-label="Città">
-    <div class="panel-bar"><span>Stazioni</span><span>ΔT °C</span></div>
+    <div class="panel-bar"><span>Città</span><span>ΔT °C</span></div>
     <ul>${manifest.cities.map((city, index) => {
       const delta = deltas[index]!;
       return `<li><button type="button" class="city-row" data-city="${city.id}" aria-pressed="${city.id === selected}">

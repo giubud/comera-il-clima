@@ -50,5 +50,5 @@ Le coordinate restituite per la cella effettiva sono contenute nei rispettivi JS
 
 ## Verifica iniziale
 
-Le richieste pilota reali per Roma 1961 e 2020 sono documentate in [DATA_CHECK.md](DATA_CHECK.md). Le condizioni d’uso sono state ricontrollate il 16 settembre 2026 su https://open-meteo.com/en/terms e https://open-meteo.com/en/pricing.
+Le richieste pilota reali per Roma 1961 e 2020 sono documentate in [DATA_CHECK.md](DATA_CHECK.md). Licenze, attribuzione e condizioni d'uso sono state ricontrollate il 28 settembre 2026 sui [termini Open-Meteo](https://open-meteo.com/en/terms), sulla [pagina di attribuzione](https://open-meteo.com/en/pricing) e sulla [licenza Copernicus](https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products). La dicitura pubblica e il disclaimer sono in [DATA_LICENSE.md](../DATA_LICENSE.md).
 

@@ -36,7 +36,7 @@ app.innerHTML = `
     </div>
   </header>
   <main id="console"><div class="initial-status" role="status">Caricamento della console climatica…</div></main>
-  <footer class="site-footer"><span>Com’era il clima — la memoria delle stagioni</span><span>10 città · 600 estati · aggregazioni del progetto</span></footer>
+  <footer class="site-footer"><span>Com’era il clima — la memoria delle stagioni</span><span>10 città · 600 estati · <a href="https://github.com/giubud/comera-il-clima/blob/main/DATA_LICENSE.md">Licenze, crediti e avvertenze</a></span></footer>
 `;
 
 const consoleRoot = document.querySelector<HTMLElement>('#console')!;
@@ -56,7 +56,12 @@ function methodsMarkup(): string {
       <article><h4>Cosa confrontiamo</h4><p>Due trentenni consecutivi, 1961—1990 e 1991—2020. Ogni estate copre i 92 giorni dal 1 giugno al 31 agosto.</p></article>
       <article><h4>Da dove arrivano</h4><p>ERA5 è una rianalisi su griglia di circa 0,25°. Ogni città usa la cella più vicina, senza correzione altimetrica: non è una stazione meteo.</p></article>
       <article><h4>Come sono calcolati</h4><p>Media dei 92 valori giornalieri, conteggio delle massime oltre 30 °C, somma delle precipitazioni. Le medie di periodo sono su 30 estati.</p></article>
-      <article class="sources"><h4>Fonti</h4><p><a href="https://open-meteo.com/en/docs/historical-weather-api" rel="noreferrer">Open-Meteo Historical Weather API</a>, modello ERA5, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noreferrer">CC BY 4.0</a>. Codice su <a href="https://github.com/giubud/comera-il-clima" rel="noreferrer">GitHub</a>.</p></article>
+      <article class="sources"><h4>Fonti, licenze e avvertenze</h4>
+        <p>Dati dalla <a href="https://open-meteo.com/en/docs/historical-weather-api" rel="noreferrer">Open-Meteo Historical Weather API</a>, modello <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels" rel="noreferrer">ERA5 del Copernicus Climate Change Service / ECMWF</a>. Dati ottenuti tramite l'API: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noreferrer">CC BY 4.0</a>; codice del progetto: <a href="https://github.com/giubud/comera-il-clima/blob/main/LICENSE" rel="noreferrer">MIT</a>.</p>
+        <p>Elaborazione 2026: selezione delle estati 1961–2020, calcolo di tre indicatori annuali e delle medie dei due periodi. Contiene informazioni modificate del Copernicus Climate Change Service. Né la Commissione europea né ECMWF sono responsabili dell'uso che può essere fatto delle informazioni o dei dati Copernicus qui contenuti.</p>
+        <p>Questi valori di griglia sono informativi, non misure di stazione o medie comunali; non dimostrano le cause delle differenze e non sostituiscono dati locali ufficiali. I fornitori non garantiscono l'assenza di errori nei dati. <a href="https://github.com/giubud/comera-il-clima/blob/main/DATA_LICENSE.md" rel="noreferrer">Licenze e attribuzioni complete</a> · <a href="https://github.com/giubud/comera-il-clima/blob/main/docs/METHODOLOGY.md" rel="noreferrer">Metodologia</a>.</p>
+        <p>Interfaccia adattata dal design consegnato dal proprietario con Claude Design; font <a href="https://github.com/IBM/plex" rel="noreferrer">IBM Plex Sans e Mono</a> (<a href="https://github.com/IBM/plex/blob/master/LICENSE.txt" rel="noreferrer">SIL OFL 1.1</a>).</p>
+      </article>
     </div>
   </section>`;
 }

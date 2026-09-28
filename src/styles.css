@@ -123,12 +123,14 @@ thead th { position:sticky; top:0; z-index:1; height:35px; background:var(--pane
 .methods-grid .sources { grid-column:1/-1; }
 .methods-grid h4 { margin:0 0 7px; color:var(--b); font:400 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; text-transform:uppercase; }
 .methods-grid p { margin:0; color:var(--ink2); font-size:14px; line-height:1.55; }
+.methods-grid p + p { margin-top:.65rem; }
 .loading-panel, .error { min-height:400px; }
 .loading-panel > p, .error > p { margin:var(--pad); color:var(--muted); }
 .placeholder { height:158px; margin:var(--pad); background:linear-gradient(90deg,var(--panel2),var(--line2),var(--panel2)); background-size:200% 100%; animation:pulse 1.5s infinite; }
 .error button { margin:0 var(--pad); padding:9px 14px; border:1px solid var(--line); background:var(--chip); cursor:pointer; }
 .initial-status { min-height:55vh; padding:var(--pad); background:var(--panel); color:var(--muted); }
 .site-footer { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:12px clamp(12px,2vw,20px); border-top:1px solid var(--line); background:var(--panel2); }
+.site-footer a { color:inherit; }
 @keyframes pulse { to { background-position:-200% 0; } }
 @media (max-width:700px) {
   .topbar { align-items:flex-start; }
