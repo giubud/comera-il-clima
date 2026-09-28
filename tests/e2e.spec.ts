@@ -15,16 +15,16 @@ test('naviga tra le dieci città e conserva città e indicatore nel URL', async 
   await expect(page.getByRole('radio', { name: 'Giorni >30 °C' })).toHaveAttribute('aria-checked', 'true');
 });
 
-test('tema e densità persistono localmente senza entrare nel URL', async ({ page }) => {
+test('tema e ordinamento persistono localmente senza entrare nel URL', async ({ page }) => {
   await page.goto('?city=roma&metric=meanTemperatureC');
   await page.getByRole('button', { name: 'Scuro' }).click();
-  await page.getByRole('button', { name: 'Compatta' }).click();
+  await page.getByRole('combobox', { name: 'Ordina città' }).selectOption('alpha');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await expect(page.locator('html')).toHaveAttribute('data-density', 'compact');
-  await expect(page).not.toHaveURL(/theme|density/);
+  await expect(page.getByRole('combobox', { name: 'Ordina città' })).toHaveValue('alpha');
+  await expect(page).not.toHaveURL(/theme|sort/);
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await expect(page.locator('html')).toHaveAttribute('data-density', 'compact');
+  await expect(page.getByRole('combobox', { name: 'Ordina città' })).toHaveValue('alpha');
 });
 
 test('mostra un errore leggibile e il comando di riprova', async ({ page }) => {
@@ -60,15 +60,38 @@ test('esporta un CSV completo con decimali a punto', async ({ page }) => {
   expect(csv).toMatch(/^year,mean_temperature_c,hot_days_max_gt_30_c,precipitation_mm\n1961,23\.7,40,62\.1/m);
 });
 
-test('la classifica pioggia è ordinata per delta crescente', async ({ page }) => {
+test('il confronto mostra tutte le città e nove valori per riga', async ({ page }) => {
   await page.goto('?city=roma&metric=precipitationMm');
-  const ranking = page.getByRole('region', { name: 'Confronto città' });
-  const labels = await ranking.locator('.rank-row strong').allTextContents();
-  const manifest = JSON.parse(await readFile('public/data/manifest.json', 'utf8')) as { cities: { name: string; periods: { a: { precipitationMm: number }; b: { precipitationMm: number } } }[] };
-  const expected = manifest.cities.slice().sort((a, b) =>
-    (a.periods.b.precipitationMm - a.periods.a.precipitationMm) - (b.periods.b.precipitationMm - b.periods.a.precipitationMm)
-  ).map((city) => city.name);
-  expect(labels).toEqual(expected);
+  const rows = page.locator('.comparison tbody tr');
+  await expect(rows).toHaveCount(10);
+  await expect(rows.first().locator('td')).toHaveCount(9);
+  await page.getByRole('combobox', { name: 'Ordina città' }).selectOption('delta');
+  const changes = (await rows.locator('td:nth-child(10)').allTextContents()).map((text) => Number(text.replace('−', '-').replace(',', '.')));
+  expect(changes).toEqual([...changes].sort((a, b) => a - b));
+});
+
+test('periodi, anno e confronto città restano nel link e aggiornano i valori', async ({ page }) => {
+  await page.goto('?city=roma&metric=meanTemperatureC');
+  await page.getByRole('combobox', { name: 'Confronto rapido' }).selectOption('decades');
+  await expect(page).toHaveURL(/a=1961-1970&b=2011-2020/);
+  await page.getByRole('combobox', { name: "Confronta con un'altra città" }).selectOption('milano');
+  await page.getByRole('button', { name: '2003', exact: true }).first().click();
+  await expect(page).toHaveURL(/vs=milano&year=2003/);
+  await expect(page.getByRole('heading', { name: 'L’estate del 2003' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'L’estate del 2003' })).toBeVisible();
+});
+
+test('mappa locale navigabile da tastiera e archivio di 60 estati', async ({ page }) => {
+  await page.goto('?city=roma&metric=meanTemperatureC');
+  const mapCity = page.locator('.map-point[data-city="napoli"]');
+  await expect(mapCity).toBeVisible();
+  await mapCity.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Napoli · estate' })).toBeVisible();
+  await expect(page.locator('.annual tbody tr')).toHaveCount(60);
+  await page.getByRole('checkbox', { name: 'Media mobile (5)' }).check();
+  await expect(page).toHaveURL(/smooth=1/);
 });
 
 test('i controlli principali sono raggiungibili da tastiera', async ({ page }) => {

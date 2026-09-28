@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { aggregateSummer, periodDelta, summarizePeriod } from '../src/lib/aggregate';
+import { aggregateSummer, deltaClasses, movingAverage, periodDelta, rangeStats, summarizePeriod, warmth, zLevel } from '../src/lib/aggregate';
 import { constantSummer, syntheticResponse } from './helpers';
 
 describe('aggregateSummer', () => {
@@ -46,6 +46,25 @@ describe('periodi', () => {
   it('calcola 10,5 giorni per conteggi alternati', () => {
     const summers = Array.from({ length: 30 }, (_, i) => constantSummer(1961 + i, 20, i % 2 === 0 ? 10 : 11));
     expect(summarizePeriod(summers, 1961, 1990).hotDays).toBe(10.5);
+  });
+});
+
+describe('nuovi confronti', () => {
+  const summers = Array.from({ length: 5 }, (_, i) => constantSummer(1961 + i, 10 + i));
+  it('calcola media e deviazione standard campionaria', () => {
+    expect(rangeStats(summers, 'meanTemperatureC', 1961, 1965).mean).toBe(12);
+    expect(rangeStats(summers, 'meanTemperatureC', 1961, 1965).sd).toBeCloseTo(Math.sqrt(2.5));
+    expect(() => rangeStats(summers, 'meanTemperatureC', 1961, 1966)).toThrow();
+  });
+  it('calcola una media mobile centrata con estremi vuoti', () => {
+    expect(movingAverage([1, 2, 3, 4, 5, 6, 7])).toEqual([null, null, 3, 4, 5, null, null]);
+  });
+  it('inverte il senso delle piogge e classifica scarti e mappe', () => {
+    expect(warmth(-20, 'precipitationMm')).toBe(20);
+    expect(zLevel(2, 0, 1)).toBe(2);
+    expect(zLevel(-1, 0, 1)).toBe(-1);
+    expect(zLevel(5, 5, 0)).toBe(0);
+    expect(deltaClasses([0, 1, 2, 3, 4])).toEqual([0, 1, 2, 3, 3]);
   });
 });
 

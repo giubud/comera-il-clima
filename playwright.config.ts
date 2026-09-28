@@ -10,7 +10,7 @@ export default defineConfig({
     baseURL: 'http://127.0.0.1:4173/comera-il-clima/',
     channel: process.env.CI ? undefined : 'msedge',
     headless: true,
-    trace: 'retain-on-failure',
+    trace: process.env.CI ? 'retain-on-failure' : 'off',
   },
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1 --port 4173',

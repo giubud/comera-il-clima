@@ -75,3 +75,36 @@ export function periodDelta(a: PeriodSummary, b: PeriodSummary, metric: Metric):
   return b[metric] - a[metric];
 }
 
+export type RangeStats = { start: number; end: number; count: number; mean: number; sd: number };
+
+export function rangeStats(summers: readonly Summer[], metric: Metric, start: number, end: number): RangeStats {
+  const values = summers.filter((summer) => summer.year >= start && summer.year <= end).map((summer) => summer[metric]);
+  if (values.length !== end - start + 1) throw new Error(`Periodo incompleto: ${start}–${end}.`);
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const sd = values.length > 1 ? Math.sqrt(values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (values.length - 1)) : 0;
+  return { start, end, count: values.length, mean, sd };
+}
+
+export function movingAverage(values: readonly number[], window = 5): (number | null)[] {
+  if (window < 1 || window % 2 !== 1) throw new Error('La finestra deve essere dispari e positiva.');
+  const radius = Math.floor(window / 2);
+  return values.map((_, index) => index < radius || index + radius >= values.length ? null :
+    values.slice(index - radius, index + radius + 1).reduce((sum, value) => sum + value, 0) / window);
+}
+
+export function warmth(delta: number, metric: Metric): number {
+  return metric === 'precipitationMm' ? -delta : delta;
+}
+
+export function zLevel(value: number, mean: number, sd: number): -2 | -1 | 0 | 1 | 2 {
+  if (sd === 0) return 0;
+  const z = (value - mean) / sd;
+  return z >= 1.5 ? 2 : z >= 0.5 ? 1 : z <= -1.5 ? -2 : z <= -0.5 ? -1 : 0;
+}
+
+export function deltaClasses(values: readonly number[]): number[] {
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return values.map((value) => max === min ? 1 : Math.min(3, Math.floor((value - min) / (max - min) * 4)));
+}
+

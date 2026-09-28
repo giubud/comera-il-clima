@@ -37,3 +37,13 @@
 - Verificati termini Open-Meteo, CC BY 4.0 e licenza Copernicus sulle fonti ufficiali. Il README e il sito riportano fonte, modifiche ai dati, licenze distinte per dati e codice, credito C3S/ECMWF e la nota di responsabilità prevista dalla licenza Copernicus.
 - La restrizione non commerciale riguarda l'uso dell'API gratuita Open-Meteo; il riuso dei dati ottenuti tramite l'API è descritto secondo CC BY 4.0.
 - Sono accreditati il design consegnato dal proprietario con Claude Design e i font IBM Plex (SIL OFL 1.1). Le avvertenze distinguono la cella ERA5 dalla misura di stazione e chiariscono che le differenze tra periodi non provano causalità.
+
+## 2026-09-28 — Revisione v3 da Claude Design
+
+- Lo ZIP consegnato è stato trattato come specifica visiva e funzionale, non come fonte climatica. Non viene pubblicato nel repository. Rimangono Vite, TypeScript, ERA5, dieci città e gli stessi JSON cittadini.
+- `summers.json` contiene i 600 aggregati annuali derivati dai JSON reali, con temperatura a due decimali, precipitazione a un decimale e giorni caldi interi; `data:validate` li confronta tutti con gli originali. Il CSV continua a usare il JSON cittadino e non è stato modificato.
+- I periodi A e B sono selezionabili tra 1961 e 2020; il confronto iniziale rimane 1961–1990 contro 1991–2020. URL include i parametri analitici; tema e ordinamento restano locali. Periodi sovrapposti, disuguali o brevi generano un avviso, non un blocco.
+- La mappa carica solo `public/geo/italia-110m.json` dal sito. Il file è generato in preparazione da world-atlas 2.0.2 / Natural Earth, con Italia e vicini. I confini non sono usati per calcolare gli indicatori.
+- Le anomalie usano la deviazione standard campionaria del periodo A, la serie opzionale una media mobile centrata su cinque anni; la precipitazione inverte il verso caldo/secco. Sono convenzioni descrittive, non test statistici.
+- Le frasi legali e il formato CSV già verificati rimangono identici. Si aggiungono soltanto attribuzione cartografica e descrizione dei nuovi calcoli. Playwright conserva le rispettive asserzioni.
+- In locale la traccia Playwright è disabilitata per evitare un blocco EBUSY del file di trace osservato su Windows; nella CI Linux resta `retain-on-failure`.

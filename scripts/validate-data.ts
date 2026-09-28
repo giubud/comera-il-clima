@@ -4,6 +4,8 @@ import { join } from 'node:path';
 import { cities } from '../src/data/cities';
 import { assertCityDataset, metrics, type CityDataset, type Manifest } from '../src/data/schema';
 import { summarizePeriod } from '../src/lib/aggregate';
+import { compactSummers } from '../src/data/compact';
+import { assertSummers, type CompactSummers } from '../src/data/schema';
 
 const dataRoot = join(process.cwd(), 'public', 'data');
 const sha256 = (value: string) => createHash('sha256').update(value).digest('hex');
@@ -20,6 +22,7 @@ async function main(): Promise<void> {
   const expectedIds = cities.map(({ id }) => id);
   if (manifest.cities.map(({ id }) => id).join(',') !== expectedIds.join(',')) throw new Error('Lista città inattesa nel manifest.');
   const logicalContent: { cityId: string; years: CityDataset['years']; periods: CityDataset['periods'] }[] = [];
+  const datasets: CityDataset[] = [];
   for (const entry of manifest.cities) {
     const raw = await readFile(join(dataRoot, entry.file), 'utf8');
     if (sha256(raw) !== entry.sha256) throw new Error(`Hash non valido: ${entry.file}.`);
@@ -42,7 +45,12 @@ async function main(): Promise<void> {
       }
     }
     logicalContent.push({ cityId: dataset.cityId, years: dataset.years, periods: dataset.periods });
+    datasets.push(dataset);
   }
+  const compact: unknown = JSON.parse(await readFile(join(dataRoot, 'summers.json'), 'utf8'));
+  assertSummers(compact, expectedIds);
+  const expectedCompact: CompactSummers = compactSummers(datasets);
+  if (JSON.stringify(compact) !== JSON.stringify(expectedCompact)) throw new Error('summers.json non corrisponde ai JSON sorgente.');
   const dataVersion = sha256(JSON.stringify(logicalContent)).slice(0, 16);
   if (manifest.dataVersion !== dataVersion) throw new Error('dataVersion non corrisponde al contenuto aggregato.');
   console.log(`Validazione superata: 10 città, 600 estati, 1.800 indicatori annuali. dataVersion=${dataVersion}`);

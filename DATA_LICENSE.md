@@ -16,5 +16,9 @@ Modifiche effettuate nel 2026: selezione delle estati giugno–agosto del 1961�
 
 La licenza MIT in `LICENSE` si applica al codice del progetto; non sostituisce la licenza dei dati né le attribuzioni richieste.
 
+Il file compatto `public/data/summers.json` deriva esclusivamente dai 600 aggregati annuali già pubblicati per città: temperature arrotondate a due decimali, precipitazioni a un decimale e conteggi dei giorni caldi interi. I JSON cittadini mantengono la precisione e la provenienza originali. La selezione interattiva dei periodi ricalcola le medie nel browser; non introduce nuovi dati climatici.
+
+Il file `public/geo/italia-110m.json` contiene confini generalizzati di [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) (pubblico dominio), distribuiti nel pacchetto [world-atlas 2.0.2](https://github.com/topojson/world-atlas) (licenza ISC). È stato filtrato e convertito in GeoJSON per il progetto. I confini servono solo come contesto visivo e non definiscono le celle ERA5.
+
 L'uso dell'[API gratuita Open-Meteo](https://open-meteo.com/en/terms) è soggetto a condizioni non commerciali e limiti di chiamata. Questa restrizione riguarda l'accesso all'API gratuita: Open-Meteo dichiara che i dati ottenuti tramite l'API seguono CC BY 4.0, che consente anche il riuso commerciale con attribuzione. Chi intende effettuare nuove chiamate per uso commerciale deve verificare il piano API appropriato con Open-Meteo.
 

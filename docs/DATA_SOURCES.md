@@ -27,7 +27,7 @@ Il progetto:
 2. valida date, unità, valori e metadati;
 3. calcola i tre indicatori annuali;
 4. calcola le medie 1961–1990 e 1991–2020;
-5. pubblica soltanto gli aggregati JSON e il manifest con hash.
+5. pubblica gli aggregati JSON cittadini, il manifest con hash e il riepilogo compatto `summers.json` derivato dagli stessi aggregati.
 
 La cache delle risposte giornaliere è locale e ignorata da Git. Non vengono interpolati valori e i dati mancanti non sono sostituiti con zero.
 

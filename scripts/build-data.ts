@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { cities } from '../src/data/cities';
 import type { CityDataset, DailyResponse, Manifest } from '../src/data/schema';
 import { aggregateSummer, summarizePeriod } from '../src/lib/aggregate';
+import { compactSummers } from '../src/data/compact';
 
 type CachedResponse = { url: string; retrievedAt: string; sha256: string; response: DailyResponse };
 
@@ -88,6 +89,7 @@ async function main(): Promise<void> {
     cities: cityEntries,
   };
   await writeFile(join(stage, 'manifest.json'), stableJson(manifest), 'utf8');
+  await writeFile(join(stage, 'summers.json'), `${JSON.stringify(compactSummers(datasets))}\n`, 'utf8');
 
   await rm(backup, { recursive: true, force: true });
   try {

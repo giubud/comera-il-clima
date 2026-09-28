@@ -1,15 +1,15 @@
 # Stato del progetto
 
 Ultimo aggiornamento: 28 settembre 2026
-Fase attiva: Nessuna — licenze, crediti e avvertenze pubblicati
-Fasi completate: Fasi 0–7 complete
-File modificati: README, licenza/attribuzione dati, fonti, decisioni, sezione legale del sito, test E2E e screenshot aggiornati.
-Comandi eseguiti ed esito: `typecheck` e `build` superati; test E2E mirato su licenze e disclaimer superato; screenshot desktop/dark/tablet/mobile acquisiti senza overflow; CI 36440019512 e deploy 36440019644 riusciti.
-Verifiche manuali realmente effettuate: consultati termini Open-Meteo, licenza Copernicus, CC BY 4.0 e licenza IBM Plex; screenshot mobile e desktop dark esaminati; README e sito pubblici restituiscono HTTP 200 e contengono i nuovi crediti e il disclaimer.
-Decisioni aggiuntive: distinta la licenza dei dati dall'uso dell'API gratuita; aggiunte attribuzione e nota di responsabilità C3S/ECMWF; la sezione del sito chiarisce i limiti della griglia ERA5 e accredita design e font.
-Blocchi e prove del problema: 429 risolto con cache, rallentamento e ripresa; precisione binaria nel primo CSV corretta; primo deploy avviato prima dell'attivazione Pages fallito come previsto, quindi Pages è stato attivato e il secondo deploy è riuscito; workaround locale per l'helper sandbox risolto.
-Prossima azione concreta: nessuna. Per una futura sessione, riprendere soltanto da una nuova richiesta o da un controllo di manutenzione esplicito.
-Commit applicativo: `d8f9b00`.
+Fase attiva: Revisione v3 completata localmente; pubblicazione GitHub Pages da verificare.
+Fasi completate: Fasi 0–7 originali complete; revisione Claude Design v3 implementata e verificata localmente.
+File modificati: console, stile, favicon, aggregati compatti, confini locali, generatori e validatori, test, screenshot e documentazione. Lo ZIP ricevuto resta non tracciato.
+Comandi eseguiti ed esito: `typecheck`, 19 test unitari, `data:validate`, `build`, 10 test E2E e screenshot desktop/dark/tablet/mobile senza overflow: tutti superati.
+Verifiche manuali realmente effettuate: schermate desktop e mobile esaminate; il riepilogo compatto coincide con 600 aggregati reali; geografia scaricata in build da world-atlas 2.0.2 e servita localmente.
+Decisioni aggiuntive: periodi interattivi e URL condivisibile; tema/ordine locali; testo legale e CSV conservati; attribuzione Natural Earth e world-atlas aggiunta.
+Blocchi e prove del problema: la cache npm esterna era non scrivibile, risolto con `.cache/npm`; Playwright su Windows ha bloccato una trace EBUSY, risolto disabilitando trace solo in locale. Nessun blocco funzionale residuo.
+Prossima azione concreta: verificare diff e push, attendere workflow Pages, controllare il sito pubblico e aggiornare questo stato con l'esito.
+Commit applicativo: in preparazione.
 
 ## Pubblicazione
 

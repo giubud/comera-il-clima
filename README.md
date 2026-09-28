@@ -1,8 +1,10 @@
 # Com’era il clima
 
-**La memoria delle stagioni** è una piccola applicazione statica in italiano per confrontare le estati 1961–1990 e 1991–2020 in dieci città italiane.
+**La memoria delle stagioni** è un'applicazione statica in italiano per confrontare le estati di dieci città italiane tra il 1961 e il 2020. Il confronto iniziale usa 1961–1990 e 1991–2020; entrambi i periodi sono modificabili.
 
 Mostra tre indicatori ricavati da ERA5: temperatura media estiva, giorni con massima strettamente superiore a 30 °C e precipitazioni totali. Tutti i dati sono aggregati in fase di preparazione: il browser non contatta l’API climatica.
+
+La console include mappa locale, serie annuale e media mobile, strisce di anomalia, confronto tra città, anno selezionabile e tabella di 60 estati. Città, indicatore, periodi e vista selezionata sono condivisibili tramite URL; tema e ordinamento sono preferenze locali.
 
 ![Schermata desktop di Com’era il clima](docs/screenshots/desktop.png)
 
@@ -41,10 +43,13 @@ La pipeline dati è manuale e separata dalla build ordinaria:
 npm run data:fetch -- --city roma --from 1961 --to 1961
 npm run data:fetch -- --all
 npm run data:build
+npm run data:summers
 npm run data:validate
 ```
 
 La cache grezza viene salvata in `.cache/open-meteo/` e non entra nel repository. Non eseguire `data:build` senza una cache completa e validata.
+
+`data:build` genera anche `summers.json` quando la cache completa è disponibile. Per rigenerare solo il riepilogo compatto dai JSON cittadini pubblicati, usare `npm run data:summers`. I confini locali sono già nel repository; per rigenerarli esplicitamente dalla versione fissata di world-atlas, usare `npm run geo:build` (richiede rete soltanto in fase di preparazione).
 
 ## Licenze e crediti
 
@@ -55,6 +60,8 @@ Questo progetto ha modificato i dati: ha selezionato le estati giugno–agosto d
 I [termini di Open-Meteo](https://open-meteo.com/en/terms) riservano l'API gratuita agli usi non commerciali. Questa condizione riguarda l'accesso al servizio; il riuso dei dati ottenuti tramite l'API segue CC BY 4.0, anche per usi commerciali con attribuzione.
 
 L'interfaccia è stata adattata dal design consegnato dal proprietario del progetto con Claude Design. Usa [IBM Plex Sans e Mono](https://github.com/IBM/plex), disponibili secondo [SIL Open Font License 1.1](https://github.com/IBM/plex/blob/master/LICENSE.txt) e caricati da Google Fonts.
+
+La mappa usa confini di [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) (pubblico dominio), distribuiti tramite [world-atlas 2.0.2](https://github.com/topojson/world-atlas) (ISC) e salvati localmente. La mappa non scarica confini durante la visita.
 
 ## Avvertenze sui dati
 

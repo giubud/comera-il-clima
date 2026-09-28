@@ -31,6 +31,8 @@ npm run data:validate
 
 Controllare il diff dei JSON e del manifest. Una revisione del fornitore può cambiare gli aggregati; registrare la nuova `dataVersion` e il motivo della rigenerazione. La cache `.cache/open-meteo/` non deve essere committata.
 
+`data:build` produce anche `summers.json`. Se cambiano soltanto i dati cittadini già pubblicati, `npm run data:summers` rigenera il riepilogo senza interrogare la fonte. Per la mappa, `npm run geo:build` scarica solo durante la preparazione world-atlas 2.0.2 e salva un GeoJSON locale. Controllare le licenze in `DATA_LICENSE.md`.
+
 ## Verifiche richieste
 
 ```bash

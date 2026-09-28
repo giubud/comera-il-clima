@@ -1,19 +1,19 @@
-export type Theme = 'light' | 'dark';
-export type Density = 'comfortable' | 'compact';
+export type Theme = 'auto' | 'light' | 'dark';
+export type Sort = 'north' | 'alpha' | 'delta';
 
 const key = 'comera-console';
 
-export function loadAppearance(): { theme: Theme; density: Density } {
+export function loadAppearance(): { theme: Theme; sort: Sort } {
   try {
-    const saved = JSON.parse(localStorage.getItem(key) ?? '{}') as Partial<{ theme: Theme; density: Density }>;
-    return { theme: saved.theme === 'dark' ? 'dark' : 'light', density: saved.density === 'compact' ? 'compact' : 'comfortable' };
+    const saved = JSON.parse(localStorage.getItem(key) ?? '{}') as Partial<{ theme: Theme; sort: Sort }>;
+    return { theme: saved.theme === 'dark' || saved.theme === 'light' ? saved.theme : 'auto', sort: saved.sort === 'alpha' || saved.sort === 'delta' ? saved.sort : 'north' };
   } catch {
-    return { theme: 'light', density: 'comfortable' };
+    return { theme: 'auto', sort: 'north' };
   }
 }
 
-export function applyAppearance(theme: Theme, density: Density): void {
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.dataset.density = density;
-  localStorage.setItem(key, JSON.stringify({ theme, density }));
+export function applyAppearance(theme: Theme, sort: Sort): void {
+  if (theme === 'auto') delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+  localStorage.setItem(key, JSON.stringify({ theme, sort }));
 }
