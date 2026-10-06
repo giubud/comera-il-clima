@@ -47,3 +47,14 @@
 - Le anomalie usano la deviazione standard campionaria del periodo A, la serie opzionale una media mobile centrata su cinque anni; la precipitazione inverte il verso caldo/secco. Sono convenzioni descrittive, non test statistici.
 - Le frasi legali e il formato CSV già verificati rimangono identici. Si aggiungono soltanto attribuzione cartografica e descrizione dei nuovi calcoli. Playwright conserva le rispettive asserzioni.
 - In locale la traccia Playwright è disabilitata per evitare un blocco EBUSY del file di trace osservato su Windows; nella CI Linux resta `retain-on-failure`.
+
+## 2026-10-06 — Protezione del branch main
+
+- `main` è protetto su GitHub: ogni integrazione passa da una pull request.
+- È obbligatorio il controllo `verify`, emesso da GitHub Actions (app ID 15368).
+- Il branch della PR deve essere aggiornato rispetto a `main` prima del merge.
+- Il controllo comprende TypeScript, test unitari, validazione dati e build.
+- Le regole valgono anche per gli amministratori; force push ed eliminazione sono vietati.
+- Non sono obbligatorie approvazioni di altri utenti, per consentire il lavoro individuale.
+- Gli E2E restano nel deploy; non sono un controllo obbligatorio della PR.
+- Configurazione verificata tramite API GitHub dopo l'applicazione.
