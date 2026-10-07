@@ -58,3 +58,37 @@
 - Non sono obbligatorie approvazioni di altri utenti, per consentire il lavoro individuale.
 - Gli E2E restano nel deploy; non sono un controllo obbligatorio della PR.
 - Configurazione verificata tramite API GitHub dopo l'applicazione.
+
+## 2026-10-06 — Celle ERA5 sulla terraferma e correzione altimetrica
+
+Selezioniamo celle ERA5 sulla terraferma perché una cella marina può attenuare i picchi di
+temperatura e rappresentare meno bene le condizioni della città costiera.
+
+- Si usa `cell_selection=land`, mantenendo modello ERA5, coordinate richieste e periodi.
+- Il proprietario ha approvato la rimozione di `elevation=nan`: con quel parametro `land`
+  ricade su `nearest`, come confermato dal codice ufficiale Open-Meteo e dalle prove API.
+- Il parametro `elevation` è ora omesso: Open-Meteo adatta le temperature alla quota del luogo.
+  Questo cambia anche i risultati delle città interne; non è solo una scelta fra terra e mare.
+- Le 600 risposte nuove sono salvate in `.cache/open-meteo-land/`. La cache precedente resta
+  in `.cache/open-meteo/`; non è stata cancellata né sovrascritta.
+- Il generatore accetta solo richieste con i nuovi parametri. La validazione riconosce anche
+  i dati storici `nearest`, verificando la coerenza fra richieste, metadati e tutte le città.
+- Il proprietario ha scaricato e rigenerato i dati. `data:validate` verifica 10 città,
+  600 estati e 1.800 indicatori annuali. La nuova `dataVersion` è `4e434940c5eff13b`;
+  la precedente era `f7a18f7fd9b26685`.
+- `npm run data:compare` confronta i JSON correnti con il commit iniziale
+  `9ef44cd8487f64d9ae779f51e4f1a4c116e6cc7c`: medie A, B e B−A dei tre indicatori.
+- Solo Napoli cambia cella, da 40,75° N / 14,25° E a 41,00° N / 14,25° E. Nel periodo B
+  la media dei giorni >30 °C passa da 0,17 a 20,60. Il confronto include anche la correzione quota.
+- Venezia mantiene la cella 45,50° N / 12,25° E: nel periodo B i giorni >30 °C passano da
+  6,73 a 6,57. L'eventuale influenza di laguna o mare resta un'ipotesi aperta, non un errore
+  accertato né un problema dichiarato risolto. Servono confronti con celle vicine e osservazioni
+  locali negli stessi periodi; tali confronti non sono stati eseguiti.
+
+Fonti ufficiali:
+
+- [Parametri dell'API storica](https://open-meteo.com/en/docs/historical-weather-api).
+- [Selezione della cella][selezione-era5].
+
+[selezione-era5]:
+  https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift

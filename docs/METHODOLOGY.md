@@ -13,7 +13,19 @@ Nella console A e B possono essere selezionati liberamente nell'intervallo 1961�
 
 ## Rappresentazione geografica
 
-Ogni città è identificata da coordinate fisse. Open-Meteo seleziona la cella ERA5 più vicina (`cell_selection=nearest`) e usa la quota media della cella senza downscaling altimetrico (`elevation=nan`).
+Ogni città è identificata da coordinate fisse. Open-Meteo preferisce una cella ERA5 sulla
+terraferma (`cell_selection=land`), considerando anche la somiglianza dell'altitudine.
+Il modello resta ERA5: l'opzione `land` non indica il diverso modello ERA5-Land.
+
+Il parametro `elevation` viene omesso. Open-Meteo usa quindi la quota del luogo richiesto
+ricavata dal proprio modello digitale del terreno e adatta le temperature a tale quota.
+Questa correzione può modificare i valori anche quando la cella selezionata resta la stessa.
+La quota restituita dall'API, conservata in `source.elevationM`, è quella usata per la correzione.
+
+La precedente impostazione `elevation=nan` disabilitava la correzione altimetrica, ma faceva
+anche ricadere la selezione `land` su `nearest`. Per questo è stata rimossa con l'approvazione
+del proprietario. Le regole sono descritte nella [documentazione API][api-storica] e nel
+[codice ufficiale della selezione][selezione].
 
 ERA5 è una rianalisi globale su griglia di circa 0,25°. Il valore non è una misura di stazione, la media del comune o un dato puntuale del centro urbano. Il sito conserva sia le coordinate richieste sia quelle restituite.
 
@@ -47,7 +59,21 @@ La validazione di `summers.json` confronta tutte le 600 estati con i JSON cittad
 
 ## Limiti interpretativi
 
+Il passaggio a `land` non garantisce che ogni cella rappresenti bene la città costiera.
+Nella rigenerazione del 6 ottobre 2026 soltanto Napoli cambia cella; le altre nove città la
+mantengono. Il confronto prima/dopo comprende sia la selezione spaziale sia la correzione
+altimetrica: le variazioni non possono essere attribuite tutte al solo passaggio a `land`.
+
+Per Venezia la cella resta a 45,50° N, 12,25° E. Nel periodo 1991–2020 la media dei giorni
+con massima >30 °C passa da 6,73 a 6,57. L'influenza di laguna o mare sulla rappresentatività
+della cella resta un'ipotesi da verificare con celle vicine e osservazioni locali negli stessi
+periodi. I valori bassi da soli non dimostrano un errore; i controlli informatici non verificano
+la rappresentatività climatica della cella. Non è stato effettuato un confronto con stazioni.
+
 La rianalisi ricostruisce condizioni atmosferiche usando osservazioni e modelli. I dati possono essere revisionati dal fornitore. Gli aggregati committati identificano la versione mostrata, ma la cache giornaliera originale non è pubblicata e una rigenerazione futura potrebbe produrre risultati diversi.
 
 Le differenze descrivono i due periodi scelti. Non dimostrano causalità, non stimano eventi estremi e non sostituiscono analisi climatiche locali o studi di attribuzione.
+
+[api-storica]: https://open-meteo.com/en/docs/historical-weather-api
+[selezione]: https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift
 

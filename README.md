@@ -14,7 +14,7 @@ L’applicazione è pubblicata su **<https://giubud.github.io/comera-il-clima/>*
 
 Repository: <https://github.com/giubud/comera-il-clima>.
 
-Versione logica dei dati: `f7a18f7fd9b26685` (manifest rigenerato il 18 settembre 2026).
+Versione logica dei dati nel repository: `4e434940c5eff13b` (rigenerati il 6 ottobre 2026).
 
 ## Avvio locale
 
@@ -47,7 +47,14 @@ npm run data:summers
 npm run data:validate
 ```
 
-La cache grezza viene salvata in `.cache/open-meteo/` e non entra nel repository. Non eseguire `data:build` senza una cache completa e validata.
+La cache grezza viene salvata in `.cache/open-meteo-land/` e non entra nel repository.
+La cache originale `.cache/open-meteo/` è conservata per il confronto.
+Non eseguire `data:build` senza una cache completa e validata.
+
+`npm run data:compare` confronta i nuovi dati con la versione precedente alla revisione `land`.
+Mostra medie A, B e differenza B−A prima/dopo per tutti i tre indicatori e le dieci città.
+Il confronto include anche l'adattamento all'altitudine; il caso di Venezia resta da verificare.
+Si vedano [metodologia](docs/METHODOLOGY.md) e [decisioni](docs/DECISIONS.md).
 
 `data:build` genera anche `summers.json` quando la cache completa è disponibile. Per rigenerare solo il riepilogo compatto dai JSON cittadini pubblicati, usare `npm run data:summers`. I confini locali sono già nel repository; per rigenerarli esplicitamente dalla versione fissata di world-atlas, usare `npm run geo:build` (richiede rete soltanto in fase di preparazione).
 

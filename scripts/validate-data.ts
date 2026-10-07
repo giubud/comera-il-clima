@@ -6,6 +6,7 @@ import { assertCityDataset, metrics, type CityDataset, type Manifest } from '../
 import { summarizePeriod } from '../src/lib/aggregate';
 import { compactSummers } from '../src/data/compact';
 import { assertSummers, type CompactSummers } from '../src/data/schema';
+import { matchesSourceSelection } from './open-meteo';
 
 const dataRoot = join(process.cwd(), 'public', 'data');
 const sha256 = (value: string) => createHash('sha256').update(value).digest('hex');
@@ -28,12 +29,17 @@ async function main(): Promise<void> {
     if (sha256(raw) !== entry.sha256) throw new Error(`Hash non valido: ${entry.file}.`);
     const dataset: unknown = JSON.parse(raw);
     assertCityDataset(dataset);
+    const firstSource = datasets[0]?.source;
+    if (firstSource && (dataset.source.cellSelection !== firstSource.cellSelection
+      || dataset.source.elevationCorrection !== firstSource.elevationCorrection)) {
+      throw new Error(`Metodi diversi fra le città: ${entry.id}.`);
+    }
     if (dataset.cityId !== entry.id || dataset.source.requests.length !== 60) throw new Error(`Provenienza incompleta: ${entry.id}.`);
     const expectedYears = Array.from({ length: 60 }, (_, index) => 1961 + index);
     if (dataset.years.map(({ year }) => year).join(',') !== expectedYears.join(',')) throw new Error(`Anni incompleti: ${entry.id}.`);
     for (const request of dataset.source.requests) {
       const url = new URL(request.url);
-      if (url.searchParams.get('models') !== 'era5' || url.searchParams.get('cell_selection') !== 'nearest' || url.searchParams.get('elevation') !== 'nan') {
+      if (!matchesSourceSelection(url, dataset.source)) {
         throw new Error(`Parametri fonte inattesi: ${entry.id}.`);
       }
     }

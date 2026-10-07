@@ -8,8 +8,8 @@
 - Documentazione: https://open-meteo.com/en/docs/historical-weather-api
 - Fuso: `Europe/Rome`
 - Unità: Celsius e millimetri
-- Selezione spaziale: `cell_selection=nearest`
-- Correzione altimetrica: disabilitata con `elevation=nan`
+- Selezione spaziale: preferenza per la terraferma con `cell_selection=land`
+- Correzione altimetrica: attiva; `elevation` omesso, quota ricavata da Open-Meteo
 
 Variabili giornaliere:
 
@@ -29,7 +29,14 @@ Il progetto:
 4. calcola le medie 1961–1990 e 1991–2020;
 5. pubblica gli aggregati JSON cittadini, il manifest con hash e il riepilogo compatto `summers.json` derivato dagli stessi aggregati.
 
-La cache delle risposte giornaliere è locale e ignorata da Git. Non vengono interpolati valori e i dati mancanti non sono sostituiti con zero.
+La cache delle risposte giornaliere è locale e ignorata da Git. Le nuove richieste usano
+`.cache/open-meteo-land/`; la cache originale `.cache/open-meteo/` viene conservata.
+Non vengono interpolati valori e i dati mancanti non sono sostituiti con zero.
+
+La rigenerazione del 6 ottobre 2026 usa lo stesso metodo per tutte le 600 estati.
+La correzione altimetrica può cambiare le temperature anche a cella invariata.
+L'esito del confronto e il dubbio ancora aperto su Venezia sono descritti nella
+[metodologia](METHODOLOGY.md) e nelle [decisioni](DECISIONS.md).
 
 ## Coordinate richieste
 

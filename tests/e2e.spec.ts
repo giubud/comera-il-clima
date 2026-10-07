@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { assertCityDataset } from '../src/data/schema';
 
 test('naviga tra le dieci città e conserva città e indicatore nel URL', async ({ page }) => {
   await page.goto('?city=roma&metric=meanTemperatureC');
@@ -57,7 +58,17 @@ test('esporta un CSV completo con decimali a punto', async ({ page }) => {
   const path = await download.path();
   const csv = await readFile(path!, 'utf8');
   expect(csv.split('\n').filter(Boolean)).toHaveLength(61);
-  expect(csv).toMatch(/^year,mean_temperature_c,hot_days_max_gt_30_c,precipitation_mm\n1961,23\.7,40,62\.1/m);
+  const dataset: unknown = JSON.parse(await readFile('public/data/roma.json', 'utf8'));
+  assertCityDataset(dataset);
+  const lines = csv.split('\n').filter(Boolean);
+  expect(lines[0]).toBe('year,mean_temperature_c,hot_days_max_gt_30_c,precipitation_mm');
+  const records = lines.slice(1).map((line) => line.split(','));
+  expect(records).toEqual(dataset.years.map((summer) => [
+    String(summer.year),
+    summer.meanTemperatureC.toFixed(1),
+    String(summer.hotDays),
+    summer.precipitationMm.toFixed(1),
+  ]));
 });
 
 test('il confronto mostra tutte le città e nove valori per riga', async ({ page }) => {

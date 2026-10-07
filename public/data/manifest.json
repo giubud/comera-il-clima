@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T19:04:45.682Z",
-  "dataVersion": "f7a18f7fd9b26685",
+  "generatedAt": "2026-10-06T16:23:37.670Z",
+  "dataVersion": "4e434940c5eff13b",
   "season": "JJA",
   "periods": {
     "a": [
@@ -30,22 +30,22 @@
       "id": "torino",
       "name": "Torino",
       "file": "torino.json",
-      "sha256": "939f95b29a23b15728568712cb4f6a6c52f0caa5eee71af81d5c39535cd98837",
+      "sha256": "f967d2efad9e2c6155b798834609ff8beaad678f202f891cbd017a916e12619d",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 20.96630434782609,
-          "hotDays": 9.533333333333333,
+          "meanTemperatureC": 21.54971014492753,
+          "hotDays": 12.766666666666667,
           "precipitationMm": 218.86999999999998
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 22.767427536231885,
-          "hotDays": 26.033333333333335,
+          "meanTemperatureC": 23.351485507246377,
+          "hotDays": 30.633333333333333,
           "precipitationMm": 193.0366666666666
         }
       }
@@ -54,22 +54,22 @@
       "id": "milano",
       "name": "Milano",
       "file": "milano.json",
-      "sha256": "32d5f99e7f50403e274919b063a85dd566230ed20d2992bb759b1a8dd29a9851",
+      "sha256": "b0ce058fdf1dbde7d403b57407f215bada30238be78ac93f3d0f367abe5007cd",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 21.883043478260866,
-          "hotDays": 18.866666666666667,
+          "meanTemperatureC": 21.785507246376806,
+          "hotDays": 18.133333333333333,
           "precipitationMm": 319.95666666666665
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 23.921340579710137,
-          "hotDays": 37.43333333333333,
+          "meanTemperatureC": 23.82358695652174,
+          "hotDays": 36.833333333333336,
           "precipitationMm": 282.4066666666666
         }
       }
@@ -78,22 +78,22 @@
       "id": "venezia",
       "name": "Venezia",
       "file": "venezia.json",
-      "sha256": "fe7c83a11e7644b352b403b57ef27de0d47a9ba38d0542484ade97e8d6d5b092",
+      "sha256": "a2d36c8ae7f4131bb9984dcddee30a86293c774b0a8686180ab587d8ee9fddcb",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 22.083260869565216,
-          "hotDays": 0.7333333333333333,
+          "meanTemperatureC": 22.05641304347826,
+          "hotDays": 0.6666666666666666,
           "precipitationMm": 267.3933333333333
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 23.637644927536233,
-          "hotDays": 6.733333333333333,
+          "meanTemperatureC": 23.611594202898555,
+          "hotDays": 6.566666666666666,
           "precipitationMm": 223.3533333333333
         }
       }
@@ -102,22 +102,22 @@
       "id": "bologna",
       "name": "Bologna",
       "file": "bologna.json",
-      "sha256": "3c89f2526a04860580258d91013087fadde45c724ec7b7013c62b0ef6f2d35f8",
+      "sha256": "22a6ab0080df0485af4d5b62ce7e8c3cdda88467d283aee74e4b9cbd8f4b66f3",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 22.87090579710145,
-          "hotDays": 33.86666666666667,
+          "meanTemperatureC": 23.29275362318841,
+          "hotDays": 37.8,
           "precipitationMm": 192.37333333333333
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 24.495760869565217,
-          "hotDays": 48.5,
+          "meanTemperatureC": 24.917934782608697,
+          "hotDays": 51.833333333333336,
           "precipitationMm": 158.34999999999994
         }
       }
@@ -126,22 +126,22 @@
       "id": "firenze",
       "name": "Firenze",
       "file": "firenze.json",
-      "sha256": "0ea969d73bb5fa1a4987593e217c58987e394f8e3300997337aff618fe4812bc",
+      "sha256": "4c535dcb4ff3fe73863e37f67eacef7f391bee73d60dd374d1b505c9925b2a8e",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 21.253369565217387,
-          "hotDays": 16.166666666666668,
+          "meanTemperatureC": 22.643442028985508,
+          "hotDays": 27.9,
           "precipitationMm": 152.38999999999996
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 22.508586956521743,
-          "hotDays": 25.233333333333334,
+          "meanTemperatureC": 23.898586956521747,
+          "hotDays": 40.233333333333334,
           "precipitationMm": 105.23
         }
       }
@@ -150,22 +150,22 @@
       "id": "roma",
       "name": "Roma",
       "file": "roma.json",
-      "sha256": "150bc91181b0fe6cd3201b7ccbe7b515673ed757211a1f9450348e2971c306f1",
+      "sha256": "ca21f30db0a85defa2193a5a74b3b021dcd8ab94dce7832b17efe940ee129e52",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 22.685217391304352,
-          "hotDays": 26.733333333333334,
+          "meanTemperatureC": 23.198115942028988,
+          "hotDays": 31.7,
           "precipitationMm": 115.59333333333333
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 24.37764492753623,
-          "hotDays": 49.333333333333336,
+          "meanTemperatureC": 24.889927536231887,
+          "hotDays": 53.766666666666666,
           "precipitationMm": 79.18333333333332
         }
       }
@@ -174,23 +174,23 @@
       "id": "napoli",
       "name": "Napoli",
       "file": "napoli.json",
-      "sha256": "b6fc3dbbd11f4111688c7312064a667755ca6116689f6f7c424e01582778e2f4",
+      "sha256": "db818d51310d713cc4aeed0c53cd107eebd952603ec143b000f557d875b5a7a8",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 22.707028985507254,
-          "hotDays": 0.03333333333333333,
-          "precipitationMm": 80.89333333333335
+          "meanTemperatureC": 22.84173913043478,
+          "hotDays": 7.8,
+          "precipitationMm": 112.60333333333331
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 23.834710144927538,
-          "hotDays": 0.16666666666666666,
-          "precipitationMm": 50.00999999999999
+          "meanTemperatureC": 24.292463768115944,
+          "hotDays": 20.6,
+          "precipitationMm": 76.77
         }
       }
     },
@@ -198,22 +198,22 @@
       "id": "bari",
       "name": "Bari",
       "file": "bari.json",
-      "sha256": "d8f6696ec4b0d58873339cbc01381e51c21c28fc292a90cda2aebaec90eea69c",
+      "sha256": "478ba4f518382f429fe0c4522de7fe58b6e26265ef1a5e38424e840f4ae708c0",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 23.20481884057971,
-          "hotDays": 22,
+          "meanTemperatureC": 24.68771739130435,
+          "hotDays": 35.766666666666666,
           "precipitationMm": 97.15666666666665
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 24.688478260869566,
-          "hotDays": 39.1,
+          "meanTemperatureC": 26.1704347826087,
+          "hotDays": 52.9,
           "precipitationMm": 85.04666666666668
         }
       }
@@ -222,22 +222,22 @@
       "id": "palermo",
       "name": "Palermo",
       "file": "palermo.json",
-      "sha256": "5774a21d601be41e45c7045b0e95629368fdea59517032802d5abb95164e1b33",
+      "sha256": "5569e89dfb96a7d0cc346520026aa35f74dc3007266f79c5a4b19e5c50a26321",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 23.244094202898555,
-          "hotDays": 22.4,
+          "meanTemperatureC": 25.27260869565217,
+          "hotDays": 44.666666666666664,
           "precipitationMm": 49.643333333333324
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 24.90050724637681,
-          "hotDays": 36.8,
+          "meanTemperatureC": 26.926666666666662,
+          "hotDays": 60.53333333333333,
           "precipitationMm": 41.023333333333326
         }
       }
@@ -246,22 +246,22 @@
       "id": "cagliari",
       "name": "Cagliari",
       "file": "cagliari.json",
-      "sha256": "0edcdbf1bb75f5cac66270323ad5d4afede7d5e94c645e19d965fdbaa980b7c6",
+      "sha256": "8267b62811727171d74c5e53589794923c7c1c4ce06e7e3dc0a6cda5a87715f6",
       "periods": {
         "a": {
           "startYear": 1961,
           "endYear": 1990,
           "validYears": 30,
-          "meanTemperatureC": 22.975434782608694,
-          "hotDays": 14.066666666666666,
+          "meanTemperatureC": 23.853152173913045,
+          "hotDays": 23.133333333333333,
           "precipitationMm": 33.083333333333336
         },
         "b": {
           "startYear": 1991,
           "endYear": 2020,
           "validYears": 30,
-          "meanTemperatureC": 24.399347826086956,
-          "hotDays": 33.833333333333336,
+          "meanTemperatureC": 25.276268115942035,
+          "hotDays": 45.46666666666667,
           "precipitationMm": 20.36333333333334
         }
       }

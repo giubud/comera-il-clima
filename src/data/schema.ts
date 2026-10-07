@@ -18,6 +18,10 @@ export type PeriodSummary = Metrics & {
 
 export type SourceRequest = { url: string; retrievedAt: string; sha256: string };
 
+export type SourceSelection =
+  | { cellSelection: 'nearest'; elevationCorrection: 'disabled' }
+  | { cellSelection: 'land'; elevationCorrection: 'enabled' };
+
 export type CityDataset = {
   schemaVersion: 1;
   cityId: string;
@@ -29,10 +33,8 @@ export type CityDataset = {
     requestedCoordinates: { latitude: number; longitude: number };
     returnedCoordinates: { latitude: number; longitude: number };
     elevationM: number | null;
-    cellSelection: 'nearest';
-    elevationCorrection: 'disabled';
     requests: SourceRequest[];
-  };
+  } & SourceSelection;
   years: Summer[];
   periods: { a: PeriodSummary; b: PeriodSummary };
 };
@@ -94,6 +96,13 @@ export function assertCityDataset(value: unknown): asserts value is CityDataset 
   const data = value as Partial<CityDataset>;
   if (data.schemaVersion !== 1 || data.season !== 'JJA' || typeof data.cityId !== 'string') {
     throw new Error('Dataset non valido: intestazione non riconosciuta.');
+  }
+  const source = data.source;
+  if (!source || !(
+    (source.cellSelection === 'nearest' && source.elevationCorrection === 'disabled')
+    || (source.cellSelection === 'land' && source.elevationCorrection === 'enabled')
+  )) {
+    throw new Error('Dataset non valido: selezione della cella e correzione quota incoerenti.');
   }
   if (!Array.isArray(data.years) || data.years.length !== 60) {
     throw new Error('Dataset non valido: sono richieste 60 estati.');
