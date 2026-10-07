@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { cities, getCity } from '../src/data/cities';
 import type { DailyResponse } from '../src/data/schema';
 import { aggregateSummer } from '../src/lib/aggregate';
+import { cacheRoot, requestUrl } from './open-meteo';
 
 type CachedResponse = {
   url: string;
@@ -12,7 +13,6 @@ type CachedResponse = {
   response: DailyResponse;
 };
 
-const cacheRoot = join(process.cwd(), '.cache', 'open-meteo');
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 function selectedWork(): { cityIds: string[]; from: number; to: number } {
@@ -31,23 +31,6 @@ function selectedWork(): { cityIds: string[]; from: number; to: number } {
     throw new Error('Intervallo non valido: sono ammessi anni dal 1961 al 2020.');
   }
   return { cityIds: all ? cities.map((city) => city.id) : [cityId!], from, to };
-}
-
-function requestUrl(latitude: number, longitude: number, year: number): string {
-  const params = new URLSearchParams({
-    latitude: String(latitude),
-    longitude: String(longitude),
-    start_date: `${year}-06-01`,
-    end_date: `${year}-08-31`,
-    daily: 'temperature_2m_mean,temperature_2m_max,precipitation_sum',
-    models: 'era5',
-    timezone: 'Europe/Rome',
-    temperature_unit: 'celsius',
-    precipitation_unit: 'mm',
-    cell_selection: 'nearest',
-    elevation: 'nan',
-  });
-  return `https://archive-api.open-meteo.com/v1/archive?${params.toString()}`;
 }
 
 function assertResponse(response: DailyResponse, year: number): void {

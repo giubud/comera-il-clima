@@ -5,11 +5,11 @@ import { cities } from '../src/data/cities';
 import type { CityDataset, DailyResponse, Manifest } from '../src/data/schema';
 import { aggregateSummer, summarizePeriod } from '../src/lib/aggregate';
 import { compactSummers } from '../src/data/compact';
+import { cacheRoot, requestUrl, sourceSelection } from './open-meteo';
 
 type CachedResponse = { url: string; retrievedAt: string; sha256: string; response: DailyResponse };
 
 const root = process.cwd();
-const cacheRoot = join(root, '.cache', 'open-meteo');
 const publicRoot = join(root, 'public');
 const output = join(publicRoot, 'data');
 const stage = join(publicRoot, '.data-next');
@@ -28,7 +28,12 @@ async function datasetForCity(city: (typeof cities)[number]): Promise<CityDatase
     } catch {
       throw new Error(`Cache mancante o illeggibile: ${city.id}/${year}.json.`);
     }
-    if (sha256(JSON.stringify(cached.response)) !== cached.sha256) throw new Error(`Hash cache non valido: ${city.id} ${year}.`);
+    if (cached.url !== requestUrl(city.latitude, city.longitude, year)) {
+      throw new Error(`Parametri cache inattesi: ${city.id} ${year}. Riscarica questa estate.`);
+    }
+    if (sha256(JSON.stringify(cached.response)) !== cached.sha256) {
+      throw new Error(`Hash cache non valido: ${city.id} ${year}.`);
+    }
     years.push(aggregateSummer(cached.response, year));
     cachedItems.push(cached);
   }
@@ -50,8 +55,7 @@ async function datasetForCity(city: (typeof cities)[number]): Promise<CityDatase
       requestedCoordinates: { latitude: city.latitude, longitude: city.longitude },
       returnedCoordinates: { latitude: first.latitude, longitude: first.longitude },
       elevationM: first.elevation,
-      cellSelection: 'nearest',
-      elevationCorrection: 'disabled',
+      ...sourceSelection,
       requests: cachedItems.map(({ url, retrievedAt, sha256: hash }) => ({ url, retrievedAt, sha256: hash })),
     },
     years,

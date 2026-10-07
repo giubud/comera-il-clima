@@ -1,5 +1,23 @@
 # Stato del progetto
 
+## Revisione A1 — 6 ottobre 2026
+
+Stato: punti 1–4 completati in locale sul branch `fix/era5-land-cells`.
+Le richieste usano `land` con adattamento all'altitudine; la cache originale è conservata.
+I dati sono stati rigenerati dal proprietario: 10 città, 600 estati.
+Versione logica dei dati: `4e434940c5eff13b`.
+Il confronto prima/dopo è disponibile con `npm run data:compare`.
+Metodologia, fonti, decisioni e istruzioni della pipeline sono aggiornate.
+Controlli locali superati: TypeScript, 22 test unitari, validazione dati, build e 10 test E2E.
+Il test CSV verifica tutte le 60 righe rispetto al JSON cittadino corrente.
+Solo Napoli cambia cella. La rappresentatività della cella di Venezia resta da approfondire,
+come registrato in `docs/METHODOLOGY.md` e `docs/DECISIONS.md`.
+Le modifiche non sono ancora committate o pubblicate; la CI della PR non è ancora stata eseguita.
+Prossima azione: commit, push del proprietario e pull request.
+Merge solo con la CI richiesta verde.
+
+## Stato della revisione v3 — 28 settembre 2026
+
 Ultimo aggiornamento: 28 settembre 2026
 Fase attiva: Nessuna — revisione v3 pubblicata e verificata.
 Fasi completate: Fasi 0–7 originali complete; revisione Claude Design v3 implementata e verificata localmente.

@@ -14,309 +14,309 @@
       "latitude": 45,
       "longitude": 7.75
     },
-    "elevationM": 329,
-    "cellSelection": "nearest",
-    "elevationCorrection": "disabled",
+    "elevationM": 239,
+    "cellSelection": "land",
+    "elevationCorrection": "enabled",
     "requests": [
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1961-06-01&end_date=1961-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:10.763Z",
-        "sha256": "274df7192580dcde308af6d6a0dabe9067bdabe729670c09900bc0934fbe8f71"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1961-06-01&end_date=1961-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:03.151Z",
+        "sha256": "dbb4110e4882626d0ec90284495b83e95eeabc7252f448b9c8a96998491610ae"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1962-06-01&end_date=1962-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:10.936Z",
-        "sha256": "3ea2a081ae3bb75efcbc4b8307268205e4033042102151dafcbc6d7fc2a4e4db"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1962-06-01&end_date=1962-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:04.310Z",
+        "sha256": "249c01ef81f8ff3e032212197f847c249a12206a535e1c4ff7cd1b86dbe86037"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1963-06-01&end_date=1963-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.100Z",
-        "sha256": "6212a8a2704bfc4e4a2ee2742d5ff145182fd7b227b673169e6aa23507dbdbb1"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1963-06-01&end_date=1963-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:05.476Z",
+        "sha256": "4cf175cda8b6c322ac6eac381b458f5e7ec5df58371deb6a6d9d25f22b55c272"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1964-06-01&end_date=1964-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.265Z",
-        "sha256": "5eeabab79b90d44d4a59b8b5254f36d2d5905029bdfc2c32b8e50cb3bfe20196"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1964-06-01&end_date=1964-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:06.629Z",
+        "sha256": "067074ce338c310ca00856995a43fc8a52476d6b21e6fdf9649957f9d0a9ea34"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1965-06-01&end_date=1965-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.424Z",
-        "sha256": "b705b32ac1d0b3a4fac723eccbe194b03eab8904af6c3d50ea405d73d8d0dff2"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1965-06-01&end_date=1965-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:07.788Z",
+        "sha256": "f59902516a7e61fe08c781c429b17f37c17587dd581cb768c5e8d24e22f33a97"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1966-06-01&end_date=1966-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.590Z",
-        "sha256": "9c108b00ec023e26221c7f1eb55fab4692208a8adc64aabd8cecfe82f02af70f"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1966-06-01&end_date=1966-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:08.942Z",
+        "sha256": "f0097a9fafc5ccd306aef837ad8a0c878df4c36e4e388d8a312a80c0197a88d9"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1967-06-01&end_date=1967-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.747Z",
-        "sha256": "23386f1f20de548b4a09e2bb2d5d77b1455f527467828946302c3502261c7edb"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1967-06-01&end_date=1967-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:10.097Z",
+        "sha256": "e9e8b6efa01791a5ec44e36e8060269dfc85d3ff62befa81ee9596a24d382816"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1968-06-01&end_date=1968-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:11.906Z",
-        "sha256": "87b40bf00456f7512f5d1f76e114ee0f9a660070b7e45407f02c0dd919c4bd44"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1968-06-01&end_date=1968-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:11.264Z",
+        "sha256": "86cdc183cd7aa5ce2644c186f7a5562ec47215e25ca03deaa94e048a7ba756f0"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1969-06-01&end_date=1969-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.065Z",
-        "sha256": "19e8d59b59eaf029878401361cfbb2d43fa1806b8664d4832450b4d0d83946d4"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1969-06-01&end_date=1969-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:12.427Z",
+        "sha256": "976d24563b283b5fd9a458a9675373f4af6c0fc6182d129b0e1bb0c81f394d53"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1970-06-01&end_date=1970-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.231Z",
-        "sha256": "1dcc60de36423900502070dc4803824d9f2222027531ef3836ccf0bb0e1dc8e5"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1970-06-01&end_date=1970-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:13.599Z",
+        "sha256": "b12f0beef95a5d7315f961f8eadab4c3f868318d58610a59a8979e00346e4f8f"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1971-06-01&end_date=1971-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.404Z",
-        "sha256": "7b49888050e8d32dfb230c2f82bde979f8ac88a06c419ede1c86a6160f063c3e"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1971-06-01&end_date=1971-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:14.749Z",
+        "sha256": "48895dafb7dbe80975da9b722352864bc5106a72ef1c7ef4ebc54e5d76ef0561"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1972-06-01&end_date=1972-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.572Z",
-        "sha256": "43cbe1057482b5a4035aeee135a64937f10fcd585b5225785d3cd476d5d38340"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1972-06-01&end_date=1972-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:15.904Z",
+        "sha256": "21e076b6697dad94279c2f7ee45402c1a569e4fe44731441a4fd70e303eb689f"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1973-06-01&end_date=1973-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.724Z",
-        "sha256": "af92a6c79937e338cbae9ea122ae863c595f59e43473f7284b1620bc47721d93"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1973-06-01&end_date=1973-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:17.060Z",
+        "sha256": "0a991c429ab2070feb428d976928f676698b0b37e397f57207d62ac51258648c"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1974-06-01&end_date=1974-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:12.878Z",
-        "sha256": "90bb7ca1fabee5fd4140d26518e424e167d42c28d029556db3b1a24200b75770"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1974-06-01&end_date=1974-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:18.231Z",
+        "sha256": "2a7cd775fbbd1506befeeb1cfec94ef7273c3495632a3eeb54dc7731c7c4fe33"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1975-06-01&end_date=1975-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.033Z",
-        "sha256": "8a913f94c24ff1c8f558788ab6f6e6efddb9a3b1b5c23f8ef34f420ba1338087"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1975-06-01&end_date=1975-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:19.386Z",
+        "sha256": "5963496c2b9ebc78adf462ecad1b67674b495612b19c82af0d82f2bcfd86bd7e"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1976-06-01&end_date=1976-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.195Z",
-        "sha256": "d145aadbd43d88b26562bb4fd251049f5ba53ceef6bcf8d0d9196ae786962df4"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1976-06-01&end_date=1976-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:20.544Z",
+        "sha256": "893458df5655fbf036e4f7fa3a66ef9642541f8104fb874a8c5d984ed0a40935"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1977-06-01&end_date=1977-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.348Z",
-        "sha256": "59c912af2bc2765b93a81cb9a8b958066fb51bbd17b22bfdaacf851a4dbdff1a"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1977-06-01&end_date=1977-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:21.708Z",
+        "sha256": "6a284787375632910910792676d237bad0d7afc22d0853850105adcf2cb193f6"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1978-06-01&end_date=1978-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.504Z",
-        "sha256": "bcc4e7a8f62e24f44e596d4f710ff619e18b8a2025442eb964ee689895f79274"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1978-06-01&end_date=1978-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:22.879Z",
+        "sha256": "8f26c84376265fa661a5d468a17c2ea4162aa77273279a678cbcd9da79a231b7"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1979-06-01&end_date=1979-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.655Z",
-        "sha256": "26ba42828272d683855068e4e11672c1ca308884ddf782990f18559da3b2ce2c"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1979-06-01&end_date=1979-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:24.043Z",
+        "sha256": "b02029af9f282ff3587ef1b6c7d39ce3c50fccab805e9c3e2435b2ce7cf4410b"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1980-06-01&end_date=1980-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.810Z",
-        "sha256": "1459d22a7c060cd249eb9020515a54453c22307ad36239b0116c53821614dcd1"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1980-06-01&end_date=1980-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:25.207Z",
+        "sha256": "466227f0fad43d977dd86566f5965ad2f847c14ed30ab03537d8db65795e58e8"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1981-06-01&end_date=1981-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:13.965Z",
-        "sha256": "c708fa17aa4a842fe0c7afb288168f3405c9ce956518e233c3e152142e3bbffc"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1981-06-01&end_date=1981-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:26.373Z",
+        "sha256": "2538ae0b59e97171ad6880e8ec3f92de06deca53a9540200cbb52efb5ab872cb"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1982-06-01&end_date=1982-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.117Z",
-        "sha256": "29408033311c2a828f86637d0c7574eccfb1f249517b294d2029b467898dfe01"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1982-06-01&end_date=1982-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:27.531Z",
+        "sha256": "f0065596d456d8bffdc1f4eb275e83b5e55de473eaba1bd7bc9da43c6d6e9595"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1983-06-01&end_date=1983-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.276Z",
-        "sha256": "1cc13f14e0ace684edec287bacfde1ef0c87d7b817cb5dac4e00773590b04e35"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1983-06-01&end_date=1983-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:28.683Z",
+        "sha256": "ac3a26fd32835d8e07d59e5d56aa09706fc00c0ce5fb3b25624c96a29f64b2ec"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1984-06-01&end_date=1984-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.434Z",
-        "sha256": "489f8f92f4dc6d58e78344a3d76ee6d74226877bde996832b31d19ad363afdd3"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1984-06-01&end_date=1984-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:29.837Z",
+        "sha256": "9b131dbf684d7ca2fd4d570e83b980ac3a8b9ccca936fbed8f713a01c2d97aad"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1985-06-01&end_date=1985-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.593Z",
-        "sha256": "393a714b4d535ad04cbec6fc432590851aaa3f2a0c097fa60886f5b5820c5fbd"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1985-06-01&end_date=1985-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:31.004Z",
+        "sha256": "dc295ed9e7ecca10782adc946ca62ecdd15f56a99d18a42901cda2957d69c860"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1986-06-01&end_date=1986-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.748Z",
-        "sha256": "6fd7f7242a8736de8305b3b5ebfbd027e42b12be345c2d24cbdcd90b04ffcf91"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1986-06-01&end_date=1986-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:32.159Z",
+        "sha256": "9e0aca44d90a3d5ebcc25f12833297856122c8a369bcbc30931c87716242b2ee"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1987-06-01&end_date=1987-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:14.912Z",
-        "sha256": "4c8e719a2711cbe0921ba84d5b1ba49e5205ab2a627191fb0c2f033e06b99bab"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1987-06-01&end_date=1987-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:33.328Z",
+        "sha256": "396a7bd0bd9fd343e2bff35dbcaa4b489a1c1aa2c61f4f041c646f716a402843"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1988-06-01&end_date=1988-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.080Z",
-        "sha256": "8b3cd8958bae29c0175413889158bcda730177e2062072bdb3123bbd78b527cd"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1988-06-01&end_date=1988-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:34.479Z",
+        "sha256": "e8a68070b5a8f28e8854df1db2323ebb6cdb6ffc8c658dc39ef4017622e2e241"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1989-06-01&end_date=1989-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.242Z",
-        "sha256": "d7e2f76be9e64bf40a0e8ba9b0bb3821cd3b21583f1c7ab14238fc865e381f26"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1989-06-01&end_date=1989-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:35.636Z",
+        "sha256": "2468491a9be549499a0d569a4fb35d2e67de6df7eefe8e86bd25ffb36dd9fb01"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1990-06-01&end_date=1990-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.397Z",
-        "sha256": "620ff70ca7f537fdeb354bd0de583740cdb7748f075e071522ea38d6d60e6c75"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1990-06-01&end_date=1990-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:36.790Z",
+        "sha256": "8b227b4eca85a4d50fb10136258e3694752d12a7381a512f878eae8bcf72f0fd"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1991-06-01&end_date=1991-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.555Z",
-        "sha256": "377d46678535fd7a6bc9bd646209a9670bb285b4063a5a7e7121aca7a21fd3a7"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1991-06-01&end_date=1991-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:37.953Z",
+        "sha256": "fbc704642dc8b77d78c03066d314a108afdbe3f32df976fd2043349c810b5696"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1992-06-01&end_date=1992-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.706Z",
-        "sha256": "2b62d18b61d55752ccf36bfaf996c2a0cdcff143be383830e87f7cc98ba874ea"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1992-06-01&end_date=1992-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:39.117Z",
+        "sha256": "44de3008abe8d231b8ac590bf451a0006b60623ca41b8051068a38cf2f2045b9"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1993-06-01&end_date=1993-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:15.860Z",
-        "sha256": "60c390733d3721e4a4c179db6aada53e26977fd946d04b174f6b3bfafd6936c8"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1993-06-01&end_date=1993-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:40.279Z",
+        "sha256": "0ad80b62ddc82ab8a30c6643cdd6bb5c13cf623a6e62a8abdc55f516a780e9ba"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1994-06-01&end_date=1994-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.017Z",
-        "sha256": "6f90f0992df54564101236987b1ca4714dc3f72af6118268070af0f668c45b10"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1994-06-01&end_date=1994-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:41.437Z",
+        "sha256": "7aac626154c7ff12333b3ebc33abc940d9430a6afdd0f095681643ff93471ce5"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1995-06-01&end_date=1995-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.174Z",
-        "sha256": "08f7fc70b5653172ec1ef8bb24e40ae439cf03da42fa5cc31e15a0f25c1110a6"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1995-06-01&end_date=1995-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:42.593Z",
+        "sha256": "d8f8d9b8494daf494aa2174d321b99d52c29889c2d7e9f7a8fdfa416eb9be304"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1996-06-01&end_date=1996-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.327Z",
-        "sha256": "ab10d90b36d53774a9f807ca4b89823e6c447d0cb286a76fb718a2f70f1d9562"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1996-06-01&end_date=1996-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:43.750Z",
+        "sha256": "dfd269641d9df2b0f971a658a63b26a1e4ae6a2b55cb002c3160e721290060b5"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1997-06-01&end_date=1997-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.482Z",
-        "sha256": "b391bdf028ff776b081055a4441ee00d040f97dcef8eeb063251c3dc66e4334f"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1997-06-01&end_date=1997-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:44.908Z",
+        "sha256": "fbe59931fc85a3684905f98b32e3e2365d9c97cbd3bd4d87a1938a6c621706cc"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1998-06-01&end_date=1998-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.640Z",
-        "sha256": "47baa726f080941f3bf21c94317d5649535eb99e0379b95fec2567d27e4e51eb"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1998-06-01&end_date=1998-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:46.064Z",
+        "sha256": "6e7e16c6f60c308963b69352972924763be8bbb4a1938efab765a7555541e55c"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1999-06-01&end_date=1999-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.791Z",
-        "sha256": "0307ad92e9e75074a1f56d533601373f9975fd1048ede3ea6c608dc0b44c95c7"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=1999-06-01&end_date=1999-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:47.221Z",
+        "sha256": "f90fa7e89fbcc37d1f41d2d9cbdc5c68021ab898e2b7d57bce79e8826deb8bc6"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2000-06-01&end_date=2000-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:16.949Z",
-        "sha256": "90ed78a1d66038d9c6e2c2ded81cf7fb83b04de20064d6b21bb4d9a8d0c5c6bf"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2000-06-01&end_date=2000-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:48.374Z",
+        "sha256": "67d92a3bf5765af53e7f67bd2e1f5422dbec5f26ea7f9df71e3c488cc4da19c1"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2001-06-01&end_date=2001-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.104Z",
-        "sha256": "4b323cecf1c50b901ebc3b3b2733a48848d25270e39a86e8e543828b1924bb1d"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2001-06-01&end_date=2001-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:49.535Z",
+        "sha256": "5403316d7d7c00f1b84578d317807319709aaa0aa757a45c95b76002bd77e670"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2002-06-01&end_date=2002-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.257Z",
-        "sha256": "2abfa61d622e5afe1f82cb6ee2c5025aaf0ea44c6a91ae2d2e4c593f0b433319"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2002-06-01&end_date=2002-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:50.699Z",
+        "sha256": "cbc447db9d9ed08007e02a336330b8dcaea0dee4d97797762c89bd488420e20e"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2003-06-01&end_date=2003-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.412Z",
-        "sha256": "881551c9d389b7ddfe39c6e137ce2fef59f56a31c709e0d9db26c1898e7f988c"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2003-06-01&end_date=2003-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:51.855Z",
+        "sha256": "8f3a8b57a06347e41ae076221a78d79d88eecdf99b2296006c02a8f81417a928"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2004-06-01&end_date=2004-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.566Z",
-        "sha256": "dbe256b34adb009d21a5da87815fce5f74b7b05bcefa140eca2656865dfcb202"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2004-06-01&end_date=2004-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:53.006Z",
+        "sha256": "c699a71985fbe2cb0a3a357deef8aff76c478e60c1292141f22de2a90dbe1ba9"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2005-06-01&end_date=2005-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.724Z",
-        "sha256": "0674402682ccba32104157f869567db4932eb9539177b1f0b4484d99112d050f"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2005-06-01&end_date=2005-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:54.163Z",
+        "sha256": "136fa3ca3a919c70fa5d8ca1f6dc52c78cbd81563725da5c38be63cb6e70bf16"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2006-06-01&end_date=2006-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:17.880Z",
-        "sha256": "f524879023045b1713653d90d68b6f923138c9ef8f03de87b7b2734109f7bcee"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2006-06-01&end_date=2006-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:55.316Z",
+        "sha256": "83fc9796c291db60a4b152460e74cdfa60e7b67e4c353ebd325f3e9926da6640"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2007-06-01&end_date=2007-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.041Z",
-        "sha256": "f7d3e6a881ba1d5b8a872c2792bdca874eb3c20a4f49af71c2f6612ee5084a7d"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2007-06-01&end_date=2007-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:56.478Z",
+        "sha256": "5bd8a3dbffdfd606c416123d080e80d379dc6a9ef75023bf0f98134b4d14b466"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2008-06-01&end_date=2008-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.209Z",
-        "sha256": "76d80f949e3dabf70cee5cde1bcd40d0c33711f3b2671afd5c95b86f24e1f8b4"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2008-06-01&end_date=2008-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:57.632Z",
+        "sha256": "42c99772902e1f6f3d5a5d5977b955c7b7e98f45bca10cf17449667e25aef623"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2009-06-01&end_date=2009-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.363Z",
-        "sha256": "f125fd45352ca5bb69076e76b34f079ae3eeee8106973bb15a48980f90f32b08"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2009-06-01&end_date=2009-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:58.788Z",
+        "sha256": "c56223b75113505e954bc8792ac30279c2e0a49b374bd7a11c122310df94a502"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2010-06-01&end_date=2010-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.518Z",
-        "sha256": "a59d1c7cd4b476692af980350dbd8d14122860c085b6a0646f0f7c1bcf891836"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2010-06-01&end_date=2010-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:02:59.945Z",
+        "sha256": "59118e58185914b76506fa03f0b64dd393b62e39b71f223ca2135e4d0d704f54"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2011-06-01&end_date=2011-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.676Z",
-        "sha256": "845988c7088ca721b013e6a34ecd71ab61ff7900c988373a2f7aeb41a4af9d7d"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2011-06-01&end_date=2011-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:01.100Z",
+        "sha256": "859576f5136b27fa75738c7318fd95fd1f1d29e875af6a285b90eb89483b8e11"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2012-06-01&end_date=2012-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.828Z",
-        "sha256": "46849197ee7c587643f7880394e49a6bc0c11c6a60a0bc8e0e996bc7c2883616"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2012-06-01&end_date=2012-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:02.261Z",
+        "sha256": "861fe032da94bcdc0fc1aadbb12040c05acdb2ddd26fc540b59a076de4a619ba"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2013-06-01&end_date=2013-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:18.984Z",
-        "sha256": "779ed870f625a38ed2f5e81ff2c9b39f9fb6bf840dd289dfa102059d621d8c02"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2013-06-01&end_date=2013-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:03.415Z",
+        "sha256": "1abe238692cca5506814a2d3341297a7a01b1b6fbda7d841deda01fbe0649d73"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2014-06-01&end_date=2014-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.141Z",
-        "sha256": "428eef806ca03ea7ade0232a26793154571431c9d02f21265986c81175ac56fb"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2014-06-01&end_date=2014-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:04.571Z",
+        "sha256": "e6c0f2162a987c4e3fe11a63fa2e9d69a63e23e5fa23396241e84b023c82e27a"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2015-06-01&end_date=2015-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.293Z",
-        "sha256": "1aed5db6a26beeb2dc318c51773a14e67859023c8f80bc72e3e816fea1634d74"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2015-06-01&end_date=2015-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:05.728Z",
+        "sha256": "1d5b6986e29bd16baee124e3e6996e89fc4b02b05ca3ac6e0379499955828acb"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2016-06-01&end_date=2016-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.449Z",
-        "sha256": "050b51381576734737991d5b69ee61df00d15f6f92edc49e15e7ae1f16450527"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2016-06-01&end_date=2016-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:06.885Z",
+        "sha256": "d0bf1b02858679da3401feed6d5918ae34cd41e3839252a51cc9aa3dfa007491"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2017-06-01&end_date=2017-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.608Z",
-        "sha256": "460878a68d077f4221097c102a3939398322234fc8e55a4de086bb1c87e7c849"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2017-06-01&end_date=2017-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:08.045Z",
+        "sha256": "33bd0f75a89c747b69087aeeb20a43c040595440ba30d508e6e970e519302f03"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2018-06-01&end_date=2018-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.761Z",
-        "sha256": "973fbfa184c18fb546abd483ba6f200d955a57f2cf6cd2cb482411f735a0e971"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2018-06-01&end_date=2018-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:09.201Z",
+        "sha256": "4ea3deb8a5443f8a80d769951146fd8b47b757f47898ac3c18c4674e73465456"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2019-06-01&end_date=2019-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:19.913Z",
-        "sha256": "3a7269465bee27075dff5f096de26cabf8b5886d51fa9f7df4be52ec4d23b17f"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2019-06-01&end_date=2019-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:10.366Z",
+        "sha256": "bbfa18946844fc13cbc2de69eea00f2af5140de46483f425856234d34fa9fc5d"
       },
       {
-        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2020-06-01&end_date=2020-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=nearest&elevation=nan",
-        "retrievedAt": "2026-09-16T16:41:20.070Z",
-        "sha256": "e7220118c89404aaca58adbf7cf051deb9c1effe4895b94687b546cb45168da0"
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.0703&longitude=7.6869&start_date=2020-06-01&end_date=2020-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-06T16:03:11.519Z",
+        "sha256": "154b2667f820bf3b0bfacc2dbd323a25745862bbb94c9d82aef1dea462f8978e"
       }
     ]
   },
@@ -324,421 +324,421 @@
     {
       "year": 1961,
       "validDays": 92,
-      "meanTemperatureC": 21.39347826086956,
-      "hotDays": 13,
+      "meanTemperatureC": 21.979347826086958,
+      "hotDays": 15,
       "precipitationMm": 130
     },
     {
       "year": 1962,
       "validDays": 92,
-      "meanTemperatureC": 22.048913043478258,
-      "hotDays": 32,
+      "meanTemperatureC": 22.640217391304343,
+      "hotDays": 37,
       "precipitationMm": 99.9
     },
     {
       "year": 1963,
       "validDays": 92,
-      "meanTemperatureC": 20.5141304347826,
-      "hotDays": 4,
+      "meanTemperatureC": 21.09021739130434,
+      "hotDays": 5,
       "precipitationMm": 269.40000000000003
     },
     {
       "year": 1964,
       "validDays": 92,
-      "meanTemperatureC": 21.66739130434783,
-      "hotDays": 16,
+      "meanTemperatureC": 22.248913043478254,
+      "hotDays": 19,
       "precipitationMm": 160.19999999999996
     },
     {
       "year": 1965,
       "validDays": 92,
-      "meanTemperatureC": 20.696739130434782,
-      "hotDays": 8,
+      "meanTemperatureC": 21.28369565217391,
+      "hotDays": 12,
       "precipitationMm": 190.79999999999998
     },
     {
       "year": 1966,
       "validDays": 92,
-      "meanTemperatureC": 20.35108695652173,
-      "hotDays": 6,
+      "meanTemperatureC": 20.933695652173913,
+      "hotDays": 7,
       "precipitationMm": 284.00000000000006
     },
     {
       "year": 1967,
       "validDays": 92,
-      "meanTemperatureC": 21.101086956521744,
-      "hotDays": 8,
+      "meanTemperatureC": 21.68152173913043,
+      "hotDays": 14,
       "precipitationMm": 220.39999999999995
     },
     {
       "year": 1968,
       "validDays": 92,
-      "meanTemperatureC": 19.405434782608694,
-      "hotDays": 3,
+      "meanTemperatureC": 19.990217391304355,
+      "hotDays": 4,
       "precipitationMm": 262.6
     },
     {
       "year": 1969,
       "validDays": 92,
-      "meanTemperatureC": 20.096739130434788,
-      "hotDays": 6,
+      "meanTemperatureC": 20.67391304347827,
+      "hotDays": 10,
       "precipitationMm": 224.30000000000004
     },
     {
       "year": 1970,
       "validDays": 92,
-      "meanTemperatureC": 21.159782608695654,
-      "hotDays": 9,
+      "meanTemperatureC": 21.74565217391305,
+      "hotDays": 13,
       "precipitationMm": 170.3
     },
     {
       "year": 1971,
       "validDays": 92,
-      "meanTemperatureC": 20.82391304347826,
-      "hotDays": 3,
+      "meanTemperatureC": 21.405434782608697,
+      "hotDays": 5,
       "precipitationMm": 301.4
     },
     {
       "year": 1972,
       "validDays": 92,
-      "meanTemperatureC": 19.93804347826088,
-      "hotDays": 5,
+      "meanTemperatureC": 20.520652173913046,
+      "hotDays": 7,
       "precipitationMm": 306.9999999999999
     },
     {
       "year": 1973,
       "validDays": 92,
-      "meanTemperatureC": 20.96413043478261,
-      "hotDays": 4,
+      "meanTemperatureC": 21.543478260869563,
+      "hotDays": 7,
       "precipitationMm": 349.4000000000001
     },
     {
       "year": 1974,
       "validDays": 92,
-      "meanTemperatureC": 21.48804347826087,
-      "hotDays": 15,
+      "meanTemperatureC": 22.075000000000003,
+      "hotDays": 22,
       "precipitationMm": 150.80000000000004
     },
     {
       "year": 1975,
       "validDays": 92,
-      "meanTemperatureC": 20.561956521739127,
-      "hotDays": 4,
+      "meanTemperatureC": 21.145652173913046,
+      "hotDays": 9,
       "precipitationMm": 221.60000000000005
     },
     {
       "year": 1976,
       "validDays": 92,
-      "meanTemperatureC": 20.793478260869573,
-      "hotDays": 9,
+      "meanTemperatureC": 21.37717391304349,
+      "hotDays": 10,
       "precipitationMm": 231.39999999999995
     },
     {
       "year": 1977,
       "validDays": 92,
-      "meanTemperatureC": 19.408695652173915,
+      "meanTemperatureC": 19.99130434782609,
       "hotDays": 0,
       "precipitationMm": 418.69999999999993
     },
     {
       "year": 1978,
       "validDays": 92,
-      "meanTemperatureC": 19.881521739130445,
+      "meanTemperatureC": 20.460869565217386,
       "hotDays": 1,
       "precipitationMm": 217.59999999999994
     },
     {
       "year": 1979,
       "validDays": 92,
-      "meanTemperatureC": 20.969565217391303,
-      "hotDays": 5,
+      "meanTemperatureC": 21.54891304347827,
+      "hotDays": 7,
       "precipitationMm": 227.39999999999998
     },
     {
       "year": 1980,
       "validDays": 92,
-      "meanTemperatureC": 20.306521739130428,
-      "hotDays": 7,
+      "meanTemperatureC": 20.886956521739133,
+      "hotDays": 12,
       "precipitationMm": 265.7
     },
     {
       "year": 1981,
       "validDays": 92,
-      "meanTemperatureC": 21.18586956521739,
-      "hotDays": 8,
+      "meanTemperatureC": 21.772826086956524,
+      "hotDays": 10,
       "precipitationMm": 189.59999999999997
     },
     {
       "year": 1982,
       "validDays": 92,
-      "meanTemperatureC": 21.851086956521744,
-      "hotDays": 8,
+      "meanTemperatureC": 22.436956521739123,
+      "hotDays": 12,
       "precipitationMm": 196.59999999999997
     },
     {
       "year": 1983,
       "validDays": 92,
-      "meanTemperatureC": 21.911956521739135,
-      "hotDays": 15,
+      "meanTemperatureC": 22.49891304347826,
+      "hotDays": 17,
       "precipitationMm": 210.69999999999996
     },
     {
       "year": 1984,
       "validDays": 92,
-      "meanTemperatureC": 20.921739130434787,
-      "hotDays": 11,
+      "meanTemperatureC": 21.50326086956521,
+      "hotDays": 15,
       "precipitationMm": 231.89999999999998
     },
     {
       "year": 1985,
       "validDays": 92,
-      "meanTemperatureC": 21.563043478260873,
-      "hotDays": 16,
+      "meanTemperatureC": 22.15217391304348,
+      "hotDays": 19,
       "precipitationMm": 153.49999999999997
     },
     {
       "year": 1986,
       "validDays": 92,
-      "meanTemperatureC": 21.292391304347824,
-      "hotDays": 8,
+      "meanTemperatureC": 21.879347826086953,
+      "hotDays": 14,
       "precipitationMm": 176
     },
     {
       "year": 1987,
       "validDays": 92,
-      "meanTemperatureC": 21.58369565217391,
-      "hotDays": 21,
+      "meanTemperatureC": 22.169565217391302,
+      "hotDays": 23,
       "precipitationMm": 215.50000000000003
     },
     {
       "year": 1988,
       "validDays": 92,
-      "meanTemperatureC": 21.278260869565223,
-      "hotDays": 12,
+      "meanTemperatureC": 21.85543478260869,
+      "hotDays": 16,
       "precipitationMm": 234.80000000000007
     },
     {
       "year": 1989,
       "validDays": 92,
-      "meanTemperatureC": 21.86630434782609,
-      "hotDays": 12,
+      "meanTemperatureC": 22.45,
+      "hotDays": 20,
       "precipitationMm": 121.89999999999999
     },
     {
       "year": 1990,
       "validDays": 92,
-      "meanTemperatureC": 21.96413043478261,
-      "hotDays": 17,
+      "meanTemperatureC": 22.550000000000008,
+      "hotDays": 21,
       "precipitationMm": 132.7
     },
     {
       "year": 1991,
       "validDays": 92,
-      "meanTemperatureC": 22.60760869565218,
-      "hotDays": 31,
+      "meanTemperatureC": 23.196739130434775,
+      "hotDays": 35,
       "precipitationMm": 81.10000000000001
     },
     {
       "year": 1992,
       "validDays": 92,
-      "meanTemperatureC": 21.069565217391304,
-      "hotDays": 13,
+      "meanTemperatureC": 21.657608695652176,
+      "hotDays": 20,
       "precipitationMm": 365.5999999999998
     },
     {
       "year": 1993,
       "validDays": 92,
-      "meanTemperatureC": 21.757608695652173,
+      "meanTemperatureC": 22.342391304347824,
       "hotDays": 18,
       "precipitationMm": 179.39999999999995
     },
     {
       "year": 1994,
       "validDays": 92,
-      "meanTemperatureC": 22.668478260869573,
-      "hotDays": 22,
+      "meanTemperatureC": 23.252173913043475,
+      "hotDays": 33,
       "precipitationMm": 161.79999999999998
     },
     {
       "year": 1995,
       "validDays": 92,
-      "meanTemperatureC": 21.557608695652174,
-      "hotDays": 18,
+      "meanTemperatureC": 22.136956521739133,
+      "hotDays": 23,
       "precipitationMm": 134.99999999999994
     },
     {
       "year": 1996,
       "validDays": 92,
-      "meanTemperatureC": 21.26521739130435,
-      "hotDays": 10,
+      "meanTemperatureC": 21.85000000000001,
+      "hotDays": 12,
       "precipitationMm": 163.40000000000006
     },
     {
       "year": 1997,
       "validDays": 92,
-      "meanTemperatureC": 21.511956521739123,
-      "hotDays": 11,
+      "meanTemperatureC": 22.097826086956527,
+      "hotDays": 15,
       "precipitationMm": 249.1
     },
     {
       "year": 1998,
       "validDays": 92,
-      "meanTemperatureC": 23.393478260869568,
-      "hotDays": 37,
+      "meanTemperatureC": 23.97826086956522,
+      "hotDays": 46,
       "precipitationMm": 118.20000000000003
     },
     {
       "year": 1999,
       "validDays": 92,
-      "meanTemperatureC": 22.41521739130435,
-      "hotDays": 16,
+      "meanTemperatureC": 23.007608695652166,
+      "hotDays": 22,
       "precipitationMm": 158.49999999999997
     },
     {
       "year": 2000,
       "validDays": 92,
-      "meanTemperatureC": 22.110869565217396,
-      "hotDays": 12,
+      "meanTemperatureC": 22.69782608695653,
+      "hotDays": 13,
       "precipitationMm": 230.39999999999995
     },
     {
       "year": 2001,
       "validDays": 92,
-      "meanTemperatureC": 22.80217391304348,
-      "hotDays": 30,
+      "meanTemperatureC": 23.390217391304354,
+      "hotDays": 33,
       "precipitationMm": 141.3
     },
     {
       "year": 2002,
       "validDays": 92,
-      "meanTemperatureC": 21.57173913043478,
-      "hotDays": 9,
+      "meanTemperatureC": 22.153260869565216,
+      "hotDays": 13,
       "precipitationMm": 396.49999999999994
     },
     {
       "year": 2003,
       "validDays": 92,
-      "meanTemperatureC": 26.503260869565224,
-      "hotDays": 76,
+      "meanTemperatureC": 27.082608695652173,
+      "hotDays": 78,
       "precipitationMm": 76.60000000000001
     },
     {
       "year": 2004,
       "validDays": 92,
-      "meanTemperatureC": 22.503260869565214,
-      "hotDays": 19,
+      "meanTemperatureC": 23.083695652173915,
+      "hotDays": 21,
       "precipitationMm": 102.50000000000001
     },
     {
       "year": 2005,
       "validDays": 92,
-      "meanTemperatureC": 23.196739130434782,
-      "hotDays": 34,
+      "meanTemperatureC": 23.782608695652176,
+      "hotDays": 38,
       "precipitationMm": 174.2
     },
     {
       "year": 2006,
       "validDays": 92,
-      "meanTemperatureC": 23.38913043478261,
-      "hotDays": 42,
+      "meanTemperatureC": 23.97608695652174,
+      "hotDays": 47,
       "precipitationMm": 81.19999999999999
     },
     {
       "year": 2007,
       "validDays": 92,
-      "meanTemperatureC": 22.12282608695651,
-      "hotDays": 20,
+      "meanTemperatureC": 22.70760869565217,
+      "hotDays": 23,
       "precipitationMm": 229
     },
     {
       "year": 2008,
       "validDays": 92,
-      "meanTemperatureC": 22.38913043478261,
-      "hotDays": 17,
+      "meanTemperatureC": 22.973913043478266,
+      "hotDays": 25,
       "precipitationMm": 200.89999999999998
     },
     {
       "year": 2009,
       "validDays": 92,
-      "meanTemperatureC": 23.426086956521743,
-      "hotDays": 30,
+      "meanTemperatureC": 24.010869565217398,
+      "hotDays": 38,
       "precipitationMm": 127.50000000000001
     },
     {
       "year": 2010,
       "validDays": 92,
-      "meanTemperatureC": 22.31086956521739,
-      "hotDays": 15,
+      "meanTemperatureC": 22.9,
+      "hotDays": 20,
       "precipitationMm": 267.20000000000005
     },
     {
       "year": 2011,
       "validDays": 92,
-      "meanTemperatureC": 22.070652173913043,
-      "hotDays": 14,
+      "meanTemperatureC": 22.652173913043477,
+      "hotDays": 18,
       "precipitationMm": 274.6000000000001
     },
     {
       "year": 2012,
       "validDays": 92,
-      "meanTemperatureC": 22.998913043478257,
-      "hotDays": 20,
+      "meanTemperatureC": 23.581521739130434,
+      "hotDays": 24,
       "precipitationMm": 197.2
     },
     {
       "year": 2013,
       "validDays": 92,
-      "meanTemperatureC": 22.997826086956533,
-      "hotDays": 28,
+      "meanTemperatureC": 23.57826086956522,
+      "hotDays": 32,
       "precipitationMm": 170.29999999999995
     },
     {
       "year": 2014,
       "validDays": 92,
-      "meanTemperatureC": 21.41739130434783,
-      "hotDays": 8,
+      "meanTemperatureC": 22.002173913043478,
+      "hotDays": 11,
       "precipitationMm": 295.3999999999999
     },
     {
       "year": 2015,
       "validDays": 92,
-      "meanTemperatureC": 23.6608695652174,
-      "hotDays": 40,
+      "meanTemperatureC": 24.244565217391294,
+      "hotDays": 42,
       "precipitationMm": 253.00000000000003
     },
     {
       "year": 2016,
       "validDays": 92,
-      "meanTemperatureC": 23.25326086956521,
-      "hotDays": 36,
+      "meanTemperatureC": 23.828260869565216,
+      "hotDays": 43,
       "precipitationMm": 168.69999999999993
     },
     {
       "year": 2017,
       "validDays": 92,
-      "meanTemperatureC": 24.603260869565233,
-      "hotDays": 46,
+      "meanTemperatureC": 25.18152173913045,
+      "hotDays": 56,
       "precipitationMm": 183.29999999999998
     },
     {
       "year": 2018,
       "validDays": 92,
-      "meanTemperatureC": 23.58478260869565,
-      "hotDays": 32,
+      "meanTemperatureC": 24.166304347826085,
+      "hotDays": 39,
       "precipitationMm": 221.50000000000003
     },
     {
       "year": 2019,
       "validDays": 92,
-      "meanTemperatureC": 24.32608695652174,
-      "hotDays": 36,
+      "meanTemperatureC": 24.906521739130437,
+      "hotDays": 37,
       "precipitationMm": 214.6
     },
     {
       "year": 2020,
       "validDays": 92,
-      "meanTemperatureC": 23.536956521739125,
-      "hotDays": 41,
+      "meanTemperatureC": 24.125000000000004,
+      "hotDays": 44,
       "precipitationMm": 173.0999999999999
     }
   ],
@@ -747,16 +747,16 @@
       "startYear": 1961,
       "endYear": 1990,
       "validYears": 30,
-      "meanTemperatureC": 20.96630434782609,
-      "hotDays": 9.533333333333333,
+      "meanTemperatureC": 21.54971014492753,
+      "hotDays": 12.766666666666667,
       "precipitationMm": 218.86999999999998
     },
     "b": {
       "startYear": 1991,
       "endYear": 2020,
       "validYears": 30,
-      "meanTemperatureC": 22.767427536231885,
-      "hotDays": 26.033333333333335,
+      "meanTemperatureC": 23.351485507246377,
+      "hotDays": 30.633333333333333,
       "precipitationMm": 193.0366666666666
     }
   }

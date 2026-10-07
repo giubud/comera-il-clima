@@ -16,6 +16,7 @@
     "data:summers": "tsx scripts/build-summers.ts",
     "geo:build": "tsx scripts/build-geo.ts",
     "data:validate": "tsx scripts/validate-data.ts",
+    "data:compare": "tsx scripts/compare-data.ts",
     "screenshots": "tsx scripts/capture-screenshots.ts",
     "build": "vite build",
     "preview": "vite preview"
