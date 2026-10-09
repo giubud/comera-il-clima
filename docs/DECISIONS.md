@@ -92,3 +92,19 @@ Fonti ufficiali:
 
 [selezione-era5]:
   https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift
+
+## 2026-10-09 — Giorni annuali interi e medie con un decimale
+
+- Il formato distingue esplicitamente un valore annuale da una media di periodo.
+  Solo i giorni >30 °C di una singola estate sono mostrati come interi.
+- Le medie, anche se numericamente intere, e gli scarti conservano un decimale.
+  Temperature e precipitazioni mantengono il formato precedente.
+- Prima della correzione il test attendeva `78 giorni` e riceveva `78,0 giorni`.
+  Dopo la correzione passano 26 test unitari e 11 test nel browser, compreso il controllo
+  di scheda annuale, dieci città, punti del grafico, strisce e medie A/B.
+- Con i dati aggiornati in A1, Roma 2003 ha 81 giorni >30 °C; 78 e 26,7 restano esempi
+  nei test. La correzione riguarda la presentazione e non rigenera i dati.
+- Su Windows `core.autocrlf=true` aveva convertito i fine riga dei JSON e invalidato
+  le impronte SHA-256. `.gitattributes` conserva i file `public/data/*.json` con fine riga
+  LF. Ripristinando solo i fine riga, i file coincidono con i byte già presenti in Git;
+  valori, impronte e `dataVersion` restano invariati.

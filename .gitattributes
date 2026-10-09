@@ -1,0 +1,2 @@
+# Preserve the bytes used by the published dataset hashes on every platform.
+public/data/*.json text eol=lf
