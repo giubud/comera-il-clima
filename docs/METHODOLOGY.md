@@ -49,6 +49,11 @@ La deviazione standard mostrata è campionaria (`n − 1`). La media mobile dell
 
 I JSON cittadini conservano la precisione completa degli aggregati. `summers.json`, usato per rendere subito tutte le città, arrotonda la temperatura annuale a due decimali e la precipitazione a un decimale prima del ricalcolo interattivo dei periodi. La tabella e il CSV mantengono la visualizzazione a un decimale; il CSV rimane generato dal JSON cittadino originale e usa il punto decimale. Le medie dei conteggi sono mostrate con un decimale e i conteggi annuali come interi. La formattazione dell’interfaccia usa la lingua italiana.
 
+Nelle schede annuali, nei valori delle dieci città per anno e nei testi del grafico e
+delle strisce, i giorni >30 °C sono conteggi interi. Le medie e le differenze rispetto
+alle medie mantengono un decimale, anche quando il risultato è un numero intero.
+Temperature e precipitazioni mantengono un decimale in entrambi i contesti.
+
 ## Validazione
 
 Ogni estate deve avere 92 date uniche e consecutive e 92 valori finiti per campo. La pipeline rifiuta date mancanti o duplicate, `null`, `NaN`, massime inferiori alla media giornaliera, precipitazioni negative, unità inattese e metadati geografici incoerenti.

@@ -93,6 +93,39 @@ test('periodi, anno e confronto città restano nel link e aggiornano i valori', 
   await expect(page.getByRole('heading', { name: 'L’estate del 2003' })).toBeVisible();
 });
 
+test('giorni annuali interi e medie decimali in tutte le viste', async ({ page }) => {
+  await page.goto('?city=roma&metric=hotDays&year=2003');
+  await expect(page.locator('.year-cards strong')).toHaveText([
+    '27,4 °C', '81 giorni', '34,9 mm',
+  ]);
+  const chartPoint = page.locator('.chart-point[data-year="2003"]');
+  await expect(chartPoint).toHaveAttribute('aria-label', 'Estate 2003: 81 giorni');
+  await expect(chartPoint.locator('title')).toHaveText('2003: 81 giorni');
+  await expect(page.locator('.stripe[data-year="2003"]'))
+    .toHaveAttribute('title', '2003: 81 giorni');
+  const cityValues = page.locator('.year-city span');
+  await expect(cityValues).toHaveCount(10);
+  for (const value of await cityValues.allTextContents()) {
+    expect(value).toMatch(/^\d+ giorni$/);
+  }
+  await expect(page.locator('.year-city[data-city="roma"] span')).toHaveText('81 giorni');
+  await expect(page.locator('.chart-footer')).toContainText('Media A 31,7 giorni');
+  await expect(page.locator('.chart-footer')).toContainText('Media B 53,8 giorni');
+  await expect(page.locator('.metric-card[data-metric="hotDays"] .metric-periods'))
+    .toHaveText('A 31,7 → B 53,8');
+  const comparison = page.locator('.comparison tr').filter({
+    has: page.getByRole('button', { name: 'Roma', exact: true }),
+  });
+  await expect(comparison.locator('td').nth(3)).toHaveText('31,7');
+  await expect(comparison.locator('td').nth(4)).toHaveText('53,8');
+  const annualRow = page.locator('.annual tbody tr').filter({
+    has: page.getByRole('button', { name: '2003', exact: true }),
+  });
+  await expect(annualRow.locator('td').nth(2)).toHaveText('81');
+  await page.reload();
+  await expect(page.locator('.year-cards strong').nth(1)).toHaveText('81 giorni');
+});
+
 test('mappa locale navigabile da tastiera e archivio di 60 estati', async ({ page }) => {
   await page.goto('?city=roma&metric=meanTemperatureC');
   const mapCity = page.locator('.map-point[data-city="napoli"]');

@@ -1,9 +1,19 @@
 import type { Metric } from '../data/schema';
 
-const formatter = new Intl.NumberFormat('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const formatter = new Intl.NumberFormat('it-IT', {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
+const countFormatter = new Intl.NumberFormat('it-IT', { maximumFractionDigits: 0 });
 
-export const metricMeta: Record<Metric, { label: string; shortLabel: string; unit: string }> = {
-  meanTemperatureC: { label: 'Temperatura media estiva', shortLabel: 'Temperatura media', unit: '°C' },
+type ValueContext = { metric: Metric; kind: 'annual' | 'period' };
+
+export const metricMeta: Record<
+  Metric, { label: string; shortLabel: string; unit: string }
+> = {
+  meanTemperatureC: {
+    label: 'Temperatura media estiva', shortLabel: 'Temperatura media', unit: '°C',
+  },
   hotDays: { label: 'Giorni con massima >30 °C', shortLabel: 'Giorni >30 °C', unit: 'giorni' },
   precipitationMm: { label: 'Precipitazioni totali estive', shortLabel: 'Precipitazioni', unit: 'mm' },
 };
@@ -13,7 +23,10 @@ export function normalizeDisplayed(value: number): number {
   return Object.is(rounded, -0) ? 0 : rounded;
 }
 
-export function formatValue(value: number): string {
+export function formatValue(value: number, context?: ValueContext): string {
+  if (context?.metric === 'hotDays' && context.kind === 'annual') {
+    return countFormatter.format(value);
+  }
   return formatter.format(normalizeDisplayed(value));
 }
 

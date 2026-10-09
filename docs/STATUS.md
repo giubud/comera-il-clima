@@ -1,5 +1,26 @@
 # Stato del progetto
 
+## Revisione A2 — 9 ottobre 2026
+
+Stato: correzione completata in locale sul branch `fix/hotdays-format`.
+Il test dei giorni annuali è stato eseguito prima della correzione: atteso `78 giorni`,
+ottenuto `78,0 giorni`. Dopo la modifica i cinque test del formato passano.
+Le viste annuali mostrano giorni interi; medie e scarti conservano un decimale.
+Temperature, precipitazioni, CSV e dati climatici mantengono i valori precedenti.
+Roma 2003: `81 giorni`, `27,4 °C`, `34,9 mm`; medie giorni A/B: `31,7` e `53,8`.
+Verifiche superate: TypeScript, 26 test unitari, validazione dati, build e 11 test E2E.
+Il nuovo E2E controlla scheda annuale, dieci città, grafico, strisce, medie e ricaricamento.
+Corretto anche il problema locale dei fine riga dei JSON su Windows, senza rigenerazione.
+La regola `.gitattributes` mantiene validi i byte usati dalle impronte dei dataset.
+Versione dei dati invariata: `4e434940c5eff13b`.
+Il file personale `Verso-la-v4.html` contiene le note delle tre verifiche A2.
+Le spunte del proprietario e i prompt dell'esercitazione non sono stati modificati.
+Controllo dei sei punti dell'interfaccia completato dall'agente su desktop e mobile:
+schede annuali, dieci città, grafico, strisce, medie, tabella e differenze.
+Schermate esaminate; nessun errore JavaScript o overflow della pagina rilevato.
+Prossima azione: commit, push e pull request, secondo le indicazioni del proprietario.
+Nessun push o merge eseguito; il merge richiede la CI verde.
+
 ## Revisione A1 — 6 ottobre 2026
 
 Stato: punti 1–4 completati in locale sul branch `fix/era5-land-cells`.

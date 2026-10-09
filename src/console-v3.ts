@@ -26,7 +26,11 @@ let mapObserver: ResizeObserver | null = null;
 const cityCache = new Map<string, CityDataset>();
 const cityYears = (id: string): Summer[] => expandSummers(compact!.cities[id]!);
 const rangeLabel = ([start, end]: Period): string => `${start}–${end}`;
-const valueWithUnit = (value: number, metric: Metric): string => `${formatValue(value)} ${metricMeta[metric].unit}`;
+const valueWithUnit = (
+  value: number,
+  metric: Metric,
+  kind: 'annual' | 'period' = 'annual',
+): string => `${formatValue(value, { metric, kind })} ${metricMeta[metric].unit}`;
 const delta = (id: string, metric: Metric): number => rangeStats(cityYears(id), metric, ...state.b).mean - rangeStats(cityYears(id), metric, ...state.a).mean;
 const tone = (change: number, metric: Metric): string => warmth(change, metric) >= 0 ? 'warm' : 'cool';
 function selectedYear(): number {
@@ -109,7 +113,11 @@ function chartMarkup(): string {
     <path d="${linePath(series,lo,hi)}" class="data-line"/>${other?`<path d="${linePath(other,lo,hi)}" class="compare-line"/>`:''}${smooth?`<path d="${linePath(smooth,lo,hi)}" class="smooth-line"/>`:''}${otherSmooth?`<path d="${linePath(otherSmooth,lo,hi)}" class="compare-smooth-line"/>`:''}
     ${series.map((value,index)=>`<circle cx="${42+index*12.2}" cy="${y(value)}" r="${1961+index===selectedYear()?5:3}" class="chart-point ${1961+index===selectedYear()?'active':''}" data-year="${1961+index}" tabindex="0" role="button" aria-label="Estate ${1961+index}: ${valueWithUnit(value,state.metric)}"><title>${1961+index}: ${valueWithUnit(value,state.metric)}</title></circle>`).join('')}
     ${[1961,1970,1980,1990,2000,2010,2020].map((year)=>`<text x="${42+(year-1961)*12.2}" y="237" text-anchor="middle" class="axis-label">${year}</text>`).join('')}</svg></div>
-    <div class="chart-footer"><span><i class="legend-dot primary"></i>${getCity(state.city)!.name}${state.vs?` <i class="legend-dot secondary"></i>${getCity(state.vs)!.name}`:''}</span><span>Media A ${valueWithUnit(a.mean,state.metric)} · Media B ${valueWithUnit(b.mean,state.metric)}</span></div></section>`;
+    <div class="chart-footer"><span><i class="legend-dot primary"></i>
+      ${getCity(state.city)!.name}${state.vs
+        ? ` <i class="legend-dot secondary"></i>${getCity(state.vs)!.name}` : ''}</span>
+      <span>Media A ${valueWithUnit(a.mean,state.metric,'period')} ·
+        Media B ${valueWithUnit(b.mean,state.metric,'period')}</span></div></section>`;
 }
 
 function stripesMarkup(): string {
