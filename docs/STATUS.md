@@ -18,8 +18,9 @@ Le spunte del proprietario e i prompt dell'esercitazione non sono stati modifica
 Controllo dei sei punti dell'interfaccia completato dall'agente su desktop e mobile:
 schede annuali, dieci città, grafico, strisce, medie, tabella e differenze.
 Schermate esaminate; nessun errore JavaScript o overflow della pagina rilevato.
-Prossima azione: commit, push e pull request, secondo le indicazioni del proprietario.
-Nessun push o merge eseguito; il merge richiede la CI verde.
+Commit applicativo: `8114d4a`; branch inviato su GitHub su indicazione del proprietario.
+Pull request: https://github.com/giubud/comera-il-clima/pull/4
+Prossima azione: verifica della CI della PR e merge solo dopo tutti i controlli verdi.
 
 ## Revisione A1 — 6 ottobre 2026
 
