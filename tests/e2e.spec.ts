@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
-import { assertCityDataset } from '../src/data/schema';
+import { assertCityDataset, assertSummers, metrics } from '../src/data/schema';
+import { cities } from '../src/data/cities';
 
 test('naviga tra le dieci città e conserva città e indicatore nel URL', async ({ page }) => {
   await page.goto('?city=roma&metric=meanTemperatureC');
@@ -136,6 +137,119 @@ test('mappa locale navigabile da tastiera e archivio di 60 estati', async ({ pag
   await expect(page.locator('.annual tbody tr')).toHaveCount(60);
   await page.getByRole('checkbox', { name: 'Media mobile (5)' }).check();
   await expect(page).toHaveURL(/smooth=1/);
+});
+
+test('legenda con soglie reali e colori coerenti nei due temi e su telefono', async ({ page }) => {
+  const source: unknown = JSON.parse(await readFile('public/data/summers.json', 'utf8'));
+  assertSummers(source, cities.map((city) => city.id));
+  await page.goto('?city=roma&metric=meanTemperatureC');
+  const legend = page.getByRole('group', { name: 'Legenda della mappa', exact: true });
+  await expect(legend).toBeVisible();
+  for (const [preset, a, b] of [
+    ['standard', [0, 30], [30, 60]], ['decades', [0, 10], [50, 60]],
+  ] as const) {
+    await page.getByRole('combobox', { name: 'Confronto rapido' }).selectOption(preset);
+    for (const [metricIndex, metric] of metrics.entries()) {
+      await page.locator(`.metric-tabs [data-metric="${metric}"]`).click();
+      const inverted = metric === 'precipitationMm';
+      const changes = Object.values(source.cities).map((years) => {
+        const mean = (start: number, end: number): number =>
+          years.slice(start, end).reduce((sum, row) => sum + row[metricIndex]!, 0) / (end - start);
+        const change = mean(b[0], b[1]) - mean(a[0], a[1]);
+        return inverted ? -change : change;
+      });
+      const min = Math.min(...changes), max = Math.max(...changes);
+      await expect(legend.locator('li')).toHaveCount(4);
+      for (let index = 0; index < 4; index += 1) {
+        const item = legend.locator(`.class-${index}`);
+        const first = min + (max - min) * index / 4;
+        const last = index === 3 ? max : min + (max - min) * (index + 1) / 4;
+        const lower = inverted ? -last : first, upper = inverted ? -first : last;
+        expect(Number(await item.getAttribute('data-lower'))).toBeCloseTo(lower, 10);
+        expect(Number(await item.getAttribute('data-upper'))).toBeCloseTo(upper, 10);
+        const label = (value: number): string => {
+          const rounded = Number(value.toFixed(2));
+          const sign = rounded > 0 ? '+' : rounded < 0 ? '−' : '';
+          return sign + Math.abs(rounded).toLocaleString('it-IT', {
+            minimumFractionDigits: 2, maximumFractionDigits: 2,
+          });
+        };
+        const left = inverted && index < 3 ? '<' : '≤';
+        const right = !inverted && index < 3 ? '<' : '≤';
+        const unit = ['°C', 'giorni', 'mm'][metricIndex]!;
+        await expect(item.locator('span')).toHaveText(
+          `${label(lower)} ${left} Δ ${right} ${label(upper)} ${unit}`,
+        );
+      }
+      for (const theme of ['Chiaro', 'Scuro']) {
+        await page.getByRole('button', { name: theme, exact: true }).click();
+        const points = page.locator('.map-point');
+        await expect(points).toHaveCount(10);
+        for (const point of await points.all()) {
+          const index = /class-(\d)/.exec(await point.getAttribute('class') ?? '')?.[1];
+          expect(index).toBeDefined();
+          const fill = await point.locator('circle').evaluate((el) => getComputedStyle(el).fill);
+          const swatch = legend.locator(`.class-${index} .map-legend-swatch`);
+          const color = await swatch.evaluate((el) => getComputedStyle(el).backgroundColor);
+          expect(color).toBe(fill);
+        }
+      }
+    }
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(legend).toBeVisible();
+  expect(await page.evaluate(() =>
+    document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test('strisce in sigma e direzioni, comprese le precipitazioni', async ({ page }) => {
+  const source: unknown = JSON.parse(await readFile('public/data/summers.json', 'utf8'));
+  assertSummers(source, cities.map((city) => city.id));
+  const years = source.cities.roma!;
+  await page.goto('?city=roma&metric=meanTemperatureC');
+  const group = page.getByRole('group', { name: 'Anomalie annuali', exact: true });
+  for (const [metricIndex, metric] of metrics.entries()) {
+    await page.locator(`.metric-tabs [data-metric="${metric}"]`).click();
+    const baseline = years.slice(0, 30).map((row) => row[metricIndex]!);
+    const mean = baseline.reduce((sum, value) => sum + value, 0) / 30;
+    const sd = Math.sqrt(baseline.reduce((sum, value) => sum + (value - mean) ** 2, 0) / 29);
+    await expect(group.getByRole('button')).toHaveCount(60);
+    for (const [index, row] of years.entries()) {
+      const raw = (row[metricIndex]! - mean) / sd;
+      const rounded = Number((metric === 'precipitationMm' ? -raw : raw).toFixed(1));
+      const sign = rounded > 0 ? '+' : rounded < 0 ? '−' : '';
+      const value = Math.abs(rounded).toLocaleString('it-IT', {
+        minimumFractionDigits: 1, maximumFractionDigits: 1,
+      });
+      let direction = 'nella media A alla precisione mostrata';
+      if (rounded !== 0) {
+        if (metric === 'precipitationMm') {
+          direction = `${rounded > 0 ? 'più secco' : 'più piovoso'} della media A`;
+        } else if (metric === 'hotDays') {
+          direction = `${rounded > 0 ? 'più' : 'meno'} giorni sopra 30 °C della media A`;
+        } else {
+          direction = `${rounded > 0 ? 'più caldo' : 'più fresco'} della media A`;
+        }
+      }
+      const label = `Estate ${1961 + index}: ${sign}${value} σ, ${direction}`;
+      await expect(group.locator(`[data-year="${1961 + index}"]`))
+        .toHaveAccessibleName(label);
+    }
+  }
+});
+
+test('legenda unica e sigma non definito senza variabilità', async ({ page }) => {
+  await page.goto('?city=roma&metric=meanTemperatureC&a=1961-1961&b=1961-1961');
+  const legend = page.getByRole('group', { name: 'Legenda della mappa', exact: true });
+  await expect(legend.locator('li')).toHaveCount(1);
+  await expect(legend.locator('li')).toHaveClass(/class-1/);
+  await expect(legend.locator('li span')).toHaveText('Δ = 0,00 °C');
+  await expect(page.locator('.stripe[data-year="1961"]')).toHaveAccessibleName(
+    'Estate 1961: scostamento in σ non definito; periodo A senza variabilità',
+  );
+  await expect(page.locator('.stripe[data-year="2003"]')).toHaveAccessibleName(
+    'Estate 2003: scostamento in σ non definito; periodo A senza variabilità',
+  );
 });
 
 test('i controlli principali sono raggiungibili da tastiera', async ({ page }) => {

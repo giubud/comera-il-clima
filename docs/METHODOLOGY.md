@@ -47,6 +47,22 @@ La deviazione standard mostrata è campionaria (`n − 1`). La media mobile dell
 
 ## Precisione
 
+La legenda della mappa mostra i quattro intervalli ottenuti dai valori non arrotondati
+delle dieci variazioni B−A correnti. Si aggiorna quando cambiano indicatore o periodi.
+I limiti sono mostrati con almeno due decimali; se coincidono dopo l'arrotondamento,
+la precisione aumenta, fino a otto decimali. La legenda segnala l'arrotondamento dei limiti.
+Le classi includono il limite inferiore ed escludono quello superiore, tranne l'ultima.
+Per le precipitazioni il verso è invertito: a limiti crescenti di caldo/secco corrispondono
+variazioni in mm decrescenti, con inclusione degli estremi invertita.
+Se tutte le variazioni coincidono, la legenda mostra un solo valore e il colore comune.
+
+Le etichette accessibili delle strisce riportano anno, scostamento in σ con un decimale
+e direzione rispetto alla media A. σ è la deviazione standard campionaria del periodo A.
+Per temperatura e giorni caldi il segno segue lo scarto; per precipitazioni è invertito:
+positivo significa più secco, negativo più piovoso. Gli scarti che si arrotondano a zero
+sono descritti come nella media alla precisione mostrata. Se σ è zero, lo scostamento
+standardizzato non è definito e l'etichetta lo dichiara, senza inventare un valore.
+
 I JSON cittadini conservano la precisione completa degli aggregati. `summers.json`, usato per rendere subito tutte le città, arrotonda la temperatura annuale a due decimali e la precipitazione a un decimale prima del ricalcolo interattivo dei periodi. La tabella e il CSV mantengono la visualizzazione a un decimale; il CSV rimane generato dal JSON cittadino originale e usa il punto decimale. Le medie dei conteggi sono mostrate con un decimale e i conteggi annuali come interi. La formattazione dell’interfaccia usa la lingua italiana.
 
 Nelle schede annuali, nei valori delle dieci città per anno e nei testi del grafico e

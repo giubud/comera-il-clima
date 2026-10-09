@@ -108,3 +108,23 @@ Fonti ufficiali:
   le impronte SHA-256. `.gitattributes` conserva i file `public/data/*.json` con fine riga
   LF. Ripristinando solo i fine riga, i file coincidono con i byte già presenti in Git;
   valori, impronte e `dataVersion` restano invariati.
+
+## 2026-10-09 — Legenda della mappa ed etichette accessibili delle strisce
+
+- La legenda usa i quattro intervalli effettivi della mappa, ricavati dalle dieci variazioni
+  B−A per indicatore e periodi correnti. Per le precipitazioni mostra i limiti in mm,
+  conservando il verso dei colori caldo/secco. Nessuna modifica a `src/lib/aggregate.ts`.
+- Punti e legenda condividono quattro variabili CSS con i colori già usati dalla mappa;
+  gli estremi si adattano ai temi tramite `--cool` e `--warm`. Non si cambia la palette.
+- I limiti visibili sono arrotondati con almeno due decimali e tale limite è dichiarato.
+  Gli intervalli mantengono gli estremi inclusi/esclusi della classificazione esistente.
+  Quando tutti i valori coincidono si mostra un solo valore, con il colore già assegnato.
+- Le strisce espongono il valore in σ, non il numero della classe di colore. Il segno
+  segue il verso caldo/secco: nelle precipitazioni positivo significa più secco.
+  Scarti visualizzati come zero e periodi senza variabilità hanno descrizioni esplicite.
+- Con i dati attuali e i periodi iniziali, Venezia e Bologna sono entrambe nella classe 1.
+  L'esempio dell'esercitazione con colori diversi non si riproduce dopo A1; la legenda
+  rende comunque leggibili i limiti reali senza cambiare classi o arrotondamento dei KPI.
+- Gli E2E verificano le soglie per tre indicatori e due confronti di periodi, la coerenza
+  dei colori nei temi chiaro/scuro, i nomi accessibili di tutte le 60 strisce per indicatore,
+  il telefono e i casi di variazione uniforme e deviazione standard nulla.
