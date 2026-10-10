@@ -1,5 +1,24 @@
 # Stato del progetto
 
+## Revisione A3 — 9 ottobre 2026
+
+Stato: implementazione completata in locale sul branch `fix/map-legend-a11y`.
+La mappa ha una legenda con soglie reali, unità e limiti inclusi/esclusi.
+Legenda e punti condividono la palette esistente, nei temi chiaro e scuro.
+La legenda si aggiorna con indicatore e periodi; valori uniformi mostrano un solo colore.
+Le strisce hanno nomi accessibili con anno, scostamento in σ a un decimale e direzione.
+Per le precipitazioni il segno è invertito, in accordo con i colori caldo/secco.
+La deviazione standard nulla è dichiarata, senza mostrare uno scostamento non definito.
+Esempi per Roma 1961: `+1,3 σ, più caldo` e `+1,0 σ, più secco`.
+Con i dati correnti, Venezia e Bologna condividono la classe 1 della temperatura.
+`src/lib/aggregate.ts` e tutti i dati pubblici sono invariati.
+Verifiche superate: TypeScript, 26 test unitari, validazione dati, build e 14 test E2E.
+Schermate di legenda e nomi nell'albero di accessibilità controllati nei due temi,
+su desktop e telefono; nessun errore JavaScript o overflow rilevato.
+Decisioni, metodologia e note di verifica A3 nel file personale HTML aggiornate.
+Prossima azione: revisione del proprietario, poi commit, push e PR guidati un passo alla volta.
+L'agente non esegue commit, push, apertura PR, merge o aggiornamento di main al posto suo.
+
 ## Revisione A2 — 9 ottobre 2026
 
 Stato: correzione completata in locale sul branch `fix/hotdays-format`.

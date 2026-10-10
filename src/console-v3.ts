@@ -5,7 +5,7 @@ import { cities, getCity } from './data/cities';
 import { expandSummers } from './data/compact';
 import { assertCityDataset, assertSummers, metrics, type CityDataset, type CompactSummers, type Manifest, type Metric, type Summer } from './data/schema';
 import { deltaClasses, movingAverage, rangeStats, warmth, zLevel } from './lib/aggregate';
-import { formatSigned, formatValue, metricMeta } from './lib/format';
+import { formatSigned, formatValue, metricMeta, normalizeDisplayed } from './lib/format';
 import { applyAppearance, loadAppearance, type Sort, type Theme } from './lib/theme';
 import { parseUrlState, periodPresets, periodWarnings, searchForState, type Period, type UrlState } from './lib/url-state';
 import { datasetCsv } from './ui/table';
@@ -120,10 +120,44 @@ function chartMarkup(): string {
         Media B ${valueWithUnit(b.mean,state.metric,'period')}</span></div></section>`;
 }
 
+function stripeLabel(summer: Summer, mean: number, sd: number): string {
+  if (sd === 0) {
+    return `Estate ${summer.year}: scostamento in σ non definito; periodo A senza variabilità`;
+  }
+  const z = warmth(summer[state.metric] - mean, state.metric) / sd;
+  const displayed = normalizeDisplayed(z);
+  let direction = 'nella media A alla precisione mostrata';
+  if (displayed !== 0) {
+    const positive = displayed > 0;
+    if (state.metric === 'precipitationMm') {
+      direction = `${positive ? 'più secco' : 'più piovoso'} della media A`;
+    } else if (state.metric === 'hotDays') {
+      direction = `${positive ? 'più' : 'meno'} giorni sopra 30 °C della media A`;
+    } else {
+      direction = `${positive ? 'più caldo' : 'più fresco'} della media A`;
+    }
+  }
+  return `Estate ${summer.year}: ${formatSigned(z)} σ, ${direction}`;
+}
+
 function stripesMarkup(): string {
   const summers=cityYears(state.city), baseline=rangeStats(summers,state.metric,...state.a);
   return `<section class="stripes-panel panel" aria-labelledby="stripes-heading"><div class="panel-bar"><div><p class="eyebrow">Anomalie</p><h2 id="stripes-heading">Ogni estate, un segno</h2></div><span class="quiet">Rispetto alla media A · σ campionaria</span></div>
-    <div class="stripes" role="group" aria-label="Anomalie annuali">${summers.map((summer)=>{const level=zLevel(warmth(summer[state.metric],state.metric),warmth(baseline.mean,state.metric),baseline.sd);return `<button type="button" data-year="${summer.year}" class="stripe z${level} ${selectedYear()===summer.year?'active':''}" title="${summer.year}: ${valueWithUnit(summer[state.metric],state.metric)}" aria-label="Estate ${summer.year}, anomalia ${level}"></button>`;}).join('')}</div><div class="stripe-labels"><span>1961</span><span>1970</span><span>1980</span><span>1990</span><span>2000</span><span>2010</span><span>2020</span></div><p class="note">Blu = più fresco o più piovoso · rosso = più caldo o più secco. Il colore indica lo scarto dalla media del periodo A, in deviazioni standard.</p></section>`;
+    <div class="stripes" role="group" aria-label="Anomalie annuali">${summers.map((summer) => {
+      const level = zLevel(
+        warmth(summer[state.metric], state.metric),
+        warmth(baseline.mean, state.metric), baseline.sd,
+      );
+      return `<button type="button" data-year="${summer.year}"
+        class="stripe z${level} ${selectedYear() === summer.year ? 'active' : ''}"
+        title="${summer.year}: ${valueWithUnit(summer[state.metric], state.metric)}"
+        aria-label="${stripeLabel(summer, baseline.mean, baseline.sd)}"></button>`;
+    }).join('')}</div>
+    <div class="stripe-labels"><span>1961</span><span>1970</span><span>1980</span><span>1990</span>
+      <span>2000</span><span>2010</span><span>2020</span></div>
+    <p class="note">Blu = più fresco o più piovoso · rosso = più caldo o più secco.
+      Il colore indica lo scarto dalla media del periodo A, in deviazioni standard.
+      Per le precipitazioni il segno in σ è invertito: positivo = più secco.</p></section>`;
 }
 
 function yearMarkup(): string {
@@ -149,8 +183,59 @@ function annualMarkup(): string {
     <div class="table-scroll annual-scroll" tabindex="0" aria-label="Tabella scorrevole dei valori annuali"><table><caption class="sr-only">Valori delle 60 estati per ${getCity(state.city)!.name}</caption><thead><tr><th scope="col">Anno</th><th scope="col">Periodo</th><th scope="col">°C</th><th scope="col">gg &gt;30</th><th scope="col">mm</th><th scope="col">Anomalia</th></tr></thead><tbody>${summers.map((summer)=>{const val=summer[state.metric]-a.mean;return `<tr class="${summer.year===selectedYear()?'selected':''}"><th scope="row"><button type="button" data-year="${summer.year}">${summer.year}</button></th><td>${summer.year>=state.a[0]&&summer.year<=state.a[1]?'A':summer.year>=state.b[0]&&summer.year<=state.b[1]?'B':'—'}</td><td>${formatValue(summer.meanTemperatureC)}</td><td>${summer.hotDays}</td><td>${formatValue(summer.precipitationMm)}</td><td class="${tone(val,state.metric)}">${formatSigned(val)}</td></tr>`;}).join('')}</tbody></table></div></section>`;
 }
 
+function mapLegendMarkup(): string {
+  const values = cities.map((city) => warmth(delta(city.id, state.metric), state.metric));
+  const min = Math.min(...values), max = Math.max(...values);
+  const edges = Array.from({ length: 5 }, (_, index) =>
+    index === 4 ? max : min + (max - min) * index / 4);
+  let digits = 2;
+  while (digits < 8 && max !== min) {
+    const rounded = edges.map((edge) => edge.toFixed(digits));
+    if (new Set(rounded).size === edges.length) break;
+    digits += 1;
+  }
+  const formatter = new Intl.NumberFormat('it-IT', {
+    minimumFractionDigits: digits, maximumFractionDigits: digits,
+  });
+  const label = (value: number): string => {
+    const displayed = Number(value.toFixed(digits));
+    const sign = displayed > 0 ? '+' : displayed < 0 ? '−' : '';
+    return `${sign}${formatter.format(Math.abs(displayed))}`;
+  };
+  const unit = metricMeta[state.metric].unit;
+  const items = (max === min ? [1] : [0, 1, 2, 3]).map((index) => {
+    const from = warmth(edges[index]!, state.metric);
+    const to = warmth(edges[index + 1]!, state.metric);
+    const lower = Math.min(from, to), upper = Math.max(from, to);
+    let range = `Δ = ${label(lower)} ${unit}`;
+    if (max !== min) {
+      const inverted = state.metric === 'precipitationMm';
+      const left = inverted && index < 3 ? '<' : '≤';
+      const right = !inverted && index < 3 ? '<' : '≤';
+      range = `${label(lower)} ${left} Δ ${right} ${label(upper)} ${unit}`;
+    }
+    return `<li class="map-legend-item class-${index}"
+      data-lower="${lower}" data-upper="${upper}">
+      <i class="map-legend-swatch" aria-hidden="true"></i><span>${range}</span></li>`;
+  }).join('');
+  return `<div class="map-legend" role="group" aria-label="Legenda della mappa">
+    <p>Δ = media B − media A${max === min ? ' · un solo valore' : ''}</p>
+    <ul>${items}</ul><p class="legend-caption">Limiti arrotondati;
+      i colori usano i valori non arrotondati.</p></div>`;
+}
+
 function mapMarkup(): string {
-  return `<section class="map-panel panel" aria-labelledby="map-heading"><div class="panel-bar"><div><p class="eyebrow">La geografia</p><h2 id="map-heading">L’Italia delle estati</h2></div><span class="quiet">Δ ${metricMeta[state.metric].shortLabel}</span></div><div id="map-canvas" class="map-canvas" role="group" aria-label="Mappa interattiva delle città">${geography?'':'<p class="map-fallback">Caricamento dei confini locali…</p>'}</div><p class="note">Colori in quattro intervalli uguali di variazione. I punti indicano città, non l’estensione delle celle ERA5. Confini: Natural Earth.</p></section>`;
+  return `<section class="map-panel panel" aria-labelledby="map-heading">
+    <div class="panel-bar"><div><p class="eyebrow">La geografia</p>
+      <h2 id="map-heading">L’Italia delle estati</h2></div>
+      <span class="quiet">Δ ${metricMeta[state.metric].shortLabel}</span></div>
+    <div id="map-canvas" class="map-canvas" role="group"
+      aria-label="Mappa interattiva delle città">${geography ? ''
+        : '<p class="map-fallback">Caricamento dei confini locali…</p>'}</div>
+    ${mapLegendMarkup()}
+    <p class="note">Colori in quattro intervalli uguali di variazione.
+      I punti indicano città, non l’estensione delle celle ERA5. Confini: Natural Earth.</p>
+    </section>`;
 }
 
 let mapTimer: number | undefined;
