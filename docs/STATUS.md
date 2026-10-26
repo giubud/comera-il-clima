@@ -1,5 +1,28 @@
 # Stato del progetto
 
+## Revisione A4 — 26 ottobre 2026
+
+Stato: pulizia completata in locale sul branch `chore/remove-dead-code`.
+Rimossi `src/styles.css` e sei moduli UI senza import in applicazione, script o test:
+`cards.ts`, `chart.ts`, `controls.ts`, `rail.ts`, `ranking.ts`, `stripes.ts`.
+Conservati `src/ui/table.ts`, `src/ui/legal.ts` e le dichiarazioni `src/vite-env.d.ts`.
+Rimossa la copia `PIANO_COMERA_IL_CLIMA.md`; il piano unico resta `docs/PLAN.md`.
+Prima della rimozione le due copie differivano soltanto per una riga vuota finale.
+Il riferimento operativo nel piano è aggiornato; l'inventario iniziale resta storico.
+Build prima/dopo con Node 22.20.0: 17 file, 485.701 byte, differenza di zero byte.
+Le impronte SHA-256 coincidono per tutti i file prodotti, non soltanto per le dimensioni.
+Verifiche superate: TypeScript, 26 test unitari, validazione dati, build e 14 test E2E.
+Dati e applicazione attiva invariati; `dataVersion` resta `4e434940c5eff13b`.
+Il runtime Node 22 è nella cache locale ignorata da Git; nessuna dipendenza aggiunta.
+La validazione dati ha richiesto l'avvio fuori dal sandbox per un limite di Windows.
+Il sandbox ha anche impedito la chiusura del server E2E dopo i test: arrestato soltanto
+quel server temporaneo, il comando è terminato con codice zero e `14 passed`.
+Le prove delle build sono in `.cache/plan-preview/a4-dist-before.json` e `a4-dist-after.json`.
+Le note delle tre verifiche A4 sono aggiornate nel file personale `Verso-la-v4.html`.
+Prossima azione: commit, push e PR eseguiti dal proprietario, con guida un passo alla volta.
+CI della PR, merge e pubblicazione restano da verificare; A4 non è ancora concluso sul sito.
+L'agente non esegue commit, push, PR, merge o aggiornamento di main al posto del proprietario.
+
 ## Revisione A3 — 9 ottobre 2026
 
 Stato: implementazione completata in locale sul branch `fix/map-legend-a11y`.

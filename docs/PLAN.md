@@ -336,12 +336,11 @@ Prima di interrompere una sessione, lasciare la prossima azione precisa: per ese
 ## 10. Prompt da consegnare a SOL 5.6
 
 ```text
-Realizza il progetto “Com’era il clima” seguendo il file allegato
-PIANO_COMERA_IL_CLIMA.md come specifica operativa.
+Realizza il progetto “Com’era il clima” seguendo docs/PLAN.md
+come specifica operativa.
 
 Parti dalla fase 0. Prima di modificare file leggi le istruzioni del repository
-e verifica lo stato git. Copia il piano in docs/PLAN.md e mantieni aggiornati
-docs/STATUS.md e docs/DECISIONS.md.
+e verifica lo stato git. Mantieni aggiornati docs/STATUS.md e docs/DECISIONS.md.
 
 Segui le fasi in ordine e usa le scelte già fissate: applicazione statica
 Vite + TypeScript, dieci città italiane, estati 1961–1990 contro 1991–2020,
