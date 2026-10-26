@@ -128,3 +128,21 @@ Fonti ufficiali:
 - Gli E2E verificano le soglie per tre indicatori e due confronti di periodi, la coerenza
   dei colori nei temi chiaro/scuro, i nomi accessibili di tutte le 60 strisce per indicatore,
   il telefono e i casi di variazione uniforme e deviazione standard nulla.
+
+## 2026-10-26 — Rimozione dei file inutilizzati e del piano duplicato
+
+- Dopo l'approvazione del proprietario sono rimossi `src/styles.css` e sei moduli
+  di `src/ui/`: `cards.ts`, `chart.ts`, `controls.ts`, `rail.ts`, `ranking.ts`, `stripes.ts`.
+- L'analisi segue gli import da `src/main.ts` a `src/console-v3.ts` e alle sue dipendenze.
+  Nessuno dei sette file riceve import dal codice, dagli script o dai test.
+  Gli unici moduli UI importati dalla console sono `table.ts` e `legal.ts`.
+- `src/vite-env.d.ts` viene conservato: il compilatore lo include tramite `tsconfig.json`,
+  anche se non appartiene alla catena degli import eseguiti nel browser.
+- Si conserva `docs/PLAN.md` come unico piano. La copia nella radice differiva soltanto
+  per una riga vuota finale; il riferimento operativo nel piano usa ora `docs/PLAN.md`.
+  L'inventario iniziale in `docs/STATUS.md` resta una registrazione storica.
+- Le build prima e dopo, con Node 22.20.0, producono gli stessi 17 file: 485.701 byte.
+  Tutte le impronte SHA-256 coincidono, compresi JavaScript, CSS e dati pubblicati.
+  La pulizia riduce i sorgenti del repository senza cambiare il sito generato.
+- Le dipendenze, i dati climatici e i file dell'applicazione ancora in uso restano invariati.
+  Non è stato necessario scaricare Knip o aggiungere strumenti al progetto.
