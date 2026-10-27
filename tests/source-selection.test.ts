@@ -1,9 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
 import { assertCityDataset } from '../src/data/schema';
-import {
-  matchesSourceSelection, requestUrl, sourceSelection,
-} from '../scripts/open-meteo';
+import { matchesSourceSelection, requestUrl, sourceSelection } from '../scripts/open-meteo';
 
 describe('provenienza della selezione ERA5', () => {
   it('riconosce il metodo dichiarato nei dati pubblicati', async () => {
@@ -12,10 +10,12 @@ describe('provenienza della selezione ERA5', () => {
     for (const request of value.source.requests) {
       expect(matchesSourceSelection(new URL(request.url), value.source)).toBe(true);
     }
-    expect(() => assertCityDataset({
-      ...value,
-      source: { ...value.source, cellSelection: 'land', elevationCorrection: 'disabled' },
-    })).toThrow(/quota incoerenti/);
+    expect(() =>
+      assertCityDataset({
+        ...value,
+        source: { ...value.source, cellSelection: 'land', elevationCorrection: 'disabled' },
+      }),
+    ).toThrow(/quota incoerenti/);
   });
 
   it('rifiuta la cache nearest presentata come land e land con quota disabilitata', () => {

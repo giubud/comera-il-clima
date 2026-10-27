@@ -42,6 +42,8 @@ Il riferimento iniziale è il commit `9ef44cd`; il comando mostra A, B e B−A p
 ## Verifiche richieste
 
 ```bash
+npm run lint
+npm run format:check
 npm run typecheck
 npm test
 npm run data:validate
@@ -51,3 +53,20 @@ npm run test:e2e
 
 I test ordinari e la build non devono usare la rete. Le pull request non devono contenere credenziali, dati sintetici nel prodotto o risposte giornaliere grezze.
 
+## Formattazione e controlli statici
+
+Prettier usa `printWidth: 100`, apici singoli e fine riga LF. Eseguire
+`npx prettier --write .` per applicare la formattazione e `npm run format:check` per verificarla.
+La configurazione esclude dati generati, cache, build, immagini e il piano HTML personale.
+In particolare, non formattare `public/data/`: le impronte del manifest dipendono dai suoi byte.
+
+ESLint usa le configurazioni recommended di JavaScript e strict di typescript-eslint.
+Le versioni degli strumenti sono fissate nel lockfile; TypeScript resta alla versione 6.0.3,
+compatibile con typescript-eslint 8.72.1. Le opzioni strict di `tsconfig.json` sono invariate.
+Se una regola produce oltre 20 errori, discuterla con il proprietario prima di disattivarla.
+
+Separare i commit di configurazione e correzione da quello di sola formattazione.
+Dopo il commit di formattazione, aggiungerne l'hash completo a `.git-blame-ignore-revs`
+in un commit successivo. Per usarlo anche in Git locale, eseguire
+`git config blame.ignoreRevsFile .git-blame-ignore-revs` quando il file esiste.
+Commit, push, PR e merge restano al proprietario, con guida un passaggio alla volta.

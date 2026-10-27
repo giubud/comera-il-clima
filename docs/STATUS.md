@@ -1,5 +1,32 @@
 # Stato del progetto
 
+## Revisione A5, Fase 1 — 27 ottobre 2026
+
+Stato: configurazione e formattazione verificate sul branch `chore/prettier-eslint`.
+Prettier 3.9.10, ESLint 10.13.0 e typescript-eslint 8.72.1 sono installati con Node 22.
+Il proprietario approva TypeScript 6.0.3 per la compatibilità con il parser; strict invariato.
+`npm run lint` usa recommended JavaScript e strict TypeScript; nessuna regola disattivata.
+Corretti 28 non-null assertion tramite `requireDefined` e una variabile inutilizzata.
+`npm run format:check` usa printWidth 100 e passa su tutti i file inclusi.
+Il proprietario ha creato il commit di configurazione `1e3f750` e quello di formato `c97c4d1`.
+I 37 file del secondo commit coincidono esclusivamente con l'output di Prettier sul primo.
+Entrambi i comandi sono nella CI; dataset, geografia generata e HTML personale sono esclusi.
+Controlli superati: lint, format:check, TypeScript, 26 test unitari, dati, build e 14 E2E.
+I dati pubblici sono invariati; `dataVersion` resta `4e434940c5eff13b`.
+DOM identico prima/dopo in sei casi desktop/tablet/mobile e temi chiaro/scuro.
+Nel confronto finale tutte e sei le immagini PNG coincidono byte per byte con le iniziali.
+Le prove, con font esterni disattivati in entrambi i casi, sono in `.cache/plan-preview/a5-*`.
+Il limite della Fase 2 è 300 righe per modulo; la divisione resta per una nuova sessione.
+L'hash completo del secondo commit è ora registrato nel file `.git-blame-ignore-revs`.
+Prossima azione: il proprietario crea il terzo commit con quel file e questi aggiornamenti.
+Poi push, PR e merge guidati un passaggio alla volta; merge solo con CI richiesta verde.
+La Fase 1 attende CI e pubblicazione; A5 resta aperto fino alla conclusione della Fase 2.
+
+Nota di manutenzione: npm audit segnala quattro pacchetti vulnerabili già nel lockfile
+precedente: Vite 8.3.0, Vitest 5.0.1, @vitest/mocker 5.0.1 e source-map-js 1.2.1.
+Sono strumenti di sviluppo, non dipendenze introdotte da questa fase; nessun fix automatico.
+Il rapporto completo è in `.cache/plan-preview/a5-audit.json` per un intervento dedicato.
+
 ## Revisione A4 — 26 ottobre 2026
 
 Stato: pulizia completata in locale sul branch `chore/remove-dead-code`.

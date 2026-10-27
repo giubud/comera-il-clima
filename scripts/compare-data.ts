@@ -24,21 +24,22 @@ async function main(): Promise<void> {
   const rows: Record<string, string>[] = [];
   for (const city of cities) {
     const path = `public/data/${city.id}.json`;
-    const before: unknown = JSON.parse(execFileSync(
-      'git', ['show', `${beforeCommit}:${path}`], { encoding: 'utf8' },
-    ));
+    const before: unknown = JSON.parse(
+      execFileSync('git', ['show', `${beforeCommit}:${path}`], { encoding: 'utf8' }),
+    );
     const after: unknown = JSON.parse(await readFile(join(process.cwd(), path), 'utf8'));
     assertCityDataset(before);
     assertCityDataset(after);
     if (before.cityId !== city.id || after.cityId !== city.id) {
       throw new Error(`Città inattesa nel confronto: ${city.name}.`);
     }
-    if (before.source.cellSelection !== 'nearest'
-      || before.source.elevationCorrection !== 'disabled') {
+    if (
+      before.source.cellSelection !== 'nearest' ||
+      before.source.elevationCorrection !== 'disabled'
+    ) {
       throw new Error(`Il riferimento iniziale non usa nearest: ${city.name}.`);
     }
-    if (after.source.cellSelection !== 'land'
-      || after.source.elevationCorrection !== 'enabled') {
+    if (after.source.cellSelection !== 'land' || after.source.elevationCorrection !== 'enabled') {
       throw new Error('Prima esegui npm run data:build e npm run data:validate.');
     }
     for (const metric of metrics) {
@@ -47,7 +48,7 @@ async function main(): Promise<void> {
       const newA = after.periods.a[metric];
       const newB = after.periods.b[metric];
       rows.push({
-        'Città': city.name,
+        Città: city.name,
         Indicatore: labels[metric],
         'A prima': format(oldA),
         'B prima': format(oldB),

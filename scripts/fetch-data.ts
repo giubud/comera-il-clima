@@ -1,3 +1,4 @@
+import { requireDefined } from '../src/lib/required';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -30,11 +31,12 @@ function selectedWork(): { cityIds: string[]; from: number; to: number } {
   if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1961 || to > 2020 || from > to) {
     throw new Error('Intervallo non valido: sono ammessi anni dal 1961 al 2020.');
   }
-  return { cityIds: all ? cities.map((city) => city.id) : [cityId!], from, to };
+  return { cityIds: all ? cities.map((city) => city.id) : [requireDefined(cityId)], from, to };
 }
 
 function assertResponse(response: DailyResponse, year: number): void {
-  if (response.timezone !== 'Europe/Rome') throw new Error(`Fuso inatteso per ${year}: ${response.timezone}.`);
+  if (response.timezone !== 'Europe/Rome')
+    throw new Error(`Fuso inatteso per ${year}: ${response.timezone}.`);
   aggregateSummer(response, year);
 }
 
@@ -58,14 +60,22 @@ async function download(url: string): Promise<{ raw: string; response: DailyResp
       const response = await fetch(url, { signal: AbortSignal.timeout(60_000) });
       if (!response.ok) {
         const message = `Open-Meteo ha risposto ${response.status} ${response.statusText}.`;
-        if (response.status >= 400 && response.status < 500 && response.status !== 408 && response.status !== 429) {
+        if (
+          response.status >= 400 &&
+          response.status < 500 &&
+          response.status !== 408 &&
+          response.status !== 429
+        ) {
           throw new Error(message);
         }
         const retryAfter = Number(response.headers.get('retry-after'));
         if (attempt < 3) {
-          const waitMs = Number.isFinite(retryAfter) && retryAfter > 0
-            ? retryAfter * 1_000
-            : response.status === 429 ? 60_000 : attempt * 1_000;
+          const waitMs =
+            Number.isFinite(retryAfter) && retryAfter > 0
+              ? retryAfter * 1_000
+              : response.status === 429
+                ? 60_000
+                : attempt * 1_000;
           await sleep(waitMs);
         }
         lastError = new Error(message);
@@ -78,7 +88,9 @@ async function download(url: string): Promise<{ raw: string; response: DailyResp
       if (attempt < 3) await sleep(attempt * 1_000);
     }
   }
-  throw lastError instanceof Error ? lastError : new Error('Scaricamento non riuscito dopo tre tentativi.');
+  throw lastError instanceof Error
+    ? lastError
+    : new Error('Scaricamento non riuscito dopo tre tentativi.');
 }
 
 async function main(): Promise<void> {
@@ -86,7 +98,7 @@ async function main(): Promise<void> {
   let downloaded = 0;
   let reused = 0;
   for (const cityId of work.cityIds) {
-    const city = getCity(cityId)!;
+    const city = requireDefined(getCity(cityId));
     const cityDirectory = join(cacheRoot, city.id);
     await mkdir(cityDirectory, { recursive: true });
     for (let year = work.from; year <= work.to; year += 1) {
@@ -96,7 +108,7 @@ async function main(): Promise<void> {
         reused += 1;
         continue;
       }
-      const { raw, response } = await download(url);
+      const { response } = await download(url);
       assertResponse(response, year);
       const cached: CachedResponse = {
         url,

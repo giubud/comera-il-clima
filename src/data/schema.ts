@@ -48,7 +48,13 @@ export type Manifest = {
   hotDayThresholdC: 30;
   units: Record<Metric, string>;
   attribution: { label: string; url: string; licence: string; licenceUrl: string };
-  cities: { id: string; name: string; file: string; sha256: string; periods: { a: PeriodSummary; b: PeriodSummary } }[];
+  cities: {
+    id: string;
+    name: string;
+    file: string;
+    sha256: string;
+    periods: { a: PeriodSummary; b: PeriodSummary };
+  }[];
 };
 
 export type DailyResponse = {
@@ -74,19 +80,35 @@ export function isMetric(value: string | null): value is Metric {
   return value !== null && (metrics as readonly string[]).includes(value);
 }
 
-export function assertSummers(value: unknown, cityIds: readonly string[]): asserts value is CompactSummers {
+export function assertSummers(
+  value: unknown,
+  cityIds: readonly string[],
+): asserts value is CompactSummers {
   if (!value || typeof value !== 'object') throw new Error('Riepilogo estivo non valido.');
   const data = value as Partial<CompactSummers>;
-  if (data.schemaVersion !== 1 || data.firstYear !== 1961 || data.lastYear !== 2020 || !data.cities || typeof data.cities !== 'object') {
+  if (
+    data.schemaVersion !== 1 ||
+    data.firstYear !== 1961 ||
+    data.lastYear !== 2020 ||
+    !data.cities ||
+    typeof data.cities !== 'object'
+  ) {
     throw new Error('Intestazione del riepilogo estivo non valida.');
   }
-  if (Object.keys(data.cities).sort().join(',') !== [...cityIds].sort().join(',')) throw new Error('Città mancanti nel riepilogo estivo.');
+  if (Object.keys(data.cities).sort().join(',') !== [...cityIds].sort().join(','))
+    throw new Error('Città mancanti nel riepilogo estivo.');
   for (const id of cityIds) {
     const rows = data.cities[id];
     if (!Array.isArray(rows) || rows.length !== 60) throw new Error(`Estati incomplete: ${id}.`);
     for (const row of rows) {
-      if (!Array.isArray(row) || row.length !== 3 || row.some((item) => typeof item !== 'number' || !Number.isFinite(item))) throw new Error(`Valori non validi: ${id}.`);
-      if (!Number.isInteger(row[1]) || row[1] < 0 || row[1] > 92 || row[2] < 0) throw new Error(`Indicatori non validi: ${id}.`);
+      if (
+        !Array.isArray(row) ||
+        row.length !== 3 ||
+        row.some((item) => typeof item !== 'number' || !Number.isFinite(item))
+      )
+        throw new Error(`Valori non validi: ${id}.`);
+      if (!Number.isInteger(row[1]) || row[1] < 0 || row[1] > 92 || row[2] < 0)
+        throw new Error(`Indicatori non validi: ${id}.`);
     }
   }
 }
@@ -98,10 +120,13 @@ export function assertCityDataset(value: unknown): asserts value is CityDataset 
     throw new Error('Dataset non valido: intestazione non riconosciuta.');
   }
   const source = data.source;
-  if (!source || !(
-    (source.cellSelection === 'nearest' && source.elevationCorrection === 'disabled')
-    || (source.cellSelection === 'land' && source.elevationCorrection === 'enabled')
-  )) {
+  if (
+    !source ||
+    !(
+      (source.cellSelection === 'nearest' && source.elevationCorrection === 'disabled') ||
+      (source.cellSelection === 'land' && source.elevationCorrection === 'enabled')
+    )
+  ) {
     throw new Error('Dataset non valido: selezione della cella e correzione quota incoerenti.');
   }
   if (!Array.isArray(data.years) || data.years.length !== 60) {

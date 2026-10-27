@@ -15,8 +15,14 @@ function csvCell(value: string | number): string {
 }
 
 export function datasetCsv(dataset: CityDataset): string {
-  const rows = [['year', 'mean_temperature_c', 'hot_days_max_gt_30_c', 'precipitation_mm'], ...dataset.years.map((summer) => [
-    summer.year, normalizeDisplayed(summer.meanTemperatureC).toFixed(1), summer.hotDays, normalizeDisplayed(summer.precipitationMm).toFixed(1),
-  ])];
+  const rows = [
+    ['year', 'mean_temperature_c', 'hot_days_max_gt_30_c', 'precipitation_mm'],
+    ...dataset.years.map((summer) => [
+      summer.year,
+      normalizeDisplayed(summer.meanTemperatureC).toFixed(1),
+      summer.hotDays,
+      normalizeDisplayed(summer.precipitationMm).toFixed(1),
+    ]),
+  ];
   return rows.map((row) => row.map(csvCell).join(',')).join('\n') + '\n';
 }

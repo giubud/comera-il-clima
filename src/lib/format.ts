@@ -8,14 +8,18 @@ const countFormatter = new Intl.NumberFormat('it-IT', { maximumFractionDigits: 0
 
 type ValueContext = { metric: Metric; kind: 'annual' | 'period' };
 
-export const metricMeta: Record<
-  Metric, { label: string; shortLabel: string; unit: string }
-> = {
+export const metricMeta: Record<Metric, { label: string; shortLabel: string; unit: string }> = {
   meanTemperatureC: {
-    label: 'Temperatura media estiva', shortLabel: 'Temperatura media', unit: '°C',
+    label: 'Temperatura media estiva',
+    shortLabel: 'Temperatura media',
+    unit: '°C',
   },
   hotDays: { label: 'Giorni con massima >30 °C', shortLabel: 'Giorni >30 °C', unit: 'giorni' },
-  precipitationMm: { label: 'Precipitazioni totali estive', shortLabel: 'Precipitazioni', unit: 'mm' },
+  precipitationMm: {
+    label: 'Precipitazioni totali estive',
+    shortLabel: 'Precipitazioni',
+    unit: 'mm',
+  },
 };
 
 export function normalizeDisplayed(value: number): number {

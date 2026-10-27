@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { aggregateSummer, deltaClasses, movingAverage, periodDelta, rangeStats, summarizePeriod, warmth, zLevel } from '../src/lib/aggregate';
+import {
+  aggregateSummer,
+  deltaClasses,
+  movingAverage,
+  periodDelta,
+  rangeStats,
+  summarizePeriod,
+  warmth,
+  zLevel,
+} from '../src/lib/aggregate';
 import { constantSummer, syntheticResponse } from './helpers';
 
 describe('aggregateSummer', () => {
@@ -13,12 +22,17 @@ describe('aggregateSummer', () => {
   it('conta 10 massime a 30,1 °C', () => {
     const maxima = [...Array(92).fill(30)];
     maxima.fill(30.1, 0, 10);
-    expect(aggregateSummer(syntheticResponse(2000, { temperature_2m_max: maxima }), 2000).hotDays).toBe(10);
+    expect(
+      aggregateSummer(syntheticResponse(2000, { temperature_2m_max: maxima }), 2000).hotDays,
+    ).toBe(10);
   });
 
   it.each([
     ['data mancante', { time: syntheticResponse(2000).daily.time.slice(1) }],
-    ['data duplicata', { time: [...syntheticResponse(2000).daily.time.slice(0, 91), '2000-08-30'] }],
+    [
+      'data duplicata',
+      { time: [...syntheticResponse(2000).daily.time.slice(0, 91), '2000-08-30'] },
+    ],
     ['null', { precipitation_sum: [...Array(91).fill(1), null] }],
     ['NaN', { precipitation_sum: [...Array(91).fill(1), Number.NaN] }],
   ])('rifiuta %s', (_label, overrides) => {
@@ -40,11 +54,19 @@ describe('periodi', () => {
       ...Array.from({ length: 30 }, (_, i) => constantSummer(1961 + i, 20)),
       ...Array.from({ length: 30 }, (_, i) => constantSummer(1991 + i, 22)),
     ];
-    expect(periodDelta(summarizePeriod(summers, 1961, 1990), summarizePeriod(summers, 1991, 2020), 'meanTemperatureC')).toBe(2);
+    expect(
+      periodDelta(
+        summarizePeriod(summers, 1961, 1990),
+        summarizePeriod(summers, 1991, 2020),
+        'meanTemperatureC',
+      ),
+    ).toBe(2);
   });
 
   it('calcola 10,5 giorni per conteggi alternati', () => {
-    const summers = Array.from({ length: 30 }, (_, i) => constantSummer(1961 + i, 20, i % 2 === 0 ? 10 : 11));
+    const summers = Array.from({ length: 30 }, (_, i) =>
+      constantSummer(1961 + i, 20, i % 2 === 0 ? 10 : 11),
+    );
     expect(summarizePeriod(summers, 1961, 1990).hotDays).toBe(10.5);
   });
 });
@@ -67,4 +89,3 @@ describe('nuovi confronti', () => {
     expect(deltaClasses([0, 1, 2, 3, 4])).toEqual([0, 1, 2, 3, 3]);
   });
 });
-

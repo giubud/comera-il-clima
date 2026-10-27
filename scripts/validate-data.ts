@@ -21,8 +21,13 @@ async function main(): Promise<void> {
     throw new Error('Manifest incompleto o versione non riconosciuta.');
   }
   const expectedIds = cities.map(({ id }) => id);
-  if (manifest.cities.map(({ id }) => id).join(',') !== expectedIds.join(',')) throw new Error('Lista città inattesa nel manifest.');
-  const logicalContent: { cityId: string; years: CityDataset['years']; periods: CityDataset['periods'] }[] = [];
+  if (manifest.cities.map(({ id }) => id).join(',') !== expectedIds.join(','))
+    throw new Error('Lista città inattesa nel manifest.');
+  const logicalContent: {
+    cityId: string;
+    years: CityDataset['years'];
+    periods: CityDataset['periods'];
+  }[] = [];
   const datasets: CityDataset[] = [];
   for (const entry of manifest.cities) {
     const raw = await readFile(join(dataRoot, entry.file), 'utf8');
@@ -30,24 +35,34 @@ async function main(): Promise<void> {
     const dataset: unknown = JSON.parse(raw);
     assertCityDataset(dataset);
     const firstSource = datasets[0]?.source;
-    if (firstSource && (dataset.source.cellSelection !== firstSource.cellSelection
-      || dataset.source.elevationCorrection !== firstSource.elevationCorrection)) {
+    if (
+      firstSource &&
+      (dataset.source.cellSelection !== firstSource.cellSelection ||
+        dataset.source.elevationCorrection !== firstSource.elevationCorrection)
+    ) {
       throw new Error(`Metodi diversi fra le città: ${entry.id}.`);
     }
-    if (dataset.cityId !== entry.id || dataset.source.requests.length !== 60) throw new Error(`Provenienza incompleta: ${entry.id}.`);
+    if (dataset.cityId !== entry.id || dataset.source.requests.length !== 60)
+      throw new Error(`Provenienza incompleta: ${entry.id}.`);
     const expectedYears = Array.from({ length: 60 }, (_, index) => 1961 + index);
-    if (dataset.years.map(({ year }) => year).join(',') !== expectedYears.join(',')) throw new Error(`Anni incompleti: ${entry.id}.`);
+    if (dataset.years.map(({ year }) => year).join(',') !== expectedYears.join(','))
+      throw new Error(`Anni incompleti: ${entry.id}.`);
     for (const request of dataset.source.requests) {
       const url = new URL(request.url);
       if (!matchesSourceSelection(url, dataset.source)) {
         throw new Error(`Parametri fonte inattesi: ${entry.id}.`);
       }
     }
-    const calculated = { a: summarizePeriod(dataset.years, 1961, 1990), b: summarizePeriod(dataset.years, 1991, 2020) };
+    const calculated = {
+      a: summarizePeriod(dataset.years, 1961, 1990),
+      b: summarizePeriod(dataset.years, 1991, 2020),
+    };
     for (const key of ['a', 'b'] as const) {
       for (const metric of metrics) {
-        if (!near(dataset.periods[key][metric], calculated[key][metric])) throw new Error(`Riepilogo errato: ${entry.id} ${key} ${metric}.`);
-        if (!near(entry.periods[key][metric], dataset.periods[key][metric])) throw new Error(`Riepilogo manifest errato: ${entry.id} ${key} ${metric}.`);
+        if (!near(dataset.periods[key][metric], calculated[key][metric]))
+          throw new Error(`Riepilogo errato: ${entry.id} ${key} ${metric}.`);
+        if (!near(entry.periods[key][metric], dataset.periods[key][metric]))
+          throw new Error(`Riepilogo manifest errato: ${entry.id} ${key} ${metric}.`);
       }
     }
     logicalContent.push({ cityId: dataset.cityId, years: dataset.years, periods: dataset.periods });
@@ -56,10 +71,14 @@ async function main(): Promise<void> {
   const compact: unknown = JSON.parse(await readFile(join(dataRoot, 'summers.json'), 'utf8'));
   assertSummers(compact, expectedIds);
   const expectedCompact: CompactSummers = compactSummers(datasets);
-  if (JSON.stringify(compact) !== JSON.stringify(expectedCompact)) throw new Error('summers.json non corrisponde ai JSON sorgente.');
+  if (JSON.stringify(compact) !== JSON.stringify(expectedCompact))
+    throw new Error('summers.json non corrisponde ai JSON sorgente.');
   const dataVersion = sha256(JSON.stringify(logicalContent)).slice(0, 16);
-  if (manifest.dataVersion !== dataVersion) throw new Error('dataVersion non corrisponde al contenuto aggregato.');
-  console.log(`Validazione superata: 10 città, 600 estati, 1.800 indicatori annuali. dataVersion=${dataVersion}`);
+  if (manifest.dataVersion !== dataVersion)
+    throw new Error('dataVersion non corrisponde al contenuto aggregato.');
+  console.log(
+    `Validazione superata: 10 città, 600 estati, 1.800 indicatori annuali. dataVersion=${dataVersion}`,
+  );
 }
 
 await main();
