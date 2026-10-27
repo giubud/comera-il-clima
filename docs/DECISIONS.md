@@ -159,13 +159,17 @@ Fonti ufficiali:
 - Prettier usa `printWidth: 100`, apici singoli e fine riga LF. `printWidth` è un obiettivo
   del formatter: non riscrive automaticamente i contenuti delle stringhe HTML lunghe.
   Dati generati, lockfile, cache, build e piano HTML personale sono esclusi.
-- `lint` e `format:check` entrano nella CI delle PR. La configurazione è separata dal
-  successivo commit di sola formattazione; il suo hash andrà in `.git-blame-ignore-revs`
-  dopo che il proprietario avrà creato quel commit. Push, PR e merge restano al proprietario.
+- `lint` e `format:check` entrano nella CI delle PR. Il proprietario ha creato il commit
+  `1e3f750` per configurazione e correzioni, poi `c97c4d1` per la sola formattazione.
+  Tutti i 37 file del secondo commit coincidono con l'output di Prettier sul primo.
+  L'hash completo del secondo è in `.git-blame-ignore-revs`, registrato separatamente:
+  `c97c4d1f1f14dcda448707ee508282f0df9be9cc`.
+  Commit, push, PR e merge restano al proprietario.
 - Il limite per la successiva divisione in moduli è 300 righe per file, confermato dal
   proprietario. La Fase 2 avverrà in una nuova sessione e in una PR distinta.
-- Prima della formattazione, TypeScript, lint, 26 test unitari, dati, build e 14 E2E passano.
-  Il DOM coincide nei sei casi desktop/tablet/mobile, con temi chiaro e scuro.
+- Dopo la formattazione passano TypeScript, lint, format:check, 26 test unitari, dati,
+  build e 14 E2E. Il DOM e tutte e sei le immagini PNG coincidono con le prove iniziali,
+  nei casi desktop/tablet/mobile e temi chiaro/scuro, con font esterni disattivati.
 
 Fonti: [configurazioni typescript-eslint](https://typescript-eslint.io/users/configs/),
 [compatibilità](https://typescript-eslint.io/users/dependency-versions/),
