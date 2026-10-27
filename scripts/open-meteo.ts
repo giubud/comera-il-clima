@@ -27,11 +27,13 @@ export function requestUrl(latitude: number, longitude: number, year: number): s
 
 export function matchesSourceSelection(url: URL, source: SourceSelection): boolean {
   const params = url.searchParams;
-  return url.origin === 'https://archive-api.open-meteo.com'
-    && url.pathname === '/v1/archive'
-    && params.get('models') === 'era5'
-    && params.get('cell_selection') === source.cellSelection
-    && (source.elevationCorrection === 'disabled'
+  return (
+    url.origin === 'https://archive-api.open-meteo.com' &&
+    url.pathname === '/v1/archive' &&
+    params.get('models') === 'era5' &&
+    params.get('cell_selection') === source.cellSelection &&
+    (source.elevationCorrection === 'disabled'
       ? params.get('elevation') === 'nan'
-      : !params.has('elevation'));
+      : !params.has('elevation'))
+  );
 }

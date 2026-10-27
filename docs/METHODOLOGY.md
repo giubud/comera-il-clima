@@ -97,4 +97,3 @@ Le differenze descrivono i due periodi scelti. Non dimostrano causalità, non st
 
 [api-storica]: https://open-meteo.com/en/docs/historical-weather-api
 [selezione]: https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift
-

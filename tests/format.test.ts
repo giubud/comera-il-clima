@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
-  deltaWording, formatSigned, formatValue, metricMeta, normalizeDisplayed,
+  deltaWording,
+  formatSigned,
+  formatValue,
+  metricMeta,
+  normalizeDisplayed,
 } from '../src/lib/format';
 
 describe('formattazione degli indicatori', () => {
@@ -41,4 +45,3 @@ describe('formattazione differenze', () => {
     expect(formatValue(-0.01)).toBe('0,0');
   });
 });
-

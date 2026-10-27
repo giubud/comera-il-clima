@@ -41,7 +41,12 @@ async function datasetForCity(city: (typeof cities)[number]): Promise<CityDatase
   const first = requireDefined(cachedItems[0]).response;
   for (const [index, cached] of cachedItems.entries()) {
     const response = cached.response;
-    if (response.latitude !== first.latitude || response.longitude !== first.longitude || response.elevation !== first.elevation || response.timezone !== first.timezone) {
+    if (
+      response.latitude !== first.latitude ||
+      response.longitude !== first.longitude ||
+      response.elevation !== first.elevation ||
+      response.timezone !== first.timezone
+    ) {
       throw new Error(`Metadati geografici incoerenti: ${city.id} ${1961 + index}.`);
     }
   }
@@ -57,7 +62,11 @@ async function datasetForCity(city: (typeof cities)[number]): Promise<CityDatase
       returnedCoordinates: { latitude: first.latitude, longitude: first.longitude },
       elevationM: first.elevation,
       ...sourceSelection,
-      requests: cachedItems.map(({ url, retrievedAt, sha256: hash }) => ({ url, retrievedAt, sha256: hash })),
+      requests: cachedItems.map(({ url, retrievedAt, sha256: hash }) => ({
+        url,
+        retrievedAt,
+        sha256: hash,
+      })),
     },
     years,
     periods: { a: summarizePeriod(years, 1961, 1990), b: summarizePeriod(years, 1991, 2020) },
@@ -74,7 +83,13 @@ async function main(): Promise<void> {
     const json = stableJson(dataset);
     await writeFile(join(stage, `${city.id}.json`), json, 'utf8');
     datasets.push(dataset);
-    cityEntries.push({ id: city.id, name: city.name, file: `${city.id}.json`, sha256: sha256(json), periods: dataset.periods });
+    cityEntries.push({
+      id: city.id,
+      name: city.name,
+      file: `${city.id}.json`,
+      sha256: sha256(json),
+      periods: dataset.periods,
+    });
   }
   const logicalContent = datasets.map(({ cityId, years, periods }) => ({ cityId, years, periods }));
   const manifest: Manifest = {
@@ -94,7 +109,11 @@ async function main(): Promise<void> {
     cities: cityEntries,
   };
   await writeFile(join(stage, 'manifest.json'), stableJson(manifest), 'utf8');
-  await writeFile(join(stage, 'summers.json'), `${JSON.stringify(compactSummers(datasets))}\n`, 'utf8');
+  await writeFile(
+    join(stage, 'summers.json'),
+    `${JSON.stringify(compactSummers(datasets))}\n`,
+    'utf8',
+  );
 
   await rm(backup, { recursive: true, force: true });
   try {
@@ -106,7 +125,11 @@ async function main(): Promise<void> {
     await rename(stage, output);
     await rm(backup, { recursive: true, force: true });
   } catch (error) {
-    try { await rename(backup, output); } catch { /* Nessun output precedente da ripristinare. */ }
+    try {
+      await rename(backup, output);
+    } catch {
+      /* Nessun output precedente da ripristinare. */
+    }
     throw error;
   }
   console.log(`Generati 10 dataset, 600 estati. dataVersion=${manifest.dataVersion}`);

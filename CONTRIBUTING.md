@@ -70,4 +70,3 @@ Dopo il commit di formattazione, aggiungerne l'hash completo a `.git-blame-ignor
 in un commit successivo. Per usarlo anche in Git locale, eseguire
 `git config blame.ignoreRevsFile .git-blame-ignore-revs` quando il file esiste.
 Commit, push, PR e merge restano al proprietario, con guida un passaggio alla volta.
-

@@ -23,4 +23,3 @@ export type CityId = (typeof cities)[number]['id'];
 export function getCity(cityId: string): (typeof cities)[number] | undefined {
   return cities.find((city) => city.id === cityId);
 }
-

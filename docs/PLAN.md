@@ -10,23 +10,23 @@ Realizzare una piccola applicazione open source in italiano, elegante e accessib
 
 Questo documento è una specifica eseguibile: il modello implementatore deve seguire le decisioni indicate, completare le fasi in ordine e registrare prove e problemi. Non occorre riprogettare il prodotto.
 
-| Aspetto | Decisione per la versione 1 |
-| --- | --- |
-| Nome pubblico | Com’era il clima |
-| Sottotitolo | La memoria delle stagioni |
-| Nome proposto del repository | comera-il-clima |
-| Hosting | GitHub Pages, repository pubblico |
-| Lingua | Italiano |
-| Ambito | Soltanto estate meteorologica: giugno, luglio, agosto |
-| Città | Torino, Milano, Venezia, Bologna, Firenze, Roma, Napoli, Bari, Palermo, Cagliari |
-| Periodi | 1961–1990 e 1991–2020, estremi inclusi |
-| Indicatori | Temperatura media, giorni con massima >30 °C, precipitazioni totali |
-| Fonte prevista | Open-Meteo Historical Weather API, modello ERA5 esplicito |
-| Esecuzione | Tutta l’interazione nel browser; nessuna API climatica chiamata dal visitatore |
-| Dati pubblicati | Aggregati statici JSON e provenienza verificabile |
-| Stack | Vite, TypeScript strict, DOM nativo, CSS; Vitest per la logica |
-| Grafico | SVG semplice, con tabella HTML equivalente |
-| Esclusioni | Account, backend, database, mappe, AI generativa, previsioni, pagamento, pubblicità |
+| Aspetto                      | Decisione per la versione 1                                                         |
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| Nome pubblico                | Com’era il clima                                                                    |
+| Sottotitolo                  | La memoria delle stagioni                                                           |
+| Nome proposto del repository | comera-il-clima                                                                     |
+| Hosting                      | GitHub Pages, repository pubblico                                                   |
+| Lingua                       | Italiano                                                                            |
+| Ambito                       | Soltanto estate meteorologica: giugno, luglio, agosto                               |
+| Città                        | Torino, Milano, Venezia, Bologna, Firenze, Roma, Napoli, Bari, Palermo, Cagliari    |
+| Periodi                      | 1961–1990 e 1991–2020, estremi inclusi                                              |
+| Indicatori                   | Temperatura media, giorni con massima >30 °C, precipitazioni totali                 |
+| Fonte prevista               | Open-Meteo Historical Weather API, modello ERA5 esplicito                           |
+| Esecuzione                   | Tutta l’interazione nel browser; nessuna API climatica chiamata dal visitatore      |
+| Dati pubblicati              | Aggregati statici JSON e provenienza verificabile                                   |
+| Stack                        | Vite, TypeScript strict, DOM nativo, CSS; Vitest per la logica                      |
+| Grafico                      | SVG semplice, con tabella HTML equivalente                                          |
+| Esclusioni                   | Account, backend, database, mappe, AI generativa, previsioni, pagamento, pubblicità |
 
 La limitazione all’estate è intenzionale: riduce i casi di calendario e rende il primo rilascio finibile. Il sottotitolo permette di aggiungere altre stagioni in seguito. Nell’interfaccia specificare «Prima edizione: le estati».
 
@@ -80,18 +80,18 @@ Il formato dei parametri, le variabili e le coordinate restituite sono descritti
 
 Coordinate iniziali di progetto, rappresentative e non confini amministrativi:
 
-| ID | Nome | Latitudine | Longitudine |
-| --- | --- | ---: | ---: |
-| torino | Torino | 45.0703 | 7.6869 |
-| milano | Milano | 45.4642 | 9.1900 |
-| venezia | Venezia | 45.4408 | 12.3155 |
-| bologna | Bologna | 44.4949 | 11.3426 |
-| firenze | Firenze | 43.7696 | 11.2558 |
-| roma | Roma | 41.9028 | 12.4964 |
-| napoli | Napoli | 40.8518 | 14.2681 |
-| bari | Bari | 41.1171 | 16.8719 |
-| palermo | Palermo | 38.1157 | 13.3615 |
-| cagliari | Cagliari | 39.2238 | 9.1217 |
+| ID       | Nome     | Latitudine | Longitudine |
+| -------- | -------- | ---------: | ----------: |
+| torino   | Torino   |    45.0703 |      7.6869 |
+| milano   | Milano   |    45.4642 |      9.1900 |
+| venezia  | Venezia  |    45.4408 |     12.3155 |
+| bologna  | Bologna  |    44.4949 |     11.3426 |
+| firenze  | Firenze  |    43.7696 |     11.2558 |
+| roma     | Roma     |    41.9028 |     12.4964 |
+| napoli   | Napoli   |    40.8518 |     14.2681 |
+| bari     | Bari     |    41.1171 |     16.8719 |
+| palermo  | Palermo  |    38.1157 |     13.3615 |
+| cagliari | Cagliari |    39.2238 |      9.1217 |
 
 Non cambiare modello o coordinate tra periodi. Registrare ogni eventuale revisione in docs/DECISIONS.md e rigenerare tutti i valori interessati. Non fare sostituzioni silenziose della fonte in caso di indisponibilità.
 
@@ -189,11 +189,14 @@ type CityDataset = {
   cityId: string;
   season: 'JJA';
   source: {
-    provider: 'Open-Meteo'; model: 'era5'; timezone: 'Europe/Rome';
+    provider: 'Open-Meteo';
+    model: 'era5';
+    timezone: 'Europe/Rome';
     requestedCoordinates: { latitude: number; longitude: number };
     returnedCoordinates: { latitude: number; longitude: number };
     elevationM: number | null;
-    cellSelection: 'nearest'; elevationCorrection: 'disabled';
+    cellSelection: 'nearest';
+    elevationCorrection: 'disabled';
     requests: { url: string; retrievedAt: string; sha256: string }[];
   };
   years: Summer[];
@@ -209,18 +212,18 @@ Gli output JSON devono avere ordine stabile. La cache e gli hash permettono la r
 
 Script npm richiesti:
 
-| Comando | Responsabilità |
-| --- | --- |
-| npm run dev | Server locale |
-| npm run typecheck | TypeScript senza emissione |
-| npm test | Test unitari, senza rete |
-| npm run test:e2e | Test browser su build locale |
-| npm run data:fetch -- --city roma --from 1961 --to 1961 | Scaricamento limitato, riprendibile |
-| npm run data:fetch -- --all | Cache delle dieci città, 1961–2020 |
-| npm run data:build | Generazione degli aggregati dalla cache |
-| npm run data:validate | Validazione completa degli output pubblici |
-| npm run build | Compilazione sito, senza scaricare dati |
-| npm run preview | Verifica della build |
+| Comando                                                 | Responsabilità                             |
+| ------------------------------------------------------- | ------------------------------------------ |
+| npm run dev                                             | Server locale                              |
+| npm run typecheck                                       | TypeScript senza emissione                 |
+| npm test                                                | Test unitari, senza rete                   |
+| npm run test:e2e                                        | Test browser su build locale               |
+| npm run data:fetch -- --city roma --from 1961 --to 1961 | Scaricamento limitato, riprendibile        |
+| npm run data:fetch -- --all                             | Cache delle dieci città, 1961–2020         |
+| npm run data:build                                      | Generazione degli aggregati dalla cache    |
+| npm run data:validate                                   | Validazione completa degli output pubblici |
+| npm run build                                           | Compilazione sito, senza scaricare dati    |
+| npm run preview                                         | Verifica della build                       |
 
 Downloader sequenziale, un blocco di un anno per città: circa 600 richieste estive, riutilizzando la cache valida. Timeout per richiesta, massimo tre tentativi per errori transitori, ritardo crescente e rispetto di Retry-After. Nessun ciclo infinito; un 4xx non transitorio termina il blocco. Le quote possono contare richieste lunghe in modo ponderato: controllare le condizioni prima dello scaricamento completo, non affidarsi al solo numero di richieste HTTP.
 
@@ -373,4 +376,3 @@ Fonti consultate il 15 settembre 2026:
 - [GitHub Pages: workflow personalizzati](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages): build e deploy.
 
 Questo documento definisce scelte progettuali, non risultati climatici. Durante la sua preparazione sono state consultate le documentazioni, ma non sono stati scaricati i dataset, eseguiti test dell’applicazione, creati repository o pubblicati siti. La fase 1 serve a confermare la fattibilità effettiva della pipeline nel contesto di esecuzione.
-

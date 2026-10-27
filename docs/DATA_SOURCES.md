@@ -40,22 +40,21 @@ L'esito del confronto e il dubbio ancora aperto su Venezia sono descritti nella
 
 ## Coordinate richieste
 
-| Città | Latitudine | Longitudine |
-| --- | ---: | ---: |
-| Torino | 45.0703 | 7.6869 |
-| Milano | 45.4642 | 9.1900 |
-| Venezia | 45.4408 | 12.3155 |
-| Bologna | 44.4949 | 11.3426 |
-| Firenze | 43.7696 | 11.2558 |
-| Roma | 41.9028 | 12.4964 |
-| Napoli | 40.8518 | 14.2681 |
-| Bari | 41.1171 | 16.8719 |
-| Palermo | 38.1157 | 13.3615 |
-| Cagliari | 39.2238 | 9.1217 |
+| Città    | Latitudine | Longitudine |
+| -------- | ---------: | ----------: |
+| Torino   |    45.0703 |      7.6869 |
+| Milano   |    45.4642 |      9.1900 |
+| Venezia  |    45.4408 |     12.3155 |
+| Bologna  |    44.4949 |     11.3426 |
+| Firenze  |    43.7696 |     11.2558 |
+| Roma     |    41.9028 |     12.4964 |
+| Napoli   |    40.8518 |     14.2681 |
+| Bari     |    41.1171 |     16.8719 |
+| Palermo  |    38.1157 |     13.3615 |
+| Cagliari |    39.2238 |      9.1217 |
 
 Le coordinate restituite per la cella effettiva sono contenute nei rispettivi JSON.
 
 ## Verifica iniziale
 
 Le richieste pilota reali per Roma 1961 e 2020 sono documentate in [DATA_CHECK.md](DATA_CHECK.md). Licenze, attribuzione e condizioni d'uso sono state ricontrollate il 28 settembre 2026 sui [termini Open-Meteo](https://open-meteo.com/en/terms), sulla [pagina di attribuzione](https://open-meteo.com/en/pricing) e sulla [licenza Copernicus](https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products). La dicitura pubblica e il disclaimer sono in [DATA_LICENSE.md](../DATA_LICENSE.md).
-

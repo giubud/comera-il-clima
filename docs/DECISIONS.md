@@ -90,8 +90,7 @@ Fonti ufficiali:
 - [Parametri dell'API storica](https://open-meteo.com/en/docs/historical-weather-api).
 - [Selezione della cella][selezione-era5].
 
-[selezione-era5]:
-  https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift
+[selezione-era5]: https://github.com/open-meteo/open-meteo/blob/main/Sources/App/Domains/Gridable.swift
 
 ## 2026-10-09 — Giorni annuali interi e medie con un decimale
 

@@ -2,15 +2,37 @@ import { getCity } from '../data/cities';
 import { isMetric, type Metric } from '../data/schema';
 
 export type Period = [number, number];
-export type UrlState = { city: string; metric: Metric; a: Period; b: Period; vs: string | null; year: number | null; smooth: boolean };
+export type UrlState = {
+  city: string;
+  metric: Metric;
+  a: Period;
+  b: Period;
+  vs: string | null;
+  year: number | null;
+  smooth: boolean;
+};
 export const defaultState: UrlState = {
-  city: 'roma', metric: 'meanTemperatureC', a: [1961, 1990], b: [1991, 2020], vs: null, year: null, smooth: false,
+  city: 'roma',
+  metric: 'meanTemperatureC',
+  a: [1961, 1990],
+  b: [1991, 2020],
+  vs: null,
+  year: null,
+  smooth: false,
 };
 
 function parsePeriod(value: string | null, fallback: Period): Period {
   if (!value || !/^\d{4}-\d{4}$/.test(value)) return [...fallback];
   const [start, end] = value.split('-').map(Number);
-  if (start === undefined || end === undefined || start < 1961 || end > 2020 || start > 2020 || end < 1961) return [...fallback];
+  if (
+    start === undefined ||
+    end === undefined ||
+    start < 1961 ||
+    end > 2020 ||
+    start > 2020 ||
+    end < 1961
+  )
+    return [...fallback];
   return start <= end ? [start, end] : [end, start];
 }
 
@@ -27,7 +49,8 @@ export function parseUrlState(search: string): UrlState {
     a: parsePeriod(params.get('a'), defaultState.a),
     b: parsePeriod(params.get('b'), defaultState.b),
     vs: vs && getCity(vs) && vs !== selectedCity ? vs : null,
-    year: params.has('year') && Number.isInteger(year) && year >= 1961 && year <= 2020 ? year : null,
+    year:
+      params.has('year') && Number.isInteger(year) && year >= 1961 && year <= 2020 ? year : null,
     smooth: params.get('smooth') === '1',
   };
 }

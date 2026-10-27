@@ -5,8 +5,14 @@ const key = 'comera-console';
 
 export function loadAppearance(): { theme: Theme; sort: Sort } {
   try {
-    const saved = JSON.parse(localStorage.getItem(key) ?? '{}') as Partial<{ theme: Theme; sort: Sort }>;
-    return { theme: saved.theme === 'dark' || saved.theme === 'light' ? saved.theme : 'auto', sort: saved.sort === 'alpha' || saved.sort === 'delta' ? saved.sort : 'north' };
+    const saved = JSON.parse(localStorage.getItem(key) ?? '{}') as Partial<{
+      theme: Theme;
+      sort: Sort;
+    }>;
+    return {
+      theme: saved.theme === 'dark' || saved.theme === 'light' ? saved.theme : 'auto',
+      sort: saved.sort === 'alpha' || saved.sort === 'delta' ? saved.sort : 'north',
+    };
   } catch {
     return { theme: 'auto', sort: 'north' };
   }
