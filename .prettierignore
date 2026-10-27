@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.cache/
+.sites-runtime/
+playwright-report/
+test-results/
+public/data/
+public/geo/
+package-lock.json
+docs/screenshots/
+Verso-la-v4.html
+Consegna sito_ URL o file.zip

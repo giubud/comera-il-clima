@@ -1,3 +1,4 @@
+import { requireDefined } from '../src/lib/required';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { assertCityDataset, assertSummers, metrics } from '../src/data/schema';
@@ -57,7 +58,7 @@ test('esporta un CSV completo con decimali a punto', async ({ page }) => {
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe('comera-il-clima-roma.csv');
   const path = await download.path();
-  const csv = await readFile(path!, 'utf8');
+  const csv = await readFile(requireDefined(path), 'utf8');
   expect(csv.split('\n').filter(Boolean)).toHaveLength(61);
   const dataset: unknown = JSON.parse(await readFile('public/data/roma.json', 'utf8'));
   assertCityDataset(dataset);
@@ -154,7 +155,7 @@ test('legenda con soglie reali e colori coerenti nei due temi e su telefono', as
       const inverted = metric === 'precipitationMm';
       const changes = Object.values(source.cities).map((years) => {
         const mean = (start: number, end: number): number =>
-          years.slice(start, end).reduce((sum, row) => sum + row[metricIndex]!, 0) / (end - start);
+          years.slice(start, end).reduce((sum, row) => sum + requireDefined(row[metricIndex]), 0) / (end - start);
         const change = mean(b[0], b[1]) - mean(a[0], a[1]);
         return inverted ? -change : change;
       });
@@ -176,7 +177,7 @@ test('legenda con soglie reali e colori coerenti nei due temi e su telefono', as
         };
         const left = inverted && index < 3 ? '<' : '≤';
         const right = !inverted && index < 3 ? '<' : '≤';
-        const unit = ['°C', 'giorni', 'mm'][metricIndex]!;
+        const unit = requireDefined(['°C', 'giorni', 'mm'][metricIndex]);
         await expect(item.locator('span')).toHaveText(
           `${label(lower)} ${left} Δ ${right} ${label(upper)} ${unit}`,
         );
@@ -205,17 +206,17 @@ test('legenda con soglie reali e colori coerenti nei due temi e su telefono', as
 test('strisce in sigma e direzioni, comprese le precipitazioni', async ({ page }) => {
   const source: unknown = JSON.parse(await readFile('public/data/summers.json', 'utf8'));
   assertSummers(source, cities.map((city) => city.id));
-  const years = source.cities.roma!;
+  const years = requireDefined(source.cities.roma);
   await page.goto('?city=roma&metric=meanTemperatureC');
   const group = page.getByRole('group', { name: 'Anomalie annuali', exact: true });
   for (const [metricIndex, metric] of metrics.entries()) {
     await page.locator(`.metric-tabs [data-metric="${metric}"]`).click();
-    const baseline = years.slice(0, 30).map((row) => row[metricIndex]!);
+    const baseline = years.slice(0, 30).map((row) => requireDefined(row[metricIndex]));
     const mean = baseline.reduce((sum, value) => sum + value, 0) / 30;
     const sd = Math.sqrt(baseline.reduce((sum, value) => sum + (value - mean) ** 2, 0) / 29);
     await expect(group.getByRole('button')).toHaveCount(60);
     for (const [index, row] of years.entries()) {
-      const raw = (row[metricIndex]! - mean) / sd;
+      const raw = (requireDefined(row[metricIndex]) - mean) / sd;
       const rounded = Number((metric === 'precipitationMm' ? -raw : raw).toFixed(1));
       const sign = rounded > 0 ? '+' : rounded < 0 ? '−' : '';
       const value = Math.abs(rounded).toLocaleString('it-IT', {

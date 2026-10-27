@@ -1,3 +1,4 @@
+import { requireDefined } from './required';
 import type { DailyResponse, Metric, PeriodSummary, Summer } from '../data/schema';
 
 const MS_PER_DAY = 86_400_000;
@@ -37,7 +38,7 @@ export function aggregateSummer(response: DailyResponse, year: number): Summer {
   let hotDays = 0;
   let precipitationTotal = 0;
   for (let index = 0; index < 92; index += 1) {
-    const date = dates[index]!;
+    const date = requireDefined(dates[index]);
     const mean = finiteNumber(daily.temperature_2m_mean[index], 'temperature_2m_mean', date);
     const maximum = finiteNumber(daily.temperature_2m_max[index], 'temperature_2m_max', date);
     const precipitation = finiteNumber(daily.precipitation_sum[index], 'precipitation_sum', date);

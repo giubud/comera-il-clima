@@ -1,3 +1,4 @@
+import { requireDefined } from '../src/lib/required';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -30,7 +31,7 @@ function selectedWork(): { cityIds: string[]; from: number; to: number } {
   if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1961 || to > 2020 || from > to) {
     throw new Error('Intervallo non valido: sono ammessi anni dal 1961 al 2020.');
   }
-  return { cityIds: all ? cities.map((city) => city.id) : [cityId!], from, to };
+  return { cityIds: all ? cities.map((city) => city.id) : [requireDefined(cityId)], from, to };
 }
 
 function assertResponse(response: DailyResponse, year: number): void {
@@ -86,7 +87,7 @@ async function main(): Promise<void> {
   let downloaded = 0;
   let reused = 0;
   for (const cityId of work.cityIds) {
-    const city = getCity(cityId)!;
+    const city = requireDefined(getCity(cityId));
     const cityDirectory = join(cacheRoot, city.id);
     await mkdir(cityDirectory, { recursive: true });
     for (let year = work.from; year <= work.to; year += 1) {
@@ -96,7 +97,7 @@ async function main(): Promise<void> {
         reused += 1;
         continue;
       }
-      const { raw, response } = await download(url);
+      const { response } = await download(url);
       assertResponse(response, year);
       const cached: CachedResponse = {
         url,

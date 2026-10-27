@@ -1,3 +1,4 @@
+import { requireDefined } from './lib/required';
 import './v3.css';
 import { geoMercator, geoPath } from 'd3-geo';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -24,7 +25,7 @@ let cityError = false;
 let requestNumber = 0;
 let mapObserver: ResizeObserver | null = null;
 const cityCache = new Map<string, CityDataset>();
-const cityYears = (id: string): Summer[] => expandSummers(compact!.cities[id]!);
+const cityYears = (id: string): Summer[] => expandSummers(requireDefined(requireDefined(compact).cities[id]));
 const rangeLabel = ([start, end]: Period): string => `${start}–${end}`;
 const valueWithUnit = (
   value: number,
@@ -67,14 +68,14 @@ function sidebarMarkup(): string {
   const warnings = periodWarnings(state.a, state.b);
   return `<aside class="sidebar panel" aria-label="Città"><div class="sidebar-section"><p class="eyebrow">01 / Confronto</p><h2>Scegli i periodi</h2>
       <p class="quiet">Confronta le medie delle estati, dal 1961 al 2020.</p>${periodFields('a',state.a)}${periodFields('b',state.b)}
-      <label class="preset-label">Confronti rapidi<select id="period-preset" aria-label="Confronto rapido"><option value="">Personalizzato</option><option value="standard" ${state.a.join()===periodPresets.standard!.a.join()&&state.b.join()===periodPresets.standard!.b.join()?'selected':''}>1961–1990 / 1991–2020</option><option value="decades">Primo / ultimo decennio</option><option value="twenty">1961–1980 / 2001–2020</option></select></label>
+      <label class="preset-label">Confronti rapidi<select id="period-preset" aria-label="Confronto rapido"><option value="">Personalizzato</option><option value="standard" ${state.a.join()===requireDefined(periodPresets.standard).a.join()&&state.b.join()===requireDefined(periodPresets.standard).b.join()?'selected':''}>1961–1990 / 1991–2020</option><option value="decades">Primo / ultimo decennio</option><option value="twenty">1961–1980 / 2001–2020</option></select></label>
       ${warnings.length ? `<div class="period-warning" role="status">${warnings.join(' ')}</div>` : ''}</div>
     <div class="sidebar-section"><div class="section-heading"><div><p class="eyebrow">02 / Luoghi</p><h2>Dieci città</h2></div><select id="city-sort" aria-label="Ordina città"><option value="north" ${sort==='north'?'selected':''}>Nord → sud</option><option value="alpha" ${sort==='alpha'?'selected':''}>A → Z</option><option value="delta" ${sort==='delta'?'selected':''}>Δ maggiore</option></select></div>
       <div class="city-list">${orderedCities().map((city,index) => `<button type="button" data-city="${city.id}" class="city-item ${state.city===city.id?'active':''}" aria-pressed="${state.city===city.id}"><span class="city-index">${String(index+1).padStart(2,'0')}</span><strong>${city.name}</strong><span class="city-delta ${tone(delta(city.id,state.metric),state.metric)}">${formatSigned(delta(city.id,state.metric))}</span></button>`).join('')}</div></div></aside>`;
 }
 
 function heroMarkup(): string {
-  const city = getCity(state.city)!;
+  const city = requireDefined(getCity(state.city));
   const primary = delta(city.id,state.metric);
   return `<section class="hero panel"><div><p class="eyebrow">Osservatorio / Estate italiana</p><h1>${city.name}<span> · estate</span></h1><p>Come sono cambiate le estati tra <strong>${rangeLabel(state.a)}</strong> e <strong>${rangeLabel(state.b)}</strong>? Tre segnali, una storia da esplorare.</p></div>
     <div class="hero-number ${tone(primary,state.metric)}"><span>Variazione · ${metricMeta[state.metric].shortLabel}</span><strong>${formatSigned(primary)} <small>${metricMeta[state.metric].unit}</small></strong><em>Media B meno media A</em></div></section>`;
@@ -107,15 +108,15 @@ function chartMarkup(): string {
   const b=rangeStats(cityYears(state.city),state.metric,...state.b);
   const y=(value:number)=>214-(value-lo)/(hi-lo)*174;
   return `<section class="chart-panel panel" aria-labelledby="chart-heading"><div class="panel-bar"><div><p class="eyebrow">03 / Cronologia</p><h2 id="chart-heading">Sessant’anni, estate per estate</h2></div><div class="chart-controls"><label>Confronta con <select id="compare-city" aria-label="Confronta con un'altra città"><option value="">Nessuna città</option>${cities.filter((city)=>city.id!==state.city).map((city)=>`<option value="${city.id}" ${state.vs===city.id?'selected':''}>${city.name}</option>`).join('')}</select></label><label class="check"><input id="smooth" type="checkbox" ${state.smooth?'checked':''}> Media mobile (5)</label></div></div>
-    <div class="chart-wrap"><svg class="chart-svg" viewBox="0 0 820 246" role="img" aria-label="Serie annuale ${metricMeta[state.metric].label} di ${getCity(state.city)!.name}">
+    <div class="chart-wrap"><svg class="chart-svg" viewBox="0 0 820 246" role="img" aria-label="Serie annuale ${metricMeta[state.metric].label} di ${requireDefined(getCity(state.city)).name}">
     <rect x="42" y="25" width="${(state.a[1]-state.a[0]+1)*12.2}" height="189" class="period-shade a" transform="translate(${(state.a[0]-1961)*12.2} 0)"/><rect x="42" y="25" width="${(state.b[1]-state.b[0]+1)*12.2}" height="189" class="period-shade b" transform="translate(${(state.b[0]-1961)*12.2} 0)"/>
     ${[0,1,2,3,4].map((i)=>{const value=lo+(hi-lo)*i/4;return `<line x1="42" y1="${y(value)}" x2="765" y2="${y(value)}" class="gridline"/><text x="5" y="${y(value)+4}" class="axis-label">${formatValue(value)}</text>`;}).join('')}
     <path d="${linePath(series,lo,hi)}" class="data-line"/>${other?`<path d="${linePath(other,lo,hi)}" class="compare-line"/>`:''}${smooth?`<path d="${linePath(smooth,lo,hi)}" class="smooth-line"/>`:''}${otherSmooth?`<path d="${linePath(otherSmooth,lo,hi)}" class="compare-smooth-line"/>`:''}
     ${series.map((value,index)=>`<circle cx="${42+index*12.2}" cy="${y(value)}" r="${1961+index===selectedYear()?5:3}" class="chart-point ${1961+index===selectedYear()?'active':''}" data-year="${1961+index}" tabindex="0" role="button" aria-label="Estate ${1961+index}: ${valueWithUnit(value,state.metric)}"><title>${1961+index}: ${valueWithUnit(value,state.metric)}</title></circle>`).join('')}
     ${[1961,1970,1980,1990,2000,2010,2020].map((year)=>`<text x="${42+(year-1961)*12.2}" y="237" text-anchor="middle" class="axis-label">${year}</text>`).join('')}</svg></div>
     <div class="chart-footer"><span><i class="legend-dot primary"></i>
-      ${getCity(state.city)!.name}${state.vs
-        ? ` <i class="legend-dot secondary"></i>${getCity(state.vs)!.name}` : ''}</span>
+      ${requireDefined(getCity(state.city)).name}${state.vs
+        ? ` <i class="legend-dot secondary"></i>${requireDefined(getCity(state.vs)).name}` : ''}</span>
       <span>Media A ${valueWithUnit(a.mean,state.metric,'period')} ·
         Media B ${valueWithUnit(b.mean,state.metric,'period')}</span></div></section>`;
 }
@@ -161,13 +162,13 @@ function stripesMarkup(): string {
 }
 
 function yearMarkup(): string {
-  const year=selectedYear(), summers=cityYears(state.city), row=summers[year-1961]!;
-  const warmest=[...summers].sort((a,b)=>warmth(b[state.metric],state.metric)-warmth(a[state.metric],state.metric))[0]!.year;
-  const mildest=[...summers].sort((a,b)=>Math.abs(a[state.metric]-rangeStats(summers,state.metric,...state.a).mean)-Math.abs(b[state.metric]-rangeStats(summers,state.metric,...state.a).mean))[0]!.year;
+  const year=selectedYear(), summers=cityYears(state.city), row=requireDefined(summers[year-1961]);
+  const warmest=requireDefined([...summers].sort((a,b)=>warmth(b[state.metric],state.metric)-warmth(a[state.metric],state.metric))[0]).year;
+  const mildest=requireDefined([...summers].sort((a,b)=>Math.abs(a[state.metric]-rangeStats(summers,state.metric,...state.a).mean)-Math.abs(b[state.metric]-rangeStats(summers,state.metric,...state.a).mean))[0]).year;
   return `<section class="year-panel panel" aria-labelledby="year-heading"><div class="panel-bar"><div><p class="eyebrow">04 / Un’estate da vicino</p><h2 id="year-heading">L’estate del ${year}</h2></div><div class="year-nav"><button type="button" data-year-step="-1" aria-label="Anno precedente" ${year<=1961?'disabled':''}>←</button><select id="year-select" aria-label="Seleziona anno">${summers.map((item)=>`<option value="${item.year}" ${item.year===year?'selected':''}>${item.year}</option>`).join('')}</select><button type="button" data-year-step="1" aria-label="Anno successivo" ${year>=2020?'disabled':''}>→</button></div></div>
     <div class="year-chips"><span>Vai a:</span>${[[warmest,'Più estrema'],[mildest,'Più vicina alla media'],[2003,'2003'],[2020,'2020']].map(([value,label])=>`<button type="button" data-year="${value}">${label}</button>`).join('')}</div>
     <div class="year-cards">${metrics.map((metric)=>{const rank=[...summers].sort((a,b)=>warmth(b[metric],metric)-warmth(a[metric],metric)).findIndex((item)=>item.year===year)+1;const a=rangeStats(summers,metric,...state.a);return `<div><span>${metricMeta[metric].shortLabel}</span><strong>${valueWithUnit(row[metric],metric)}</strong><small>${formatSigned(row[metric]-a.mean)} sulla media A · ${rank}ª su 60</small></div>`;}).join('')}</div>
-    <div class="year-city-grid"><h3>${year} nelle dieci città</h3><div>${orderedCities().map((city)=>{const years=cityYears(city.id), value=years[year-1961]![state.metric], a=rangeStats(years,state.metric,...state.a);const level=zLevel(warmth(value,state.metric),warmth(a.mean,state.metric),a.sd);return `<button type="button" data-city="${city.id}" class="year-city z${level} ${city.id===state.city?'active':''}"><strong>${city.name}</strong><span>${valueWithUnit(value,state.metric)}</span></button>`;}).join('')}</div></div></section>`;
+    <div class="year-city-grid"><h3>${year} nelle dieci città</h3><div>${orderedCities().map((city)=>{const years=cityYears(city.id), value=requireDefined(years[year-1961])[state.metric], a=rangeStats(years,state.metric,...state.a);const level=zLevel(warmth(value,state.metric),warmth(a.mean,state.metric),a.sd);return `<button type="button" data-city="${city.id}" class="year-city z${level} ${city.id===state.city?'active':''}"><strong>${city.name}</strong><span>${valueWithUnit(value,state.metric)}</span></button>`;}).join('')}</div></div></section>`;
 }
 
 function comparisonMarkup(): string {
@@ -178,9 +179,9 @@ function comparisonMarkup(): string {
 
 function annualMarkup(): string {
   const summers=cityYears(state.city), a=rangeStats(summers,state.metric,...state.a);
-  return `<section class="annual panel" aria-labelledby="annual-heading"><div class="panel-bar"><div><p class="eyebrow">06 / Archivio</p><h2 id="annual-heading">Dati annuali · ${getCity(state.city)!.name}</h2></div><div class="annual-actions"><button type="button" id="copy-link">Copia link</button><button type="button" id="download-csv" ${cityDataset?.cityId===state.city?'':'disabled'}>CSV ↓</button></div></div>
+  return `<section class="annual panel" aria-labelledby="annual-heading"><div class="panel-bar"><div><p class="eyebrow">06 / Archivio</p><h2 id="annual-heading">Dati annuali · ${requireDefined(getCity(state.city)).name}</h2></div><div class="annual-actions"><button type="button" id="copy-link">Copia link</button><button type="button" id="download-csv" ${cityDataset?.cityId===state.city?'':'disabled'}>CSV ↓</button></div></div>
     ${cityError?'<div class="data-error" role="alert">Non è stato possibile caricare i dati di dettaglio per il CSV. <button type="button" id="retry">Riprova</button></div>':''}
-    <div class="table-scroll annual-scroll" tabindex="0" aria-label="Tabella scorrevole dei valori annuali"><table><caption class="sr-only">Valori delle 60 estati per ${getCity(state.city)!.name}</caption><thead><tr><th scope="col">Anno</th><th scope="col">Periodo</th><th scope="col">°C</th><th scope="col">gg &gt;30</th><th scope="col">mm</th><th scope="col">Anomalia</th></tr></thead><tbody>${summers.map((summer)=>{const val=summer[state.metric]-a.mean;return `<tr class="${summer.year===selectedYear()?'selected':''}"><th scope="row"><button type="button" data-year="${summer.year}">${summer.year}</button></th><td>${summer.year>=state.a[0]&&summer.year<=state.a[1]?'A':summer.year>=state.b[0]&&summer.year<=state.b[1]?'B':'—'}</td><td>${formatValue(summer.meanTemperatureC)}</td><td>${summer.hotDays}</td><td>${formatValue(summer.precipitationMm)}</td><td class="${tone(val,state.metric)}">${formatSigned(val)}</td></tr>`;}).join('')}</tbody></table></div></section>`;
+    <div class="table-scroll annual-scroll" tabindex="0" aria-label="Tabella scorrevole dei valori annuali"><table><caption class="sr-only">Valori delle 60 estati per ${requireDefined(getCity(state.city)).name}</caption><thead><tr><th scope="col">Anno</th><th scope="col">Periodo</th><th scope="col">°C</th><th scope="col">gg &gt;30</th><th scope="col">mm</th><th scope="col">Anomalia</th></tr></thead><tbody>${summers.map((summer)=>{const val=summer[state.metric]-a.mean;return `<tr class="${summer.year===selectedYear()?'selected':''}"><th scope="row"><button type="button" data-year="${summer.year}">${summer.year}</button></th><td>${summer.year>=state.a[0]&&summer.year<=state.a[1]?'A':summer.year>=state.b[0]&&summer.year<=state.b[1]?'B':'—'}</td><td>${formatValue(summer.meanTemperatureC)}</td><td>${summer.hotDays}</td><td>${formatValue(summer.precipitationMm)}</td><td class="${tone(val,state.metric)}">${formatSigned(val)}</td></tr>`;}).join('')}</tbody></table></div></section>`;
 }
 
 function mapLegendMarkup(): string {
@@ -204,8 +205,8 @@ function mapLegendMarkup(): string {
   };
   const unit = metricMeta[state.metric].unit;
   const items = (max === min ? [1] : [0, 1, 2, 3]).map((index) => {
-    const from = warmth(edges[index]!, state.metric);
-    const to = warmth(edges[index + 1]!, state.metric);
+    const from = warmth(requireDefined(edges[index]), state.metric);
+    const to = warmth(requireDefined(edges[index + 1]), state.metric);
     const lower = Math.min(from, to), upper = Math.max(from, to);
     let range = `Δ = ${label(lower)} ${unit}`;
     if (max !== min) {
@@ -333,7 +334,7 @@ root.addEventListener('keydown',(event)=>{
 root.addEventListener('change',(event)=>{
   const target=event.target as HTMLSelectElement|HTMLInputElement;
   if(target.id==='city-sort'){sort=target.value as Sort;applyAppearance(theme,sort);render();return;}
-  if(target.id==='period-preset'&&periodPresets[target.value]){const preset=periodPresets[target.value]!;state={...state,a:[...preset.a],b:[...preset.b]};persist();return;}
+  if(target.id==='period-preset'&&periodPresets[target.value]){const preset=requireDefined(periodPresets[target.value]);state={...state,a:[...preset.a],b:[...preset.b]};persist();return;}
   if(target.dataset.range){
     const [key,bound]=target.dataset.range.split('-') as ['a'|'b','start'|'end'];
     const next=[...state[key]] as Period;next[bound==='start'?0:1]=Number(target.value);

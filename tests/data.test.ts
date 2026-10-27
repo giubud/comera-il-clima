@@ -1,3 +1,4 @@
+import { requireDefined } from '../src/lib/required';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -28,7 +29,7 @@ describe('dati pubblicati', () => {
     assertSummers(value, cities.map(({ id }) => id));
     const datasets = await Promise.all(cities.map(async ({ id }) => JSON.parse(await readFile(join(root, `${id}.json`), 'utf8'))));
     expect(value).toEqual(compactSummers(datasets));
-    expect(() => assertSummers({ ...value, cities: { ...value.cities, roma: value.cities.roma!.slice(1) } }, cities.map(({ id }) => id))).toThrow();
+    expect(() => assertSummers({ ...value, cities: { ...value.cities, roma: requireDefined(value.cities.roma).slice(1) } }, cities.map(({ id }) => id))).toThrow();
   });
 });
 

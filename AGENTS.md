@@ -13,6 +13,8 @@ Usa Node.js 22, come indicato in `.nvmrc` e `package.json`.
 | Installazione dal lockfile | `npm ci` |
 | Sviluppo | `npm run dev` |
 | Controllo TypeScript | `npm run typecheck` |
+| Controllo ESLint strict | `npm run lint` |
+| Controllo formattazione | `npm run format:check` |
 | Test unitari | `npm test` |
 | Validazione dati | `npm run data:validate` |
 | Build | `npm run build` |
@@ -34,5 +36,6 @@ La pipeline dati è separata dalla build: non rigenerare i dataset senza necessi
 - Usa Conventional Commits in inglese, per esempio `chore: add agent instructions`.
 - Registra ogni decisione rilevante in `docs/DECISIONS.md`.
 - Esegui typecheck, test, validazione dati, build ed E2E prima di proporre il merge.
+- Verifica anche `lint` e `format:check`; formatta soltanto con la configurazione del repo.
 - Fai merge solo con tutti i controlli CI richiesti verdi.
 - La CI delle PR esegue typecheck, test, validazione dati e build; gli E2E sono nel deploy.

@@ -1,3 +1,4 @@
+import { requireDefined } from '../src/lib/required';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -37,7 +38,7 @@ async function datasetForCity(city: (typeof cities)[number]): Promise<CityDatase
     years.push(aggregateSummer(cached.response, year));
     cachedItems.push(cached);
   }
-  const first = cachedItems[0]!.response;
+  const first = requireDefined(cachedItems[0]).response;
   for (const [index, cached] of cachedItems.entries()) {
     const response = cached.response;
     if (response.latitude !== first.latitude || response.longitude !== first.longitude || response.elevation !== first.elevation || response.timezone !== first.timezone) {

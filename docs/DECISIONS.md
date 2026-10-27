@@ -146,3 +146,28 @@ Fonti ufficiali:
   La pulizia riduce i sorgenti del repository senza cambiare il sito generato.
 - Le dipendenze, i dati climatici e i file dell'applicazione ancora in uso restano invariati.
   Non è stato necessario scaricare Knip o aggiungere strumenti al progetto.
+
+## 2026-10-27 — Controlli strict e preparazione alla formattazione
+
+- Il proprietario approva Prettier 3.9.10, ESLint 10.13.0, `@eslint/js` 10.0.1 e
+  typescript-eslint 8.72.1 come dipendenze di sviluppo, con versioni esatte nel lockfile.
+- TypeScript passa da 7.0.2 a 6.0.3: typescript-eslint dichiara supporto a versioni
+  `>=4.8.4 <6.1.0`. La scelta è approvata; tutte le opzioni strict restano invariate.
+- ESLint usa recommended di JavaScript e strict di typescript-eslint, senza eccezioni
+  locali o regole disattivate. Il primo rapporto segnala 28 asserzioni non-null e una
+  variabile inutilizzata. Le 28 asserzioni sono sostituite con `requireDefined`, che
+  controlla esplicitamente null e undefined. La regola rimane attiva.
+- Prettier usa `printWidth: 100`, apici singoli e fine riga LF. `printWidth` è un obiettivo
+  del formatter: non riscrive automaticamente i contenuti delle stringhe HTML lunghe.
+  Dati generati, lockfile, cache, build e piano HTML personale sono esclusi.
+- `lint` e `format:check` entrano nella CI delle PR. La configurazione è separata dal
+  successivo commit di sola formattazione; il suo hash andrà in `.git-blame-ignore-revs`
+  dopo che il proprietario avrà creato quel commit. Push, PR e merge restano al proprietario.
+- Il limite per la successiva divisione in moduli è 300 righe per file, confermato dal
+  proprietario. La Fase 2 avverrà in una nuova sessione e in una PR distinta.
+- Prima della formattazione, TypeScript, lint, 26 test unitari, dati, build e 14 E2E passano.
+  Il DOM coincide nei sei casi desktop/tablet/mobile, con temi chiaro e scuro.
+
+Fonti: [configurazioni typescript-eslint](https://typescript-eslint.io/users/configs/),
+[compatibilità](https://typescript-eslint.io/users/dependency-versions/),
+[printWidth](https://prettier.io/docs/options#print-width).
