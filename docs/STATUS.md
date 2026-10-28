@@ -1,5 +1,31 @@
 # Stato del progetto
 
+## Revisione A5, Fase 2 — 28 ottobre 2026
+
+Stato: suddivisione completata e verificata in locale sul branch `refactor/split-console`.
+Riferimento iniziale: `cc2c538`, Fase 1 pubblicata tramite PR n. 7 con CI e deploy verdi.
+`src/console-v3.ts` passa da 641 a 57 righe; `v3.css` importa cinque fogli da `src/styles/`.
+Stato, selettori, caricamenti e interazioni sono in `src/app/`; le sezioni sono in `src/ui/`.
+La struttura è descritta con diagramma in `docs/ARCHITECTURE.md`.
+Tutti i 34 sorgenti TypeScript e CSS rispettano 300 righe per file e 100 caratteri per riga.
+Massimo rilevato: 280 righe. `npm run source:check` impone i limiti anche nella CI.
+`.gitattributes` mantiene LF su Windows per conservare la conformità a Prettier dopo checkout.
+Il riferimento JSON conserva la regola esplicita e le impronte originali.
+TypeScript, 26 test unitari e 14 E2E passano dopo ogni estrazione o revisione di un modulo.
+Il rapporto `.cache/plan-preview/a5-phase2-checks/summary.jsonl` ha 30 punti, tutti superati.
+Controllo finale superato: TypeScript, test, E2E, lint, format:check, source:check, dati e build.
+DOM identico prima/dopo nei sei casi desktop/tablet/mobile e temi chiaro/scuro.
+Nessuna differenza percettiva tra le immagini con soglia 0,05; alcuni PNG non sono
+byte-identici per minime variazioni di colore nel rendering. Font esterni disattivati.
+Ordine, selettori e dichiarazioni CSS invariati; CSS compilato byte-identico all'iniziale.
+Tutti i moduli raggiungibili dall'avvio, senza dipendenze circolari.
+Dati, schema e librerie originali invariati; `dataVersion` resta `4e434940c5eff13b`.
+Nessuna nuova dipendenza; nessuna API climatica interrogata o cache dei dati cancellata.
+Le prove sono in `.cache/plan-preview/a5-phase2-*`; le note del piano HTML sono aggiornate.
+Prossima azione: revisione del proprietario, poi commit, push e PR guidati un passo alla volta.
+CI della PR, merge e pubblicazione restano da verificare; A5 non è ancora concluso sul sito.
+L'agente non esegue commit, push, PR, merge o aggiornamento di main al posto del proprietario.
+
 ## Revisione A5, Fase 1 — 27 ottobre 2026
 
 Stato: configurazione e formattazione verificate sul branch `chore/prettier-eslint`.

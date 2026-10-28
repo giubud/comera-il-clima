@@ -174,3 +174,34 @@ Fonti ufficiali:
 Fonti: [configurazioni typescript-eslint](https://typescript-eslint.io/users/configs/),
 [compatibilità](https://typescript-eslint.io/users/dependency-versions/),
 [printWidth](https://prettier.io/docs/options#print-width).
+
+## 2026-10-28 — Console divisa in moduli entro 300 righe
+
+- La suddivisione e il diagramma sono approvati dal proprietario prima delle modifiche.
+  `console-v3.ts` passa da 641 a 57 righe e conserva avvio e coordinamento.
+  `app/` gestisce stato, valori da mostrare, caricamenti e interazioni; `ui/` le sezioni.
+  I dettagli e le dipendenze sono descritti in `docs/ARCHITECTURE.md`.
+- Il caricatore conserva cache e contatore delle richieste; una risposta vecchia non
+  sostituisce l'ultima città selezionata. Il modulo mappa possiede il suo osservatore e timer.
+  URL, chiavi locali del tema, testi, CSV e librerie dei calcoli restano invariati.
+- I frammenti HTML lunghi sono divisi mantenendo gli stessi valori, inclusi gli spazi.
+  Le sezioni ricevono lo stato e riusano selettori e formati condivisi.
+- `v3.css` diventa l'ingresso di cinque fogli, in ordine: base, dashboard, visualizations,
+  details, overrides. Il confronto della struttura CSS conferma gli stessi selettori,
+  dichiarazioni e ordine. Anche il CSS della build coincide byte per byte con l'iniziale.
+- Tutti i 34 file TypeScript e CSS in `src/` sono entro 300 righe e 100 caratteri per riga.
+  Il più lungo è `styles/dashboard.css`, con 280 righe. `source:check` impone i limiti nella CI,
+  contando anche commenti e righe vuote. Nessuna nuova dipendenza è necessaria.
+- `.gitattributes` impone LF ai file di testo. Dopo il checkout Windows della Fase 1,
+  43 file risultavano nuovamente non conformi a Prettier a causa dei fine riga CRLF.
+  La regola specifica per i JSON dei dati rimane esplicita e le loro impronte sono invariate.
+- TypeScript, 26 test unitari e 14 E2E passano dopo ogni estrazione o revisione di un modulo.
+  Sono registrati 30 punti di verifica, inclusi riferimento iniziale e controllo finale.
+  Nel finale passano anche lint, format:check, source:check, validazione dati e build.
+- Il DOM coincide in tutti i sei casi desktop/tablet/mobile e chiaro/scuro.
+  Il confronto percettivo delle immagini, con soglia 0,05, non rileva pixel differenti.
+  Alcuni PNG presentano minime variazioni di colore del browser e non sono byte-identici;
+  i font esterni sono disattivati in entrambi i riferimenti per rendere il confronto stabile.
+- Tutti i moduli sono raggiungibili da `main.ts`, senza import circolari.
+  Dati pubblici, schema e librerie esistenti restano invariati; niente rigenerazione.
+  Commit, push, PR e merge saranno eseguiti dal proprietario, un passaggio alla volta.
