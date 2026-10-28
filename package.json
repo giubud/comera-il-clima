@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
     "format:check": "prettier --check .",
+    "source:check": "tsx scripts/check-source-size.ts",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "data:fetch": "tsx scripts/fetch-data.ts",

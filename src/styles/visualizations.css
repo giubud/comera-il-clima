@@ -1,0 +1,208 @@
+.visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-width: 0;
+}
+.map-canvas {
+  min-height: 270px;
+  background: var(--surface-2);
+  margin: 0 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.map-canvas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.map-land {
+  fill: #d8e0dc;
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+.map-land.neighbour {
+  fill: #e5e9e5;
+}
+.map-point {
+  cursor: pointer;
+}
+.map-point circle {
+  fill: var(--map-0);
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+.map-point.class-1 circle {
+  fill: var(--map-1);
+}
+.map-point.class-2 circle {
+  fill: var(--map-2);
+}
+.map-point.class-3 circle {
+  fill: var(--map-3);
+}
+.map-point.active circle {
+  stroke: var(--text);
+  stroke-width: 3;
+}
+.map-point text {
+  font:
+    600 10px 'IBM Plex Sans',
+    sans-serif;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+}
+.map-fallback {
+  padding: 25px;
+  color: var(--muted);
+}
+.note {
+  margin: 12px 20px 18px;
+}
+.stripes {
+  display: flex;
+  height: 92px;
+  margin: 16px 20px 0;
+  gap: 2px;
+}
+.stripe {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  background: #d7dcda;
+  border-radius: 1px;
+}
+.z-2,
+.z-1,
+.z0,
+.z1,
+.z2 {
+  --z: #d7dcda;
+}
+.z-2 {
+  --z: #3f7094;
+}
+.z-1 {
+  --z: #8bafc2;
+}
+.z0 {
+  --z: #c7c9c0;
+}
+.z1 {
+  --z: #d99d79;
+}
+.z2 {
+  --z: #ae4f42;
+}
+.stripe {
+  background: var(--z);
+}
+.stripe.active {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+  z-index: 1;
+}
+.stripe-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 20px 0;
+  font:
+    10px 'IBM Plex Mono',
+    monospace;
+  color: var(--muted);
+}
+
+.chart-controls,
+.chart-footer,
+.year-nav,
+.year-chips,
+.annual-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.chart-controls {
+  font-size: 11px;
+  color: var(--muted);
+}
+.chart-controls select {
+  font-size: 11px;
+}
+.check {
+  white-space: nowrap;
+}
+.chart-wrap {
+  padding: 0 18px;
+  overflow: hidden;
+}
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 230px;
+}
+.period-shade.a {
+  fill: rgba(66, 119, 159, 0.07);
+}
+.period-shade.b {
+  fill: rgba(182, 98, 71, 0.07);
+}
+.gridline {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.axis-label {
+  font:
+    10px 'IBM Plex Mono',
+    monospace;
+  fill: var(--muted);
+}
+.data-line,
+.compare-line,
+.smooth-line,
+.compare-smooth-line {
+  fill: none;
+  stroke: var(--warm);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.compare-line,
+.compare-smooth-line {
+  stroke: var(--cool);
+}
+.smooth-line,
+.compare-smooth-line {
+  stroke-width: 4;
+  opacity: 0.65;
+}
+.chart-point {
+  fill: var(--warm);
+  cursor: pointer;
+}
+.chart-point.active {
+  stroke: var(--text);
+  stroke-width: 2;
+}
+.chart-footer {
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding: 12px 22px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 5px 0 9px;
+}
+.legend-dot.primary {
+  background: var(--warm);
+}
+.legend-dot.secondary {
+  background: var(--cool);
+}

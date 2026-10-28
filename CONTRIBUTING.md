@@ -44,6 +44,7 @@ Il riferimento iniziale è il commit `9ef44cd`; il comando mostra A, B e B−A p
 ```bash
 npm run lint
 npm run format:check
+npm run source:check
 npm run typecheck
 npm test
 npm run data:validate
@@ -70,3 +71,13 @@ Dopo il commit di formattazione, aggiungerne l'hash completo a `.git-blame-ignor
 in un commit successivo. Per usarlo anche in Git locale, eseguire
 `git config blame.ignoreRevsFile .git-blame-ignore-revs` quando il file esiste.
 Commit, push, PR e merge restano al proprietario, con guida un passaggio alla volta.
+
+## Struttura dell'applicazione
+
+`src/console-v3.ts` coordina l'avvio; `src/app/` gestisce stato, caricamenti e interazioni.
+Ogni sezione dell'interfaccia ha un modulo in `src/ui/`. `src/v3.css` importa cinque fogli
+in ordine esplicito da `src/styles/`. Il diagramma è in `docs/ARCHITECTURE.md`.
+
+`npm run source:check` verifica tutti i file TypeScript e CSS in `src/`: massimo 300 righe
+per file, incluse righe vuote e commenti, e 100 caratteri per riga. Il controllo è nella CI.
+Dopo ogni estrazione di un modulo eseguire typecheck, test unitari ed E2E.

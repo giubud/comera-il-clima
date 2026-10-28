@@ -17,6 +17,7 @@ Usa Node.js 22, come indicato in `.nvmrc` e `package.json`.
 | Controllo TypeScript       | `npm run typecheck`     |
 | Controllo ESLint strict    | `npm run lint`          |
 | Controllo formattazione    | `npm run format:check`  |
+| Dimensioni sorgenti        | `npm run source:check`  |
 | Test unitari               | `npm test`              |
 | Validazione dati           | `npm run data:validate` |
 | Build                      | `npm run build`         |
@@ -31,6 +32,7 @@ La pipeline dati è separata dalla build: non rigenerare i dataset senza necessi
 - Mantieni TypeScript strict, `noUncheckedIndexedAccess` ed `exactOptionalPropertyTypes`.
 - Non usare `any`, nemmeno nei cast; usa tipi espliciti o `unknown` con controlli.
 - Mantieni ogni riga sotto i 100 caratteri.
+- Mantieni i file in `src/` entro 300 righe, incluse righe vuote e commenti.
 - Prima di aggiungere una dipendenza, chiedi e attendi l'approvazione dell'utente.
 
 ## Workflow
@@ -41,5 +43,6 @@ La pipeline dati è separata dalla build: non rigenerare i dataset senza necessi
 - Registra ogni decisione rilevante in `docs/DECISIONS.md`.
 - Esegui typecheck, test, validazione dati, build ed E2E prima di proporre il merge.
 - Verifica anche `lint` e `format:check`; formatta soltanto con la configurazione del repo.
+- Esegui anche `source:check` per verificare i limiti dei sorgenti TypeScript e CSS.
 - Fai merge solo con tutti i controlli CI richiesti verdi.
 - La CI delle PR esegue typecheck, test, validazione dati e build; gli E2E sono nel deploy.

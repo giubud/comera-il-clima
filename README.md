@@ -32,6 +32,7 @@ Il percorso locale è `http://localhost:5173/comera-il-clima/`.
 ```bash
 npm run lint
 npm run format:check
+npm run source:check
 npm run typecheck
 npm test
 npm run data:validate

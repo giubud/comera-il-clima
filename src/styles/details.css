@@ -1,0 +1,184 @@
+.year-nav button,
+.year-chips button,
+.annual-actions button {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 6px 10px;
+}
+.year-chips {
+  padding: 0 22px 14px;
+  color: var(--muted);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.year-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 22px 20px;
+}
+.year-cards > div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+.year-cards span,
+.year-cards small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.year-cards strong {
+  display: block;
+  font:
+    600 23px 'IBM Plex Mono',
+    monospace;
+  margin: 8px 0;
+}
+.year-city-grid {
+  padding: 0 22px 22px;
+}
+.year-city-grid h3 {
+  font-size: 13px;
+  margin: 0 0 9px;
+}
+.year-city-grid > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.year-city {
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--z);
+  border-radius: 5px;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 8px;
+  text-align: left;
+}
+.year-city.active {
+  outline: 2px solid var(--accent);
+}
+.year-city strong,
+.year-city span {
+  display: block;
+  font-size: 11px;
+}
+.year-city span {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--muted);
+}
+.comparison,
+.annual,
+.methods {
+  margin-top: 16px;
+}
+.table-scroll {
+  overflow: auto;
+  margin: 0 20px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  white-space: nowrap;
+}
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: right;
+}
+thead th {
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+tbody th {
+  font-weight: 600;
+}
+tbody button {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0;
+}
+tbody tr:hover,
+tbody tr.selected {
+  background: var(--surface-2);
+}
+td.signal {
+  font-weight: 700;
+  background: color-mix(in srgb, var(--warm) 8%, transparent);
+}
+.annual-scroll {
+  max-height: 420px;
+}
+.annual-scroll thead {
+  position: sticky;
+  top: 0;
+}
+.data-error {
+  margin: 0 20px 10px;
+  padding: 9px 12px;
+  border-left: 3px solid var(--warm);
+  background: var(--surface-2);
+}
+.data-error button {
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  color: var(--accent);
+}
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 0 22px 22px;
+}
+.methods-grid article {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.methods-grid h3 {
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+.methods-grid p {
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 9px;
+}
+.methods-grid .sources {
+  grid-column: 1/-1;
+}
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding: 25px max(24px, calc((100vw - 1440px) / 2));
+  font-size: 11px;
+  color: var(--muted);
+}
+.initial-status {
+  max-width: 800px;
+  margin: 12vh auto;
+  padding: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.initial-status.error {
+  color: var(--warm);
+}
