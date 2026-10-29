@@ -1,5 +1,34 @@
 # Stato del progetto
 
+## Revisione A6 — 28 ottobre 2026
+
+Stato: presentazione del progetto completata in locale sul branch `docs/showcase`.
+Riferimento iniziale: `b829dd9`, A5 concluso tramite PR n. 8 con CI e deploy verdi.
+L'header include “Codice su GitHub”, link nativo nella stessa scheda, con colori e focus
+dei temi esistenti. Su telefono le azioni sono su una seconda riga. Il vincolo della
+colonna centrale consente ai pannelli di rientrare anche nella larghezza di 320 pixel.
+La prova dedicata copre cinque larghezze, da 320 a 1440 pixel, in entrambi i temi:
+link raggiungibile con Tab, focus visibile, contrasto almeno 4,5:1 e nessun overflow.
+Le schermate e i risultati sono in `.cache/plan-preview/a6/`.
+
+Il README apre con frase, badge CI di main, demo, GIF e diagramma della pipeline.
+Comandi, licenze e limiti dei dati sono conservati più in basso.
+I cinque punti di “Come l'ho costruito” sono stati confermati dal proprietario
+prima dell'inserimento; descrivono il lavoro svolto senza aggiungere esperienze inventate.
+L'anteprima reale mostra Roma, Milano, giorni >30 °C e tema scuro:
+960 × 640 pixel, quattro fotogrammi, 8 secondi, 172.998 byte, riproduzione singola.
+Sono presenti anche l'immagine statica e la guida `docs/RECORDING.md`.
+Playwright e Pillow già disponibili nell'ambiente hanno prodotto i fotogrammi e la GIF;
+nessuna dipendenza del progetto è stata aggiunta o aggiornata.
+
+Passano lint, format:check, source:check, TypeScript, 26 test unitari, dati, build e 14 E2E.
+Dati, schema e calcoli sono invariati. Registrare la demo non fa parte della build o CI.
+Prossime azioni del proprietario: controllo del link e del README, commit, push e PR,
+poi merge con CI verde e verifica della pubblicazione, guidati un passaggio alla volta.
+Gli otto topic suggeriti sono nel piano HTML; li imposta il proprietario su GitHub.
+La leggibilità del README su GitHub da telefono e l'impostazione dei topic restano da confermare.
+A6 rimane aperto fino al completamento di questi passaggi.
+
 ## Revisione A5, Fase 2 — 28 ottobre 2026
 
 Stato: suddivisione completata e verificata in locale sul branch `refactor/split-console`.
