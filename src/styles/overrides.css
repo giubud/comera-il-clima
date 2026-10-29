@@ -15,6 +15,12 @@
   }
   .topbar {
     padding: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .top-actions {
+    width: 100%;
+    justify-content: space-between;
   }
   .edition {
     display: none;

@@ -23,7 +23,9 @@ export function headerMarkup(model: Readonly<AppState>): string {
     '<span><strong>Com’era il clima</strong><small>Atlante delle ',
     'estati italiane · ERA5 1961—2020</small></span></div>\n    <div ',
     'class="top-actions"><span class="edition">10 città · 600 ',
-    'estati</span><div class="theme-switch" role="group" ',
+    'estati</span><a class="repo-link" ',
+    'href="https://github.com/giubud/comera-il-clima">Codice su GitHub</a>',
+    '<div class="theme-switch" role="group" ',
     'aria-label="Tema">\n      ',
     `${(['auto', 'light', 'dark'] as Theme[])
       .map((value) =>

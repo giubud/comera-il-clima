@@ -205,3 +205,25 @@ Fonti: [configurazioni typescript-eslint](https://typescript-eslint.io/users/con
 - Tutti i moduli sono raggiungibili da `main.ts`, senza import circolari.
   Dati pubblici, schema e librerie esistenti restano invariati; niente rigenerazione.
   Commit, push, PR e merge saranno eseguiti dal proprietario, un passaggio alla volta.
+
+## 2026-10-28 — Presentazione del progetto e collegamento al codice
+
+- Il proprietario approva il piano A6 e i cinque punti di “Come l'ho costruito” prima
+  delle modifiche. Il racconto deriva dalle richieste e dalle decisioni già registrate:
+  delega all'agente, controlli manuali, celle terrestri, dubbio su Venezia, moduli e workflow.
+- L'header espone un link nativo “Codice su GitHub”, nella stessa scheda, con il nome
+  accessibile uguale al testo visibile. Riusa il colore accent e il focus del tema.
+  Su telefono le azioni occupano una seconda riga; la colonna centrale usa minmax(0, 1fr)
+  per consentire ai pannelli di rientrare anche nei 320 pixel di larghezza.
+- Il README apre con una frase, badge CI del branch main, demo e GIF. Il diagramma
+  verticale segue Open-Meteo, cache locale, build-data, JSON statici, Vite e GitHub Pages.
+  Comandi, licenze e limiti dei dati rimangono disponibili più in basso.
+- L'anteprima è composta da quattro screenshot reali acquisiti con Playwright e uniti
+  con Pillow già presente nell'ambiente: 960 × 640 pixel, 8 secondi, 172.998 byte.
+  Si riproduce una sola volta; è disponibile anche il PNG statico. La guida
+  `docs/RECORDING.md` descrive ScreenToGif e l'alternativa video di Playwright.
+- Nessuna dipendenza viene aggiunta al progetto. La registrazione resta separata da build,
+  CI e pipeline dei dati. Le attribuzioni e le condizioni dei fornitori sono conservate.
+- Gli otto topic suggeriti sono climate-data, era5, open-meteo, data-visualization,
+  italy, typescript, vite e github-pages. Li imposta il proprietario, come richiesto.
+  Anche commit, push, PR e merge rimangono a suo carico, guidati un passaggio alla volta.
