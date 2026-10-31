@@ -1,6 +1,31 @@
 # Metodologia
 
-## Ambito
+## Quattro stagioni — schema 2
+
+Lo schema 2 comprende DJF, MAM, JJA e SON: 2.400 stagioni annuali nelle dieci città.
+L'archivio completo è generato e verificato in locale il 31 ottobre 2026. I tre indicatori
+delle 600 estati restano identici alla precedente edizione.
+Il metodo completo, le esclusioni e la separazione delle fonti sono in [SEASONS.md](SEASONS.md).
+
+L'inverno usa dicembre precedente e gennaio–febbraio dell'anno indicato; dura 90 o 91 giorni.
+I nuovi conteggi sono Tmin <0 °C e precipitazioni giornaliere ≥20 mm. Queste comprendono
+anche la neve come equivalente liquido. Le medie di periodo pesano ugualmente ogni anno.
+HotDays in inverno e gelo in estate sono esclusioni della vista, dichiarate con null e una
+motivazione; non sono zeri osservati. Tutti gli altri dati mancanti fanno fallire la validazione.
+
+JJA usa la cache giornaliera originale, ricalcolata e confrontata con un riferimento immutabile.
+Le altre stagioni usano nuove richieste annuali. Il pilota ha restituito uno scarto UTC diverso
+(+1 ora contro +2 della cache estiva): le due provenienze sono registrate separatamente.
+Non è dimostrata una causa unica dello scarto e non si presume identica finestra oraria fra
+stagioni diverse. Il dubbio sulla rappresentatività di Venezia resta invariato.
+
+Nello schema 2 i riepiloghi sono in `seasons/<codice>.json`, conservano gli arrotondamenti
+precedenti e aggiungono due conteggi interi. Schede e CSV mostrano conteggi annuali interi,
+medie e differenze con un decimale; “Non applicabile” rimane esplicito nel CSV.
+Per gelo e giorni ≥20 mm il verso cromatico è invertito. L'etichetta dei giorni ≥20 mm
+parla del loro numero e non li presenta come misura generale di siccità.
+
+## Riferimento estivo e periodi
 
 La prima edizione considera soltanto l’estate meteorologica: 92 giorni dal 1 giugno al 31 agosto, estremi inclusi. Il confronto iniziale usa due periodi consecutivi di uguale durata:
 
@@ -31,12 +56,14 @@ ERA5 è una rianalisi globale su griglia di circa 0,25°. Il valore non è una m
 
 ## Indicatori
 
-Per ogni anno `y`, con `S(y)` insieme dei 92 giorni estivi:
+Per ogni stagione `s` e anno `y`, con `S(s,y)` insieme dei giorni e `d` la sua lunghezza:
 
 ```text
-meanTemperatureC(y) = somma temperature_2m_mean / 92
-hotDays(y) = numero di temperature_2m_max > 30 °C
-precipitationMm(y) = somma precipitation_sum
+meanTemperatureC(s,y) = somma temperature_2m_mean / d
+hotDays(s,y) = numero di temperature_2m_max > 30 °C
+precipitationMm(s,y) = somma precipitation_sum
+frostDays(s,y) = numero di temperature_2m_min < 0 °C
+heavyPrecipitationDays(s,y) = numero di precipitation_sum ≥ 20 mm
 ```
 
 La soglia è stretta: 30,0 °C non conta, 30,1 °C conta. `precipitation_sum` include pioggia, rovesci e precipitazione nevosa espressa come equivalente liquido.
@@ -63,7 +90,7 @@ positivo significa più secco, negativo più piovoso. Gli scarti che si arrotond
 sono descritti come nella media alla precisione mostrata. Se σ è zero, lo scostamento
 standardizzato non è definito e l'etichetta lo dichiara, senza inventare un valore.
 
-I JSON cittadini conservano la precisione completa degli aggregati. `summers.json`, usato per rendere subito tutte le città, arrotonda la temperatura annuale a due decimali e la precipitazione a un decimale prima del ricalcolo interattivo dei periodi. La tabella e il CSV mantengono la visualizzazione a un decimale; il CSV rimane generato dal JSON cittadino originale e usa il punto decimale. Le medie dei conteggi sono mostrate con un decimale e i conteggi annuali come interi. La formattazione dell’interfaccia usa la lingua italiana.
+I JSON cittadini conservano la precisione completa degli aggregati. `seasons/<codice>.json`, usato per rendere subito tutte le città della stagione, arrotonda la temperatura annuale a due decimali e la precipitazione a un decimale prima del ricalcolo interattivo dei periodi. La tabella e il CSV mantengono la visualizzazione a un decimale; il CSV rimane generato dal JSON cittadino originale e usa il punto decimale. Le medie dei conteggi sono mostrate con un decimale e i conteggi annuali come interi. La formattazione dell’interfaccia usa la lingua italiana.
 
 Nelle schede annuali, nei valori delle dieci città per anno e nei testi del grafico e
 delle strisce, i giorni >30 °C sono conteggi interi. Le medie e le differenze rispetto
@@ -72,11 +99,14 @@ Temperature e precipitazioni mantengono un decimale in entrambi i contesti.
 
 ## Validazione
 
-Ogni estate deve avere 92 date uniche e consecutive e 92 valori finiti per campo. La pipeline rifiuta date mancanti o duplicate, `null`, `NaN`, massime inferiori alla media giornaliera, precipitazioni negative, unità inattese e metadati geografici incoerenti.
+Ogni anno meteorologico deve avere 365 o 366 date uniche e consecutive e valori finiti
+per tutte le quattro variabili; ogni estate originale deve avere 92 date e tre variabili complete. La pipeline rifiuta date mancanti o duplicate, `null`, `NaN`, minime superiori alla media o massime inferiori alla media giornaliera, precipitazioni negative, unità inattese e metadati geografici incoerenti.
 
 La generazione avviene in un’area temporanea e sostituisce gli output pubblici soltanto dopo il successo di tutte le città. Il manifest contiene hash SHA-256 per ogni dataset; `dataVersion` deriva esclusivamente dagli aggregati e non dal timestamp.
 
-La validazione di `summers.json` confronta tutte le 600 estati con i JSON cittadini dopo il solo arrotondamento dichiarato. I confini GeoJSON derivano da Natural Earth/world-atlas 2.0.2, vengono salvati nel repository e caricati dal sito stesso; non incidono sui dati climatici.
+La validazione dei quattro riepiloghi confronta tutte le 2.400 stagioni con i JSON cittadini
+dopo il solo arrotondamento dichiarato. Un riferimento indipendente del commit `129d25d`
+verifica esattamente i 1.800 valori estivi precedenti, le medie e il riepilogo compatto. I confini GeoJSON derivano da Natural Earth/world-atlas 2.0.2, vengono salvati nel repository e caricati dal sito stesso; non incidono sui dati climatici.
 
 ## Limiti interpretativi
 

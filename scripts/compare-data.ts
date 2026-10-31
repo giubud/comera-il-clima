@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { cities } from '../src/data/cities';
-import { assertCityDataset, metrics, type Metric } from '../src/data/schema';
+import { assertCityDataset, assertSeasonCity, metrics, type Metric } from '../src/data/schema';
 
 // Versione pubblicata prima del passaggio da nearest a land.
 const beforeCommit = '9ef44cd8487f64d9ae779f51e4f1a4c116e6cc7c';
@@ -29,8 +29,18 @@ async function main(): Promise<void> {
     );
     const after: unknown = JSON.parse(await readFile(join(process.cwd(), path), 'utf8'));
     assertCityDataset(before);
-    assertCityDataset(after);
-    if (before.cityId !== city.id || after.cityId !== city.id) {
+    let current;
+    let source;
+    if ((after as { schemaVersion?: number }).schemaVersion === 2) {
+      assertSeasonCity(after);
+      current = after.seasons.JJA;
+      source = after.summerSource;
+    } else {
+      assertCityDataset(after);
+      current = after;
+      source = after.source;
+    }
+    if (before.cityId !== city.id) {
       throw new Error(`Città inattesa nel confronto: ${city.name}.`);
     }
     if (
@@ -39,14 +49,15 @@ async function main(): Promise<void> {
     ) {
       throw new Error(`Il riferimento iniziale non usa nearest: ${city.name}.`);
     }
-    if (after.source.cellSelection !== 'land' || after.source.elevationCorrection !== 'enabled') {
+    if (source.cellSelection !== 'land' || source.elevationCorrection !== 'enabled') {
       throw new Error('Prima esegui npm run data:build e npm run data:validate.');
     }
     for (const metric of metrics) {
       const oldA = before.periods.a[metric];
       const oldB = before.periods.b[metric];
-      const newA = after.periods.a[metric];
-      const newB = after.periods.b[metric];
+      const newA = current.periods.a[metric];
+      const newB = current.periods.b[metric];
+      if (newA === null || newB === null) throw new Error('Riferimento estivo incompleto.');
       rows.push({
         Città: city.name,
         Indicatore: labels[metric],

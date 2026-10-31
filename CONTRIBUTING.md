@@ -14,7 +14,8 @@ Prima di una modifica leggere `docs/PLAN.md`, `docs/STATUS.md`, `docs/DECISIONS.
 
 1. Aggiungere ID, nome e coordinate a `src/data/cities.ts`.
 2. Documentare la scelta in `docs/DECISIONS.md` e aggiornare la tabella delle coordinate.
-3. Eseguire una richiesta pilota limitata e controllare 92 date, unità, null e coordinate restituite.
+3. Eseguire una richiesta pilota limitata e controllare 365/366 date, unità, valori mancanti
+   e coordinate restituite.
 4. Scaricare l’intervallo completo con `npm run data:fetch -- --city <id>`.
 5. Eseguire `npm run data:build` e `npm run data:validate`.
 6. Aggiornare i test che fissano il numero e l’ordine delle città.
@@ -31,13 +32,13 @@ npm run data:validate
 
 Controllare il diff dei JSON e del manifest. Una revisione del fornitore può cambiare gli
 aggregati; registrare la nuova `dataVersion` e il motivo della rigenerazione.
-La cache corrente `.cache/open-meteo-land/` e quella originale `.cache/open-meteo/`
-non devono essere committate. Non cancellare la cache senza approvazione del proprietario.
+La cache annuale `.cache/open-meteo-seasons-v2/` e quelle estive `.cache/open-meteo-land/`
+e `.cache/open-meteo/` non devono essere committate. Non cancellare la cache senza approvazione del proprietario.
 
 Per confrontare la revisione `land` con i dati precedenti, eseguire `npm run data:compare`.
 Il riferimento iniziale è il commit `9ef44cd`; il comando mostra A, B e B−A prima/dopo.
 
-`data:build` produce anche `summers.json`. Se cambiano soltanto i dati cittadini già pubblicati, `npm run data:summers` rigenera il riepilogo senza interrogare la fonte. Per la mappa, `npm run geo:build` scarica solo durante la preparazione world-atlas 2.0.2 e salva un GeoJSON locale. Controllare le licenze in `DATA_LICENSE.md`.
+`data:build` produce i quattro riepiloghi `seasons/<codice>.json`. Se cambiano soltanto i dati cittadini già pubblicati, `npm run data:summers` rigenera il riepilogo senza interrogare la fonte. Per la mappa, `npm run geo:build` scarica solo durante la preparazione world-atlas 2.0.2 e salva un GeoJSON locale. Controllare le licenze in `DATA_LICENSE.md`.
 
 ## Verifiche richieste
 
@@ -81,3 +82,13 @@ in ordine esplicito da `src/styles/`. Il diagramma è in `docs/ARCHITECTURE.md`.
 `npm run source:check` verifica tutti i file TypeScript e CSS in `src/`: massimo 300 righe
 per file, incluse righe vuote e commenti, e 100 caratteri per riga. Il controllo è nella CI.
 Dopo ogni estrazione di un modulo eseguire typecheck, test unitari ed E2E.
+
+## Archivio stagionale B1
+
+Lo schema 2 e la procedura di ricostruzione sono descritti in [SEASONS.md](docs/SEASONS.md).
+`data:fetch` usa la cache annuale separata e un massimo predefinito di 300 risposte nuove;
+`data:status` controlla l'avanzamento senza rete. Non eseguire due download insieme.
+Per la build completa servono le 600 risposte annuali e le 600 estati originali.
+La regressione estiva è un vincolo: non aggiornare il riferimento per nascondere variazioni.
+La pipeline mantiene il prodotto precedente se le fonti non sono complete e valide.
+I dati sintetici stagionali sono riservati ai test e non devono essere pubblicati.

@@ -5,7 +5,7 @@ import { requireDefined } from '../lib/required';
 import { periodPresets, periodWarnings, type Period } from '../lib/url-state';
 import { tone } from './display';
 
-function periodFields(key: 'a' | 'b', period: Period): string {
+export function periodFields(key: 'a' | 'b', period: Period): string {
   return [
     '<fieldset class="period-fields"><legend>Periodo ',
     `${key.toUpperCase()}`,

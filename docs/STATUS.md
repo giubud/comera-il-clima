@@ -1,5 +1,53 @@
 # Stato del progetto
 
+## B1 — 31 ottobre 2026 — Completato in locale, PR da preparare
+
+Branch `feat/seasons`, riferimento main `129d25d`. L'archivio reale è completo:
+600 risposte annuali valide, dieci città e 2.400 stagioni. Il download è terminato.
+Schema 2, versione logica `1fdffa12eabc7b22`. Nessuna nuova dipendenza.
+Le cache precedenti sono conservate; nessuna risposta grezza è aggiunta al repository.
+
+Sono disponibili inverno, primavera, estate e autunno, con selettore nell'URL,
+giorni di gelo (Tmin <0 °C) e giorni con precipitazioni giornaliere ≥20 mm.
+L'inverno appartiene all'anno in cui termina: 1961 = dicembre 1960–febbraio 1961.
+HotDays in DJF e frostDays in JJA sono esclusioni esplicite della vista: null con motivo,
+“Non applicabile” su sito e CSV. Un conteggio realmente pari a zero resta zero.
+
+Le estati sono ricalcolate dalla fonte giornaliera originale; le altre tre stagioni
+usano il nuovo download. `source` e `summerSource` documentano le provenienze e gli scarti
+UTC rispettivamente +1 e +2 ore. Il pilota aveva mostrato una differenza fra le fonti;
+non la attribuiamo con certezza a una sola causa. Tutti i 1.800 valori estivi precedenti,
+le medie e il riepilogo compatto passano il confronto esatto con il riferimento `129d25d`.
+Il dubbio sulla rappresentatività di Venezia resta aperto, come nella precedente edizione.
+
+Controlli finali superati con Node 22: lint, formattazione, limiti dei 51 sorgenti,
+TypeScript, 42 test unitari, validazione dell'archivio reale completo, build e 32 E2E.
+Dei 32 E2E, 14 usano i dati reali e 18 l'archivio di prova, confinato ai test.
+Otto ulteriori anteprime della build reale coprono quattro stagioni, due temi e 320–1440 pixel:
+nessun errore JavaScript, nessun overflow e nessuna chiamata del browser all'API climatica.
+Verificati CSV reali, inverno bisestile, esclusioni e Roma 2003 con 81 giorni >30 °C.
+
+I JSON passano da 12 file e 400.728 byte a 15 file e 1.303.664 byte: +902.936 byte, circa 3,25×.
+La somma gzip dei singoli file passa da 54.217 a 143.226 byte. La stima iniziale era 1–1,3 MB.
+Il nuovo archivio è stato validato completamente prima della sostituzione di quello locale.
+Su Windows il server temporaneo impediva la rinomina delle cartelle: il rollback ha conservato
+il dataset precedente; chiudere il server e ripetere la build ha completato lo scambio.
+Una risposta non JSON durante il download è stata superata riprendendo dai dati mancanti.
+
+Il proprietario ha verificato Milano nell'anteprima parziale: inverno 1963/64 e 68 giorni di gelo,
+esclusioni in inverno ed estate, primavera 1964 conservata dopo ricaricamento, 8 giorni ≥20 mm,
+medie A 4,4 e B 3,5 con differenza −0,9, leggibilità nei due temi e riga CSV 1964 coerente.
+L'anteprima locale sulla porta 4182 ora mostra la build completa delle dieci città.
+Le note B1 del piano HTML sono aggiornate; la spunta “Fatto” resta al proprietario.
+
+Prove in `.cache/plan-preview/seasons-checks/` e `seasons-final/`; dettagli in
+[SEASONS.md](SEASONS.md), [METHODOLOGY.md](METHODOLOGY.md) e [DECISIONS.md](DECISIONS.md).
+Restano revisione manuale finale, staging, commit, push, PR, CI, merge e verifica del deploy.
+Questi passaggi spettano al proprietario, guidato un passaggio alla volta. B1 non è ancora
+pubblicato e non è concluso sull'ambiente online. L'agente non esegue operazioni Git al suo posto.
+A6 è concluso tramite PR n. 9, con CI e deploy riusciti e gli otto topic verificati dall'utente.
+Le sezioni precedenti che seguono descrivono lo stato storico prima delle rispettive pubblicazioni.
+
 ## Revisione A6 — 28 ottobre 2026
 
 Stato: presentazione del progetto completata in locale sul branch `docs/showcase`.

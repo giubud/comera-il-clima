@@ -2,8 +2,8 @@
 
 ## Scopo
 
-Com’era il clima confronta le estati di dieci città italiane tra il 1961 e il 2020.
-Usa dati ERA5 per temperatura media, giorni con massima >30 °C e precipitazioni totali.
+Com’era il clima confronta quattro stagioni di dieci città italiane tra il 1961 e il 2020.
+Usa ERA5 per temperatura, caldo, precipitazioni, gelo e giorni con precipitazioni ≥20 mm.
 Offre confronti, grafici, mappa, tabella e CSV senza chiamare API climatiche dal browser.
 
 ## Comandi

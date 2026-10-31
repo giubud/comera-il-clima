@@ -1,6 +1,6 @@
 # Com’era il clima
 
-Confronta le estati di dieci città italiane dal 1961 al 2020 con dati climatici ERA5.
+Confronta le quattro stagioni di dieci città italiane dal 1961 al 2020 con dati climatici ERA5.
 
 [![CI][ci-badge]][ci-workflow]
 
@@ -8,13 +8,16 @@ Confronta le estati di dieci città italiane dal 1961 al 2020 con dati climatici
 
 [![Anteprima: cambio di città, indicatore e tema nella demo](docs/media/demo.gif)][demo]
 
+La GIF mostra la vista estiva della prima edizione.
+
 [Immagine statica](docs/media/demo.png) · [Come registrare la GIF](docs/RECORDING.md)
 
 ## Dai dati al sito
 
 ```mermaid
 flowchart TD
-    OpenMeteo["Open-Meteo · ERA5"] --> Cache["Cache locale: .cache/open-meteo-land/"]
+    OpenMeteo["Open-Meteo · ERA5"] --> Cache["Cache annuale: .cache/open-meteo-seasons-v2/"]
+    Estati["Cache estiva originale conservata: .cache/open-meteo-land/"] --> BuildData
     Cache --> BuildData["build-data.ts"]
     BuildData --> JSON["JSON statici"]
     JSON --> Vite["Vite"]
@@ -27,15 +30,19 @@ i dati elaborati sono pubblicati.
 
 ## Cosa puoi esplorare
 
-- Temperatura media estiva, giorni con massima >30 °C e precipitazioni totali.
+- Inverno, primavera, estate e autunno meteorologici.
+- Temperatura media, giorni con massima >30 °C, precipitazioni totali, giorni di gelo
+  (minima <0 °C) e giorni con precipitazioni ≥20 mm.
+- Indicatori esclusi esplicitamente dalla vista quando previsto: “Non applicabile”.
 - Confronto tra periodi modificabili; quelli iniziali sono 1961–1990 e 1991–2020.
 - Mappa, grafico annuale e media mobile, strisce delle anomalie e confronto tra città.
-- Dettaglio del singolo anno, tabella di 60 estati e download CSV.
-- Collegamenti che conservano città, indicatore, periodi e vista; tema chiaro e scuro.
+- Dettaglio del singolo anno, tabella di 60 anni per stagione e download CSV.
+- Collegamenti che conservano città, stagione, indicatore, periodi e vista; tema chiaro e scuro.
 
 Il progetto usa TypeScript strict, Vite, Vitest e Playwright. La struttura dei moduli è descritta in
-[ARCHITECTURE.md](docs/ARCHITECTURE.md). Versione logica dei dati: `4e434940c5eff13b`, rigenerati il
-6 ottobre 2026.
+[ARCHITECTURE.md](docs/ARCHITECTURE.md). Schema 2: 2.400 stagioni annuali;
+versione logica `1fdffa12eabc7b22`, generata il 31 ottobre 2026.
+Le 600 estati e i tre indicatori precedenti restano esattamente invariati.
 
 ## Come l'ho costruito
 
@@ -78,17 +85,24 @@ npm run build
 npm run test:e2e
 ```
 
+L'archivio stagionale è completo e verificato in locale sul branch `feat/seasons`.
+La pubblicazione segue la pull request del proprietario. Il download conserva le estati
+originali; la sua preparazione ha richiesto due finestre giornaliere di quota.
+Vedere [schema stagionale e procedura](docs/SEASONS.md).
+
 La pipeline dati è manuale e separata dalla build ordinaria:
 
 ```bash
 npm run data:fetch -- --city roma --from 1961 --to 1961
-npm run data:fetch -- --all
+npm run data:fetch -- --all --limit 300
+npm run data:status
 npm run data:build
 npm run data:summers
 npm run data:validate
 ```
 
-La cache grezza viene salvata in `.cache/open-meteo-land/` e non entra nel repository. La cache
+La nuova cache annuale è `.cache/open-meteo-seasons-v2/`. Le estati conservano la fonte
+`.cache/open-meteo-land/`; entrambe sono locali e non entrano nel repository. La cache
 originale `.cache/open-meteo/` è conservata per il confronto. Non eseguire `data:build` senza una
 cache completa e validata.
 
@@ -97,8 +111,8 @@ Mostra medie A, B e differenza B−A prima/dopo per tutti i tre indicatori e le 
 confronto include anche l'adattamento all'altitudine; il caso di Venezia resta da verificare. Si
 vedano [metodologia](docs/METHODOLOGY.md) e [decisioni](docs/DECISIONS.md).
 
-`data:build` genera anche `summers.json` quando la cache completa è disponibile. Per rigenerare solo
-il riepilogo compatto dai JSON cittadini pubblicati, usare `npm run data:summers`. I confini locali
+`data:build` genera lo schema 2 e quattro riepiloghi stagionali solo con la cache completa. Per rigenerare solo
+i quattro riepiloghi compatti dai JSON cittadini, usare `npm run data:summers`. I confini locali
 sono già nel repository; per rigenerarli esplicitamente dalla versione fissata di world-atlas, usare
 `npm run geo:build` (richiede rete soltanto in fase di preparazione).
 
@@ -111,8 +125,9 @@ modello ERA5 esplicito: la fonte sottostante è il
 I dati ottenuti tramite l'API sono disponibili secondo
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-Questo progetto ha modificato i dati: ha selezionato le estati giugno–agosto del 1961–2020,
-calcolato tre indicatori annuali e le medie dei due trentenni. **Contiene informazioni modificate
+Questo progetto ha modificato i dati: ha selezionato le quattro stagioni meteorologiche
+del 1961–2020, calcolato cinque indicatori e le medie dei due trentenni.
+L’inverno 1961 include dicembre 1960; la fonte estiva originale è conservata. **Contiene informazioni modificate
 del Copernicus Climate Change Service (elaborazione 2026).** Né la Commissione europea né ECMWF sono
 responsabili dell'uso che può essere fatto delle informazioni o dei dati Copernicus qui contenuti.
 Attribuzioni, trasformazioni e condizioni di riuso sono dettagliate in

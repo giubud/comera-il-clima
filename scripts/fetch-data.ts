@@ -1,130 +1,138 @@
-import { requireDefined } from '../src/lib/required';
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, open, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { cities, getCity } from '../src/data/cities';
-import type { DailyResponse } from '../src/data/schema';
-import { aggregateSummer } from '../src/lib/aggregate';
-import { cacheRoot, requestUrl } from './open-meteo';
-
-type CachedResponse = {
-  url: string;
-  retrievedAt: string;
-  sha256: string;
-  response: DailyResponse;
-};
-
-const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-function selectedWork(): { cityIds: string[]; from: number; to: number } {
+import { assertDailyYear } from '../src/lib/season-aggregate';
+import type { DailyYearResponse } from '../src/data/schema';
+import { requireDefined } from '../src/lib/required';
+import { seasonCacheRoot, seasonRequestUrl, quotaWeight } from './season-source';
+import { originalSummer } from './summer-source';
+import { pauseQuota, QuotaPause, reserveQuota } from './fetch-quota';
+type CachedYear = { url: string; retrievedAt: string; sha256: string; response: DailyYearResponse };
+const sha256 = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+function work() {
   const args = process.argv.slice(2);
-  const all = args.includes('--all');
-  const cityIndex = args.indexOf('--city');
-  const fromIndex = args.indexOf('--from');
-  const toIndex = args.indexOf('--to');
-  const cityId = cityIndex >= 0 ? args[cityIndex + 1] : undefined;
-  const from = fromIndex >= 0 ? Number(args[fromIndex + 1]) : 1961;
-  const to = toIndex >= 0 ? Number(args[toIndex + 1]) : 2020;
-  if ((!all && !cityId) || (cityId && !getCity(cityId))) {
-    throw new Error('Usa --all oppure --city <id> [--from 1961 --to 2020].');
+  const option = (name: string, fallback: string) => {
+    const index = args.indexOf(name);
+    return index < 0 ? fallback : requireDefined(args[index + 1]);
+  };
+  const id = option('--city', '');
+  const from = Number(option('--from', '1961')),
+    to = Number(option('--to', '2020'));
+  const limit = Number(option('--limit', '300'));
+  if (
+    (!args.includes('--all') && !getCity(id)) ||
+    !Number.isInteger(from) ||
+    !Number.isInteger(to) ||
+    from < 1961 ||
+    to > 2020 ||
+    from > to ||
+    !Number.isInteger(limit) ||
+    limit < 1 ||
+    limit > 600
+  ) {
+    throw new Error('Usa --all o --city <id>, --from/--to 1961–2020, --limit 1–600.');
   }
-  if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1961 || to > 2020 || from > to) {
-    throw new Error('Intervallo non valido: sono ammessi anni dal 1961 al 2020.');
-  }
-  return { cityIds: all ? cities.map((city) => city.id) : [requireDefined(cityId)], from, to };
+  return {
+    cities: args.includes('--all') ? cities : [requireDefined(getCity(id))],
+    from,
+    to,
+    limit,
+  };
 }
-
-function assertResponse(response: DailyResponse, year: number): void {
-  if (response.timezone !== 'Europe/Rome')
-    throw new Error(`Fuso inatteso per ${year}: ${response.timezone}.`);
-  aggregateSummer(response, year);
-}
-
-async function validCache(path: string, url: string, year: number): Promise<boolean> {
+async function readCache(file: string, url: string, year: number): Promise<CachedYear | null> {
+  let text: string;
   try {
-    const cached = JSON.parse(await readFile(path, 'utf8')) as CachedResponse;
-    if (cached.url !== url) return false;
-    const raw = JSON.stringify(cached.response);
-    if (createHash('sha256').update(raw).digest('hex') !== cached.sha256) return false;
-    assertResponse(cached.response, year);
-    return true;
-  } catch {
-    return false;
+    text = await readFile(file, 'utf8');
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+    throw error;
   }
+  const cached = JSON.parse(text) as CachedYear;
+  if (cached.url !== url || sha256(cached.response) !== cached.sha256)
+    throw new Error(`Cache incoerente: ${file}. File conservato per la diagnosi.`);
+  assertDailyYear(cached.response, year);
+  return cached;
 }
-
-async function download(url: string): Promise<{ raw: string; response: DailyResponse }> {
-  let lastError: unknown;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
+async function download(url: string, year: number): Promise<CachedYear> {
+  let error: unknown;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await reserveQuota(quotaWeight(year));
+    let response: Response;
     try {
-      const response = await fetch(url, { signal: AbortSignal.timeout(60_000) });
-      if (!response.ok) {
-        const message = `Open-Meteo ha risposto ${response.status} ${response.statusText}.`;
-        if (
-          response.status >= 400 &&
-          response.status < 500 &&
-          response.status !== 408 &&
-          response.status !== 429
-        ) {
-          throw new Error(message);
-        }
-        const retryAfter = Number(response.headers.get('retry-after'));
-        if (attempt < 3) {
-          const waitMs =
-            Number.isFinite(retryAfter) && retryAfter > 0
-              ? retryAfter * 1_000
-              : response.status === 429
-                ? 60_000
-                : attempt * 1_000;
-          await sleep(waitMs);
-        }
-        lastError = new Error(message);
-        continue;
-      }
-      const raw = await response.text();
-      return { raw, response: JSON.parse(raw) as DailyResponse };
-    } catch (error) {
-      lastError = error;
-      if (attempt < 3) await sleep(attempt * 1_000);
+      response = await fetch(url, { signal: AbortSignal.timeout(60_000) });
+    } catch (failure) {
+      error = failure;
+      continue;
     }
+    if (response.status === 429)
+      await pauseQuota(Number(response.headers.get('retry-after')) || 60);
+    if (!response.ok) {
+      error = new Error(`Open-Meteo: HTTP ${response.status}.`);
+      if (response.status < 500) throw error;
+      continue;
+    }
+    const value: unknown = await response.json();
+    assertDailyYear(value, year);
+    return { url, retrievedAt: new Date().toISOString(), sha256: sha256(value), response: value };
   }
-  throw lastError instanceof Error
-    ? lastError
-    : new Error('Scaricamento non riuscito dopo tre tentativi.');
+  throw error instanceof Error ? error : new Error('Download fallito dopo tre tentativi.');
 }
-
 async function main(): Promise<void> {
-  const work = selectedWork();
-  let downloaded = 0;
-  let reused = 0;
-  for (const cityId of work.cityIds) {
-    const city = requireDefined(getCity(cityId));
-    const cityDirectory = join(cacheRoot, city.id);
-    await mkdir(cityDirectory, { recursive: true });
-    for (let year = work.from; year <= work.to; year += 1) {
-      const path = join(cityDirectory, `${year}.json`);
-      const url = requestUrl(city.latitude, city.longitude, year);
-      if (await validCache(path, url, year)) {
-        reused += 1;
-        continue;
+  const selected = work();
+  await mkdir(seasonCacheRoot, { recursive: true });
+  const lockPath = join(seasonCacheRoot, '.download.lock');
+  const lock = await open(lockPath, 'wx').catch(async (error: unknown) => {
+    if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
+    const pid = Number(await readFile(lockPath, 'utf8'));
+    if (!Number.isInteger(pid) || pid <= 0) throw new Error('Lock del download non valido.');
+    try {
+      process.kill(pid, 0);
+    } catch (failure) {
+      if ((failure as NodeJS.ErrnoException).code === 'ESRCH') {
+        await unlink(lockPath);
+        return open(lockPath, 'wx');
       }
-      const { response } = await download(url);
-      assertResponse(response, year);
-      const cached: CachedResponse = {
-        url,
-        retrievedAt: new Date().toISOString(),
-        sha256: createHash('sha256').update(JSON.stringify(response)).digest('hex'),
-        response,
-      };
-      await writeFile(path, `${JSON.stringify(cached, null, 2)}\n`, 'utf8');
-      downloaded += 1;
-      process.stdout.write(`${city.name} ${year}: scaricato e validato\n`);
-      // Una richiesta estiva di 92 giorni pesa più di una chiamata semplice.
-      // Questo intervallo mantiene il ritmo sotto il limite ponderato al minuto.
-      await sleep(1_100);
+      throw failure;
     }
+    throw new Error('Un download stagionale è già attivo.');
+  });
+  await lock.writeFile(String(process.pid));
+  try {
+    let downloaded = 0,
+      reused = 0,
+      pending = 0;
+    for (const city of selected.cities) {
+      const directory = join(seasonCacheRoot, city.id);
+      await mkdir(directory, { recursive: true });
+      for (let year = selected.from; year <= selected.to; year++) {
+        const file = join(directory, `${year}.json`);
+        const url = seasonRequestUrl(city.latitude, city.longitude, year);
+        let cached = await readCache(file, url, year);
+        if (cached) reused++;
+        else {
+          if (downloaded >= selected.limit) {
+            pending++;
+            continue;
+          }
+          cached = await download(url, year);
+          await writeFile(file + '.tmp', JSON.stringify(cached, null, 2) + '\n');
+          await rename(file + '.tmp', file);
+          downloaded++;
+        }
+        await originalSummer(city.id, year);
+        console.log(`${city.name} ${year}: dati annuali validi, estate originale verificata.`);
+      }
+    }
+    console.log(`Lotto: ${downloaded} scaricati, ${reused} riutilizzati, ${pending} da scaricare.`);
+    if (pending) console.log('Cache incompleta: ripeti lo stesso comando per continuare.');
+    else console.log('Intervallo richiesto completo. La build pubblica non è stata modificata.');
+  } finally {
+    await lock.close();
+    await unlink(lockPath);
   }
-  console.log(`Completato: ${downloaded} scaricati, ${reused} riutilizzati dalla cache.`);
 }
-
-await main();
+await main().catch((error: unknown) => {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exitCode = error instanceof QuotaPause ? 2 : 1;
+});
