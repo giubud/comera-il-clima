@@ -1,8 +1,51 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-10-06T16:23:37.670Z",
-  "dataVersion": "4e434940c5eff13b",
-  "season": "JJA",
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T17:58:06.800Z",
+  "dataVersion": "1fdffa12eabc7b22",
+  "firstYear": 1961,
+  "lastYear": 2020,
+  "seasons": [
+    "DJF",
+    "MAM",
+    "JJA",
+    "SON"
+  ],
+  "winterYear": "ending-year",
+  "applicability": {
+    "DJF": {
+      "meanTemperatureC": null,
+      "hotDays": "Giorni sopra 30 °C esclusi dalla vista invernale.",
+      "precipitationMm": null,
+      "frostDays": null,
+      "heavyPrecipitationDays": null
+    },
+    "MAM": {
+      "meanTemperatureC": null,
+      "hotDays": null,
+      "precipitationMm": null,
+      "frostDays": null,
+      "heavyPrecipitationDays": null
+    },
+    "JJA": {
+      "meanTemperatureC": null,
+      "hotDays": null,
+      "precipitationMm": null,
+      "frostDays": "Giorni di gelo esclusi dalla vista estiva.",
+      "heavyPrecipitationDays": null
+    },
+    "SON": {
+      "meanTemperatureC": null,
+      "hotDays": null,
+      "precipitationMm": null,
+      "frostDays": null,
+      "heavyPrecipitationDays": null
+    }
+  },
+  "thresholds": {
+    "hotDays": 30,
+    "frostDays": 0,
+    "heavyPrecipitationDays": 20
+  },
   "periods": {
     "a": [
       1961,
@@ -13,40 +56,113 @@
       2020
     ]
   },
-  "hotDayThresholdC": 30,
-  "units": {
-    "meanTemperatureC": "°C",
-    "hotDays": "days",
-    "precipitationMm": "mm"
-  },
   "attribution": {
     "label": "Open-Meteo Historical Weather API · ERA5",
     "url": "https://open-meteo.com/en/docs/historical-weather-api",
     "licence": "CC BY 4.0",
     "licenceUrl": "https://creativecommons.org/licenses/by/4.0/"
   },
+  "units": {
+    "meanTemperatureC": "°C",
+    "hotDays": "days",
+    "precipitationMm": "mm",
+    "frostDays": "days",
+    "heavyPrecipitationDays": "days"
+  },
   "cities": [
     {
       "id": "torino",
       "name": "Torino",
       "file": "torino.json",
-      "sha256": "f967d2efad9e2c6155b798834609ff8beaad678f202f891cbd017a916e12619d",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 21.54971014492753,
-          "hotDays": 12.766666666666667,
-          "precipitationMm": 218.86999999999998
+      "sha256": "ee81eb788a1808ebe5b24d35204e100218e7d9ed57e18a7c92b8db83097b3f3f",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 2.6648449328449333,
+            "hotDays": null,
+            "precipitationMm": 193.0366666666666,
+            "frostDays": 48.7,
+            "heavyPrecipitationDays": 2.466666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 3.981934472934472,
+            "hotDays": null,
+            "precipitationMm": 166.7033333333333,
+            "frostDays": 34.56666666666667,
+            "heavyPrecipitationDays": 2.2
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 23.351485507246377,
-          "hotDays": 30.633333333333333,
-          "precipitationMm": 193.0366666666666
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 11.913260869565217,
+            "hotDays": 0,
+            "precipitationMm": 330.5166666666667,
+            "frostDays": 4.166666666666667,
+            "heavyPrecipitationDays": 3.8
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.396123188405795,
+            "hotDays": 0.43333333333333335,
+            "precipitationMm": 285.6133333333334,
+            "frostDays": 2.6,
+            "heavyPrecipitationDays": 3.6666666666666665
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 21.54971014492753,
+            "hotDays": 12.766666666666667,
+            "precipitationMm": 218.86999999999998,
+            "frostDays": null,
+            "heavyPrecipitationDays": 2.066666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 23.351485507246377,
+            "hotDays": 30.633333333333333,
+            "precipitationMm": 193.0366666666666,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1.5666666666666667
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 12.758351648351647,
+            "hotDays": 0.5666666666666667,
+            "precipitationMm": 267.8266666666667,
+            "frostDays": 4.733333333333333,
+            "heavyPrecipitationDays": 3.6333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.745311355311356,
+            "hotDays": 1.1333333333333333,
+            "precipitationMm": 305.4166666666667,
+            "frostDays": 2.466666666666667,
+            "heavyPrecipitationDays": 4.6
+          }
         }
       }
     },
@@ -54,23 +170,95 @@
       "id": "milano",
       "name": "Milano",
       "file": "milano.json",
-      "sha256": "b0ce058fdf1dbde7d403b57407f215bada30238be78ac93f3d0f367abe5007cd",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 21.785507246376806,
-          "hotDays": 18.133333333333333,
-          "precipitationMm": 319.95666666666665
+      "sha256": "bc02fc6e341fc54363834a8f30efa119b64b7d8d985f829a6ad968faca7ef009",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 2.840148555148556,
+            "hotDays": null,
+            "precipitationMm": 214.50666666666666,
+            "frostDays": 46.86666666666667,
+            "heavyPrecipitationDays": 2.933333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 4.142992673992675,
+            "hotDays": null,
+            "precipitationMm": 186.18666666666667,
+            "frostDays": 33.266666666666666,
+            "heavyPrecipitationDays": 2.566666666666667
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 23.82358695652174,
-          "hotDays": 36.833333333333336,
-          "precipitationMm": 282.4066666666666
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 12.355144927536234,
+            "hotDays": 0.03333333333333333,
+            "precipitationMm": 334.86666666666673,
+            "frostDays": 3.966666666666667,
+            "heavyPrecipitationDays": 4.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.904239130434782,
+            "hotDays": 1.1666666666666667,
+            "precipitationMm": 273.43999999999994,
+            "frostDays": 1.4333333333333333,
+            "heavyPrecipitationDays": 3.5
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 21.785507246376806,
+            "hotDays": 18.133333333333333,
+            "precipitationMm": 319.95666666666665,
+            "frostDays": null,
+            "heavyPrecipitationDays": 4.2
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 23.82358695652174,
+            "hotDays": 36.833333333333336,
+            "precipitationMm": 282.4066666666666,
+            "frostDays": null,
+            "heavyPrecipitationDays": 3.966666666666667
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 12.871318681318684,
+            "hotDays": 0.7,
+            "precipitationMm": 324.16999999999996,
+            "frostDays": 3.933333333333333,
+            "heavyPrecipitationDays": 5.033333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.935604395604395,
+            "hotDays": 0.8333333333333334,
+            "precipitationMm": 384.8733333333333,
+            "frostDays": 2.433333333333333,
+            "heavyPrecipitationDays": 6.966666666666667
+          }
         }
       }
     },
@@ -78,23 +266,95 @@
       "id": "venezia",
       "name": "Venezia",
       "file": "venezia.json",
-      "sha256": "a2d36c8ae7f4131bb9984dcddee30a86293c774b0a8686180ab587d8ee9fddcb",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 22.05641304347826,
-          "hotDays": 0.6666666666666666,
-          "precipitationMm": 267.3933333333333
+      "sha256": "130137e802a9e36b6d57a524aed9063000ed158a173132378d0ea29b09455617",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 5.22076800976801,
+            "hotDays": null,
+            "precipitationMm": 226.72666666666663,
+            "frostDays": 7.133333333333334,
+            "heavyPrecipitationDays": 2.6333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 5.962674399674398,
+            "hotDays": null,
+            "precipitationMm": 198.72,
+            "frostDays": 3.1,
+            "heavyPrecipitationDays": 2.5
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 23.611594202898555,
-          "hotDays": 6.566666666666666,
-          "precipitationMm": 223.3533333333333
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 12.508297101449276,
+            "hotDays": 0,
+            "precipitationMm": 270.79999999999995,
+            "frostDays": 0.6,
+            "heavyPrecipitationDays": 2.7
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.523514492753625,
+            "hotDays": 0,
+            "precipitationMm": 244.62666666666667,
+            "frostDays": 0.26666666666666666,
+            "heavyPrecipitationDays": 2.7
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 22.05641304347826,
+            "hotDays": 0.6666666666666666,
+            "precipitationMm": 267.3933333333333,
+            "frostDays": null,
+            "heavyPrecipitationDays": 3.1666666666666665
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 23.611594202898555,
+            "hotDays": 6.566666666666666,
+            "precipitationMm": 223.3533333333333,
+            "frostDays": null,
+            "heavyPrecipitationDays": 2.9
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 14.748058608058608,
+            "hotDays": 0,
+            "precipitationMm": 356.5466666666667,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 5.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 15.516959706959707,
+            "hotDays": 0,
+            "precipitationMm": 370.81999999999994,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 5.733333333333333
+          }
         }
       }
     },
@@ -102,23 +362,95 @@
       "id": "bologna",
       "name": "Bologna",
       "file": "bologna.json",
-      "sha256": "22a6ab0080df0485af4d5b62ce7e8c3cdda88467d283aee74e4b9cbd8f4b66f3",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 23.29275362318841,
-          "hotDays": 37.8,
-          "precipitationMm": 192.37333333333333
+      "sha256": "a3201e917bc4dc9d99bc1d7493f5d65ecad47adf832fd4f3f93ac37dfef09a5a",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 4.377950345950347,
+            "hotDays": null,
+            "precipitationMm": 200.47,
+            "frostDays": 33.93333333333333,
+            "heavyPrecipitationDays": 1.6333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 5.186634513634514,
+            "hotDays": null,
+            "precipitationMm": 176.23666666666668,
+            "frostDays": 27.966666666666665,
+            "heavyPrecipitationDays": 1.5333333333333334
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 24.917934782608697,
-          "hotDays": 51.833333333333336,
-          "precipitationMm": 158.34999999999994
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 13.023659420289851,
+            "hotDays": 0.16666666666666666,
+            "precipitationMm": 235.89333333333335,
+            "frostDays": 3.066666666666667,
+            "heavyPrecipitationDays": 1.8666666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 14.271231884057974,
+            "hotDays": 1.4666666666666666,
+            "precipitationMm": 214.6566666666667,
+            "frostDays": 1.7333333333333334,
+            "heavyPrecipitationDays": 1.8
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 23.29275362318841,
+            "hotDays": 37.8,
+            "precipitationMm": 192.37333333333333,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1.7666666666666666
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 24.917934782608697,
+            "hotDays": 51.833333333333336,
+            "precipitationMm": 158.34999999999994,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1.6666666666666667
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 14.540183150183147,
+            "hotDays": 2.7333333333333334,
+            "precipitationMm": 223.81333333333336,
+            "frostDays": 2.466666666666667,
+            "heavyPrecipitationDays": 2.5
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 15.31194139194139,
+            "hotDays": 3.7666666666666666,
+            "precipitationMm": 234.26999999999998,
+            "frostDays": 1.4,
+            "heavyPrecipitationDays": 2.6
+          }
         }
       }
     },
@@ -126,23 +458,95 @@
       "id": "firenze",
       "name": "Firenze",
       "file": "firenze.json",
-      "sha256": "4c535dcb4ff3fe73863e37f67eacef7f391bee73d60dd374d1b505c9925b2a8e",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 22.643442028985508,
-          "hotDays": 27.9,
-          "precipitationMm": 152.38999999999996
+      "sha256": "bc78ef6f99da267786da8b5d0de6adcc59cb986409067ac7fe5476a88a8f310f",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 6.258289377289376,
+            "hotDays": null,
+            "precipitationMm": 268.4533333333333,
+            "frostDays": 21.133333333333333,
+            "heavyPrecipitationDays": 2.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 6.767179894179894,
+            "hotDays": null,
+            "precipitationMm": 238.96666666666667,
+            "frostDays": 16.766666666666666,
+            "heavyPrecipitationDays": 1.9666666666666666
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 23.898586956521747,
-          "hotDays": 40.233333333333334,
-          "precipitationMm": 105.23
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 12.956231884057969,
+            "hotDays": 0.1,
+            "precipitationMm": 267.1466666666666,
+            "frostDays": 2.466666666666667,
+            "heavyPrecipitationDays": 2.3
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 13.889420289855073,
+            "hotDays": 0.26666666666666666,
+            "precipitationMm": 226.93666666666664,
+            "frostDays": 1.2666666666666666,
+            "heavyPrecipitationDays": 1.5333333333333334
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 22.643442028985508,
+            "hotDays": 27.9,
+            "precipitationMm": 152.38999999999996,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1.2666666666666666
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 23.898586956521747,
+            "hotDays": 40.233333333333334,
+            "precipitationMm": 105.23,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.7333333333333333
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 15.057142857142859,
+            "hotDays": 1.7666666666666666,
+            "precipitationMm": 303.2299999999999,
+            "frostDays": 1.8333333333333333,
+            "heavyPrecipitationDays": 3.9
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 15.740769230769228,
+            "hotDays": 3.3,
+            "precipitationMm": 324.0366666666667,
+            "frostDays": 0.7666666666666667,
+            "heavyPrecipitationDays": 4.533333333333333
+          }
         }
       }
     },
@@ -150,23 +554,95 @@
       "id": "roma",
       "name": "Roma",
       "file": "roma.json",
-      "sha256": "ca21f30db0a85defa2193a5a74b3b021dcd8ab94dce7832b17efe940ee129e52",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 23.198115942028988,
-          "hotDays": 31.7,
-          "precipitationMm": 115.59333333333333
+      "sha256": "2dc313e1c969d04da6dadc245f98623e759e01e0be7d7dc62b0c05ff518e0826",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 7.793527065527065,
+            "hotDays": null,
+            "precipitationMm": 273.32,
+            "frostDays": 13.433333333333334,
+            "heavyPrecipitationDays": 2.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 8.20135938135938,
+            "hotDays": null,
+            "precipitationMm": 225.28333333333327,
+            "frostDays": 9.766666666666667,
+            "heavyPrecipitationDays": 2.3
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 24.889927536231887,
-          "hotDays": 53.766666666666666,
-          "precipitationMm": 79.18333333333332
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 13.543695652173913,
+            "hotDays": 0.16666666666666666,
+            "precipitationMm": 219.07999999999996,
+            "frostDays": 1.5333333333333334,
+            "heavyPrecipitationDays": 1.3
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 14.599782608695653,
+            "hotDays": 0.8666666666666667,
+            "precipitationMm": 209.02666666666667,
+            "frostDays": 0.4,
+            "heavyPrecipitationDays": 1.3666666666666667
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 23.198115942028988,
+            "hotDays": 31.7,
+            "precipitationMm": 115.59333333333333,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 24.889927536231887,
+            "hotDays": 53.766666666666666,
+            "precipitationMm": 79.18333333333332,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.5666666666666667
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 16.33032967032967,
+            "hotDays": 2.2333333333333334,
+            "precipitationMm": 325.09,
+            "frostDays": 0.6333333333333333,
+            "heavyPrecipitationDays": 4.6
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 17.115457875457874,
+            "hotDays": 3.8,
+            "precipitationMm": 328.14666666666665,
+            "frostDays": 0.03333333333333333,
+            "heavyPrecipitationDays": 4.2
+          }
         }
       }
     },
@@ -174,23 +650,95 @@
       "id": "napoli",
       "name": "Napoli",
       "file": "napoli.json",
-      "sha256": "db818d51310d713cc4aeed0c53cd107eebd952603ec143b000f557d875b5a7a8",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 22.84173913043478,
-          "hotDays": 7.8,
-          "precipitationMm": 112.60333333333331
+      "sha256": "3505b60f3d97fe286b5038aa913f18533da342abe3dc3cf5981ba8a3327e1542",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 9.40814652014652,
+            "hotDays": null,
+            "precipitationMm": 418.5066666666666,
+            "frostDays": 1,
+            "heavyPrecipitationDays": 6.566666666666666
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 9.80324786324786,
+            "hotDays": null,
+            "precipitationMm": 350.45333333333343,
+            "frostDays": 0.8,
+            "heavyPrecipitationDays": 4.866666666666666
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 24.292463768115944,
-          "hotDays": 20.6,
-          "precipitationMm": 76.77
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 13.821123188405798,
+            "hotDays": 0,
+            "precipitationMm": 271.8033333333334,
+            "frostDays": 0.43333333333333335,
+            "heavyPrecipitationDays": 2.9
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 14.761050724637679,
+            "hotDays": 0.03333333333333333,
+            "precipitationMm": 266.3733333333334,
+            "frostDays": 0.03333333333333333,
+            "heavyPrecipitationDays": 2.933333333333333
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 22.84173913043478,
+            "hotDays": 7.8,
+            "precipitationMm": 112.60333333333331,
+            "frostDays": null,
+            "heavyPrecipitationDays": 1.0333333333333334
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 24.292463768115944,
+            "hotDays": 20.6,
+            "precipitationMm": 76.77,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.5
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 17.232344322344325,
+            "hotDays": 0.7666666666666667,
+            "precipitationMm": 439.46333333333325,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 7.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 17.989340659340655,
+            "hotDays": 0.9666666666666667,
+            "precipitationMm": 408.20333333333343,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 6.433333333333334
+          }
         }
       }
     },
@@ -198,23 +746,95 @@
       "id": "bari",
       "name": "Bari",
       "file": "bari.json",
-      "sha256": "478ba4f518382f429fe0c4522de7fe58b6e26265ef1a5e38424e840f4ae708c0",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 24.68771739130435,
-          "hotDays": 35.766666666666666,
-          "precipitationMm": 97.15666666666665
+      "sha256": "968b4a253ade4d71b33812bee6d01d2fb7122716b89c6f3cbd72ea419b4f7285",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 9.97003418803419,
+            "hotDays": null,
+            "precipitationMm": 184.01666666666668,
+            "frostDays": 0.6666666666666666,
+            "heavyPrecipitationDays": 1.1
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 10.160634106634102,
+            "hotDays": null,
+            "precipitationMm": 173.88999999999996,
+            "frostDays": 0.7333333333333333,
+            "heavyPrecipitationDays": 1.1333333333333333
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 26.1704347826087,
-          "hotDays": 52.9,
-          "precipitationMm": 85.04666666666668
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 15.158478260869561,
+            "hotDays": 0.9333333333333333,
+            "precipitationMm": 164.89333333333337,
+            "frostDays": 0.13333333333333333,
+            "heavyPrecipitationDays": 0.6333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 15.897463768115944,
+            "hotDays": 1.7666666666666666,
+            "precipitationMm": 160.08999999999997,
+            "frostDays": 0.03333333333333333,
+            "heavyPrecipitationDays": 0.7333333333333333
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 24.68771739130435,
+            "hotDays": 35.766666666666666,
+            "precipitationMm": 97.15666666666665,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.4
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 26.1704347826087,
+            "hotDays": 52.9,
+            "precipitationMm": 85.04666666666668,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.5333333333333333
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 18.020622710622714,
+            "hotDays": 4.466666666666667,
+            "precipitationMm": 168.07666666666665,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1.3333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 18.65395604395604,
+            "hotDays": 6.233333333333333,
+            "precipitationMm": 197.8133333333333,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 2.1333333333333333
+          }
         }
       }
     },
@@ -222,23 +842,95 @@
       "id": "palermo",
       "name": "Palermo",
       "file": "palermo.json",
-      "sha256": "5569e89dfb96a7d0cc346520026aa35f74dc3007266f79c5a4b19e5c50a26321",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 25.27260869565217,
-          "hotDays": 44.666666666666664,
-          "precipitationMm": 49.643333333333324
+      "sha256": "f37c192b97759c84c66ac22f8b1c36c69d881f669eabab18a86e9b06744194f7",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 11.608288156288156,
+            "hotDays": null,
+            "precipitationMm": 212.22999999999996,
+            "frostDays": 0.16666666666666666,
+            "heavyPrecipitationDays": 0.7666666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 12.192010989010987,
+            "hotDays": null,
+            "precipitationMm": 198.32333333333332,
+            "frostDays": 0.06666666666666667,
+            "heavyPrecipitationDays": 1.0666666666666667
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 26.926666666666662,
-          "hotDays": 60.53333333333333,
-          "precipitationMm": 41.023333333333326
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 15.610724637681157,
+            "hotDays": 1.3333333333333333,
+            "precipitationMm": 175.82999999999998,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 0.7333333333333333
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 16.85876811594203,
+            "hotDays": 2.3,
+            "precipitationMm": 162.20666666666668,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 0.7333333333333333
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 25.27260869565217,
+            "hotDays": 44.666666666666664,
+            "precipitationMm": 49.643333333333324,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.26666666666666666
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 26.926666666666662,
+            "hotDays": 60.53333333333333,
+            "precipitationMm": 41.023333333333326,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.16666666666666666
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 19.583553113553116,
+            "hotDays": 7.266666666666667,
+            "precipitationMm": 188.84999999999997,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1.3666666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 20.717106227106225,
+            "hotDays": 9.8,
+            "precipitationMm": 205.69333333333324,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1.9
+          }
         }
       }
     },
@@ -246,23 +938,95 @@
       "id": "cagliari",
       "name": "Cagliari",
       "file": "cagliari.json",
-      "sha256": "8267b62811727171d74c5e53589794923c7c1c4ce06e7e3dc0a6cda5a87715f6",
-      "periods": {
-        "a": {
-          "startYear": 1961,
-          "endYear": 1990,
-          "validYears": 30,
-          "meanTemperatureC": 23.853152173913045,
-          "hotDays": 23.133333333333333,
-          "precipitationMm": 33.083333333333336
+      "sha256": "ba9a6f3d4e1eef2bdf8090a3a5428077c42fa9e89b7ca9b1d4753d0630ac10fa",
+      "seasons": {
+        "DJF": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 11.142258038258037,
+            "hotDays": null,
+            "precipitationMm": 167.1533333333333,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 0.9666666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 11.323475376475377,
+            "hotDays": null,
+            "precipitationMm": 130.89999999999998,
+            "frostDays": 0.03333333333333333,
+            "heavyPrecipitationDays": 0.7333333333333333
+          }
         },
-        "b": {
-          "startYear": 1991,
-          "endYear": 2020,
-          "validYears": 30,
-          "meanTemperatureC": 25.276268115942035,
-          "hotDays": 45.46666666666667,
-          "precipitationMm": 20.36333333333334
+        "MAM": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 14.67322463768116,
+            "hotDays": 0,
+            "precipitationMm": 145.56999999999996,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1.0666666666666667
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 15.633514492753621,
+            "hotDays": 0.26666666666666666,
+            "precipitationMm": 127.15333333333332,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 0.6
+          }
+        },
+        "JJA": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 23.853152173913045,
+            "hotDays": 23.133333333333333,
+            "precipitationMm": 33.083333333333336,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0.16666666666666666
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 25.276268115942035,
+            "hotDays": 45.46666666666667,
+            "precipitationMm": 20.36333333333334,
+            "frostDays": null,
+            "heavyPrecipitationDays": 0
+          }
+        },
+        "SON": {
+          "a": {
+            "startYear": 1961,
+            "endYear": 1990,
+            "validYears": 30,
+            "meanTemperatureC": 18.661318681318683,
+            "hotDays": 1.9333333333333333,
+            "precipitationMm": 138.6166666666667,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1
+          },
+          "b": {
+            "startYear": 1991,
+            "endYear": 2020,
+            "validYears": 30,
+            "meanTemperatureC": 19.34450549450549,
+            "hotDays": 3.3333333333333335,
+            "precipitationMm": 136.40333333333334,
+            "frostDays": 0,
+            "heavyPrecipitationDays": 1.1666666666666667
+          }
         }
       }
     }

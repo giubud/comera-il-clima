@@ -1,11 +1,25 @@
 import { readFile } from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
-import { assertCityDataset } from '../src/data/schema';
+import { assertCityDataset, assertSeasonCity } from '../src/data/schema';
 import { matchesSourceSelection, requestUrl, sourceSelection } from '../scripts/open-meteo';
 
 describe('provenienza della selezione ERA5', () => {
   it('riconosce il metodo dichiarato nei dati pubblicati', async () => {
     const value: unknown = JSON.parse(await readFile('public/data/roma.json', 'utf8'));
+    if ((value as { schemaVersion: number }).schemaVersion === 2) {
+      assertSeasonCity(value);
+      for (const source of [value.source, value.summerSource]) {
+        for (const request of source.requests)
+          expect(matchesSourceSelection(new URL(request.url), source)).toBe(true);
+      }
+      expect(() =>
+        assertSeasonCity({
+          ...value,
+          source: { ...value.source, elevationCorrection: 'disabled' },
+        }),
+      ).toThrow();
+      return;
+    }
     assertCityDataset(value);
     for (const request of value.source.requests) {
       expect(matchesSourceSelection(new URL(request.url), value.source)).toBe(true);

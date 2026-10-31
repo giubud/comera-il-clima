@@ -1,4 +1,3 @@
-import type { AppState } from '../app/state';
 import { type Theme } from '../lib/theme';
 
 function logo(): string {
@@ -15,15 +14,17 @@ function logo(): string {
   ].join('');
 }
 
-export function headerMarkup(model: Readonly<AppState>): string {
+export function headerMarkup(model: Readonly<{ theme: Theme }>, seasonal = false): string {
   return [
     '<a class="skip-link" href="#console">Vai ai dati</a><header ',
     'class="topbar">\n    <div class="brand">',
     `${logo()}`,
     '<span><strong>Com’era il clima</strong><small>Atlante delle ',
-    'estati italiane · ERA5 1961—2020</small></span></div>\n    <div ',
-    'class="top-actions"><span class="edition">10 città · 600 ',
-    'estati</span><a class="repo-link" ',
+    seasonal ? 'stagioni meteorologiche' : 'estati italiane',
+    ' · ERA5 1961—2020</small></span></div>\n    <div ',
+    'class="top-actions"><span class="edition">10 città · ',
+    seasonal ? '2.400 stagioni' : '600 estati',
+    '</span><a class="repo-link" ',
     'href="https://github.com/giubud/comera-il-clima">Codice su GitHub</a>',
     '<div class="theme-switch" role="group" ',
     'aria-label="Tema">\n      ',

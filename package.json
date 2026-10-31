@@ -22,7 +22,8 @@
     "data:compare": "tsx scripts/compare-data.ts",
     "screenshots": "tsx scripts/capture-screenshots.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "data:status": "tsx scripts/data-status.ts"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

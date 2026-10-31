@@ -227,3 +227,64 @@ Fonti: [configurazioni typescript-eslint](https://typescript-eslint.io/users/con
 - Gli otto topic suggeriti sono climate-data, era5, open-meteo, data-visualization,
   italy, typescript, vite e github-pages. Li imposta il proprietario, come richiesto.
   Anche commit, push, PR e merge rimangono a suo carico, guidati un passaggio alla volta.
+
+## 2026-10-30 — Quattro stagioni, schema 2 e regressione delle estati
+
+- Il proprietario approva il piano B1 prima delle modifiche: gelo (Tmin <0 °C) e giorni
+  con precipitazioni ≥20 mm/giorno. Viene aggiunta solo la variabile giornaliera Tmin.
+- L'inverno appartiene all'anno in cui termina: DJF 1961 = dicembre 1960–febbraio 1961.
+  Le quattro stagioni coprono ciascuna 60 anni, con calendario UTC e giorni bisestili verificati.
+- Schema 2 con quattro serie per città, cinque indicatori, quattro riepiloghi compatti,
+  versione logica e provenienza. La compatibilità dello schema 1 e dei vecchi URL è mantenuta.
+- Le esclusioni editoriali sono esplicite: hotDays in DJF e frostDays in JJA valgono null,
+  con motivo nel manifest; sito e CSV mostrano “Non applicabile”. Gli altri zeri sono reali.
+- Il test di regressione viene scritto prima della modifica della pipeline e passa sul
+  riferimento estivo di main `129d25d`: 600 anni-città, tre indicatori e riepiloghi.
+- Il pilota annuale Roma 1961 non coincide con l'estate originale: 24,215217391304353 contro
+  24,205434782608705 °C. Lo scarto UTC restituito passa da +2 a +1 ore; anche ripetendo
+  l'URL estivo il dato cambia. Non attribuiamo con certezza tutto lo scarto a una sola causa.
+- JJA viene quindi ricalcolata dalla fonte giornaliera estiva originale, compresi i nuovi
+  giorni ≥20 mm; le altre stagioni usano la fonte annuale nuova. Non copiamo gli aggregati.
+  `source` e `summerSource` separano le provenienze e riportano lo scarto UTC.
+  Questo vincolo conserva le estati, ma limita i confronti diretti fra stagioni diverse.
+- Le 600 richieste annuali vanno in una cache separata, senza cancellare quelle precedenti.
+  Il costo stimato è circa 15.654 unità: si rispettano quote, pause e risposta HTTP 429.
+  Default massimo 300 nuove risposte per esecuzione, registro persistente e blocco contro
+  download concorrenti. `data:status` controlla l'avanzamento senza rete.
+- La build valida tutte le fonti e le estati prima di sostituire i dati pubblici. La nuova
+  interfaccia si attiva solo con manifest schema 2; nessun dato sintetico entra nel prodotto.
+  Una risposta di rete superata non rimpiazza la stagione o città più recente.
+- Dettagli, limiti, dimensioni stimate e comandi sono in [SEASONS.md](SEASONS.md).
+  In locale passano 42 test unitari e 32 E2E: questi ultimi coprono sia i dati estivi
+  pubblici sia l'archivio stagionale di prova. Passano anche lint, formattazione,
+  limiti dei 51 sorgenti, TypeScript, dati e build. Otto anteprime non mostrano overflow
+  da 320 a 1440 pixel. La prova di cache incompleta lascia identici i file pubblici.
+  L'archivio finale, i controlli su dati reali e la pubblicazione restano da completare.
+  Commit, push, PR, merge e aggiornamento di main spettano al proprietario.
+
+Fonti: [documentazione Open-Meteo](https://open-meteo.com/en/docs/historical-weather-api)
+e [quote](https://open-meteo.com/en/pricing), ricontrollate il 30 ottobre 2026.
+
+## 2026-10-31 — Archivio stagionale reale completato e verificato
+
+- Le 600 risposte annuali sono complete e valide; la build genera 2.400 stagioni, schema 2,
+  versione logica `1fdffa12eabc7b22`. JJA conserva esattamente i 1.800 valori precedenti,
+  le medie e il riepilogo compatto, ricalcolando dalla cache giornaliera originale.
+- I JSON passano da 400.728 byte e 12 file a 1.303.664 byte e 15 file, circa 3,25×.
+  La somma gzip dei singoli file è 143.226 byte contro 54.217 prima dell'estensione.
+- I controlli finali passano: lint, formattazione, limiti dei 51 sorgenti, TypeScript,
+  42 test unitari, validazione dei dati, build e 32 E2E. Quattordici E2E usano i dati reali
+  completi; gli altri diciotto usano dati di prova confinati ai test.
+- Otto anteprime della build reale coprono quattro stagioni, due temi e 320–1440 pixel,
+  con CSV reale, inverno bisestile e Roma 2003 a 81 giorni. Nessun errore JavaScript,
+  overflow della pagina o chiamata del browser all'API climatica.
+- Il proprietario conferma otto controlli manuali su Milano nell'anteprima parziale;
+  la porta locale 4182 ora serve l'anteprima completa con tutte le dieci città.
+- Durante il download una risposta non JSON non viene salvata come cache; riprendere
+  il comando conserva le risposte valide e recupera i soli blocchi mancanti, rispettando le quote.
+- Su Windows chiudere i server locali prima dello scambio delle cartelle evita EPERM.
+  Il rollback ha conservato i dati precedenti durante i tentativi; la build riesce dopo
+  la chiusura del server di anteprima. Non viene aggirata la validazione.
+- README, metodologia, fonti, attribuzioni e istruzioni riflettono lo schema 2.
+  Rimangono da svolgere revisione finale e percorso PR da parte del proprietario.
+  Nessun commit, push, PR, merge o aggiornamento di main viene eseguito dall'agente.

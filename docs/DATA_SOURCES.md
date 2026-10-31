@@ -1,5 +1,19 @@
 # Fonti e provenienza dei dati
 
+## Quattro stagioni — schema 2
+
+Il dataset locale schema 2 è completo: 600 risposte annuali recuperate il 30–31 ottobre 2026,
+quattro stagioni per città e anno. La precedente fonte estiva è conservata separatamente.
+Le nuove richieste aggiungono `temperature_2m_min` a media, massima e precipitazioni.
+Ogni richiesta va dal dicembre precedente a novembre dell'anno indicato, per 600 risposte
+in `.cache/open-meteo-seasons-v2/`. Le cache `open-meteo-land` e `open-meteo` sono conservate.
+
+Le estati sono ricalcolate dalla cache `open-meteo-land`, per mantenere i risultati pubblicati;
+le altre stagioni usano la nuova cache. Il dataset distingue `summerSource` e `source`,
+con URL, data, hash, coordinate, quota e scarto UTC. Il pilota ha mostrato UTC+2 nella fonte
+estiva originale e UTC+1 in quella nuova. Non vengono mescolate silenziosamente le fonti.
+La convenzione dell'inverno, le quote e i limiti di confronto sono in [SEASONS.md](SEASONS.md).
+
 ## Fonte primaria
 
 - Servizio: Open-Meteo Historical Weather API
@@ -15,6 +29,7 @@ Variabili giornaliere:
 
 - `temperature_2m_mean`;
 - `temperature_2m_max`;
+- `temperature_2m_min`;
 - `precipitation_sum`.
 
 Open-Meteo documenta ERA5 come rianalisi ECMWF a circa 0,25°, disponibile dal 1940 e indicata per confronti coerenti su più decenni. Le richieste esatte, la data di recupero e l’hash SHA-256 di ogni risposta sono conservati nei file pubblici delle città.
@@ -23,14 +38,16 @@ Open-Meteo documenta ERA5 come rianalisi ECMWF a circa 0,25°, disponibile dal 1
 
 Il progetto:
 
-1. scarica un’estate per città e anno;
+1. scarica un anno meteorologico per città, dal dicembre precedente a novembre;
 2. valida date, unità, valori e metadati;
-3. calcola i tre indicatori annuali;
+3. calcola cinque indicatori per stagione, usando la cache originale per JJA;
 4. calcola le medie 1961–1990 e 1991–2020;
-5. pubblica gli aggregati JSON cittadini, il manifest con hash e il riepilogo compatto `summers.json` derivato dagli stessi aggregati.
+5. genera i JSON cittadini, il manifest con hash e i quattro riepiloghi compatti
+   `seasons/<codice>.json` derivati dagli stessi aggregati.
 
-La cache delle risposte giornaliere è locale e ignorata da Git. Le nuove richieste usano
-`.cache/open-meteo-land/`; la cache originale `.cache/open-meteo/` viene conservata.
+La cache delle risposte giornaliere è locale e ignorata da Git. Le richieste annuali usano
+`.cache/open-meteo-seasons-v2/`; le cache estive `.cache/open-meteo-land/` e
+`.cache/open-meteo/` sono conservate.
 Non vengono interpolati valori e i dati mancanti non sono sostituiti con zero.
 
 La rigenerazione del 6 ottobre 2026 usa lo stesso metodo per tutte le 600 estati.

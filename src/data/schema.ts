@@ -1,146 +1,76 @@
-export const metrics = ['meanTemperatureC', 'hotDays', 'precipitationMm'] as const;
-export type Metric = (typeof metrics)[number];
-export type Metrics = Record<Metric, number>;
-
-export type Summer = Metrics & { year: number; validDays: 92 };
-export type CompactSummers = {
-  schemaVersion: 1;
-  firstYear: 1961;
-  lastYear: 2020;
-  // Ordered [mean temperature °C, hot days, precipitation mm] for every year.
-  cities: Record<string, [number, number, number][]>;
+import type { CityDataset, DailyResponse } from './legacy';
+import type { metrics as newMetricList, seasons } from './season-meta';
+export * from './legacy';
+export { legacyMetrics as metrics, isLegacyMetric as isMetric } from './legacy';
+export {
+  metrics as seasonMetrics,
+  seasons,
+  isMetric as isSeasonMetric,
+  isSeason,
+} from './season-meta';
+export { assertSeasonCity, assertSeasonCompact, assertSeasonManifest } from './validate-seasons';
+export type Metric = import('./legacy').LegacyMetric;
+export type SeasonMetric = (typeof newMetricList)[number];
+export type Season = (typeof seasons)[number];
+export type Metrics = Record<SeasonMetric, number | null>;
+export type SeasonYear = Metrics & {
+  year: number;
+  validDays: number;
+  meanTemperatureC: number;
+  precipitationMm: number;
 };
-export type PeriodSummary = Metrics & {
+export type SeasonSummary = Metrics & {
   startYear: number;
   endYear: number;
-  validYears: 30;
+  validYears: number;
+  meanTemperatureC: number;
+  precipitationMm: number;
 };
-
-export type SourceRequest = { url: string; retrievedAt: string; sha256: string };
-
-export type SourceSelection =
-  | { cellSelection: 'nearest'; elevationCorrection: 'disabled' }
-  | { cellSelection: 'land'; elevationCorrection: 'enabled' };
-
-export type CityDataset = {
-  schemaVersion: 1;
+export type SeasonData = {
+  years: SeasonYear[];
+  periods: { a: SeasonSummary; b: SeasonSummary };
+};
+export type SeasonCityDataset = {
+  schemaVersion: 2;
   cityId: string;
-  season: 'JJA';
-  source: {
-    provider: 'Open-Meteo';
-    model: 'era5';
-    timezone: 'Europe/Rome';
-    requestedCoordinates: { latitude: number; longitude: number };
-    returnedCoordinates: { latitude: number; longitude: number };
-    elevationM: number | null;
-    requests: SourceRequest[];
-  } & SourceSelection;
-  years: Summer[];
-  periods: { a: PeriodSummary; b: PeriodSummary };
+  source: SeasonSource;
+  summerSource: SeasonSource;
+  seasons: Record<Season, SeasonData>;
 };
-
-export type Manifest = {
-  schemaVersion: 1;
+export type SeasonManifest = {
+  schemaVersion: 2;
   generatedAt: string;
   dataVersion: string;
-  season: 'JJA';
+  firstYear: 1961;
+  lastYear: 2020;
+  seasons: readonly Season[];
+  winterYear: 'ending-year';
+  thresholds: { hotDays: 30; frostDays: 0; heavyPrecipitationDays: 20 };
+  applicability: Record<Season, Record<SeasonMetric, string | null>>;
   periods: { a: [1961, 1990]; b: [1991, 2020] };
-  hotDayThresholdC: 30;
-  units: Record<Metric, string>;
-  attribution: { label: string; url: string; licence: string; licenceUrl: string };
+  units: Record<SeasonMetric, string>;
+  attribution: import('./legacy').Manifest['attribution'];
   cities: {
     id: string;
     name: string;
     file: string;
     sha256: string;
-    periods: { a: PeriodSummary; b: PeriodSummary };
+    seasons: Record<Season, SeasonData['periods']>;
   }[];
 };
-
-export type DailyResponse = {
-  latitude: number;
-  longitude: number;
-  elevation: number | null;
-  timezone: string;
-  daily_units: {
-    time: string;
-    temperature_2m_mean: string;
-    temperature_2m_max: string;
-    precipitation_sum: string;
-  };
-  daily: {
-    time: unknown[];
-    temperature_2m_mean: unknown[];
-    temperature_2m_max: unknown[];
-    precipitation_sum: unknown[];
-  };
+export type CompactSeason = {
+  schemaVersion: 2;
+  season: Season;
+  firstYear: 1961;
+  lastYear: 2020;
+  metrics: readonly SeasonMetric[];
+  cities: Record<string, [number, number | null, number, number | null, number | null][]>;
 };
-
-export function isMetric(value: string | null): value is Metric {
-  return value !== null && (metrics as readonly string[]).includes(value);
-}
-
-export function assertSummers(
-  value: unknown,
-  cityIds: readonly string[],
-): asserts value is CompactSummers {
-  if (!value || typeof value !== 'object') throw new Error('Riepilogo estivo non valido.');
-  const data = value as Partial<CompactSummers>;
-  if (
-    data.schemaVersion !== 1 ||
-    data.firstYear !== 1961 ||
-    data.lastYear !== 2020 ||
-    !data.cities ||
-    typeof data.cities !== 'object'
-  ) {
-    throw new Error('Intestazione del riepilogo estivo non valida.');
-  }
-  if (Object.keys(data.cities).sort().join(',') !== [...cityIds].sort().join(','))
-    throw new Error('Città mancanti nel riepilogo estivo.');
-  for (const id of cityIds) {
-    const rows = data.cities[id];
-    if (!Array.isArray(rows) || rows.length !== 60) throw new Error(`Estati incomplete: ${id}.`);
-    for (const row of rows) {
-      if (
-        !Array.isArray(row) ||
-        row.length !== 3 ||
-        row.some((item) => typeof item !== 'number' || !Number.isFinite(item))
-      )
-        throw new Error(`Valori non validi: ${id}.`);
-      if (!Number.isInteger(row[1]) || row[1] < 0 || row[1] > 92 || row[2] < 0)
-        throw new Error(`Indicatori non validi: ${id}.`);
-    }
-  }
-}
-
-export function assertCityDataset(value: unknown): asserts value is CityDataset {
-  if (!value || typeof value !== 'object') throw new Error('Dataset non valido: oggetto atteso.');
-  const data = value as Partial<CityDataset>;
-  if (data.schemaVersion !== 1 || data.season !== 'JJA' || typeof data.cityId !== 'string') {
-    throw new Error('Dataset non valido: intestazione non riconosciuta.');
-  }
-  const source = data.source;
-  if (
-    !source ||
-    !(
-      (source.cellSelection === 'nearest' && source.elevationCorrection === 'disabled') ||
-      (source.cellSelection === 'land' && source.elevationCorrection === 'enabled')
-    )
-  ) {
-    throw new Error('Dataset non valido: selezione della cella e correzione quota incoerenti.');
-  }
-  if (!Array.isArray(data.years) || data.years.length !== 60) {
-    throw new Error('Dataset non valido: sono richieste 60 estati.');
-  }
-  for (const summer of data.years) {
-    if (!summer || summer.validDays !== 92 || !Number.isInteger(summer.year)) {
-      throw new Error('Dataset non valido: estate incompleta.');
-    }
-    for (const metric of metrics) {
-      if (!Number.isFinite(summer[metric])) throw new Error(`Dataset non valido: ${metric}.`);
-    }
-  }
-  if (!data.periods || data.periods.a.validYears !== 30 || data.periods.b.validYears !== 30) {
-    throw new Error('Dataset non valido: riepiloghi dei periodi incompleti.');
-  }
-}
+export type DailyYearResponse = DailyResponse & {
+  utc_offset_seconds: number;
+  daily_units: DailyResponse['daily_units'] & { temperature_2m_min: string };
+  daily: DailyResponse['daily'] & { temperature_2m_min: unknown[] };
+};
+export type AnyCityDataset = CityDataset | SeasonCityDataset;
+export type AnyManifest = import('./legacy').Manifest | SeasonManifest;
+export type SeasonSource = CityDataset['source'] & { utcOffsetSeconds: number };

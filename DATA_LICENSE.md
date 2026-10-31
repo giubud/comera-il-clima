@@ -10,13 +10,20 @@ Open-Meteo dichiara i dati ottenuti tramite l'API disponibili secondo **Creative
 - Fonte sottostante: [ERA5, Copernicus Climate Change Service / ECMWF](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels). Citazione del dataset: [Hersbach et al., ERA5 hourly data on single levels from 1940 to present](https://doi.org/10.24381/cds.adbb2d47).
 - Citazione del servizio: [Zippenfenig (2023), Open-Meteo.com Weather API](https://doi.org/10.5281/ZENODO.7970649).
 
-Modifiche effettuate nel 2026: selezione delle estati giugno–agosto del 1961–2020, validazione, aggregazione dei dati giornalieri in tre indicatori annuali, calcolo delle medie dei periodi 1961–1990 e 1991–2020, arrotondamento solo nella presentazione.
+Modifiche effettuate nel 2026: selezione delle quattro stagioni meteorologiche del 1961–2020
+(incluso dicembre 1960 per il primo inverno), validazione, aggregazione dei dati giornalieri
+in cinque indicatori, esclusioni di vista dichiarate e medie dei periodi 1961–1990 e 1991–2020.
+Le estati sono ricalcolate dalla fonte giornaliera originale per conservarne i risultati;
+le altre stagioni usano il nuovo download. Entrambe le provenienze sono documentate.
+Gli arrotondamenti dei riepiloghi compatti e della presentazione sono dichiarati nella metodologia.
 
 **Contiene informazioni modificate del Copernicus Climate Change Service (elaborazione 2026).** Né la Commissione europea né ECMWF sono responsabili dell'uso che può essere fatto delle informazioni o dei dati Copernicus contenuti nel progetto. Si veda la [licenza d'uso dei prodotti Copernicus](https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products), sezione 5.
 
 La licenza MIT in `LICENSE` si applica al codice del progetto; non sostituisce la licenza dei dati né le attribuzioni richieste.
 
-Il file compatto `public/data/summers.json` deriva esclusivamente dai 600 aggregati annuali già pubblicati per città: temperature arrotondate a due decimali, precipitazioni a un decimale e conteggi dei giorni caldi interi. I JSON cittadini mantengono la precisione e la provenienza originali. La selezione interattiva dei periodi ricalcola le medie nel browser; non introduce nuovi dati climatici.
+I quattro file compatti `public/data/seasons/<codice>.json` derivano esclusivamente dai
+2.400 aggregati stagionali cittadini: temperature arrotondate a due decimali, precipitazioni
+a un decimale e conteggi interi. Le esclusioni dichiarate restano valori nulli. I JSON cittadini mantengono la precisione e la provenienza originali. La selezione interattiva dei periodi ricalcola le medie nel browser; non introduce nuovi dati climatici.
 
 Il file `public/geo/italia-110m.json` contiene confini generalizzati di [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) (pubblico dominio), distribuiti nel pacchetto [world-atlas 2.0.2](https://github.com/topojson/world-atlas) (licenza ISC). È stato filtrato e convertito in GeoJSON per il progetto. I confini servono solo come contesto visivo e non definiscono le celle ERA5.
 

@@ -1,5 +1,5 @@
-export function legalMarkup(): string {
-  return [
+export function legalMarkup(seasonal = false): string {
+  const markup = [
     '<section class="methods panel" aria-labelledby="methods-heading">',
     '<div class="panel-bar"><h2 id="methods-heading">Metodo e ',
     'limiti</h2></div>\n    <div class="methods-grid">\n      <article>',
@@ -49,4 +49,28 @@ export function legalMarkup(): string {
     'è una rappresentazione di contesto; i valori provengono da celle ',
     'ERA5.</p>\n      </article>\n    </div>\n  </section>',
   ].join('');
+  const corrected = markup.replace(
+    'usa la cella più vicina, senza correzione altimetrica',
+    'preferisce celle sulla terraferma, con correzione altimetrica',
+  );
+  if (!seasonal) return corrected;
+  return corrected
+    .replace(
+      'Ogni estate copre i 92 giorni dal 1 giugno al 31 agosto.',
+      'Le stagioni meteorologiche durano 90, 91 o 92 giorni. ' +
+        'Inverno 1961 indica dicembre 1960–febbraio 1961.',
+    )
+    .replace(
+      'Media dei 92 valori giornalieri, conteggio delle massime oltre 30 °C, ' +
+        'somma delle precipitazioni.',
+      'Media dei valori giornalieri e precipitazioni totali; ' +
+        'conteggi delle massime >30 °C, delle minime <0 °C e delle precipitazioni ≥20 mm. ' +
+        'Le esclusioni stagionali sono dichiarate come non applicabili.',
+    )
+    .replaceAll('30 estati', '30 stagioni')
+    .replaceAll('5 estati', '5 stagioni')
+    .replace(
+      'selezione delle estati 1961–2020, calcolo di tre indicatori',
+      'selezione delle quattro stagioni 1961–2020, calcolo di cinque indicatori',
+    );
 }

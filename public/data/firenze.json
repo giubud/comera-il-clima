@@ -1,11 +1,12 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "cityId": "firenze",
-  "season": "JJA",
   "source": {
     "provider": "Open-Meteo",
     "model": "era5",
     "timezone": "Europe/Rome",
+    "cellSelection": "land",
+    "elevationCorrection": "enabled",
     "requestedCoordinates": {
       "latitude": 43.7696,
       "longitude": 11.2558
@@ -15,8 +16,326 @@
       "longitude": 11.25
     },
     "elevationM": 65,
+    "utcOffsetSeconds": 3600,
+    "requests": [
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1960-12-01&end_date=1961-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:13:52.989Z",
+        "sha256": "715beb58e3ad8571d00f39cb98cb241f22850f16c2de33acce250172b65412f2"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1961-12-01&end_date=1962-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:14:22.969Z",
+        "sha256": "d4f1dd74c34b00fdaeb71259b1bf9e3bc9d0b0ed2d65d58a91eae7d326993222"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1962-12-01&end_date=1963-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:14:52.978Z",
+        "sha256": "89e0844ce9bcd4ced5301d2a3db6db9ed6766cc8b9c0cfadab41308d6946a14c"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1963-12-01&end_date=1964-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:15:22.964Z",
+        "sha256": "4e77cfea6cbcf15b65758ad24ba1ba977800200cbbea628c172ed13a34f1b2d2"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1964-12-01&end_date=1965-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:15:52.992Z",
+        "sha256": "92fa2a9b0fb48828247929e9134ab63326ce89e3dbd3b11b3f73a9e9efb211f4"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1965-12-01&end_date=1966-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:16:22.987Z",
+        "sha256": "af90e456c919fd514425562b8d03cd253345656e797a3f455f1e0c803eb4cda7"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1966-12-01&end_date=1967-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:16:53.014Z",
+        "sha256": "05bde1c0122e9d6b254351c7f3d093db8d3a6e77a4046854e5571253329e4516"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1967-12-01&end_date=1968-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:17:23.016Z",
+        "sha256": "96e85c770d36f985f73d2b40de35143071d7a29ae9b5cac5b109e604ec0b770e"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1968-12-01&end_date=1969-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:17:53.006Z",
+        "sha256": "acf749e8f9c2eb0359e62304ad84204a6408ed03f2212edd6e566c06cefa91e2"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1969-12-01&end_date=1970-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:18:22.998Z",
+        "sha256": "87167f8256bcd0f28aaadf0d50e097d9db3c02da1dc2360c969d049ab997b9f7"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1970-12-01&end_date=1971-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:18:53.019Z",
+        "sha256": "cc317fee982cf6f25d216d3ecbd8590298bf82a7d5db930bf1169d7d18a31288"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1971-12-01&end_date=1972-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:19:23.016Z",
+        "sha256": "e933238d6cbaf2b3731e18ba3c57528790ed7c35d55022a16e622b570fb52920"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1972-12-01&end_date=1973-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:19:53.017Z",
+        "sha256": "bdf35e5df8b6d29de7eb11740035e569609fe992912ee9dc6e7207431b73a52c"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1973-12-01&end_date=1974-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:20:23.030Z",
+        "sha256": "89cd23ee545cac79dc1514f59ae7af77903861ceb102615883281740c694e98c"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1974-12-01&end_date=1975-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:20:53.053Z",
+        "sha256": "1b4948a21eeff06fb75cd33d8e3cdece18ba4a32712bd342dd1fd7c1c3dba262"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1975-12-01&end_date=1976-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:21:23.079Z",
+        "sha256": "df08ff70f31544259817e9fad890ce0f53a30441ed2c8409ee7a0212dcb18f5f"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1976-12-01&end_date=1977-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:21:53.069Z",
+        "sha256": "d901bbeca5b8ce3b1a6ef6aa9d821b80261642b5feec4fd277f472e8d8dbde93"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1977-12-01&end_date=1978-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:22:23.073Z",
+        "sha256": "06cd211da7987ef5e6fa963275c9f2b322b496929f57e7ef32df5c893c2dbed9"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1978-12-01&end_date=1979-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:22:53.095Z",
+        "sha256": "f80b602786284f0ee1a173bb5750f1cb9f809833f345ff7fc1b7747fac64a95f"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1979-12-01&end_date=1980-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:23:23.095Z",
+        "sha256": "ca7d8b25960eac91d547e58d29d1fc60a8a684841c74fc423c76cf1136d57d8a"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1980-12-01&end_date=1981-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:23:53.083Z",
+        "sha256": "91585714b13667626dde6c1e7936c417fd4e575f51ff870fce760de149cb025e"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1981-12-01&end_date=1982-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:24:23.113Z",
+        "sha256": "2116a19beba70745282bac464d549c26c5f5600ae311c0c89ded35726bc56c2d"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1982-12-01&end_date=1983-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:24:53.194Z",
+        "sha256": "0a655f5a42bae0054359b0807434e4ef9cd383d6060b511ca887fae8f8fe432d"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1983-12-01&end_date=1984-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:25:23.108Z",
+        "sha256": "158feb00656147a0d1d24068466797d9607a598432f201ccd400e1ac3d9115f1"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1984-12-01&end_date=1985-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:25:53.103Z",
+        "sha256": "170c7a7a1d02898b4821526a9b8aed8d7cd49a8374dbc714cbb004588aa76a3c"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1985-12-01&end_date=1986-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:26:23.134Z",
+        "sha256": "d1b044a4185bc3974b46c246652b0ec29aec39842fdb33f0ce300db12f71c057"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1986-12-01&end_date=1987-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:26:53.173Z",
+        "sha256": "fdaf7d1118a0ebb70f9f75779b8fb4c5f8fd0537e566f9461f731bb0b89c7259"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1987-12-01&end_date=1988-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:27:23.200Z",
+        "sha256": "6f926be3b57a643158d314e1b2b564e51027c2f5735c73e45d36a5b5921435ed"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1988-12-01&end_date=1989-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:27:53.210Z",
+        "sha256": "e607fc8cc6be9c3d09e00a317c6b04b7b477bf373ca73ce4fdea2dbca0689e98"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1989-12-01&end_date=1990-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:28:23.160Z",
+        "sha256": "25c689b7a9c10e1fefee642a1e2a6e206913dd60e7681d9c92b8d3b23822ba0d"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1990-12-01&end_date=1991-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:28:53.274Z",
+        "sha256": "2928dcec83b800864e063ce5724f8c1fa50f3b732e1d7a58f8cf6e71d33c3e21"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1991-12-01&end_date=1992-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:29:23.207Z",
+        "sha256": "24d06bd57113203b2100cc0f41b756c3e594b0f3d1ff56a6753f61d8d25b2011"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1992-12-01&end_date=1993-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:29:53.203Z",
+        "sha256": "d4ff6975996cb0003aca50922eef11e808943058b034144311fc3bdb8c214a97"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1993-12-01&end_date=1994-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:30:23.195Z",
+        "sha256": "f41fa0d866544891912a8d38a4a59cbaa466cebe2d4c31b84cb02ae735e1dc77"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1994-12-01&end_date=1995-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:30:53.209Z",
+        "sha256": "c9c53ec9350e4939301b701a885ce3b8ccd030e3f026ac07d2fe1e993febb9e4"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1995-12-01&end_date=1996-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:31:23.219Z",
+        "sha256": "f0561e6bf76cb24e9651e0bea3bc0e70f9d4384be5843436d6eb73b52a6368c3"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1996-12-01&end_date=1997-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:31:53.207Z",
+        "sha256": "69956c9d59c29fc70265556254144666e59d586bbb43732a9ce277b8d3413fe6"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1997-12-01&end_date=1998-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:32:23.238Z",
+        "sha256": "80ac6f2064364a6ca640ec35dbc5f3662a1068985f60f77dd84f44d0bb3c12cf"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1998-12-01&end_date=1999-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:32:53.227Z",
+        "sha256": "3a3e06e0f4fc9f682dc22d1f2ce1faa2c31d3c2fc58c21a752fed4f27769b113"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1999-12-01&end_date=2000-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:33:23.235Z",
+        "sha256": "a52e7033ab6db98d4c1acdfcd879ca668216dd870148f5bf519a7b70bd5bea33"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2000-12-01&end_date=2001-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:33:53.239Z",
+        "sha256": "4b259eb5d6fe2442a7f6500c54746908a8552ad400d2d143b0158b43b71c27ed"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2001-12-01&end_date=2002-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:34:23.264Z",
+        "sha256": "c8e1c1765279071c5d1600f8bd74dd538932b6e501b331035bbb7a3a606b59be"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2002-12-01&end_date=2003-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:34:53.265Z",
+        "sha256": "54a5a1eea5577f9d9a84944d03dd84997ab780133ed1861eb13e5ea8f0e3dc18"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2003-12-01&end_date=2004-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:35:23.256Z",
+        "sha256": "d7a58c3372a79573e40fc4ef4f2e7ed4ae27de29ebae324b00a5ba6da46fad87"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2004-12-01&end_date=2005-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:35:53.262Z",
+        "sha256": "dbbdb65e72ad105714ed6e8840a26866c47d40da6c2aba4060e980fb44d44c9f"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2005-12-01&end_date=2006-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:36:23.283Z",
+        "sha256": "af310281073420c69bf8976acd9a715fafdbaad4c8a8eb7226c8f7259f5979c6"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2006-12-01&end_date=2007-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:36:53.278Z",
+        "sha256": "b7bbacabb7b347554d85b643d4e10d0cbf959f26c9581aa370bef440f985bafd"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2007-12-01&end_date=2008-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:37:23.276Z",
+        "sha256": "b62454aebb8043ddf47e04d103e79300abf4c540d36cbe897ec2aa8560f9d64f"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2008-12-01&end_date=2009-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:37:53.294Z",
+        "sha256": "7718d477897dc488ffbd835b41e59a3e1bf0d83b282303939c75ad35f5e9b135"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2009-12-01&end_date=2010-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:38:23.304Z",
+        "sha256": "2d2386dd9533d2021b25a53f2fd67482d3768cfea47983d54e0bd283842e711b"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2010-12-01&end_date=2011-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:38:53.299Z",
+        "sha256": "7557dffefc55c5d265cee06087d7cbbcbcc2af807f6b7d76f2ee4695c2003482"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2011-12-01&end_date=2012-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:39:23.312Z",
+        "sha256": "63a8feafd5d359c542c57d4a696b57b346f691c45141fd9b7ddb5fec67e8dd18"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2012-12-01&end_date=2013-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:39:53.308Z",
+        "sha256": "df7620f6cd91095a9bf16057e6f0a14cf12460670a7482ae8d88a8320a60fc16"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2013-12-01&end_date=2014-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:40:23.321Z",
+        "sha256": "d7aa3f4ae0ee2980f4b73130fb75cf51b8809dfbd1c59dc7b2e2b8e150109062"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2014-12-01&end_date=2015-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:40:53.344Z",
+        "sha256": "8723b5b5bca6cecf9dcab10af7b3b6c26a87bf962255c3e296c3b9238a352635"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2015-12-01&end_date=2016-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:41:23.341Z",
+        "sha256": "7cbfbc2daccecb0786b624c0b5b2c88f39f9d7449872318c53d024aa01d68492"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2016-12-01&end_date=2017-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:41:53.320Z",
+        "sha256": "04395fc0883a01c91197fee46197d72fdc22efdbf678e1738f2b67ff42a13a68"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2017-12-01&end_date=2018-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:42:23.319Z",
+        "sha256": "26f607fa5b55649c8bd03188c48f65952365ead0c5e90fd79aa14248a2209096"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2018-12-01&end_date=2019-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:42:53.380Z",
+        "sha256": "3f5ece03847af115b711aecf434b6f9f5718b972a0a45c48071f47b862affd6c"
+      },
+      {
+        "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=2019-12-01&end_date=2020-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+        "retrievedAt": "2026-10-30T16:43:23.349Z",
+        "sha256": "c6aa98f7b10355634052bd88719e3a4206ea63dcfeb8377397581f9d0af191d1"
+      }
+    ]
+  },
+  "summerSource": {
+    "provider": "Open-Meteo",
+    "model": "era5",
+    "timezone": "Europe/Rome",
     "cellSelection": "land",
     "elevationCorrection": "enabled",
+    "requestedCoordinates": {
+      "latitude": 43.7696,
+      "longitude": 11.2558
+    },
+    "returnedCoordinates": {
+      "latitude": 43.75,
+      "longitude": 11.25
+    },
+    "elevationM": 65,
+    "utcOffsetSeconds": 7200,
     "requests": [
       {
         "url": "https://archive-api.open-meteo.com/v1/archive?latitude=43.7696&longitude=11.2558&start_date=1961-06-01&end_date=1961-08-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
@@ -320,444 +639,2270 @@
       }
     ]
   },
-  "years": [
-    {
-      "year": 1961,
-      "validDays": 92,
-      "meanTemperatureC": 23.435869565217384,
-      "hotDays": 39,
-      "precipitationMm": 109.39999999999996
+  "seasons": {
+    "DJF": {
+      "years": [
+        {
+          "year": 1961,
+          "validDays": 90,
+          "meanTemperatureC": 7.166666666666668,
+          "hotDays": null,
+          "precipitationMm": 274.7000000000001,
+          "frostDays": 8,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1962,
+          "validDays": 90,
+          "meanTemperatureC": 6.674444444444443,
+          "hotDays": null,
+          "precipitationMm": 276.40000000000003,
+          "frostDays": 24,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1963,
+          "validDays": 90,
+          "meanTemperatureC": 3.107777777777777,
+          "hotDays": null,
+          "precipitationMm": 389.20000000000016,
+          "frostDays": 44,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1964,
+          "validDays": 91,
+          "meanTemperatureC": 4.323076923076924,
+          "hotDays": null,
+          "precipitationMm": 208.99999999999994,
+          "frostDays": 36,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1965,
+          "validDays": 90,
+          "meanTemperatureC": 5.965555555555556,
+          "hotDays": null,
+          "precipitationMm": 255.8,
+          "frostDays": 27,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1966,
+          "validDays": 90,
+          "meanTemperatureC": 6.970000000000001,
+          "hotDays": null,
+          "precipitationMm": 321.59999999999997,
+          "frostDays": 16,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1967,
+          "validDays": 90,
+          "meanTemperatureC": 5.659999999999998,
+          "hotDays": null,
+          "precipitationMm": 227.99999999999997,
+          "frostDays": 31,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1968,
+          "validDays": 91,
+          "meanTemperatureC": 6.013186813186814,
+          "hotDays": null,
+          "precipitationMm": 348.0999999999999,
+          "frostDays": 24,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1969,
+          "validDays": 90,
+          "meanTemperatureC": 5.628888888888889,
+          "hotDays": null,
+          "precipitationMm": 413.3000000000001,
+          "frostDays": 19,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1970,
+          "validDays": 90,
+          "meanTemperatureC": 6.461111111111111,
+          "hotDays": null,
+          "precipitationMm": 333.59999999999985,
+          "frostDays": 22,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1971,
+          "validDays": 90,
+          "meanTemperatureC": 6.221111111111114,
+          "hotDays": null,
+          "precipitationMm": 306.1,
+          "frostDays": 19,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1972,
+          "validDays": 91,
+          "meanTemperatureC": 7.5285714285714285,
+          "hotDays": null,
+          "precipitationMm": 252.4,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1973,
+          "validDays": 90,
+          "meanTemperatureC": 6.742222222222225,
+          "hotDays": null,
+          "precipitationMm": 183.29999999999998,
+          "frostDays": 10,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1974,
+          "validDays": 90,
+          "meanTemperatureC": 7.65,
+          "hotDays": null,
+          "precipitationMm": 168.69999999999996,
+          "frostDays": 10,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1975,
+          "validDays": 90,
+          "meanTemperatureC": 6.866666666666668,
+          "hotDays": null,
+          "precipitationMm": 128.10000000000002,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1976,
+          "validDays": 91,
+          "meanTemperatureC": 6.926373626373626,
+          "hotDays": null,
+          "precipitationMm": 194.49999999999994,
+          "frostDays": 14,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1977,
+          "validDays": 90,
+          "meanTemperatureC": 8.425555555555553,
+          "hotDays": null,
+          "precipitationMm": 473.60000000000014,
+          "frostDays": 9,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1978,
+          "validDays": 90,
+          "meanTemperatureC": 6.573333333333335,
+          "hotDays": null,
+          "precipitationMm": 316.3,
+          "frostDays": 14,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1979,
+          "validDays": 90,
+          "meanTemperatureC": 6.605555555555558,
+          "hotDays": null,
+          "precipitationMm": 421.6000000000001,
+          "frostDays": 26,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1980,
+          "validDays": 91,
+          "meanTemperatureC": 6.290109890109893,
+          "hotDays": null,
+          "precipitationMm": 270.5,
+          "frostDays": 20,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1981,
+          "validDays": 90,
+          "meanTemperatureC": 4.143333333333333,
+          "hotDays": null,
+          "precipitationMm": 173.60000000000002,
+          "frostDays": 37,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1982,
+          "validDays": 90,
+          "meanTemperatureC": 6.425555555555557,
+          "hotDays": null,
+          "precipitationMm": 316.9,
+          "frostDays": 28,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1983,
+          "validDays": 90,
+          "meanTemperatureC": 6.356666666666666,
+          "hotDays": null,
+          "precipitationMm": 266.9,
+          "frostDays": 22,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1984,
+          "validDays": 91,
+          "meanTemperatureC": 6.142857142857143,
+          "hotDays": null,
+          "precipitationMm": 307.19999999999993,
+          "frostDays": 16,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1985,
+          "validDays": 90,
+          "meanTemperatureC": 4.932222222222222,
+          "hotDays": null,
+          "precipitationMm": 210.89999999999995,
+          "frostDays": 28,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1986,
+          "validDays": 90,
+          "meanTemperatureC": 6.181111111111109,
+          "hotDays": null,
+          "precipitationMm": 277.2,
+          "frostDays": 21,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1987,
+          "validDays": 90,
+          "meanTemperatureC": 5.173333333333334,
+          "hotDays": null,
+          "precipitationMm": 255.9,
+          "frostDays": 28,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1988,
+          "validDays": 91,
+          "meanTemperatureC": 7.794505494505496,
+          "hotDays": null,
+          "precipitationMm": 256.4,
+          "frostDays": 12,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1989,
+          "validDays": 90,
+          "meanTemperatureC": 5.823333333333332,
+          "hotDays": null,
+          "precipitationMm": 96.50000000000001,
+          "frostDays": 24,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1990,
+          "validDays": 90,
+          "meanTemperatureC": 6.975555555555555,
+          "hotDays": null,
+          "precipitationMm": 127.30000000000001,
+          "frostDays": 27,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1991,
+          "validDays": 90,
+          "meanTemperatureC": 5.085555555555555,
+          "hotDays": null,
+          "precipitationMm": 218.20000000000002,
+          "frostDays": 34,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1992,
+          "validDays": 91,
+          "meanTemperatureC": 4.920879120879119,
+          "hotDays": null,
+          "precipitationMm": 72,
+          "frostDays": 33,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1993,
+          "validDays": 90,
+          "meanTemperatureC": 6.1688888888888895,
+          "hotDays": null,
+          "precipitationMm": 132.8,
+          "frostDays": 21,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1994,
+          "validDays": 90,
+          "meanTemperatureC": 7.293333333333333,
+          "hotDays": null,
+          "precipitationMm": 231.6,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1995,
+          "validDays": 90,
+          "meanTemperatureC": 7.251111111111111,
+          "hotDays": null,
+          "precipitationMm": 236.49999999999994,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1996,
+          "validDays": 91,
+          "meanTemperatureC": 6.92967032967033,
+          "hotDays": null,
+          "precipitationMm": 265.5,
+          "frostDays": 11,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1997,
+          "validDays": 90,
+          "meanTemperatureC": 7.507777777777775,
+          "hotDays": null,
+          "precipitationMm": 240.29999999999998,
+          "frostDays": 7,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1998,
+          "validDays": 90,
+          "meanTemperatureC": 7.9211111111111085,
+          "hotDays": null,
+          "precipitationMm": 209.50000000000003,
+          "frostDays": 5,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1999,
+          "validDays": 90,
+          "meanTemperatureC": 5.5955555555555545,
+          "hotDays": null,
+          "precipitationMm": 192.5,
+          "frostDays": 21,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2000,
+          "validDays": 91,
+          "meanTemperatureC": 6.585714285714288,
+          "hotDays": null,
+          "precipitationMm": 174.89999999999995,
+          "frostDays": 22,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2001,
+          "validDays": 90,
+          "meanTemperatureC": 8.164444444444445,
+          "hotDays": null,
+          "precipitationMm": 303.8,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2002,
+          "validDays": 90,
+          "meanTemperatureC": 5.708888888888889,
+          "hotDays": null,
+          "precipitationMm": 184,
+          "frostDays": 31,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2003,
+          "validDays": 90,
+          "meanTemperatureC": 6.197777777777775,
+          "hotDays": null,
+          "precipitationMm": 245.39999999999998,
+          "frostDays": 26,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2004,
+          "validDays": 91,
+          "meanTemperatureC": 6.547252747252745,
+          "hotDays": null,
+          "precipitationMm": 292.59999999999997,
+          "frostDays": 18,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2005,
+          "validDays": 90,
+          "meanTemperatureC": 5.554444444444443,
+          "hotDays": null,
+          "precipitationMm": 177.5,
+          "frostDays": 27,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2006,
+          "validDays": 90,
+          "meanTemperatureC": 5.595555555555555,
+          "hotDays": null,
+          "precipitationMm": 256.20000000000005,
+          "frostDays": 24,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2007,
+          "validDays": 90,
+          "meanTemperatureC": 8.838888888888892,
+          "hotDays": null,
+          "precipitationMm": 250.69999999999996,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2008,
+          "validDays": 91,
+          "meanTemperatureC": 6.967032967032967,
+          "hotDays": null,
+          "precipitationMm": 179.59999999999997,
+          "frostDays": 11,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2009,
+          "validDays": 90,
+          "meanTemperatureC": 6.180000000000001,
+          "hotDays": null,
+          "precipitationMm": 318.2999999999999,
+          "frostDays": 16,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2010,
+          "validDays": 90,
+          "meanTemperatureC": 6.288888888888889,
+          "hotDays": null,
+          "precipitationMm": 424.20000000000005,
+          "frostDays": 20,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2011,
+          "validDays": 90,
+          "meanTemperatureC": 6.546666666666667,
+          "hotDays": null,
+          "precipitationMm": 249.89999999999992,
+          "frostDays": 16,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2012,
+          "validDays": 91,
+          "meanTemperatureC": 5.658241758241758,
+          "hotDays": null,
+          "precipitationMm": 175.19999999999996,
+          "frostDays": 31,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2013,
+          "validDays": 90,
+          "meanTemperatureC": 5.787777777777777,
+          "hotDays": null,
+          "precipitationMm": 324.5,
+          "frostDays": 18,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2014,
+          "validDays": 90,
+          "meanTemperatureC": 8.634444444444444,
+          "hotDays": null,
+          "precipitationMm": 382.1000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2015,
+          "validDays": 90,
+          "meanTemperatureC": 7.5966666666666685,
+          "hotDays": null,
+          "precipitationMm": 219.29999999999998,
+          "frostDays": 13,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2016,
+          "validDays": 91,
+          "meanTemperatureC": 8.443956043956044,
+          "hotDays": null,
+          "precipitationMm": 294.00000000000006,
+          "frostDays": 5,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2017,
+          "validDays": 90,
+          "meanTemperatureC": 6.672222222222221,
+          "hotDays": null,
+          "precipitationMm": 175.29999999999998,
+          "frostDays": 17,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2018,
+          "validDays": 90,
+          "meanTemperatureC": 6.927777777777779,
+          "hotDays": null,
+          "precipitationMm": 343.5999999999999,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2019,
+          "validDays": 90,
+          "meanTemperatureC": 6.6833333333333345,
+          "hotDays": null,
+          "precipitationMm": 184.6,
+          "frostDays": 16,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2020,
+          "validDays": 91,
+          "meanTemperatureC": 8.76153846153846,
+          "hotDays": null,
+          "precipitationMm": 214.4000000000001,
+          "frostDays": 8,
+          "heavyPrecipitationDays": 2
+        }
+      ],
+      "periods": {
+        "a": {
+          "startYear": 1961,
+          "endYear": 1990,
+          "validYears": 30,
+          "meanTemperatureC": 6.258289377289376,
+          "hotDays": null,
+          "precipitationMm": 268.4533333333333,
+          "frostDays": 21.133333333333333,
+          "heavyPrecipitationDays": 2.4
+        },
+        "b": {
+          "startYear": 1991,
+          "endYear": 2020,
+          "validYears": 30,
+          "meanTemperatureC": 6.767179894179894,
+          "hotDays": null,
+          "precipitationMm": 238.96666666666667,
+          "frostDays": 16.766666666666666,
+          "heavyPrecipitationDays": 1.9666666666666666
+        }
+      }
     },
-    {
-      "year": 1962,
-      "validDays": 92,
-      "meanTemperatureC": 24.12608695652174,
-      "hotDays": 58,
-      "precipitationMm": 52.50000000000001
+    "MAM": {
+      "years": [
+        {
+          "year": 1961,
+          "validDays": 92,
+          "meanTemperatureC": 14.417391304347834,
+          "hotDays": 0,
+          "precipitationMm": 206.79999999999995,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1962,
+          "validDays": 92,
+          "meanTemperatureC": 12.093478260869562,
+          "hotDays": 0,
+          "precipitationMm": 271.59999999999997,
+          "frostDays": 7,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1963,
+          "validDays": 92,
+          "meanTemperatureC": 12.77826086956522,
+          "hotDays": 0,
+          "precipitationMm": 241.69999999999993,
+          "frostDays": 8,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1964,
+          "validDays": 92,
+          "meanTemperatureC": 13.532608695652172,
+          "hotDays": 0,
+          "precipitationMm": 240.09999999999994,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1965,
+          "validDays": 92,
+          "meanTemperatureC": 12.418478260869565,
+          "hotDays": 0,
+          "precipitationMm": 338,
+          "frostDays": 4,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1966,
+          "validDays": 92,
+          "meanTemperatureC": 13.343478260869562,
+          "hotDays": 0,
+          "precipitationMm": 256.79999999999995,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1967,
+          "validDays": 92,
+          "meanTemperatureC": 13.567391304347824,
+          "hotDays": 0,
+          "precipitationMm": 234.5,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1968,
+          "validDays": 92,
+          "meanTemperatureC": 13.748913043478254,
+          "hotDays": 0,
+          "precipitationMm": 264,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1969,
+          "validDays": 92,
+          "meanTemperatureC": 13.548913043478258,
+          "hotDays": 0,
+          "precipitationMm": 288.0999999999999,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1970,
+          "validDays": 92,
+          "meanTemperatureC": 11.853260869565215,
+          "hotDays": 0,
+          "precipitationMm": 263.59999999999997,
+          "frostDays": 4,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1971,
+          "validDays": 92,
+          "meanTemperatureC": 12.965217391304344,
+          "hotDays": 0,
+          "precipitationMm": 309.1,
+          "frostDays": 8,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1972,
+          "validDays": 92,
+          "meanTemperatureC": 13.501086956521737,
+          "hotDays": 0,
+          "precipitationMm": 277.70000000000005,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1973,
+          "validDays": 92,
+          "meanTemperatureC": 12.281521739130428,
+          "hotDays": 0,
+          "precipitationMm": 191.1,
+          "frostDays": 5,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1974,
+          "validDays": 92,
+          "meanTemperatureC": 13.070652173913047,
+          "hotDays": 0,
+          "precipitationMm": 246.0999999999999,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1975,
+          "validDays": 92,
+          "meanTemperatureC": 13.207608695652178,
+          "hotDays": 2,
+          "precipitationMm": 306.1,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1976,
+          "validDays": 92,
+          "meanTemperatureC": 12.663043478260875,
+          "hotDays": 0,
+          "precipitationMm": 203.5,
+          "frostDays": 4,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1977,
+          "validDays": 92,
+          "meanTemperatureC": 13.508695652173918,
+          "hotDays": 0,
+          "precipitationMm": 212.8,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1978,
+          "validDays": 92,
+          "meanTemperatureC": 12.422826086956523,
+          "hotDays": 0,
+          "precipitationMm": 424.80000000000007,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1979,
+          "validDays": 92,
+          "meanTemperatureC": 12.886956521739132,
+          "hotDays": 1,
+          "precipitationMm": 328.6000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1980,
+          "validDays": 92,
+          "meanTemperatureC": 11.378260869565217,
+          "hotDays": 0,
+          "precipitationMm": 315.19999999999993,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1981,
+          "validDays": 92,
+          "meanTemperatureC": 13.708695652173914,
+          "hotDays": 0,
+          "precipitationMm": 249.89999999999995,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1982,
+          "validDays": 92,
+          "meanTemperatureC": 12.519565217391303,
+          "hotDays": 0,
+          "precipitationMm": 215.39999999999992,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1983,
+          "validDays": 92,
+          "meanTemperatureC": 13.085869565217392,
+          "hotDays": 0,
+          "precipitationMm": 306.7,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1984,
+          "validDays": 92,
+          "meanTemperatureC": 11.483695652173916,
+          "hotDays": 0,
+          "precipitationMm": 418.8999999999999,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1985,
+          "validDays": 92,
+          "meanTemperatureC": 12.843478260869567,
+          "hotDays": 0,
+          "precipitationMm": 246.29999999999998,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1986,
+          "validDays": 92,
+          "meanTemperatureC": 13.628260869565212,
+          "hotDays": 0,
+          "precipitationMm": 284.09999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1987,
+          "validDays": 92,
+          "meanTemperatureC": 11.413043478260867,
+          "hotDays": 0,
+          "precipitationMm": 177.69999999999996,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1988,
+          "validDays": 92,
+          "meanTemperatureC": 13.410869565217393,
+          "hotDays": 0,
+          "precipitationMm": 251.89999999999998,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1989,
+          "validDays": 92,
+          "meanTemperatureC": 13.99891304347826,
+          "hotDays": 0,
+          "precipitationMm": 239.89999999999992,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1990,
+          "validDays": 92,
+          "meanTemperatureC": 13.406521739130426,
+          "hotDays": 0,
+          "precipitationMm": 203.4,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1991,
+          "validDays": 92,
+          "meanTemperatureC": 12.278260869565221,
+          "hotDays": 0,
+          "precipitationMm": 266.00000000000006,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1992,
+          "validDays": 92,
+          "meanTemperatureC": 13.61304347826087,
+          "hotDays": 0,
+          "precipitationMm": 203.90000000000003,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1993,
+          "validDays": 92,
+          "meanTemperatureC": 13.142391304347825,
+          "hotDays": 0,
+          "precipitationMm": 167.39999999999998,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1994,
+          "validDays": 92,
+          "meanTemperatureC": 13.956521739130435,
+          "hotDays": 0,
+          "precipitationMm": 203.10000000000005,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1995,
+          "validDays": 92,
+          "meanTemperatureC": 12.4858695652174,
+          "hotDays": 0,
+          "precipitationMm": 191.3,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1996,
+          "validDays": 92,
+          "meanTemperatureC": 13.092391304347831,
+          "hotDays": 0,
+          "precipitationMm": 200.50000000000003,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1997,
+          "validDays": 92,
+          "meanTemperatureC": 13.356521739130432,
+          "hotDays": 0,
+          "precipitationMm": 181.19999999999996,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1998,
+          "validDays": 92,
+          "meanTemperatureC": 13.519565217391301,
+          "hotDays": 0,
+          "precipitationMm": 238.29999999999993,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1999,
+          "validDays": 92,
+          "meanTemperatureC": 14.433695652173906,
+          "hotDays": 0,
+          "precipitationMm": 266.4,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2000,
+          "validDays": 92,
+          "meanTemperatureC": 14.840217391304348,
+          "hotDays": 0,
+          "precipitationMm": 185.70000000000002,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2001,
+          "validDays": 92,
+          "meanTemperatureC": 14.660869565217398,
+          "hotDays": 0,
+          "precipitationMm": 326.9,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2002,
+          "validDays": 92,
+          "meanTemperatureC": 14.147826086956515,
+          "hotDays": 0,
+          "precipitationMm": 208.89999999999995,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2003,
+          "validDays": 92,
+          "meanTemperatureC": 14.081521739130432,
+          "hotDays": 0,
+          "precipitationMm": 104.7,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2004,
+          "validDays": 92,
+          "meanTemperatureC": 12.666304347826086,
+          "hotDays": 0,
+          "precipitationMm": 234.60000000000005,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2005,
+          "validDays": 92,
+          "meanTemperatureC": 13.441304347826089,
+          "hotDays": 1,
+          "precipitationMm": 190.2,
+          "frostDays": 5,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2006,
+          "validDays": 92,
+          "meanTemperatureC": 13.648913043478256,
+          "hotDays": 0,
+          "precipitationMm": 161.79999999999993,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2007,
+          "validDays": 92,
+          "meanTemperatureC": 15.171739130434785,
+          "hotDays": 2,
+          "precipitationMm": 174.6,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2008,
+          "validDays": 92,
+          "meanTemperatureC": 13.565217391304348,
+          "hotDays": 1,
+          "precipitationMm": 359.7000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2009,
+          "validDays": 92,
+          "meanTemperatureC": 14.966304347826087,
+          "hotDays": 3,
+          "precipitationMm": 213.10000000000005,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2010,
+          "validDays": 92,
+          "meanTemperatureC": 13.217391304347824,
+          "hotDays": 0,
+          "precipitationMm": 324.90000000000003,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2011,
+          "validDays": 92,
+          "meanTemperatureC": 14.877173913043475,
+          "hotDays": 1,
+          "precipitationMm": 124.9,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2012,
+          "validDays": 92,
+          "meanTemperatureC": 14.189130434782614,
+          "hotDays": 0,
+          "precipitationMm": 223,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2013,
+          "validDays": 92,
+          "meanTemperatureC": 13.554347826086962,
+          "hotDays": 0,
+          "precipitationMm": 395.8,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2014,
+          "validDays": 92,
+          "meanTemperatureC": 14.220652173913043,
+          "hotDays": 0,
+          "precipitationMm": 176.99999999999994,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2015,
+          "validDays": 92,
+          "meanTemperatureC": 14.11630434782609,
+          "hotDays": 0,
+          "precipitationMm": 229.79999999999998,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2016,
+          "validDays": 92,
+          "meanTemperatureC": 14.201086956521744,
+          "hotDays": 0,
+          "precipitationMm": 234.59999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2017,
+          "validDays": 92,
+          "meanTemperatureC": 14.904347826086955,
+          "hotDays": 0,
+          "precipitationMm": 151.20000000000005,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2018,
+          "validDays": 92,
+          "meanTemperatureC": 14.778260869565216,
+          "hotDays": 0,
+          "precipitationMm": 342.80000000000007,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2019,
+          "validDays": 92,
+          "meanTemperatureC": 13.192391304347824,
+          "hotDays": 0,
+          "precipitationMm": 298.6,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2020,
+          "validDays": 92,
+          "meanTemperatureC": 14.363043478260868,
+          "hotDays": 0,
+          "precipitationMm": 227.20000000000007,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 4
+        }
+      ],
+      "periods": {
+        "a": {
+          "startYear": 1961,
+          "endYear": 1990,
+          "validYears": 30,
+          "meanTemperatureC": 12.956231884057969,
+          "hotDays": 0.1,
+          "precipitationMm": 267.1466666666666,
+          "frostDays": 2.466666666666667,
+          "heavyPrecipitationDays": 2.3
+        },
+        "b": {
+          "startYear": 1991,
+          "endYear": 2020,
+          "validYears": 30,
+          "meanTemperatureC": 13.889420289855073,
+          "hotDays": 0.26666666666666666,
+          "precipitationMm": 226.93666666666664,
+          "frostDays": 1.2666666666666666,
+          "heavyPrecipitationDays": 1.5333333333333334
+        }
+      }
     },
-    {
-      "year": 1963,
-      "validDays": 92,
-      "meanTemperatureC": 22.51739130434782,
-      "hotDays": 28,
-      "precipitationMm": 206.89999999999992
+    "JJA": {
+      "years": [
+        {
+          "year": 1961,
+          "validDays": 92,
+          "meanTemperatureC": 23.435869565217384,
+          "hotDays": 39,
+          "precipitationMm": 109.39999999999996,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1962,
+          "validDays": 92,
+          "meanTemperatureC": 24.12608695652174,
+          "hotDays": 58,
+          "precipitationMm": 52.50000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1963,
+          "validDays": 92,
+          "meanTemperatureC": 22.51739130434782,
+          "hotDays": 28,
+          "precipitationMm": 206.89999999999992,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1964,
+          "validDays": 92,
+          "meanTemperatureC": 23.446739130434775,
+          "hotDays": 28,
+          "precipitationMm": 117.29999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1965,
+          "validDays": 92,
+          "meanTemperatureC": 22.124999999999996,
+          "hotDays": 24,
+          "precipitationMm": 250.59999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1966,
+          "validDays": 92,
+          "meanTemperatureC": 22.183695652173913,
+          "hotDays": 12,
+          "precipitationMm": 178.29999999999993,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1967,
+          "validDays": 92,
+          "meanTemperatureC": 23.213043478260868,
+          "hotDays": 36,
+          "precipitationMm": 138.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1968,
+          "validDays": 92,
+          "meanTemperatureC": 21.59891304347827,
+          "hotDays": 14,
+          "precipitationMm": 283.79999999999995,
+          "frostDays": null,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1969,
+          "validDays": 92,
+          "meanTemperatureC": 22.01521739130435,
+          "hotDays": 27,
+          "precipitationMm": 104.89999999999995,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1970,
+          "validDays": 92,
+          "meanTemperatureC": 23.352173913043476,
+          "hotDays": 46,
+          "precipitationMm": 120.39999999999996,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1971,
+          "validDays": 92,
+          "meanTemperatureC": 23.213043478260875,
+          "hotDays": 44,
+          "precipitationMm": 162.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1972,
+          "validDays": 92,
+          "meanTemperatureC": 22.329347826086952,
+          "hotDays": 21,
+          "precipitationMm": 148.60000000000005,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1973,
+          "validDays": 92,
+          "meanTemperatureC": 23.34565217391303,
+          "hotDays": 37,
+          "precipitationMm": 159.19999999999993,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1974,
+          "validDays": 92,
+          "meanTemperatureC": 23.052173913043475,
+          "hotDays": 32,
+          "precipitationMm": 139.99999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1975,
+          "validDays": 92,
+          "meanTemperatureC": 22.596739130434788,
+          "hotDays": 34,
+          "precipitationMm": 123.80000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1976,
+          "validDays": 92,
+          "meanTemperatureC": 22.251086956521732,
+          "hotDays": 18,
+          "precipitationMm": 118.39999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1977,
+          "validDays": 92,
+          "meanTemperatureC": 21.76956521739131,
+          "hotDays": 16,
+          "precipitationMm": 201.99999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1978,
+          "validDays": 92,
+          "meanTemperatureC": 21.67608695652174,
+          "hotDays": 21,
+          "precipitationMm": 147.6,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1979,
+          "validDays": 92,
+          "meanTemperatureC": 22.91521739130435,
+          "hotDays": 33,
+          "precipitationMm": 133.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1980,
+          "validDays": 92,
+          "meanTemperatureC": 21.502173913043475,
+          "hotDays": 13,
+          "precipitationMm": 162.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1981,
+          "validDays": 92,
+          "meanTemperatureC": 22.03804347826087,
+          "hotDays": 15,
+          "precipitationMm": 158.89999999999995,
+          "frostDays": null,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1982,
+          "validDays": 92,
+          "meanTemperatureC": 23.43152173913043,
+          "hotDays": 26,
+          "precipitationMm": 150.09999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1983,
+          "validDays": 92,
+          "meanTemperatureC": 23.292391304347824,
+          "hotDays": 29,
+          "precipitationMm": 162.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1984,
+          "validDays": 92,
+          "meanTemperatureC": 21.493478260869562,
+          "hotDays": 9,
+          "precipitationMm": 142.4,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1985,
+          "validDays": 92,
+          "meanTemperatureC": 23.21739130434783,
+          "hotDays": 36,
+          "precipitationMm": 88.70000000000002,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1986,
+          "validDays": 92,
+          "meanTemperatureC": 22.395652173913046,
+          "hotDays": 23,
+          "precipitationMm": 230,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1987,
+          "validDays": 92,
+          "meanTemperatureC": 22.85108695652174,
+          "hotDays": 32,
+          "precipitationMm": 120.80000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1988,
+          "validDays": 92,
+          "meanTemperatureC": 23.12173913043478,
+          "hotDays": 37,
+          "precipitationMm": 113.60000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1989,
+          "validDays": 92,
+          "meanTemperatureC": 22.286956521739125,
+          "hotDays": 21,
+          "precipitationMm": 231.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1990,
+          "validDays": 92,
+          "meanTemperatureC": 22.50978260869565,
+          "hotDays": 28,
+          "precipitationMm": 113.70000000000002,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1991,
+          "validDays": 92,
+          "meanTemperatureC": 22.882608695652177,
+          "hotDays": 32,
+          "precipitationMm": 112.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1992,
+          "validDays": 92,
+          "meanTemperatureC": 22.489130434782602,
+          "hotDays": 32,
+          "precipitationMm": 189.99999999999994,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1993,
+          "validDays": 92,
+          "meanTemperatureC": 23.410869565217393,
+          "hotDays": 36,
+          "precipitationMm": 73.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1994,
+          "validDays": 92,
+          "meanTemperatureC": 24.22065217391303,
+          "hotDays": 54,
+          "precipitationMm": 76.09999999999998,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1995,
+          "validDays": 92,
+          "meanTemperatureC": 22.75978260869566,
+          "hotDays": 30,
+          "precipitationMm": 120.69999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1996,
+          "validDays": 92,
+          "meanTemperatureC": 22.588043478260865,
+          "hotDays": 15,
+          "precipitationMm": 146.39999999999998,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1997,
+          "validDays": 92,
+          "meanTemperatureC": 22.955434782608705,
+          "hotDays": 23,
+          "precipitationMm": 171.20000000000002,
+          "frostDays": null,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1998,
+          "validDays": 92,
+          "meanTemperatureC": 24.265217391304354,
+          "hotDays": 43,
+          "precipitationMm": 51.19999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 1999,
+          "validDays": 92,
+          "meanTemperatureC": 23.789130434782603,
+          "hotDays": 32,
+          "precipitationMm": 83.1,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2000,
+          "validDays": 92,
+          "meanTemperatureC": 23.689130434782616,
+          "hotDays": 28,
+          "precipitationMm": 130,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2001,
+          "validDays": 92,
+          "meanTemperatureC": 23.446739130434782,
+          "hotDays": 32,
+          "precipitationMm": 94.39999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2002,
+          "validDays": 92,
+          "meanTemperatureC": 23.44239130434783,
+          "hotDays": 25,
+          "precipitationMm": 194.29999999999998,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2003,
+          "validDays": 92,
+          "meanTemperatureC": 27.04021739130436,
+          "hotDays": 78,
+          "precipitationMm": 19.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2004,
+          "validDays": 92,
+          "meanTemperatureC": 23.544565217391302,
+          "hotDays": 36,
+          "precipitationMm": 65.5,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2005,
+          "validDays": 92,
+          "meanTemperatureC": 23.47065217391304,
+          "hotDays": 35,
+          "precipitationMm": 60.2,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2006,
+          "validDays": 92,
+          "meanTemperatureC": 23.729347826086954,
+          "hotDays": 44,
+          "precipitationMm": 72.6,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2007,
+          "validDays": 92,
+          "meanTemperatureC": 23.026086956521734,
+          "hotDays": 30,
+          "precipitationMm": 77.10000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2008,
+          "validDays": 92,
+          "meanTemperatureC": 23.40652173913044,
+          "hotDays": 39,
+          "precipitationMm": 111.90000000000003,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2009,
+          "validDays": 92,
+          "meanTemperatureC": 24.378260869565214,
+          "hotDays": 46,
+          "precipitationMm": 87.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2010,
+          "validDays": 92,
+          "meanTemperatureC": 23.709782608695654,
+          "hotDays": 38,
+          "precipitationMm": 169.5,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2011,
+          "validDays": 92,
+          "meanTemperatureC": 24.05,
+          "hotDays": 34,
+          "precipitationMm": 95.40000000000002,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2012,
+          "validDays": 92,
+          "meanTemperatureC": 24.946739130434793,
+          "hotDays": 58,
+          "precipitationMm": 58.6,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2013,
+          "validDays": 92,
+          "meanTemperatureC": 24.05869565217392,
+          "hotDays": 47,
+          "precipitationMm": 76.39999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2014,
+          "validDays": 92,
+          "meanTemperatureC": 22.92934782608696,
+          "hotDays": 19,
+          "precipitationMm": 240.99999999999997,
+          "frostDays": null,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2015,
+          "validDays": 92,
+          "meanTemperatureC": 25.294565217391302,
+          "hotDays": 52,
+          "precipitationMm": 72.8,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2016,
+          "validDays": 92,
+          "meanTemperatureC": 24.153260869565212,
+          "hotDays": 53,
+          "precipitationMm": 65.50000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2017,
+          "validDays": 92,
+          "meanTemperatureC": 25.106521739130432,
+          "hotDays": 58,
+          "precipitationMm": 70.60000000000001,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2018,
+          "validDays": 92,
+          "meanTemperatureC": 24.704347826086963,
+          "hotDays": 55,
+          "precipitationMm": 82.49999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2019,
+          "validDays": 92,
+          "meanTemperatureC": 25.34565217391304,
+          "hotDays": 58,
+          "precipitationMm": 117.89999999999999,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2020,
+          "validDays": 92,
+          "meanTemperatureC": 24.123913043478247,
+          "hotDays": 45,
+          "precipitationMm": 168.80000000000004,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        }
+      ],
+      "periods": {
+        "a": {
+          "startYear": 1961,
+          "endYear": 1990,
+          "validYears": 30,
+          "meanTemperatureC": 22.643442028985508,
+          "hotDays": 27.9,
+          "precipitationMm": 152.38999999999996,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1.2666666666666666
+        },
+        "b": {
+          "startYear": 1991,
+          "endYear": 2020,
+          "validYears": 30,
+          "meanTemperatureC": 23.898586956521747,
+          "hotDays": 40.233333333333334,
+          "precipitationMm": 105.23,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0.7333333333333333
+        }
+      }
     },
-    {
-      "year": 1964,
-      "validDays": 92,
-      "meanTemperatureC": 23.446739130434775,
-      "hotDays": 28,
-      "precipitationMm": 117.29999999999997
-    },
-    {
-      "year": 1965,
-      "validDays": 92,
-      "meanTemperatureC": 22.124999999999996,
-      "hotDays": 24,
-      "precipitationMm": 250.59999999999997
-    },
-    {
-      "year": 1966,
-      "validDays": 92,
-      "meanTemperatureC": 22.183695652173913,
-      "hotDays": 12,
-      "precipitationMm": 178.29999999999993
-    },
-    {
-      "year": 1967,
-      "validDays": 92,
-      "meanTemperatureC": 23.213043478260868,
-      "hotDays": 36,
-      "precipitationMm": 138.1
-    },
-    {
-      "year": 1968,
-      "validDays": 92,
-      "meanTemperatureC": 21.59891304347827,
-      "hotDays": 14,
-      "precipitationMm": 283.79999999999995
-    },
-    {
-      "year": 1969,
-      "validDays": 92,
-      "meanTemperatureC": 22.01521739130435,
-      "hotDays": 27,
-      "precipitationMm": 104.89999999999995
-    },
-    {
-      "year": 1970,
-      "validDays": 92,
-      "meanTemperatureC": 23.352173913043476,
-      "hotDays": 46,
-      "precipitationMm": 120.39999999999996
-    },
-    {
-      "year": 1971,
-      "validDays": 92,
-      "meanTemperatureC": 23.213043478260875,
-      "hotDays": 44,
-      "precipitationMm": 162.7
-    },
-    {
-      "year": 1972,
-      "validDays": 92,
-      "meanTemperatureC": 22.329347826086952,
-      "hotDays": 21,
-      "precipitationMm": 148.60000000000005
-    },
-    {
-      "year": 1973,
-      "validDays": 92,
-      "meanTemperatureC": 23.34565217391303,
-      "hotDays": 37,
-      "precipitationMm": 159.19999999999993
-    },
-    {
-      "year": 1974,
-      "validDays": 92,
-      "meanTemperatureC": 23.052173913043475,
-      "hotDays": 32,
-      "precipitationMm": 139.99999999999997
-    },
-    {
-      "year": 1975,
-      "validDays": 92,
-      "meanTemperatureC": 22.596739130434788,
-      "hotDays": 34,
-      "precipitationMm": 123.80000000000001
-    },
-    {
-      "year": 1976,
-      "validDays": 92,
-      "meanTemperatureC": 22.251086956521732,
-      "hotDays": 18,
-      "precipitationMm": 118.39999999999999
-    },
-    {
-      "year": 1977,
-      "validDays": 92,
-      "meanTemperatureC": 21.76956521739131,
-      "hotDays": 16,
-      "precipitationMm": 201.99999999999997
-    },
-    {
-      "year": 1978,
-      "validDays": 92,
-      "meanTemperatureC": 21.67608695652174,
-      "hotDays": 21,
-      "precipitationMm": 147.6
-    },
-    {
-      "year": 1979,
-      "validDays": 92,
-      "meanTemperatureC": 22.91521739130435,
-      "hotDays": 33,
-      "precipitationMm": 133.1
-    },
-    {
-      "year": 1980,
-      "validDays": 92,
-      "meanTemperatureC": 21.502173913043475,
-      "hotDays": 13,
-      "precipitationMm": 162.1
-    },
-    {
-      "year": 1981,
-      "validDays": 92,
-      "meanTemperatureC": 22.03804347826087,
-      "hotDays": 15,
-      "precipitationMm": 158.89999999999995
-    },
-    {
-      "year": 1982,
-      "validDays": 92,
-      "meanTemperatureC": 23.43152173913043,
-      "hotDays": 26,
-      "precipitationMm": 150.09999999999997
-    },
-    {
-      "year": 1983,
-      "validDays": 92,
-      "meanTemperatureC": 23.292391304347824,
-      "hotDays": 29,
-      "precipitationMm": 162.1
-    },
-    {
-      "year": 1984,
-      "validDays": 92,
-      "meanTemperatureC": 21.493478260869562,
-      "hotDays": 9,
-      "precipitationMm": 142.4
-    },
-    {
-      "year": 1985,
-      "validDays": 92,
-      "meanTemperatureC": 23.21739130434783,
-      "hotDays": 36,
-      "precipitationMm": 88.70000000000002
-    },
-    {
-      "year": 1986,
-      "validDays": 92,
-      "meanTemperatureC": 22.395652173913046,
-      "hotDays": 23,
-      "precipitationMm": 230
-    },
-    {
-      "year": 1987,
-      "validDays": 92,
-      "meanTemperatureC": 22.85108695652174,
-      "hotDays": 32,
-      "precipitationMm": 120.80000000000001
-    },
-    {
-      "year": 1988,
-      "validDays": 92,
-      "meanTemperatureC": 23.12173913043478,
-      "hotDays": 37,
-      "precipitationMm": 113.60000000000001
-    },
-    {
-      "year": 1989,
-      "validDays": 92,
-      "meanTemperatureC": 22.286956521739125,
-      "hotDays": 21,
-      "precipitationMm": 231.7
-    },
-    {
-      "year": 1990,
-      "validDays": 92,
-      "meanTemperatureC": 22.50978260869565,
-      "hotDays": 28,
-      "precipitationMm": 113.70000000000002
-    },
-    {
-      "year": 1991,
-      "validDays": 92,
-      "meanTemperatureC": 22.882608695652177,
-      "hotDays": 32,
-      "precipitationMm": 112.7
-    },
-    {
-      "year": 1992,
-      "validDays": 92,
-      "meanTemperatureC": 22.489130434782602,
-      "hotDays": 32,
-      "precipitationMm": 189.99999999999994
-    },
-    {
-      "year": 1993,
-      "validDays": 92,
-      "meanTemperatureC": 23.410869565217393,
-      "hotDays": 36,
-      "precipitationMm": 73.1
-    },
-    {
-      "year": 1994,
-      "validDays": 92,
-      "meanTemperatureC": 24.22065217391303,
-      "hotDays": 54,
-      "precipitationMm": 76.09999999999998
-    },
-    {
-      "year": 1995,
-      "validDays": 92,
-      "meanTemperatureC": 22.75978260869566,
-      "hotDays": 30,
-      "precipitationMm": 120.69999999999999
-    },
-    {
-      "year": 1996,
-      "validDays": 92,
-      "meanTemperatureC": 22.588043478260865,
-      "hotDays": 15,
-      "precipitationMm": 146.39999999999998
-    },
-    {
-      "year": 1997,
-      "validDays": 92,
-      "meanTemperatureC": 22.955434782608705,
-      "hotDays": 23,
-      "precipitationMm": 171.20000000000002
-    },
-    {
-      "year": 1998,
-      "validDays": 92,
-      "meanTemperatureC": 24.265217391304354,
-      "hotDays": 43,
-      "precipitationMm": 51.19999999999999
-    },
-    {
-      "year": 1999,
-      "validDays": 92,
-      "meanTemperatureC": 23.789130434782603,
-      "hotDays": 32,
-      "precipitationMm": 83.1
-    },
-    {
-      "year": 2000,
-      "validDays": 92,
-      "meanTemperatureC": 23.689130434782616,
-      "hotDays": 28,
-      "precipitationMm": 130
-    },
-    {
-      "year": 2001,
-      "validDays": 92,
-      "meanTemperatureC": 23.446739130434782,
-      "hotDays": 32,
-      "precipitationMm": 94.39999999999999
-    },
-    {
-      "year": 2002,
-      "validDays": 92,
-      "meanTemperatureC": 23.44239130434783,
-      "hotDays": 25,
-      "precipitationMm": 194.29999999999998
-    },
-    {
-      "year": 2003,
-      "validDays": 92,
-      "meanTemperatureC": 27.04021739130436,
-      "hotDays": 78,
-      "precipitationMm": 19.7
-    },
-    {
-      "year": 2004,
-      "validDays": 92,
-      "meanTemperatureC": 23.544565217391302,
-      "hotDays": 36,
-      "precipitationMm": 65.5
-    },
-    {
-      "year": 2005,
-      "validDays": 92,
-      "meanTemperatureC": 23.47065217391304,
-      "hotDays": 35,
-      "precipitationMm": 60.2
-    },
-    {
-      "year": 2006,
-      "validDays": 92,
-      "meanTemperatureC": 23.729347826086954,
-      "hotDays": 44,
-      "precipitationMm": 72.6
-    },
-    {
-      "year": 2007,
-      "validDays": 92,
-      "meanTemperatureC": 23.026086956521734,
-      "hotDays": 30,
-      "precipitationMm": 77.10000000000001
-    },
-    {
-      "year": 2008,
-      "validDays": 92,
-      "meanTemperatureC": 23.40652173913044,
-      "hotDays": 39,
-      "precipitationMm": 111.90000000000003
-    },
-    {
-      "year": 2009,
-      "validDays": 92,
-      "meanTemperatureC": 24.378260869565214,
-      "hotDays": 46,
-      "precipitationMm": 87.7
-    },
-    {
-      "year": 2010,
-      "validDays": 92,
-      "meanTemperatureC": 23.709782608695654,
-      "hotDays": 38,
-      "precipitationMm": 169.5
-    },
-    {
-      "year": 2011,
-      "validDays": 92,
-      "meanTemperatureC": 24.05,
-      "hotDays": 34,
-      "precipitationMm": 95.40000000000002
-    },
-    {
-      "year": 2012,
-      "validDays": 92,
-      "meanTemperatureC": 24.946739130434793,
-      "hotDays": 58,
-      "precipitationMm": 58.6
-    },
-    {
-      "year": 2013,
-      "validDays": 92,
-      "meanTemperatureC": 24.05869565217392,
-      "hotDays": 47,
-      "precipitationMm": 76.39999999999999
-    },
-    {
-      "year": 2014,
-      "validDays": 92,
-      "meanTemperatureC": 22.92934782608696,
-      "hotDays": 19,
-      "precipitationMm": 240.99999999999997
-    },
-    {
-      "year": 2015,
-      "validDays": 92,
-      "meanTemperatureC": 25.294565217391302,
-      "hotDays": 52,
-      "precipitationMm": 72.8
-    },
-    {
-      "year": 2016,
-      "validDays": 92,
-      "meanTemperatureC": 24.153260869565212,
-      "hotDays": 53,
-      "precipitationMm": 65.50000000000001
-    },
-    {
-      "year": 2017,
-      "validDays": 92,
-      "meanTemperatureC": 25.106521739130432,
-      "hotDays": 58,
-      "precipitationMm": 70.60000000000001
-    },
-    {
-      "year": 2018,
-      "validDays": 92,
-      "meanTemperatureC": 24.704347826086963,
-      "hotDays": 55,
-      "precipitationMm": 82.49999999999999
-    },
-    {
-      "year": 2019,
-      "validDays": 92,
-      "meanTemperatureC": 25.34565217391304,
-      "hotDays": 58,
-      "precipitationMm": 117.89999999999999
-    },
-    {
-      "year": 2020,
-      "validDays": 92,
-      "meanTemperatureC": 24.123913043478247,
-      "hotDays": 45,
-      "precipitationMm": 168.80000000000004
-    }
-  ],
-  "periods": {
-    "a": {
-      "startYear": 1961,
-      "endYear": 1990,
-      "validYears": 30,
-      "meanTemperatureC": 22.643442028985508,
-      "hotDays": 27.9,
-      "precipitationMm": 152.38999999999996
-    },
-    "b": {
-      "startYear": 1991,
-      "endYear": 2020,
-      "validYears": 30,
-      "meanTemperatureC": 23.898586956521747,
-      "hotDays": 40.233333333333334,
-      "precipitationMm": 105.23
+    "SON": {
+      "years": [
+        {
+          "year": 1961,
+          "validDays": 91,
+          "meanTemperatureC": 16.47032967032967,
+          "hotDays": 11,
+          "precipitationMm": 357.59999999999997,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 7
+        },
+        {
+          "year": 1962,
+          "validDays": 91,
+          "meanTemperatureC": 15.514285714285716,
+          "hotDays": 10,
+          "precipitationMm": 293.3,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1963,
+          "validDays": 91,
+          "meanTemperatureC": 15.92197802197802,
+          "hotDays": 0,
+          "precipitationMm": 290.80000000000007,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1964,
+          "validDays": 91,
+          "meanTemperatureC": 15.191208791208787,
+          "hotDays": 0,
+          "precipitationMm": 357.09999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1965,
+          "validDays": 91,
+          "meanTemperatureC": 14.919780219780215,
+          "hotDays": 0,
+          "precipitationMm": 492.60000000000014,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1966,
+          "validDays": 91,
+          "meanTemperatureC": 15.290109890109894,
+          "hotDays": 3,
+          "precipitationMm": 577.7999999999998,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1967,
+          "validDays": 91,
+          "meanTemperatureC": 16.06923076923077,
+          "hotDays": 0,
+          "precipitationMm": 250.40000000000003,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1968,
+          "validDays": 91,
+          "meanTemperatureC": 14.896703296703295,
+          "hotDays": 0,
+          "precipitationMm": 247.3,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1969,
+          "validDays": 91,
+          "meanTemperatureC": 15.846153846153847,
+          "hotDays": 1,
+          "precipitationMm": 268.2,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1970,
+          "validDays": 91,
+          "meanTemperatureC": 15.952747252747253,
+          "hotDays": 4,
+          "precipitationMm": 165.6,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1971,
+          "validDays": 91,
+          "meanTemperatureC": 14.198901098901098,
+          "hotDays": 2,
+          "precipitationMm": 200.7,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1972,
+          "validDays": 91,
+          "meanTemperatureC": 13.913186813186805,
+          "hotDays": 0,
+          "precipitationMm": 416.4,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1973,
+          "validDays": 91,
+          "meanTemperatureC": 15.248351648351653,
+          "hotDays": 7,
+          "precipitationMm": 431.3999999999999,
+          "frostDays": 4,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1974,
+          "validDays": 91,
+          "meanTemperatureC": 13.685714285714289,
+          "hotDays": 3,
+          "precipitationMm": 344.7999999999999,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1975,
+          "validDays": 91,
+          "meanTemperatureC": 15.134065934065935,
+          "hotDays": 3,
+          "precipitationMm": 241.40000000000003,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1976,
+          "validDays": 91,
+          "meanTemperatureC": 14.576923076923068,
+          "hotDays": 0,
+          "precipitationMm": 413.2000000000001,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1977,
+          "validDays": 91,
+          "meanTemperatureC": 14.470329670329674,
+          "hotDays": 0,
+          "precipitationMm": 253.89999999999995,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1978,
+          "validDays": 91,
+          "meanTemperatureC": 13.656043956043959,
+          "hotDays": 1,
+          "precipitationMm": 169.7,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1979,
+          "validDays": 91,
+          "meanTemperatureC": 14.731868131868133,
+          "hotDays": 0,
+          "precipitationMm": 357,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1980,
+          "validDays": 91,
+          "meanTemperatureC": 14.756043956043955,
+          "hotDays": 0,
+          "precipitationMm": 372.9,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1981,
+          "validDays": 91,
+          "meanTemperatureC": 14.75824175824176,
+          "hotDays": 0,
+          "precipitationMm": 322.3999999999999,
+          "frostDays": 9,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1982,
+          "validDays": 91,
+          "meanTemperatureC": 15.957142857142852,
+          "hotDays": 2,
+          "precipitationMm": 406.2,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1983,
+          "validDays": 91,
+          "meanTemperatureC": 14.685714285714294,
+          "hotDays": 0,
+          "precipitationMm": 119.2,
+          "frostDays": 4,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1984,
+          "validDays": 91,
+          "meanTemperatureC": 14.830769230769233,
+          "hotDays": 0,
+          "precipitationMm": 401.2,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 1985,
+          "validDays": 91,
+          "meanTemperatureC": 15.516483516483511,
+          "hotDays": 2,
+          "precipitationMm": 168.49999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 1986,
+          "validDays": 91,
+          "meanTemperatureC": 15.25714285714286,
+          "hotDays": 0,
+          "precipitationMm": 158.5,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1987,
+          "validDays": 91,
+          "meanTemperatureC": 16.339560439560433,
+          "hotDays": 3,
+          "precipitationMm": 296.2000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1988,
+          "validDays": 91,
+          "meanTemperatureC": 14.763736263736265,
+          "hotDays": 1,
+          "precipitationMm": 181.50000000000006,
+          "frostDays": 7,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1989,
+          "validDays": 91,
+          "meanTemperatureC": 13.568131868131871,
+          "hotDays": 0,
+          "precipitationMm": 205.99999999999997,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1990,
+          "validDays": 91,
+          "meanTemperatureC": 15.593406593406591,
+          "hotDays": 0,
+          "precipitationMm": 335.1000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1991,
+          "validDays": 91,
+          "meanTemperatureC": 14.613186813186802,
+          "hotDays": 0,
+          "precipitationMm": 386.2,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1992,
+          "validDays": 91,
+          "meanTemperatureC": 15.806593406593407,
+          "hotDays": 0,
+          "precipitationMm": 428.8000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 1993,
+          "validDays": 91,
+          "meanTemperatureC": 14.763736263736265,
+          "hotDays": 0,
+          "precipitationMm": 412.3,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 1994,
+          "validDays": 91,
+          "meanTemperatureC": 15.781318681318679,
+          "hotDays": 0,
+          "precipitationMm": 271.8,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1995,
+          "validDays": 91,
+          "meanTemperatureC": 14.454945054945059,
+          "hotDays": 0,
+          "precipitationMm": 215.5,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 1996,
+          "validDays": 91,
+          "meanTemperatureC": 14.559340659340661,
+          "hotDays": 0,
+          "precipitationMm": 464.6000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 9
+        },
+        {
+          "year": 1997,
+          "validDays": 91,
+          "meanTemperatureC": 16.010989010989007,
+          "hotDays": 10,
+          "precipitationMm": 305.59999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 1998,
+          "validDays": 91,
+          "meanTemperatureC": 14.849450549450554,
+          "hotDays": 3,
+          "precipitationMm": 411.00000000000017,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 8
+        },
+        {
+          "year": 1999,
+          "validDays": 91,
+          "meanTemperatureC": 15.81868131868132,
+          "hotDays": 3,
+          "precipitationMm": 375.4,
+          "frostDays": 6,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2000,
+          "validDays": 91,
+          "meanTemperatureC": 16.059340659340652,
+          "hotDays": 1,
+          "precipitationMm": 517,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 10
+        },
+        {
+          "year": 2001,
+          "validDays": 91,
+          "meanTemperatureC": 14.737362637362635,
+          "hotDays": 0,
+          "precipitationMm": 289.5999999999999,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2002,
+          "validDays": 91,
+          "meanTemperatureC": 16.06373626373626,
+          "hotDays": 0,
+          "precipitationMm": 308.50000000000017,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2003,
+          "validDays": 91,
+          "meanTemperatureC": 15.613186813186818,
+          "hotDays": 3,
+          "precipitationMm": 308.09999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2004,
+          "validDays": 91,
+          "meanTemperatureC": 16.302197802197806,
+          "hotDays": 5,
+          "precipitationMm": 310,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2005,
+          "validDays": 91,
+          "meanTemperatureC": 15.28351648351648,
+          "hotDays": 3,
+          "precipitationMm": 336.9999999999999,
+          "frostDays": 3,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2006,
+          "validDays": 91,
+          "meanTemperatureC": 16.55384615384616,
+          "hotDays": 5,
+          "precipitationMm": 191.09999999999988,
+          "frostDays": 2,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2007,
+          "validDays": 91,
+          "meanTemperatureC": 14.538461538461544,
+          "hotDays": 0,
+          "precipitationMm": 175.59999999999997,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2008,
+          "validDays": 91,
+          "meanTemperatureC": 15.741758241758241,
+          "hotDays": 6,
+          "precipitationMm": 285.20000000000005,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2009,
+          "validDays": 91,
+          "meanTemperatureC": 16.06153846153846,
+          "hotDays": 4,
+          "precipitationMm": 233.3,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2010,
+          "validDays": 91,
+          "meanTemperatureC": 15.018681318681324,
+          "hotDays": 0,
+          "precipitationMm": 403.9000000000002,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 2011,
+          "validDays": 91,
+          "meanTemperatureC": 15.928571428571429,
+          "hotDays": 10,
+          "precipitationMm": 118.3,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2012,
+          "validDays": 91,
+          "meanTemperatureC": 16.45494505494505,
+          "hotDays": 1,
+          "precipitationMm": 399,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2013,
+          "validDays": 91,
+          "meanTemperatureC": 16.664835164835164,
+          "hotDays": 6,
+          "precipitationMm": 345.4,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2014,
+          "validDays": 91,
+          "meanTemperatureC": 17.117582417582415,
+          "hotDays": 0,
+          "precipitationMm": 295.1,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 2015,
+          "validDays": 91,
+          "meanTemperatureC": 15.936263736263731,
+          "hotDays": 3,
+          "precipitationMm": 314.80000000000007,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2016,
+          "validDays": 91,
+          "meanTemperatureC": 16.163736263736272,
+          "hotDays": 8,
+          "precipitationMm": 370.1000000000001,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2017,
+          "validDays": 91,
+          "meanTemperatureC": 14.76703296703297,
+          "hotDays": 0,
+          "precipitationMm": 330.10000000000014,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 2018,
+          "validDays": 91,
+          "meanTemperatureC": 17.296703296703292,
+          "hotDays": 9,
+          "precipitationMm": 235.79999999999995,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2019,
+          "validDays": 91,
+          "meanTemperatureC": 17.236263736263737,
+          "hotDays": 7,
+          "precipitationMm": 403.29999999999995,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 6
+        },
+        {
+          "year": 2020,
+          "validDays": 91,
+          "meanTemperatureC": 16.025274725274716,
+          "hotDays": 12,
+          "precipitationMm": 278.70000000000005,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 5
+        }
+      ],
+      "periods": {
+        "a": {
+          "startYear": 1961,
+          "endYear": 1990,
+          "validYears": 30,
+          "meanTemperatureC": 15.057142857142859,
+          "hotDays": 1.7666666666666666,
+          "precipitationMm": 303.2299999999999,
+          "frostDays": 1.8333333333333333,
+          "heavyPrecipitationDays": 3.9
+        },
+        "b": {
+          "startYear": 1991,
+          "endYear": 2020,
+          "validYears": 30,
+          "meanTemperatureC": 15.740769230769228,
+          "hotDays": 3.3,
+          "precipitationMm": 324.0366666666667,
+          "frostDays": 0.7666666666666667,
+          "heavyPrecipitationDays": 4.533333333333333
+        }
+      }
     }
   }
 }

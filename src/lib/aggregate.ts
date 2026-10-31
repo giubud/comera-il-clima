@@ -1,5 +1,7 @@
 import { requireDefined } from './required';
 import type { DailyResponse, Metric, PeriodSummary, Summer } from '../data/schema';
+import type { SeasonMetric } from '../data/schema';
+import { isInverted } from '../data/season-meta';
 
 const MS_PER_DAY = 86_400_000;
 
@@ -98,14 +100,19 @@ export function periodDelta(a: PeriodSummary, b: PeriodSummary, metric: Metric):
 export type RangeStats = { start: number; end: number; count: number; mean: number; sd: number };
 
 export function rangeStats(
-  summers: readonly Summer[],
-  metric: Metric,
+  summers: readonly ({ year: number } & Partial<Record<SeasonMetric, number | null>>)[],
+  metric: SeasonMetric,
   start: number,
   end: number,
 ): RangeStats {
   const values = summers
     .filter((summer) => summer.year >= start && summer.year <= end)
-    .map((summer) => summer[metric]);
+    .map((summer) => {
+      const value = summer[metric];
+      if (typeof value !== 'number' || !Number.isFinite(value))
+        throw new Error(`Indicatore ${metric} non applicabile o non disponibile.`);
+      return value;
+    });
   if (values.length !== end - start + 1) throw new Error(`Periodo incompleto: ${start}–${end}.`);
   const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
   const sd =
@@ -127,8 +134,8 @@ export function movingAverage(values: readonly number[], window = 5): (number | 
   );
 }
 
-export function warmth(delta: number, metric: Metric): number {
-  return metric === 'precipitationMm' ? -delta : delta;
+export function warmth(delta: number, metric: SeasonMetric): number {
+  return isInverted(metric) ? -delta : delta;
 }
 
 export function zLevel(value: number, mean: number, sd: number): -2 | -1 | 0 | 1 | 2 {

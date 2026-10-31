@@ -58,3 +58,19 @@ Le regole per schermi piccoli e gli ultimi adattamenti della mappa rimangono all
 per tutti i sorgenti TypeScript e CSS in `src/`. Il conteggio include commenti e righe vuote.
 La CI esegue il controllo dopo lint e formattazione. Git conserva i file di testo con LF,
 evitando che un checkout Windows annulli la formattazione o alteri le impronte dei dati.
+
+## Console stagionale e compatibilità dello schema 1
+
+`console-v3.ts` legge il manifest: schema 1 avvia la console estiva, schema 2 carica
+il modulo `seasons/console.ts`. Un URL stagionale su dati schema 1 mostra un avviso esplicito.
+`data/legacy.ts` mantiene i contratti precedenti; calendario, schema e controlli stagionali
+sono separati. `lib/season-aggregate.ts` calcola i cinque indicatori e le medie annuali.
+
+`seasons/model.ts` e `lib/season-url-state.ts` gestiscono stato e valori; `seasons/events.ts`
+le interazioni. Views, tables, plots e map compongono le sezioni. Un contatore per caricamento
+impedisce alle risposte vecchie di sostituire l'ultima selezione. I JSON compatti sono memorizzati
+per stagione; il dettaglio è memorizzato per città. Si aggiunge il foglio `styles/seasons.css`.
+
+La build dati è separata: fonti annuali + estati originali → validazione e regressione →
+area temporanea → sostituzione dei JSON. Il browser non chiama l'API meteorologica.
+[SEASONS.md](SEASONS.md) documenta formato, cache, comandi e vincoli di provenienza.

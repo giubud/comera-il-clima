@@ -1,0 +1,40 @@
+.season-console .metric-tabs {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+.season-console .metric-cards {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+.season-console .metric-card strong.unavailable {
+  font-size: 18px;
+  white-space: normal;
+}
+.season-console .hero-number .unavailable,
+.season-console .unavailable {
+  color: var(--muted);
+}
+.season-console .unavailable-note {
+  padding: 24px;
+}
+.season-console .year-cards {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+.season-console .year-cards strong {
+  white-space: normal;
+}
+.season-console .hero-number strong {
+  white-space: normal;
+}
+.season-console .sidebar .preset-label {
+  margin-bottom: 12px;
+}
+.season-console .year-panel .panel-bar {
+  flex-wrap: wrap;
+}
+.season-console .year-nav {
+  max-width: 100%;
+}
+.season-console .year-nav select {
+  min-width: 0;
+  flex: 1;
+}
