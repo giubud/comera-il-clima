@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T17:58:06.800Z",
-  "dataVersion": "1fdffa12eabc7b22",
+  "generatedAt": "2026-11-02T18:04:58.792Z",
+  "dataVersion": "153f99695e250a1e",
   "firstYear": 1961,
-  "lastYear": 2020,
+  "lastYear": 2025,
   "seasons": [
     "DJF",
     "MAM",
@@ -74,7 +74,7 @@
       "id": "torino",
       "name": "Torino",
       "file": "torino.json",
-      "sha256": "ee81eb788a1808ebe5b24d35204e100218e7d9ed57e18a7c92b8db83097b3f3f",
+      "sha256": "a2ed91342a57402329698398215d6eafa59636fd94c8450e4a15b186acbf0e9b",
       "seasons": {
         "DJF": {
           "a": {
@@ -170,7 +170,7 @@
       "id": "milano",
       "name": "Milano",
       "file": "milano.json",
-      "sha256": "bc02fc6e341fc54363834a8f30efa119b64b7d8d985f829a6ad968faca7ef009",
+      "sha256": "bd08f18309c966c9dcc0be87f68914e1e26ed0154bc3dddb44dbdfd06d8a8a78",
       "seasons": {
         "DJF": {
           "a": {
@@ -266,7 +266,7 @@
       "id": "venezia",
       "name": "Venezia",
       "file": "venezia.json",
-      "sha256": "130137e802a9e36b6d57a524aed9063000ed158a173132378d0ea29b09455617",
+      "sha256": "e7fd41f466d5ec6b1a00bb15d2b97bd7bc584fa7fa77f78448c0768d4c110d2d",
       "seasons": {
         "DJF": {
           "a": {
@@ -362,7 +362,7 @@
       "id": "bologna",
       "name": "Bologna",
       "file": "bologna.json",
-      "sha256": "a3201e917bc4dc9d99bc1d7493f5d65ecad47adf832fd4f3f93ac37dfef09a5a",
+      "sha256": "60aeed206977f1e3dbf8736e9f14b93923068f98666e11529877f4d863a9c744",
       "seasons": {
         "DJF": {
           "a": {
@@ -458,7 +458,7 @@
       "id": "firenze",
       "name": "Firenze",
       "file": "firenze.json",
-      "sha256": "bc78ef6f99da267786da8b5d0de6adcc59cb986409067ac7fe5476a88a8f310f",
+      "sha256": "c5750f28da662e6083e8cb229eec6fc7fb00b4e6a5fadaafbc91485dd41bac87",
       "seasons": {
         "DJF": {
           "a": {
@@ -554,7 +554,7 @@
       "id": "roma",
       "name": "Roma",
       "file": "roma.json",
-      "sha256": "2dc313e1c969d04da6dadc245f98623e759e01e0be7d7dc62b0c05ff518e0826",
+      "sha256": "cc6e47b18e429d31abef8e5f0dd5e7ec4d726c1a3ead3b50cba64c154bb957d8",
       "seasons": {
         "DJF": {
           "a": {
@@ -650,7 +650,7 @@
       "id": "napoli",
       "name": "Napoli",
       "file": "napoli.json",
-      "sha256": "3505b60f3d97fe286b5038aa913f18533da342abe3dc3cf5981ba8a3327e1542",
+      "sha256": "494acdbf3d14b38395f12d0c71127addf430d1bab89e2ad4b63acf9063fc3fa5",
       "seasons": {
         "DJF": {
           "a": {
@@ -746,7 +746,7 @@
       "id": "bari",
       "name": "Bari",
       "file": "bari.json",
-      "sha256": "968b4a253ade4d71b33812bee6d01d2fb7122716b89c6f3cbd72ea419b4f7285",
+      "sha256": "53d949e28f56699f3f9105ad60fcee62df777b6cc462206c522d217941164e65",
       "seasons": {
         "DJF": {
           "a": {
@@ -842,7 +842,7 @@
       "id": "palermo",
       "name": "Palermo",
       "file": "palermo.json",
-      "sha256": "f37c192b97759c84c66ac22f8b1c36c69d881f669eabab18a86e9b06744194f7",
+      "sha256": "2dc8291cb3bfee1675d411248280784fcad0fdca3ebf9e750ca5c9961bb53661",
       "seasons": {
         "DJF": {
           "a": {
@@ -938,7 +938,7 @@
       "id": "cagliari",
       "name": "Cagliari",
       "file": "cagliari.json",
-      "sha256": "ba9a6f3d4e1eef2bdf8090a3a5428077c42fa9e89b7ca9b1d4753d0630ac10fa",
+      "sha256": "5013fa7e2c4b6ae1dbe89845c93411584eccf174bfda8f39700c5f7bb501e999",
       "seasons": {
         "DJF": {
           "a": {
