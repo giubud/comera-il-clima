@@ -13,7 +13,7 @@ export async function startSeasonConsole(
 ): Promise<void> {
   const appearance = loadAppearance();
   const model: Model = {
-    state: parseSeasonState(location.search),
+    state: parseSeasonState(location.search, manifest),
     ...appearance,
     manifest,
     compact: null,

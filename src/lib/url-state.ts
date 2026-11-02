@@ -21,22 +21,24 @@ export const defaultState: UrlState = {
   smooth: false,
 };
 
-function parsePeriod(value: string | null, fallback: Period): Period {
+export type YearBounds = { firstYear: number; lastYear: number };
+const legacyBounds = { firstYear: 1961, lastYear: 2020 };
+function parsePeriod(value: string | null, fallback: Period, bounds: YearBounds): Period {
   if (!value || !/^\d{4}-\d{4}$/.test(value)) return [...fallback];
   const [start, end] = value.split('-').map(Number);
   if (
     start === undefined ||
     end === undefined ||
-    start < 1961 ||
-    end > 2020 ||
-    start > 2020 ||
-    end < 1961
+    start < bounds.firstYear ||
+    end > bounds.lastYear ||
+    start > bounds.lastYear ||
+    end < bounds.firstYear
   )
     return [...fallback];
   return start <= end ? [start, end] : [end, start];
 }
 
-export function parseUrlState(search: string): UrlState {
+export function parseUrlState(search: string, bounds: YearBounds = legacyBounds): UrlState {
   const params = new URLSearchParams(search);
   const city = params.get('city');
   const metric = params.get('metric');
@@ -46,11 +48,16 @@ export function parseUrlState(search: string): UrlState {
   return {
     city: selectedCity,
     metric: isMetric(metric) ? metric : defaultState.metric,
-    a: parsePeriod(params.get('a'), defaultState.a),
-    b: parsePeriod(params.get('b'), defaultState.b),
+    a: parsePeriod(params.get('a'), defaultState.a, bounds),
+    b: parsePeriod(params.get('b'), defaultState.b, bounds),
     vs: vs && getCity(vs) && vs !== selectedCity ? vs : null,
     year:
-      params.has('year') && Number.isInteger(year) && year >= 1961 && year <= 2020 ? year : null,
+      params.has('year') &&
+      Number.isInteger(year) &&
+      year >= bounds.firstYear &&
+      year <= bounds.lastYear
+        ? year
+        : null,
     smooth: params.get('smooth') === '1',
   };
 }

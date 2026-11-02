@@ -26,6 +26,8 @@ export async function validateSeasonFolder(root: string): Promise<void> {
     const dataset: unknown = JSON.parse(raw);
     assertSeasonCity(dataset);
     if (dataset.cityId !== city.id) throw new Error('Città errata nel dataset.');
+    if (dataset.seasons.JJA.years.at(-1)?.year !== value.lastYear)
+      throw new Error('Ultimo anno diverso fra città e manifest.');
     const first = datasets[0];
     if (
       first &&
@@ -55,6 +57,21 @@ export async function validateSeasonFolder(root: string): Promise<void> {
           throw new Error('Fonte non valida.');
       }
     }
+    for (const extension of dataset.extensions ?? []) {
+      const source = extension.source;
+      const request = source.requests[0];
+      const peer = first?.extensions?.find((item) => item.year === extension.year);
+      if (
+        source.requestedCoordinates.latitude !== city.latitude ||
+        source.requestedCoordinates.longitude !== city.longitude ||
+        !request ||
+        request.url !== seasonRequestUrl(city.latitude, city.longitude, extension.year) ||
+        !/^[a-f0-9]{64}$/.test(request.sha256) ||
+        !Number.isFinite(Date.parse(request.retrievedAt)) ||
+        (peer && source.utcOffsetSeconds !== peer.source.utcOffsetSeconds)
+      )
+        throw new Error('Fonte dell’aggiornamento non valida o scarti UTC diversi fra città.');
+    }
     for (const season of seasons) {
       const record = dataset.seasons[season];
       for (const [key, from] of [
@@ -82,6 +99,7 @@ export async function validateSeasonFolder(root: string): Promise<void> {
       summary,
       cities.map((c) => c.id),
     );
+    if (summary.lastYear !== value.lastYear) throw new Error('Intervallo del riepilogo errato.');
     if (
       summary.season !== season ||
       JSON.stringify(summary) !== JSON.stringify(compactSeason(datasets, season))

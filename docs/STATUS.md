@@ -1,5 +1,39 @@
 # Stato del progetto
 
+## B2 — 2 novembre 2026 — Implementazione locale, pubblicazione ancora da eseguire
+
+Branch `ci/data-refresh`, lavoro locale completo e controllo manuale del proprietario superato.
+Il workflow annuale/manuale prepara aggiornamenti incrementali,
+li valida e controlla e propone una PR con permessi separati e minimi. Nessun merge automatico.
+L'avvio remoto richiederà prima la pubblicazione del codice a cura del proprietario.
+
+Sono scaricati e validi i 50 blocchi reali 2021–2025: cache annuale 650/650, nessun download attivo.
+L'archivio esteso è nella prova separata `.cache/plan-preview/b2-real/`, versione
+`153f99695e250a1e`, 2.600 stagioni. I 15 JSON occupano 1.410.766 byte, gzip 156.299.
+La ripetizione è identica byte per byte, incluse date e versioni. Tutto lo storico è conservato.
+`public/data` resta il riferimento B1: il workflow deve poter proporre la prima vera PR dei dati.
+
+Controlli locali: 57 test unitari e 33 E2E passati. Sei ulteriori casi nel browser usano
+l'archivio reale fino al 2025: quattro stagioni, due temi, schermi da 320 a 1440 pixel,
+URL dopo ricaricamento, anni bisestili, 65 righe di CSV e punti del grafico entro l'area prevista.
+Nessun errore JavaScript, overflow della pagina o chiamata del browser all'API climatica.
+La differenza UTC+1/UTC+2 delle nuove estati è dichiarata e visibile nella vista interessata.
+Tutte le otto verifiche passano sia sul prodotto attuale sia su una copia isolata del vero
+archivio 1961–2025: lint, formattazione, limiti sorgenti, TypeScript, unitari, dati, build ed E2E.
+I 52 sorgenti restano entro 300 righe e 100 caratteri. Nessuna nuova dipendenza.
+
+Anteprima separata: `http://127.0.0.1:4184/comera-il-clima/`.
+Il proprietario ha confermato Milano Inverno 2024/25, periodo B 1996–2025 e conservazione
+delle impostazioni dopo F5. Ha verificato l'avviso della discontinuità oraria in estate e
+scaricato il CSV JJA: l'ultima riga inizia con `2025,JJA,2025-06-01,2025-08-31,92,`.
+Restano pubblicazione della PR del codice, primo avvio Actions con `to_year=2025`,
+revisione e merge della PR automatica, verifica del deploy e secondo avvio senza novità.
+Il proprietario esegue i passaggi Git, PR e merge, guidato uno alla volta. B2 non è concluso online.
+Prove in `.cache/plan-preview/b2-real/`; procedura in README e CONTRIBUTING.
+
+B1 è concluso: PR n. 10 integrata dal proprietario, merge `e4c855d`, CI n. 29 e deploy n. 19
+riusciti; tutti i 21 file pubblicati coincidevano con la build. Le sezioni sotto sono storiche.
+
 ## B1 — 31 ottobre 2026 — Completato in locale, PR da preparare
 
 Branch `feat/seasons`, riferimento main `129d25d`. L'archivio reale è completo:

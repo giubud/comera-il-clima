@@ -2,8 +2,8 @@ import type { Model } from './model';
 import { selectedYear } from './model';
 import { getCity } from '../data/cities';
 import { isMetric, isSeason } from '../data/season-meta';
-import { parseSeasonState, searchSeasonState } from '../lib/season-url-state';
-import { periodPresets, type Period } from '../lib/url-state';
+import { parseSeasonState, searchSeasonState, seasonPresets } from '../lib/season-url-state';
+import type { Period } from '../lib/url-state';
 import { applyAppearance, type Sort, type Theme } from '../lib/theme';
 import { seasonalCsv } from './tables';
 export function bindSeasonEvents(
@@ -43,7 +43,11 @@ export function bindSeasonEvents(
     }
     if (year || step) {
       const value = year ? Number(year) : selectedYear(model) + Number(step);
-      if (Number.isInteger(value) && value >= 1961 && value <= 2020) {
+      if (
+        Number.isInteger(value) &&
+        value >= model.manifest.firstYear &&
+        value <= model.manifest.lastYear
+      ) {
         model.state = { ...model.state, year: value };
         persist();
       }
@@ -102,7 +106,7 @@ export function bindSeasonEvents(
       return;
     }
     if (target.id === 'period-preset') {
-      const p = periodPresets[target.value];
+      const p = seasonPresets(model.manifest)[target.value];
       if (p) {
         model.state = { ...model.state, a: [...p.a], b: [...p.b] };
         persist();
@@ -120,7 +124,11 @@ export function bindSeasonEvents(
     }
     if (target.id === 'year-select') {
       const year = Number(target.value);
-      if (Number.isInteger(year) && year >= 1961 && year <= 2020) {
+      if (
+        Number.isInteger(year) &&
+        year >= model.manifest.firstYear &&
+        year <= model.manifest.lastYear
+      ) {
         model.state = { ...model.state, year };
         persist();
       }
@@ -139,7 +147,7 @@ export function bindSeasonEvents(
   });
   window.addEventListener('popstate', () => {
     const old = model.state.season;
-    model.state = parseSeasonState(location.search);
+    model.state = parseSeasonState(location.search, model.manifest);
     if (old !== model.state.season) void loadSeason();
     else {
       render();

@@ -16,7 +16,7 @@ export function yearMarkup(model: Model): string {
     yearLabel(model.state.season, year) +
     '</h2></div>' +
     '<div class="year-nav"><button data-year-step="-1" aria-label="Anno precedente" ' +
-    (year === 1961 ? 'disabled' : '') +
+    (year === model.manifest.firstYear ? 'disabled' : '') +
     '>←</button><select id="year-select" aria-label="Seleziona anno">' +
     rows(model)
       .map(
@@ -31,7 +31,7 @@ export function yearMarkup(model: Model): string {
       )
       .join('') +
     '</select><button data-year-step="1" aria-label="Anno successivo" ' +
-    (year === 2020 ? 'disabled' : '') +
+    (year === model.manifest.lastYear ? 'disabled' : '') +
     '>→</button></div></div><div class="year-cards">' +
     metrics
       .map((metric) => {

@@ -31,7 +31,8 @@ describe('dati pubblicati', () => {
         expect(dataset.years[59]?.year).toBe(2020);
       } else {
         assertSeasonCity(dataset);
-        for (const season of seasons) expect(dataset.seasons[season].years).toHaveLength(60);
+        for (const season of seasons)
+          expect(dataset.seasons[season].years).toHaveLength(manifest.lastYear - 1961 + 1);
       }
     }
   });

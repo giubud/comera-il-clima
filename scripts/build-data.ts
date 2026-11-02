@@ -7,6 +7,8 @@ import { compactSeason } from '../src/data/season-compact';
 import { applicability, seasons } from '../src/data/season-meta';
 import { datasetForCity } from './season-dataset';
 import { validateSeasonFolder } from './season-validation';
+import { refreshBuild } from './refresh-build';
+import { targetYear } from './refresh-data';
 const publicRoot = resolve('public');
 const output = join(publicRoot, 'data'),
   stage = resolve('.cache/data-next');
@@ -19,6 +21,31 @@ if (
 const hash = (text: string) => createHash('sha256').update(text).digest('hex');
 const json = (value: unknown) => JSON.stringify(value, null, 2) + '\n';
 async function main(): Promise<void> {
+  try {
+    await access(output);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    await rename(backup, output);
+    console.log('Ripristinato lo storico dopo una pubblicazione interrotta.');
+  }
+  const args = process.argv.slice(2);
+  if (!args.includes('--rebuild')) {
+    const index = args.indexOf('--to');
+    const manifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8')) as {
+      lastYear: number;
+    };
+    if (index >= 0 && args[index + 1] === undefined) throw new Error('Valore --to mancante.');
+    const to = index < 0 ? manifest.lastYear : targetYear(args[index + 1] ?? '');
+    await refreshBuild(to);
+    return;
+  }
+  const currentManifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8')) as {
+    lastYear: number;
+  };
+  if (currentManifest.lastYear > 2020)
+    throw new Error(
+      '--rebuild ricostruisce solo il riferimento 1961–2020; non ridurre lo storico.',
+    );
   // Recover the previous public folder if an interrupted swap stopped between renames.
   try {
     await access(output);

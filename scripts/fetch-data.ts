@@ -5,9 +5,10 @@ import { cities, getCity } from '../src/data/cities';
 import { assertDailyYear } from '../src/lib/season-aggregate';
 import type { DailyYearResponse } from '../src/data/schema';
 import { requireDefined } from '../src/lib/required';
-import { seasonCacheRoot, seasonRequestUrl, quotaWeight } from './season-source';
+import { seasonCacheRoot, seasonRequestUrl } from './season-source';
 import { originalSummer } from './summer-source';
-import { pauseQuota, QuotaPause, reserveQuota } from './fetch-quota';
+import { QuotaPause } from './fetch-quota';
+import { downloadYear } from './fetch-client';
 type CachedYear = { url: string; retrievedAt: string; sha256: string; response: DailyYearResponse };
 const sha256 = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function work() {
@@ -25,13 +26,13 @@ function work() {
     !Number.isInteger(from) ||
     !Number.isInteger(to) ||
     from < 1961 ||
-    to > 2020 ||
+    to > Math.max(2020, new Date().getUTCFullYear() - 1) ||
     from > to ||
     !Number.isInteger(limit) ||
     limit < 1 ||
     limit > 600
   ) {
-    throw new Error('Usa --all o --city <id>, --from/--to 1961–2020, --limit 1–600.');
+    throw new Error('Usa --all o --city <id>, anni dal 1961 all’ultimo completo, --limit 1–600.');
   }
   return {
     cities: args.includes('--all') ? cities : [requireDefined(getCity(id))],
@@ -53,30 +54,6 @@ async function readCache(file: string, url: string, year: number): Promise<Cache
     throw new Error(`Cache incoerente: ${file}. File conservato per la diagnosi.`);
   assertDailyYear(cached.response, year);
   return cached;
-}
-async function download(url: string, year: number): Promise<CachedYear> {
-  let error: unknown;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    await reserveQuota(quotaWeight(year));
-    let response: Response;
-    try {
-      response = await fetch(url, { signal: AbortSignal.timeout(60_000) });
-    } catch (failure) {
-      error = failure;
-      continue;
-    }
-    if (response.status === 429)
-      await pauseQuota(Number(response.headers.get('retry-after')) || 60);
-    if (!response.ok) {
-      error = new Error(`Open-Meteo: HTTP ${response.status}.`);
-      if (response.status < 500) throw error;
-      continue;
-    }
-    const value: unknown = await response.json();
-    assertDailyYear(value, year);
-    return { url, retrievedAt: new Date().toISOString(), sha256: sha256(value), response: value };
-  }
-  throw error instanceof Error ? error : new Error('Download fallito dopo tre tentativi.');
 }
 async function main(): Promise<void> {
   const selected = work();
@@ -115,13 +92,13 @@ async function main(): Promise<void> {
             pending++;
             continue;
           }
-          cached = await download(url, year);
+          cached = await downloadYear(url, year);
           await writeFile(file + '.tmp', JSON.stringify(cached, null, 2) + '\n');
           await rename(file + '.tmp', file);
           downloaded++;
         }
-        await originalSummer(city.id, year);
-        console.log(`${city.name} ${year}: dati annuali validi, estate originale verificata.`);
+        if (year <= 2020) await originalSummer(city.id, year);
+        console.log(`${city.name} ${year}: dati annuali validi.`);
       }
     }
     console.log(`Lotto: ${downloaded} scaricati, ${reused} riutilizzati, ${pending} da scaricare.`);

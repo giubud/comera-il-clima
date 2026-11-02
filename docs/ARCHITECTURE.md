@@ -1,5 +1,25 @@
 # Struttura dell'applicazione
 
+## Aggiornamenti B2
+
+`data-refresh.yml` separa il job `prepare`, in sola lettura del repository, da `propose`,
+che può scrivere la proposta di dati secondo il codice del workflow.
+La concorrenza è serializzata; la cache annuale conserva avanzamento e quote anche sugli errori.
+Il job che propone i dati riceve un artefatto già verificato e non installa dipendenze.
+
+`refresh-plan.ts` valida anno e archivio iniziale. `fetch-client.ts` applica tentativi limitati
+passando sempre da `fetch-quota.ts`. `refresh-data.ts` conserva lo storico e aggiunge le annualità;
+`refresh-build.ts` pubblica solo dopo validazione completa e gestisce recupero e assenza di novità.
+`refresh-summary.ts` rifiuta modifiche allo storico e descrive le differenze per città/stagione.
+`publish-refresh.mjs` è protetto contro l'avvio locale: su Actions aggiorna il branch automatico,
+senza force push o merge della PR, e apre o aggiorna la proposta. Non scrive direttamente su `main`.
+
+Nello schema 2 gli intervalli sono dinamici; le fonti storiche restano intatte e `extensions`
+registra le nuove provenienze. I moduli della vista leggono il manifest per URL, periodi,
+navigazione, conteggi e scala del grafico. I vecchi URL e confronti iniziali restano validi.
+
+## Moduli dell'interfaccia
+
 `main.ts` carica `console-v3.ts`, che crea lo stato e collega caricamenti, eventi e pagina.
 Le sezioni leggono lo stato ricevuto; eventi e caricamenti lo aggiornano.
 Calcoli, URL, tema e formato dei dati riusano le librerie esistenti.
