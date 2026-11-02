@@ -35,6 +35,7 @@ export type SeasonCityDataset = {
   cityId: string;
   source: SeasonSource;
   summerSource: SeasonSource;
+  extensions?: { year: number; source: SeasonSource }[];
   seasons: Record<Season, SeasonData>;
 };
 export type SeasonManifest = {
@@ -42,7 +43,7 @@ export type SeasonManifest = {
   generatedAt: string;
   dataVersion: string;
   firstYear: 1961;
-  lastYear: 2020;
+  lastYear: number;
   seasons: readonly Season[];
   winterYear: 'ending-year';
   thresholds: { hotDays: 30; frostDays: 0; heavyPrecipitationDays: 20 };
@@ -62,7 +63,7 @@ export type CompactSeason = {
   schemaVersion: 2;
   season: Season;
   firstYear: 1961;
-  lastYear: 2020;
+  lastYear: number;
   metrics: readonly SeasonMetric[];
   cities: Record<string, [number, number | null, number, number | null, number | null][]>;
 };

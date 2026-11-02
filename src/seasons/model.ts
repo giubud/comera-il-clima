@@ -66,11 +66,11 @@ export function orderedCities(model: Model) {
 }
 export function selectedYear(model: Model): number {
   if (model.state.year !== null) return model.state.year;
-  if (notApplicable(model.state.season, model.state.metric)) return 2020;
+  if (notApplicable(model.state.season, model.state.metric)) return model.manifest.lastYear;
   const data = rows(model),
     metric = model.state.metric;
   const baseline = stats(model, model.state.city, metric, model.state.a);
-  if (!baseline) return 2020;
+  if (!baseline) return model.manifest.lastYear;
   return data.reduce((best, row) =>
     warmth((row[metric] as number) - baseline.mean, metric) >
     warmth((best[metric] as number) - baseline.mean, metric)

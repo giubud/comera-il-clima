@@ -22,12 +22,14 @@ function direction(model: Model, z: number): string {
       return positive ? 'più caldo' : 'più fresco';
   }
 }
-function path(values: readonly (number | null)[], y: (n: number) => number): string {
+function path(
+  values: readonly (number | null)[],
+  y: (n: number) => number,
+  x: (i: number) => number,
+): string {
   return values
     .map((value, i) =>
-      value === null
-        ? ''
-        : (i === 0 || values[i - 1] === null ? 'M' : 'L') + (42 + i * 12.2) + ',' + y(value),
+      value === null ? '' : (i === 0 || values[i - 1] === null ? 'M' : 'L') + x(i) + ',' + y(value),
     )
     .join(' ');
 }
@@ -75,8 +77,13 @@ export function plotsMarkup(model: Model, stripes: boolean): string {
           );
         })
         .join('') +
-      '</div><div class="stripe-labels"><span>1961</span><span>1990</span>' +
-      '<span>2020</span></div><p class="note">Lo scarto è espresso in deviazioni standard ' +
+      '</div><div class="stripe-labels"><span>' +
+      model.manifest.firstYear +
+      '</span><span>' +
+      Math.floor((model.manifest.firstYear + model.manifest.lastYear) / 2) +
+      '</span><span>' +
+      model.manifest.lastYear +
+      '</span></div><p class="note">Lo scarto è espresso in deviazioni standard ' +
       'del periodo A. Rosso: ' +
       direction(model, 1) +
       '; blu: verso opposto.' +
@@ -91,9 +98,22 @@ export function plotsMarkup(model: Model, stripes: boolean): string {
     lo = Math.min(...all) - 1,
     hi = Math.max(...all) + 1;
   const y = (value: number) => 214 - ((value - lo) / (hi - lo)) * 174;
+  const x = (index: number) => 42 + (index * 723) / Math.max(1, data.length - 1);
+  const first = model.manifest.firstYear,
+    last = model.manifest.lastYear;
+  const ticks = [
+    first,
+    ...Array.from(
+      { length: Math.floor(last / 10) - Math.floor(first / 10) },
+      (_, i) => (Math.floor(first / 10) + i + 1) * 10,
+    ),
+    last,
+  ];
   return (
     '<section class="chart-panel panel"><div class="panel-bar"><h2>' +
-    'Sessant’anni, stagione per stagione</h2><div class="chart-controls"><label>Confronta con ' +
+    data.length +
+    ' anni, stagione per stagione</h2><div class="chart-controls">' +
+    '<label>Confronta con ' +
     '<select id="compare-city" aria-label="Confronta con un’altra città">' +
     '<option value="">Nessuna città</option>' +
     cities
@@ -134,45 +154,41 @@ export function plotsMarkup(model: Model, stripes: boolean): string {
       })
       .join('') +
     '<path class="data-line" d="' +
-    path(values, y) +
+    path(values, y, x) +
     '"/>' +
-    (other ? '<path class="compare-line" d="' + path(other, y) + '"/>' : '') +
+    (other ? '<path class="compare-line" d="' + path(other, y, x) + '"/>' : '') +
     (model.state.smooth
-      ? '<path class="smooth-line" d="' + path(movingAverage(values), y) + '"/>'
+      ? '<path class="smooth-line" d="' + path(movingAverage(values), y, x) + '"/>'
       : '') +
     (model.state.smooth && other
-      ? '<path class="compare-smooth-line" d="' + path(movingAverage(other), y) + '"/>'
+      ? '<path class="compare-smooth-line" d="' + path(movingAverage(other), y, x) + '"/>'
       : '') +
     values
       .map(
         (value, i) =>
           '<circle class="chart-point" data-year="' +
-          (1961 + i) +
+          (first + i) +
           '" role="button" tabindex="0" r="' +
-          (1961 + i === year ? 5 : 3) +
+          (first + i === year ? 5 : 3) +
           '" cx="' +
-          (42 + i * 12.2) +
+          x(i) +
           '" cy="' +
           y(value) +
           '" aria-label="' +
-          yearLabel(model.state.season, 1961 + i) +
+          yearLabel(model.state.season, first + i) +
           ': ' +
           withUnit(value, metric, true) +
           '"><title>' +
-          yearLabel(model.state.season, 1961 + i) +
+          yearLabel(model.state.season, first + i) +
           ': ' +
           withUnit(value, metric, true) +
           '</title></circle>',
       )
       .join('') +
-    [1961, 1970, 1980, 1990, 2000, 2010, 2020]
+    [...new Set(ticks)]
       .map(
         (value) =>
-          '<text class="axis-label" x="' +
-          (42 + (value - 1961) * 12.2) +
-          '" y="237">' +
-          value +
-          '</text>',
+          '<text class="axis-label" x="' + x(value - first) + '" y="237">' + value + '</text>',
       )
       .join('') +
     '</svg></div><div class="chart-footer"><span>Media A ' +

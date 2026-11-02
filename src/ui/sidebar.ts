@@ -4,8 +4,13 @@ import { formatSigned } from '../lib/format';
 import { requireDefined } from '../lib/required';
 import { periodPresets, periodWarnings, type Period } from '../lib/url-state';
 import { tone } from './display';
+import type { YearBounds } from '../lib/url-state';
 
-export function periodFields(key: 'a' | 'b', period: Period): string {
+export function periodFields(
+  key: 'a' | 'b',
+  period: Period,
+  bounds: YearBounds = { firstYear: 1961, lastYear: 2020 },
+): string {
   return [
     '<fieldset class="period-fields"><legend>Periodo ',
     `${key.toUpperCase()}`,
@@ -16,7 +21,10 @@ export function periodFields(key: 'a' | 'b', period: Period): string {
     '">',
     [
       String(
-        Array.from({ length: 60 }, (_, i) => 1961 + i)
+        Array.from(
+          { length: bounds.lastYear - bounds.firstYear + 1 },
+          (_, i) => bounds.firstYear + i,
+        )
           .map(
             (year) =>
               `<option value="${year}" ${year === period[0] ? 'selected' : ''}>${year}</option>`,
@@ -31,7 +39,10 @@ export function periodFields(key: 'a' | 'b', period: Period): string {
     '">',
     [
       String(
-        Array.from({ length: 60 }, (_, i) => 1961 + i)
+        Array.from(
+          { length: bounds.lastYear - bounds.firstYear + 1 },
+          (_, i) => bounds.firstYear + i,
+        )
           .map(
             (year) =>
               `<option value="${year}" ${year === period[1] ? 'selected' : ''}>${year}</option>`,

@@ -23,11 +23,12 @@ export async function assertSummerYear(cityId: string, row: SeasonYear): Promise
   }
 }
 export async function assertSummerDataset(dataset: SeasonCityDataset): Promise<void> {
-  for (const row of dataset.seasons.JJA.years) await assertSummerYear(dataset.cityId, row);
+  for (const row of dataset.seasons.JJA.years.filter((row) => row.year <= 2020))
+    await assertSummerYear(dataset.cityId, row);
   // This guard is independent from the frozen numbers; the unit regression also checks summaries.
   if (
     !isDeepStrictEqual(
-      dataset.seasons.JJA.years.map((row) => row.year),
+      dataset.seasons.JJA.years.filter((row) => row.year <= 2020).map((row) => row.year),
       Array.from({ length: 60 }, (_, i) => 1961 + i),
     )
   )

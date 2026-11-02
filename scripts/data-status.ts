@@ -4,12 +4,31 @@ import { createHash } from 'node:crypto';
 import { cities } from '../src/data/cities';
 import { assertDailyYear } from '../src/lib/season-aggregate';
 import { seasonCacheRoot, seasonRequestUrl } from './season-source';
+const args = process.argv.slice(2);
+const manifest = JSON.parse(await readFile('public/data/manifest.json', 'utf8')) as {
+  lastYear?: number;
+};
+const argument = (key: string, fallback: number) => {
+  const index = args.indexOf(key);
+  return index < 0 ? fallback : Number(args[index + 1]);
+};
+const from = argument('--from', 1961),
+  to = argument('--to', manifest.lastYear ?? 2020);
+if (
+  !Number.isInteger(from) ||
+  !Number.isInteger(to) ||
+  from < 1961 ||
+  from > to ||
+  to > Math.max(2020, new Date().getUTCFullYear() - 1)
+)
+  throw new Error('Intervallo non valido.');
+const total = (to - from + 1) * cities.length;
 let valid = 0,
   missing = 0,
   invalid = 0;
 for (const city of cities) {
   let count = 0;
-  for (let year = 1961; year <= 2020; year++) {
+  for (let year = from; year <= to; year++) {
     try {
       const value = JSON.parse(
         await readFile(join(seasonCacheRoot, city.id, year + '.json'), 'utf8'),
@@ -32,7 +51,7 @@ for (const city of cities) {
       else invalid++;
     }
   }
-  console.log(`${city.name}: ${count}/60 anni annuali validi.`);
+  console.log(`${city.name}: ${count}/${to - from + 1} anni annuali validi.`);
 }
 let active = false;
 try {
@@ -44,10 +63,10 @@ try {
 } catch {
   /* Nessun download attivo. */
 }
-console.log(`Totale: ${valid}/600 validi, ${missing} mancanti, ${invalid} non validi.`);
+console.log(`Totale: ${valid}/${total} validi, ${missing} mancanti, ${invalid} non validi.`);
 console.log(active ? 'Download in corso.' : 'Nessun download attivo.');
 console.log(
-  valid === 600
+  valid === total
     ? 'Cache annuale pronta: eseguire data:build e data:validate.'
     : 'Archivio incompleto: i dati pubblicati restano invariati.',
 );

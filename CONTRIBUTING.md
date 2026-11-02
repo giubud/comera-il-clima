@@ -22,16 +22,19 @@ Prima di una modifica leggere `docs/PLAN.md`, `docs/STATUS.md`, `docs/DECISIONS.
 
 Non modificare modello o coordinate fra periodi e non sostituire silenziosamente la fonte.
 
-## Rigenerare i dati
+## Aggiornare i dati
 
 ```bash
-npm run data:fetch -- --all
-npm run data:build
+npm run data:fetch -- --all --from 2021 --to 2025 --limit 300
+npm run data:build -- --to 2025
 npm run data:validate
 ```
 
-Controllare il diff dei JSON e del manifest. Una revisione del fornitore può cambiare gli
-aggregati; registrare la nuova `dataVersion` e il motivo della rigenerazione.
+Questo esempio estende il riferimento B1 fino al 2025. Leggere prima `public/data/manifest.json`:
+negli aggiornamenti successivi usare `--from` uguale a `lastYear + 1`. Se l'anno richiesto è già
+presente, non avviare il download. La build senza `--to` conserva l'intervallo pubblicato.
+Controllare il diff dei JSON e del manifest. Gli aggiornamenti non riscrivono gli anni presenti;
+una revisione storica del fornitore richiede un'attività distinta e una motivazione esplicita.
 La cache annuale `.cache/open-meteo-seasons-v2/` e quelle estive `.cache/open-meteo-land/`
 e `.cache/open-meteo/` non devono essere committate. Non cancellare la cache senza approvazione del proprietario.
 
@@ -88,7 +91,56 @@ Dopo ogni estrazione di un modulo eseguire typecheck, test unitari ed E2E.
 Lo schema 2 e la procedura di ricostruzione sono descritti in [SEASONS.md](docs/SEASONS.md).
 `data:fetch` usa la cache annuale separata e un massimo predefinito di 300 risposte nuove;
 `data:status` controlla l'avanzamento senza rete. Non eseguire due download insieme.
-Per la build completa servono le 600 risposte annuali e le 600 estati originali.
+Solo la ricostruzione storica `npm run data:build -- --rebuild` richiede le 600 risposte annuali
+e le 600 estati originali. L'aggiornamento progressivo richiede lo storico JSON e le nuove fonti.
 La regressione estiva è un vincolo: non aggiornare il riferimento per nascondere variazioni.
 La pipeline mantiene il prodotto precedente se le fonti non sono complete e valide.
 I dati sintetici stagionali sono riservati ai test e non devono essere pubblicati.
+
+## Workflow annuale B2
+
+Pubblicare prima la PR del codice B2. Il workflow diventa avviabile quando è presente su `main`.
+L'estensione reale viene proposta in una successiva PR di soli dati generata dal workflow.
+
+1. In **Settings → Actions → General → Workflow permissions**, abilitare
+   **Allow GitHub Actions to create and approve pull requests**. Il nome include le approvazioni,
+   ma il nostro workflow usa questa possibilità soltanto per creare o aggiornare PR.
+   Non occorre allargare i permessi predefiniti di tutti i workflow.
+2. In **Actions → Refresh climate data → Run workflow**, scegliere `main` e inserire `2025`
+   per il primo aggiornamento del riferimento B1. Vuoto seleziona l'anno precedente.
+3. Attendere download e controlli. La scheda Summary mostra le differenze per ogni città,
+   gli anni aggiunti e i cinque indicatori dell'ultimo anno per ciascuna stagione.
+4. Aprire la PR sul branch `automation/data-refresh-2025`. Se GitHub mostra **Approve workflows to run**,
+   approvare l'avvio della CI dalla pagina della PR. Attendere `verify` verde e controllare i dati.
+5. Fare personalmente il merge e verificare CI e deploy su `main`, come nelle attività precedenti.
+6. Ripetere lo stesso avvio: l'esito deve indicare nessun dato nuovo, senza modificare file o date
+   e senza aprire un'altra PR. Una PR aperta per gli stessi dati viene riutilizzata.
+
+I permessi sono limitati per job: preparazione `contents: read`; proposta `contents: write`
+e `pull-requests: write`. Non si usano PAT, `actions: write`, `pages: write`, `id-token` o
+approvazioni automatiche. Il secondo job non installa dipendenze: esegue solo lo script Node
+del commit affidabile che ha avviato il workflow e copia il pacchetto verificato dal primo job.
+La cache usa il token di runtime delle Actions e non richiede `actions: write`.
+
+Il workflow non si avvia da PR o fork e serializza gli avvii senza cancellare quello in corso.
+Il job con permessi di scrittura si ferma se `main` è cambiato durante il download; ripetere
+il workflow. Il branch automatico è riservato ai dati: non modificarvi codice a mano.
+Non si fanno force push. Il corpo della PR passa da un file, senza interpolazioni nel comando.
+
+`actions/cache` usa `.cache/open-meteo-seasons-v2`, non il vecchio archivio nearest
+`.cache/open-meteo`. Ogni tentativo conserva risposte valide e `quota.json`; non salva lock o file
+temporanei. Se una quota impone una pausa lunga o i 429 persistono, il workflow fallisce con
+l'orario di ripresa o un errore esplicito. Rilanciarlo solo dopo la pausa; non azzerare il registro.
+La perdita della cache non obbliga a riscaricare lo storico: i JSON già pubblicati sono validati
+prima di essere riutilizzati. L'API gratuita resta soggetta ai termini d'uso non commerciale.
+
+Il cron annuale è `17 5 1 3 *` in UTC. Controllare l'abilitazione del workflow dopo lunghi periodi
+di inattività: GitHub può disabilitare la pianificazione dei repository pubblici dopo 60 giorni.
+Non vengono creati commit artificiali o avvii aggiuntivi per aggirare questa regola.
+
+Riferimenti verificati il 02/11/2026:
+[permessi](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions),
+[avvio delle CI](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow),
+[cache](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching),
+[pianificazioni](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows),
+[quote Open-Meteo](https://open-meteo.com/en/pricing).

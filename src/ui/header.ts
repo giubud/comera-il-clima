@@ -1,4 +1,5 @@
 import { type Theme } from '../lib/theme';
+import type { YearBounds } from '../lib/url-state';
 
 function logo(): string {
   return [
@@ -14,16 +15,24 @@ function logo(): string {
   ].join('');
 }
 
-export function headerMarkup(model: Readonly<{ theme: Theme }>, seasonal = false): string {
+export function headerMarkup(
+  model: Readonly<{ theme: Theme }>,
+  seasonal = false,
+  bounds: YearBounds = { firstYear: 1961, lastYear: 2020 },
+): string {
   return [
     '<a class="skip-link" href="#console">Vai ai dati</a><header ',
     'class="topbar">\n    <div class="brand">',
     `${logo()}`,
     '<span><strong>Com’era il clima</strong><small>Atlante delle ',
     seasonal ? 'stagioni meteorologiche' : 'estati italiane',
-    ' · ERA5 1961—2020</small></span></div>\n    <div ',
+    ` · ERA5 ${bounds.firstYear}—${bounds.lastYear}</small></span></div>\n    <div `,
     'class="top-actions"><span class="edition">10 città · ',
-    seasonal ? '2.400 stagioni' : '600 estati',
+    seasonal
+      ? ((bounds.lastYear - bounds.firstYear + 1) * 40).toLocaleString('it-IT', {
+          useGrouping: true,
+        }) + ' stagioni'
+      : '600 estati',
     '</span><a class="repo-link" ',
     'href="https://github.com/giubud/comera-il-clima">Codice su GitHub</a>',
     '<div class="theme-switch" role="group" ',

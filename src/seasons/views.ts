@@ -11,6 +11,25 @@ import { plotsMarkup } from './plots';
 import { mapMarkup } from './map';
 import { legalMarkup } from '../ui/legal';
 
+function sourceWarning(model: Model): string {
+  const dataset = model.dataset;
+  if (!dataset) return '';
+  const historical = model.state.season === 'JJA' ? dataset.summerSource : dataset.source;
+  if (
+    !dataset.extensions?.some(
+      (item) => item.source.utcOffsetSeconds !== historical.utcOffsetSeconds,
+    )
+  )
+    return '';
+  return (
+    '<p class="period-warning" role="status">Per alcuni anni aggiunti, le giornate ' +
+    'della fonte sono spostate di un’ora rispetto allo storico di questa stagione. ' +
+    'Questo può incidere sui confronti. ' +
+    '<a href="https://github.com/giubud/comera-il-clima/blob/main/docs/METHODOLOGY.md">' +
+    'Dettagli del metodo</a>.</p>'
+  );
+}
+
 function sidebar(model: Model): string {
   return (
     '<aside class="sidebar panel" aria-label="Città"><div class="sidebar-section">' +
@@ -30,21 +49,30 @@ function sidebar(model: Model): string {
       )
       .join('') +
     '</select></label>' +
-    '<h2>Scegli i periodi</h2><p class="quiet">Dal 1961 al 2020. ' +
+    '<h2>Scegli i periodi</h2><p class="quiet">Dal ' +
+    model.manifest.firstYear +
+    ' al ' +
+    model.manifest.lastYear +
+    '. ' +
     'L’inverno è assegnato all’anno in cui termina.</p>' +
-    periodFields('a', model.state.a) +
-    periodFields('b', model.state.b) +
+    periodFields('a', model.state.a, model.manifest) +
+    periodFields('b', model.state.b, model.manifest) +
     '<label class="preset-label">Confronti rapidi<select id="period-preset" ' +
     'aria-label="Confronto rapido"><option value="">Personalizzato</option>' +
     '<option value="standard">1961–1990 / 1991–2020</option>' +
     '<option value="decades">Primo / ultimo decennio</option>' +
-    '<option value="twenty">1961–1980 / 2001–2020</option></select></label>' +
+    '<option value="twenty">1961–1980 / ' +
+    (model.manifest.lastYear - 19) +
+    '–' +
+    model.manifest.lastYear +
+    '</option></select></label>' +
     periodWarnings(model.state.a, model.state.b)
       .map(
         (w) =>
           '<p class="period-warning" role="status">' + w.replaceAll('estati', 'stagioni') + '</p>',
       )
       .join('') +
+    sourceWarning(model) +
     '</div><div class="sidebar-section"><h2>Dieci città</h2>' +
     '<label class="preset-label">Ordina città<select id="city-sort" aria-label="Ordina città">' +
     [
@@ -185,17 +213,21 @@ export function pageMarkup(model: Model): string {
       yearMarkup(model);
   }
   return (
-    headerMarkup(model, true) +
+    headerMarkup(model, true, model.manifest) +
     '<main id="console" class="season-console">' +
     '<div class="intro"><span class="eyebrow">La memoria delle stagioni</span>' +
-    '<p>Dieci città · quattro stagioni meteorologiche · cinque indicatori · 1961–2020.</p></div>' +
+    '<p>Dieci città · quattro stagioni meteorologiche · cinque indicatori · ' +
+    model.manifest.firstYear +
+    '–' +
+    model.manifest.lastYear +
+    '.</p></div>' +
     '<div class="dashboard-grid">' +
     sidebar(model) +
     '<div class="main-column">' +
     main +
     '</div></div>' +
     (model.compact ? comparisonMarkup(model) + annualMarkup(model) : '') +
-    legalMarkup(true) +
+    legalMarkup(true, model.manifest.lastYear) +
     '</main><footer class="site-footer"><span>Com’era il clima</span>' +
     '<a href="https://github.com/giubud/comera-il-clima/blob/main/DATA_LICENSE.md">' +
     'Licenze, crediti e avvertenze</a></footer>'

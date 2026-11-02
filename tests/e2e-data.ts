@@ -11,9 +11,16 @@ import { seasonalFixture } from './season-fixture';
 import type { Page } from '@playwright/test';
 
 export type ArchiveKind = 'published' | 'seasonal-fixture';
+export async function archiveLastYear(kind: ArchiveKind): Promise<number> {
+  const manifest = (await fileValue(kind, 'manifest.json')) as {
+    schemaVersion: number;
+    lastYear?: number;
+  };
+  return manifest.schemaVersion === 1 ? 2020 : (manifest.lastYear ?? 2020);
+}
 
-export async function mockSeasonArchive(page: Page) {
-  const archive = await seasonalFixture();
+export async function mockSeasonArchive(page: Page, lastYear = 2020) {
+  const archive = await seasonalFixture(lastYear);
   await page.route('**/comera-il-clima/data/**', async (route) => {
     const file = new URL(route.request().url()).pathname.split('/data/')[1] ?? '';
     const body = archive.files[file];
@@ -48,7 +55,9 @@ export async function summerYears(kind: ArchiveKind) {
   return data.seasons.JJA.years;
 }
 
-export async function summerCompact(kind: ArchiveKind): Promise<CompactSummers> {
+export async function summerCompact(
+  kind: ArchiveKind,
+): Promise<Omit<CompactSummers, 'lastYear'> & { lastYear: number }> {
   const ids = cities.map((c) => c.id);
   if ((await archiveVersion(kind)) === 1) {
     const value = await fileValue(kind, 'summers.json');
@@ -60,7 +69,7 @@ export async function summerCompact(kind: ArchiveKind): Promise<CompactSummers> 
   return {
     schemaVersion: 1,
     firstYear: 1961,
-    lastYear: 2020,
+    lastYear: value.lastYear,
     cities: Object.fromEntries(
       Object.entries(value.cities).map(([id, records]) => [
         id,

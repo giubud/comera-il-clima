@@ -1,4 +1,4 @@
-export function legalMarkup(seasonal = false): string {
+export function legalMarkup(seasonal = false, lastYear = 2020): string {
   const markup = [
     '<section class="methods panel" aria-labelledby="methods-heading">',
     '<div class="panel-bar"><h2 id="methods-heading">Metodo e ',
@@ -71,6 +71,6 @@ export function legalMarkup(seasonal = false): string {
     .replaceAll('5 estati', '5 stagioni')
     .replace(
       'selezione delle estati 1961–2020, calcolo di tre indicatori',
-      'selezione delle quattro stagioni 1961–2020, calcolo di cinque indicatori',
+      `selezione delle quattro stagioni 1961–${lastYear}, calcolo di cinque indicatori`,
     );
 }

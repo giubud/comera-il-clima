@@ -1,5 +1,28 @@
 # Metodologia
 
+## Estensione progressiva oltre il 2020
+
+Gli aggiornamenti B2 conservano le annualità già pubblicate e aggiungono solo anni completi.
+Il manifest indica l'intervallo disponibile. I confronti iniziali restano 1961–1990 e 1991–2020;
+periodi personalizzati, grafici, tabella e CSV possono usare anche gli anni aggiunti.
+L'inverno è sempre assegnato all'anno in cui termina.
+
+Le nuove annualità sono ricalcolate dalle rispettive risposte giornaliere reali Open-Meteo ERA5,
+senza modificare modello, coordinate richieste, selezione land, correzione quota o soglie.
+`extensions` registra la provenienza per anno, separatamente dalle due fonti storiche B1.
+Le medie dei trentenni iniziali e tutti i valori precedenti restano esattamente invariati.
+Un aggiornamento senza nuove annualità non riscrive file o date di generazione.
+
+**Discontinuità oraria delle estati aggiunte:** le risposte 2021–2025 estratte il 02/11/2026
+riportano UTC+1, mentre la cache estiva originale usa UTC+2. Le giornate non hanno quindi
+esattamente la stessa finestra temporale: questo può incidere su temperature, soglie e somme
+giornaliere. Non presentiamo la serie estesa come perfettamente omogenea rispetto a tale aspetto.
+L'interfaccia segnala il caso usando i metadati della fonte. I valori storici non vengono corretti
+o riscritti per eliminare artificialmente il salto; una rianalisi omogenea sarebbe un'attività
+scientifica separata, con nuovo confronto e decisione esplicita.
+
+Le sezioni che seguono documentano anche i riferimenti storici e le scelte di B1.
+
 ## Quattro stagioni — schema 2
 
 Lo schema 2 comprende DJF, MAM, JJA e SON: 2.400 stagioni annuali nelle dieci città.

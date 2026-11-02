@@ -3,7 +3,13 @@ import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { metrics } from '../src/data/schema';
 import { normalizeDisplayed } from '../src/lib/format';
-import { mockSeasonArchive, archiveVersion, summerYears, summerCompact } from './e2e-data';
+import {
+  mockSeasonArchive,
+  archiveVersion,
+  summerYears,
+  summerCompact,
+  archiveLastYear,
+} from './e2e-data';
 
 test('schema 2: quattro stagioni, URL, inverno e veri zeri', async ({ page }) => {
   await mockSeasonArchive(page);
@@ -99,6 +105,35 @@ test('schema 2: nuovi indicatori e layout nei due temi su schermo stretto', asyn
   }
 });
 
+test('archivio esteso: anni, URL, periodi, grafico e CSV seguono il manifest', async ({ page }) => {
+  await mockSeasonArchive(page, 2025);
+  await page.goto('?city=milano&season=DJF&metric=frostDays&year=2025&b=1996-2025');
+  await expect(page.getByRole('heading', { name: 'Inverno 2024/25', exact: true })).toBeVisible();
+  await expect(page.locator('.edition')).toHaveText('10 città · 2.600 stagioni');
+  await expect(page.locator('.annual tbody tr')).toHaveCount(65);
+  await expect(page.locator('.chart-point')).toHaveCount(65);
+  await expect(page.getByRole('button', { name: 'Anno successivo', exact: true })).toBeDisabled();
+  await expect(page.getByRole('combobox', { name: 'Fine periodo B', exact: true })).toHaveValue(
+    '2025',
+  );
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Inverno 2024/25', exact: true })).toBeVisible();
+  expect(
+    await page
+      .locator('.chart-point')
+      .evaluateAll((points) => points.every((p) => Number(p.getAttribute('cx')) <= 765)),
+  ).toBe(true);
+  await page.getByRole('combobox', { name: 'Confronto rapido' }).selectOption('decades');
+  await expect(page).toHaveURL(/b=2016-2025/);
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'CSV ↓', exact: true }).click();
+  const text = await readFile(requireDefined(await (await downloadPromise).path()), 'utf8');
+  expect(text.trim().split('\n')).toHaveLength(66);
+  expect(text.trim().split('\n').at(-1)).toMatch(/^2025,DJF,2024-12-01,2025-02-28,90,/);
+  await page.getByRole('combobox', { name: 'Stagione', exact: true }).selectOption('JJA');
+  await expect(page.getByText(/giornate della fonte sono spostate di un’ora/)).toBeVisible();
+});
+
 for (const kind of ['published', 'seasonal-fixture'] as const) {
   test.describe(kind, () => {
     test.beforeEach(async ({ page }) => {
@@ -165,7 +200,9 @@ for (const kind of ['published', 'seasonal-fixture'] as const) {
       );
       const path = await download.path();
       const csv = await readFile(requireDefined(path), 'utf8');
-      expect(csv.split('\n').filter(Boolean)).toHaveLength(61);
+      expect(csv.split('\n').filter(Boolean)).toHaveLength(
+        (await archiveLastYear(kind)) - 1961 + 2,
+      );
       const years = await summerYears(kind);
       const lines = csv.split('\n').filter(Boolean);
       expect(lines[0]).toBe(
@@ -210,7 +247,8 @@ for (const kind of ['published', 'seasonal-fixture'] as const) {
     }) => {
       await page.goto('?city=roma&metric=meanTemperatureC');
       await page.getByRole('combobox', { name: 'Confronto rapido' }).selectOption('decades');
-      await expect(page).toHaveURL(/a=1961-1970&b=2011-2020/);
+      const end = await archiveLastYear(kind);
+      await expect(page).toHaveURL(new RegExp(`a=1961-1970&b=${end - 9}-${end}`));
       await page
         .getByRole('combobox', { name: /Confronta con un.altra città/ })
         .selectOption('milano');
@@ -260,14 +298,16 @@ for (const kind of ['published', 'seasonal-fixture'] as const) {
       await expect(page.locator('.year-cards strong').nth(1)).toHaveText('81 giorni');
     });
 
-    test('mappa locale navigabile da tastiera e archivio di 60 estati', async ({ page }) => {
+    test('mappa locale navigabile da tastiera e archivio completo', async ({ page }) => {
       await page.goto('?city=roma&metric=meanTemperatureC');
       const mapCity = page.locator('.map-point[data-city="napoli"]');
       await expect(mapCity).toBeVisible();
       await mapCity.focus();
       await page.keyboard.press('Enter');
       await expect(page.getByRole('heading', { name: 'Napoli · estate' })).toBeVisible();
-      await expect(page.locator('.annual tbody tr')).toHaveCount(60);
+      await expect(page.locator('.annual tbody tr')).toHaveCount(
+        (await archiveLastYear(kind)) - 1961 + 1,
+      );
       await page.getByRole('checkbox', { name: 'Media mobile (5)' }).check();
       await expect(page).toHaveURL(/smooth=1/);
     });
@@ -279,9 +319,10 @@ for (const kind of ['published', 'seasonal-fixture'] as const) {
       await page.goto('?city=roma&metric=meanTemperatureC');
       const legend = page.getByRole('group', { name: 'Legenda della mappa', exact: true });
       await expect(legend).toBeVisible();
+      const count = source.lastYear - source.firstYear + 1;
       for (const [preset, a, b] of [
         ['standard', [0, 30], [30, 60]],
-        ['decades', [0, 10], [50, 60]],
+        ['decades', [0, 10], [count - 10, count]],
       ] as const) {
         await page.getByRole('combobox', { name: 'Confronto rapido' }).selectOption(preset);
         for (const [metricIndex, metric] of metrics.entries()) {
@@ -359,7 +400,7 @@ for (const kind of ['published', 'seasonal-fixture'] as const) {
         const baseline = years.slice(0, 30).map((row) => requireDefined(row[metricIndex]));
         const mean = baseline.reduce((sum, value) => sum + value, 0) / 30;
         const sd = Math.sqrt(baseline.reduce((sum, value) => sum + (value - mean) ** 2, 0) / 29);
-        await expect(group.getByRole('button')).toHaveCount(60);
+        await expect(group.getByRole('button')).toHaveCount(years.length);
         for (const [index, row] of years.entries()) {
           const raw = (requireDefined(row[metricIndex]) - mean) / sd;
           const rounded = Number((metric === 'precipitationMm' ? -raw : raw).toFixed(1));

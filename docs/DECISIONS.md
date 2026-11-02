@@ -1,5 +1,60 @@
 # Decisioni
 
+## 2026-11-02 — B2: aggiornamento annuale con proposta di dati
+
+- Piano approvato dal proprietario sul branch `ci/data-refresh`, inclusa la preparazione
+  dell'estensione fino all'ultimo anno completo: attualmente il 2025.
+- Avvio manuale con `to_year` facoltativo; vuoto significa anno UTC precedente. Cron annuale
+  il 1° marzo alle 05:17 UTC, 06:17 italiane, con margine per la disponibilità delle fonti.
+  Non si accettano anni incompleti o riduzioni dello storico.
+- Il job `prepare` usa solo `contents: read`; `propose` usa `contents: write` e
+  `pull-requests: write`. Gli altri permessi sono disabilitati. Nessun PAT o merge automatico.
+  Il job con scrittura non installa dipendenze e riceve soltanto il pacchetto già verificato.
+- Si usa la cache annuale effettiva `.cache/open-meteo-seasons-v2`, non il vecchio archivio
+  nearest `.cache/open-meteo`. Le cache locali precedenti restano intatte. Su Actions,
+  risposte e registro quote vengono salvati anche dopo gli errori, escludendo lock e temporanei.
+- Il token della cache è quello di runtime: non occorre `actions: write`. La cache può scadere;
+  i JSON già pubblicati sono lo storico verificato, così un nuovo runner non deve ricostruire
+  i 600 anni originali né disporre delle estati originali del PC.
+- Il downloader passa dal registro delle quote prima di ogni tentativo. Rispetta `Retry-After`,
+  anche in formato data; dopo tre 429 si ferma con un messaggio chiaro. Una pausa lunga del
+  registro interrompe prima senza forzare altri tentativi. Le quote non sono mai azzerate.
+- `data:build` aggiunge anni allo storico validato. Se non ci sono novità non scrive file,
+  date o versioni. `--rebuild` resta esplicito e limitato alla ricostruzione originale 1961–2020.
+- Lo schema 2 resta compatibile con B1. `lastYear` è dinamico e `extensions` dichiara la fonte
+  annuale di ogni anno aggiunto. I cinque indicatori e tutte le stagioni già presenti restano
+  invariati. I confronti iniziali restano 1961–1990 e 1991–2020; i preset recenti seguono il
+  limite del manifest, così come URL, grafico, tabella, CSV e navigazione.
+- La nuova risposta annuale è usata anche per le estati aggiunte. Il 02/11/2026 riporta UTC+1,
+  mentre le estati storiche sono UTC+2: si dichiara la discontinuità delle giornate nelle fonti,
+  nella metodologia e nell'interfaccia. Non viene presentata come una serie orariamente
+  omogenea, né si riscrivono i dati storici per nascondere la differenza.
+- Il branch automatico `automation/data-refresh-<anno>` contiene soltanto `public/data`. La proposta
+  viene creata o aggiornata senza force push; una verifica impedisce di sovrascrivere un `main`
+  cambiato durante il download. Il proprietario mantiene controllo di CI e merge.
+- GitHub richiede l'abilitazione della creazione di PR da Actions e l'approvazione delle CI
+  delle PR generate con `GITHUB_TOKEN`. Si documenta anche la sospensione delle pianificazioni
+  dopo 60 giorni di inattività; non si introducono avvii o commit artificiali per aggirarla.
+- Prova reale: 50 nuovi download 2021–2025, 650/650 annualità valide; 2.600 stagioni in una
+  cartella separata, versione `153f99695e250a1e`. I 15 JSON passano da 1.303.664 a 1.410.766 byte
+  (gzip da 143.226 a 156.299). Ripetere la build produce file identici byte per byte.
+  Tutto lo storico B1 e i file del prodotto restano intatti durante la prova.
+- La suite completa è provata anche su una copia isolata con i veri dati 2025. Vitest esclude
+  `.cache/**`, come gli altri strumenti, per non raccogliere copie o artefatti come test del prodotto.
+  In entrambi gli archivi passano le otto verifiche: lint, formattazione, limiti dei 52 sorgenti,
+  TypeScript, 57 unitari, validazione, build e 33 E2E. Sei ulteriori casi del browser verificano
+  i dati reali 2025, due temi, schermi stretti, CSV, anni bisestili e URL dopo ricaricamento.
+- La PR del codice e la prima PR automatica di dati sono passaggi distinti: il primo avvio
+  remoto e la prova senza novità si eseguono dopo che il proprietario pubblica il workflow.
+  Nessuna nuova dipendenza, staging, commit, push o operazione Git remota eseguita dall'agente.
+
+Fonti ufficiali consultate il 02/11/2026:
+[permessi GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions),
+[CI delle PR automatiche](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow),
+[cache](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching),
+[pianificazioni](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows),
+[Open-Meteo](https://open-meteo.com/en/pricing).
+
 ## 2026-09-16 — Avvio del progetto
 
 - Il workspace iniziale non conteneva un repository Git né file applicativi.

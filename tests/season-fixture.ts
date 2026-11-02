@@ -9,7 +9,8 @@ import { summarizeSeason } from '../src/lib/season-aggregate';
 import { requestUrl } from '../scripts/open-meteo';
 import { seasonRequestUrl } from '../scripts/season-source';
 import { compactSeason } from '../src/data/season-compact';
-export async function seasonalFixture() {
+import { requireDefined } from '../src/lib/required';
+export async function seasonalFixture(lastYear = 2020) {
   const baseline = JSON.parse(await readFile('tests/fixtures/summer-baseline.json', 'utf8')) as {
     cities: Record<string, { years: Summer[] }>;
   };
@@ -68,6 +69,34 @@ export async function seasonalFixture() {
       ) as SeasonCityDataset['seasons'],
     };
   });
+  for (const dataset of datasets) {
+    const city = requireDefined(cities.find((c) => c.id === dataset.cityId));
+    for (let year = 2021; year <= lastYear; year++) {
+      dataset.extensions ??= [];
+      dataset.extensions.push({
+        year,
+        source: {
+          ...dataset.source,
+          requests: [
+            {
+              url: seasonRequestUrl(city.latitude, city.longitude, year),
+              retrievedAt: '2026-11-02T00:00:00Z',
+              sha256: '0'.repeat(64),
+            },
+          ],
+        },
+      });
+      for (const season of seasons) {
+        const last = requireDefined(dataset.seasons[season].years.at(-1));
+        dataset.seasons[season].years.push({
+          ...last,
+          year,
+          validDays: seasonDates(season, year).length,
+          meanTemperatureC: last.meanTemperatureC + 0.1,
+        });
+      }
+    }
+  }
   const json = (v: unknown) => JSON.stringify(v, null, 2) + '\n';
   const hash = (text: string) => createHash('sha256').update(text).digest('hex');
   const manifest: SeasonManifest = {
@@ -79,7 +108,7 @@ export async function seasonalFixture() {
       ),
     ).slice(0, 16),
     firstYear: 1961,
-    lastYear: 2020,
+    lastYear,
     seasons,
     winterYear: 'ending-year',
     thresholds: { hotDays: 30, frostDays: 0, heavyPrecipitationDays: 20 },

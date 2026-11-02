@@ -1,6 +1,6 @@
 # Com’era il clima
 
-Confronta le quattro stagioni di dieci città italiane dal 1961 al 2020 con dati climatici ERA5.
+Confronta le quattro stagioni di dieci città italiane dal 1961 con dati climatici ERA5.
 
 [![CI][ci-badge]][ci-workflow]
 
@@ -17,9 +17,10 @@ La GIF mostra la vista estiva della prima edizione.
 ```mermaid
 flowchart TD
     OpenMeteo["Open-Meteo · ERA5"] --> Cache["Cache annuale: .cache/open-meteo-seasons-v2/"]
-    Estati["Cache estiva originale conservata: .cache/open-meteo-land/"] --> BuildData
+    Storico["JSON già pubblicati: storico verificato"] --> BuildData
     Cache --> BuildData["build-data.ts"]
-    BuildData --> JSON["JSON statici"]
+    BuildData --> PR["PR automatica con differenze per città"]
+    PR --> JSON["JSON statici"]
     JSON --> Vite["Vite"]
     Vite --> Pages["GitHub Pages"]
 ```
@@ -36,12 +37,13 @@ i dati elaborati sono pubblicati.
 - Indicatori esclusi esplicitamente dalla vista quando previsto: “Non applicabile”.
 - Confronto tra periodi modificabili; quelli iniziali sono 1961–1990 e 1991–2020.
 - Mappa, grafico annuale e media mobile, strisce delle anomalie e confronto tra città.
-- Dettaglio del singolo anno, tabella di 60 anni per stagione e download CSV.
+- Dettaglio del singolo anno, tabella dell'intero archivio e download CSV.
 - Collegamenti che conservano città, stagione, indicatore, periodi e vista; tema chiaro e scuro.
 
 Il progetto usa TypeScript strict, Vite, Vitest e Playwright. La struttura dei moduli è descritta in
-[ARCHITECTURE.md](docs/ARCHITECTURE.md). Schema 2: 2.400 stagioni annuali;
-versione logica `1fdffa12eabc7b22`, generata il 31 ottobre 2026.
+[ARCHITECTURE.md](docs/ARCHITECTURE.md). Lo schema 2 indica nel manifest l'ultimo anno
+disponibile; selettori, grafici, tabella, CSV e URL seguono questo limite.
+Il riferimento B1 contiene 2.400 stagioni 1961–2020, versione `1fdffa12eabc7b22`.
 Le 600 estati e i tre indicatori precedenti restano esattamente invariati.
 
 ## Come l'ho costruito
@@ -85,26 +87,63 @@ npm run build
 npm run test:e2e
 ```
 
-L'archivio stagionale è completo e verificato in locale sul branch `feat/seasons`.
-La pubblicazione segue la pull request del proprietario. Il download conserva le estati
-originali; la sua preparazione ha richiesto due finestre giornaliere di quota.
+Il riferimento B1 è pubblicato tramite PR n. 10. Le estati originali sono conservate;
+la loro preparazione ha richiesto due finestre giornaliere di quota.
 Vedere [schema stagionale e procedura](docs/SEASONS.md).
 
-La pipeline dati è manuale e separata dalla build ordinaria:
+La pipeline dati rimane separata dalla build ordinaria:
 
 ```bash
-npm run data:fetch -- --city roma --from 1961 --to 1961
-npm run data:fetch -- --all --limit 300
+npm run data:fetch -- --all --from 2021 --to 2025 --limit 300
 npm run data:status
-npm run data:build
+npm run data:build -- --to 2025
 npm run data:summers
 npm run data:validate
 ```
 
 La nuova cache annuale è `.cache/open-meteo-seasons-v2/`. Le estati conservano la fonte
 `.cache/open-meteo-land/`; entrambe sono locali e non entrano nel repository. La cache
-originale `.cache/open-meteo/` è conservata per il confronto. Non eseguire `data:build` senza una
-cache completa e validata.
+originale `.cache/open-meteo/` è conservata per il confronto. L'esempio aggiunge il 2021–2025
+al riferimento B1: per aggiornamenti successivi partire dall'anno dopo `manifest.lastYear`.
+`data:build` usa lo storico già validato e richiede la cache solo degli anni aggiunti.
+Senza `--to` verifica e conserva l'archivio corrente; senza novità non cambia neppure `generatedAt`.
+La ricostruzione storica `data:build -- --rebuild` richiede entrambe le cache originali
+complete ed è separata dagli aggiornamenti; non riduce un archivio già esteso oltre il 2020.
+
+## Aggiornamento annuale tramite GitHub Actions
+
+Il workflow [Refresh climate data](.github/workflows/data-refresh.yml) parte dal branch `main`:
+
+- a mano, da **Actions → Refresh climate data → Run workflow**;
+- ogni **1° marzo alle 05:17 UTC**, cioè le 06:17 italiane in quella data.
+
+`to_year` è l'ultimo anno da aggiungere. Vuoto significa anno precedente: nel 2026 è il 2025.
+Si accettano soltanto anni completi, senza ridurre lo storico. L'inverno mantiene la convenzione
+dell'anno finale: inverno 2025 = dicembre 2024–febbraio 2025.
+
+Il primo avvio dopo l'integrazione di B2 può proporre l'estensione 2021–2025: 50 richieste annuali,
+circa 1.305 unità di quota e almeno 25 minuti di attese, oltre a rete e controlli.
+La preparazione conserva lo storico verificato, scarica solo gli anni mancanti, esegue build,
+validazione, tutti i controlli di codice ed E2E e prepara una PR con riepilogo per città e stagione.
+Il branch gestito è `automation/data-refresh-<anno>`; nessun merge è automatico.
+Una ripetizione senza dati nuovi non cambia i JSON e non apre una PR duplicata.
+
+Le cache annuali e le quote sono salvate anche dopo un errore. Le cache GitHub possono essere
+eliminate dopo sette giorni senza accessi: sono un'accelerazione, non l'unica copia dello storico.
+Un 429 indica troppe richieste: il programma rispetta `Retry-After`, tenta al massimo tre volte
+e si ferma; una pausa lunga imposta dalle quote può interromperlo già prima. Riprendere soltanto
+dopo l'orario indicato, senza azzerare quote o cache.
+
+Il job di preparazione ha solo `contents: read`. Il job separato che propone i dati riceve
+`contents: write` per il branch e `pull-requests: write` per la PR. Tutti gli altri permessi
+sono disabilitati; nessun token personale, permesso di deploy o approvazione automatica.
+Occorre consentire alle Actions di creare PR nelle impostazioni del repository.
+Le CI delle PR create con `GITHUB_TOKEN` richiedono l'approvazione del proprietario per partire.
+La revisione e il merge restano manuali, con i controlli richiesti verdi.
+
+GitHub può disattivare le pianificazioni nei repository pubblici dopo 60 giorni di inattività:
+controllare che il workflow sia abilitato prima della scadenza annuale.
+Procedura, permessi e ripresa sono descritti in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 `npm run data:compare` confronta i nuovi dati con la versione precedente alla revisione `land`.
 Mostra medie A, B e differenza B−A prima/dopo per tutti i tre indicatori e le dieci città. Il
@@ -149,7 +188,8 @@ La mappa usa confini di [Natural Earth](https://www.naturalearthdata.com/about/t
 ## Avvertenze sui dati
 
 I valori ERA5 rappresentano celle di una griglia climatica, non misure di stazioni meteorologiche né
-medie dell'intero territorio comunale. Il confronto termina nel 2020, descrive i periodi scelti e
+medie dell'intero territorio comunale. L'ultimo anno è indicato nella demo; il confronto descrive
+i periodi scelti e
 non dimostra le cause delle differenze. Le elaborazioni sono informative e non sostituiscono dati
 locali ufficiali o analisi per decisioni operative. I fornitori non garantiscono l'assenza di errori
 nei dati. Si vedano [metodologia e limiti](docs/METHODOLOGY.md) e

@@ -9,7 +9,7 @@ export function compactSeason(
     schemaVersion: 2,
     season,
     firstYear: 1961,
-    lastYear: 2020,
+    lastYear: datasets[0]?.seasons[season].years.at(-1)?.year ?? 2020,
     metrics,
     cities: Object.fromEntries(
       datasets.map((dataset) => [

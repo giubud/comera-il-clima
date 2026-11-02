@@ -1,5 +1,45 @@
 # Quattro stagioni: schema 2
 
+## Aggiornamenti B2
+
+Dal 2 novembre 2026 il codice supporta aggiornamenti progressivi oltre il 2020.
+Il riferimento B1 descritto sotto è stato pubblicato con PR n. 10, merge `e4c855d`,
+CI n. 29 e deploy n. 19 riusciti. Tutti i 21 file online coincidevano con la build verificata.
+Questa sezione e le seguenti distinguono il nuovo procedimento dalla ricostruzione storica B1.
+
+Gli aggiornamenti riutilizzano i JSON già validati come storico e aggiungono soltanto anni completi.
+`data:build -- --to <anno>` richiede le cache dei soli anni nuovi. Senza `--to`, valida l'archivio
+e non cambia neppure `generatedAt`. `--rebuild` resta la ricostruzione separata 1961–2020,
+con entrambe le cache originali; non può accorciare un archivio esteso.
+
+Lo schema 2 mantiene compatibilità con B1: `lastYear` è un intero, non la costante 2020.
+Ogni città conserva intatti `source`, `summerSource` e tutte le stagioni originali;
+`extensions` registra anno e fonte annuale di ciascun nuovo blocco. I nuovi anni usano la propria
+risposta annuale per tutte e quattro le stagioni, compresa JJA. La validazione controlla hash,
+date, richieste, coordinate, scarti UTC, esclusioni e numero di anni su tutti i riepiloghi.
+La regressione immutabile continua a coprire le 600 estati originali, senza estenderla con
+numeri inventati o aggiornare il riferimento per accettare variazioni.
+
+Nel download del 02/11/2026, le nuove risposte annuali 2021–2025 riportano UTC+1.
+Le estati originali riportano UTC+2: esiste quindi una discontinuità della finestra giornaliera
+fra le estati conservate e quelle aggiunte. Non è una serie perfettamente omogenea sotto questo
+aspetto. Fonti e date sono dichiarate separatamente; l'interfaccia segnala lo spostamento di
+un'ora per le stagioni interessate. I confronti iniziali 1961–1990 e 1991–2020 restano invariati.
+
+Il primo aggiornamento fino al 2025 aggiunge 50 risposte annuali e porta le stagioni a 2.600.
+Il codice del workflow e la sua prima PR di dati sono due passaggi distinti: prima il proprietario
+pubblica B2; poi avvia il workflow, controlla e integra la proposta automatica dei dati.
+La cache Actions è facoltativa per riprendere i download: lo storico verificato è nel repository.
+Non si richiede di caricare in GitHub le vecchie cache giornaliere del PC.
+
+Selettori, navigazione annuale, CSV, conteggi, etichette e scala orizzontale leggono il manifest.
+Il confronto standard resta quello storico; primo/ultimo decennio e ventennio seguono invece
+l'ultimo anno disponibile. I vecchi URL restano validi e gli anni fuori archivio sono rifiutati.
+
+Procedura annuale, cache, permessi e impostazioni GitHub: [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## Riferimento storico B1
+
 Il 31 ottobre 2026 il branch `feat/seasons` contiene l'archivio reale completo e verificato:
 600 risposte annuali, dieci città e 2.400 stagioni. Schema 2, versione logica `1fdffa12eabc7b22`.
 Il lavoro locale è pronto per la revisione finale del proprietario; pubblicazione tramite PR.

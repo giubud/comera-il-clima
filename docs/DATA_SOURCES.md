@@ -1,6 +1,29 @@
 # Fonti e provenienza dei dati
 
-## Quattro stagioni — schema 2
+## Aggiornamenti progressivi B2
+
+Il codice B2 conserva lo storico verificato nei JSON e aggiunge solo anni completi.
+Il 02/11/2026 sono stati verificati 50 nuovi blocchi reali 2021–2025, oltre ai 600 B1:
+650/650 risposte annuali valide. L'archivio 1961–2025 è preparato in una cartella di prova
+separata; il primo avvio del workflow dopo la pubblicazione del codice ne proporrà i dati in PR.
+I JSON del prodotto non sono sostituiti durante questa verifica locale.
+
+Modello ERA5, coordinate richieste, `cell_selection=land`, correzione quota e quattro variabili
+giornaliere sono conservati. Per ogni anno aggiunto, `extensions` dichiara la propria fonte:
+URL, recupero, hash, coordinate restituite, quota e scarto UTC. Il manifest indica l'ultimo anno.
+Le richieste annuali già presenti e le estati originali non sono riscaricate o riscritte.
+
+I nuovi anni usano la risposta annuale anche per JJA. Le fonti 2021–2025 riportano UTC+1,
+mentre le estati storiche usano UTC+2: la discontinuità giornaliera è dichiarata nella
+metodologia e segnalata nell'interfaccia. I trentenni iniziali restano invariati.
+La versione logica verificata localmente è `153f99695e250a1e`; un'estrazione futura potrebbe
+differire in caso di revisioni del fornitore e deve comunque superare validazione e revisione.
+
+La cache annuale Actions è solo uno strumento di ripresa. La sua eventuale scadenza non comporta
+la perdita dello storico pubblicato. Le quote dell'API gratuita e l'uso non commerciale restano
+quelli del servizio; il workflow non usa API key o credenziali climatiche nel browser.
+
+## Riferimento B1: quattro stagioni — schema 2
 
 Il dataset locale schema 2 è completo: 600 risposte annuali recuperate il 30–31 ottobre 2026,
 quattro stagioni per città e anno. La precedente fonte estiva è conservata separatamente.

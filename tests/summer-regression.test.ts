@@ -38,13 +38,15 @@ describe('regressione estiva: riferimento pubblicato 129d25d, indipendente dal g
         PreviousSeason | { seasons: { JJA: PreviousSeason } };
       const summer = 'seasons' in data ? data.seasons.JJA : data;
       projected[id] = {
-        years: summer.years.map((row) => ({
-          year: row.year,
-          validDays: row.validDays,
-          meanTemperatureC: row.meanTemperatureC,
-          hotDays: row.hotDays,
-          precipitationMm: row.precipitationMm,
-        })),
+        years: summer.years
+          .filter((row) => row.year <= 2020)
+          .map((row) => ({
+            year: row.year,
+            validDays: row.validDays,
+            meanTemperatureC: row.meanTemperatureC,
+            hotDays: row.hotDays,
+            precipitationMm: row.precipitationMm,
+          })),
         periods: {
           a: previousMetrics(summer.periods.a),
           b: previousMetrics(summer.periods.b),
@@ -64,7 +66,7 @@ describe('regressione estiva: riferimento pubblicato 129d25d, indipendente dal g
       compact: Object.fromEntries(
         Object.entries(compact.cities).map(([id, rows]) => [
           id,
-          rows.map((row) => row.slice(0, 3)),
+          rows.slice(0, 60).map((row) => row.slice(0, 3)),
         ]),
       ),
     }).toEqual(baseline);
