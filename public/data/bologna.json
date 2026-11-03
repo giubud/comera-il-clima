@@ -1181,6 +1181,51 @@
           "precipitationMm": 85.3,
           "frostDays": 17,
           "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2021,
+          "validDays": 90,
+          "meanTemperatureC": 6.493333333333333,
+          "hotDays": null,
+          "precipitationMm": 221,
+          "frostDays": 15,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2022,
+          "validDays": 90,
+          "meanTemperatureC": 5.717777777777779,
+          "hotDays": null,
+          "precipitationMm": 117.09999999999998,
+          "frostDays": 20,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2023,
+          "validDays": 90,
+          "meanTemperatureC": 6.953333333333333,
+          "hotDays": null,
+          "precipitationMm": 197,
+          "frostDays": 12,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2024,
+          "validDays": 91,
+          "meanTemperatureC": 7.0483516483516455,
+          "hotDays": null,
+          "precipitationMm": 197.49999999999997,
+          "frostDays": 11,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2025,
+          "validDays": 90,
+          "meanTemperatureC": 5.80111111111111,
+          "hotDays": null,
+          "precipitationMm": 277.3,
+          "frostDays": 8,
+          "heavyPrecipitationDays": 4
         }
       ],
       "periods": {
@@ -1747,6 +1792,51 @@
           "precipitationMm": 154.49999999999997,
           "frostDays": 1,
           "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2021,
+          "validDays": 92,
+          "meanTemperatureC": 13.232608695652175,
+          "hotDays": 0,
+          "precipitationMm": 125.8,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2022,
+          "validDays": 92,
+          "meanTemperatureC": 14.308695652173911,
+          "hotDays": 5,
+          "precipitationMm": 147.29999999999998,
+          "frostDays": 5,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2023,
+          "validDays": 92,
+          "meanTemperatureC": 14.128260869565214,
+          "hotDays": 0,
+          "precipitationMm": 422,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 4
+        },
+        {
+          "year": 2024,
+          "validDays": 92,
+          "meanTemperatureC": 14.688043478260871,
+          "hotDays": 0,
+          "precipitationMm": 291.2000000000001,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2025,
+          "validDays": 92,
+          "meanTemperatureC": 14.444565217391306,
+          "hotDays": 0,
+          "precipitationMm": 251.8,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 2
         }
       ],
       "periods": {
@@ -2313,6 +2403,51 @@
           "precipitationMm": 215.2,
           "frostDays": null,
           "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2021,
+          "validDays": 92,
+          "meanTemperatureC": 26.18152173913044,
+          "hotDays": 67,
+          "precipitationMm": 94.50000000000003,
+          "frostDays": null,
+          "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2022,
+          "validDays": 92,
+          "meanTemperatureC": 27.02608695652173,
+          "hotDays": 78,
+          "precipitationMm": 167.7,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2023,
+          "validDays": 92,
+          "meanTemperatureC": 25.341304347826092,
+          "hotDays": 50,
+          "precipitationMm": 169.79999999999998,
+          "frostDays": null,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2024,
+          "validDays": 92,
+          "meanTemperatureC": 25.725,
+          "hotDays": 66,
+          "precipitationMm": 201.79999999999995,
+          "frostDays": null,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2025,
+          "validDays": 92,
+          "meanTemperatureC": 25.340217391304346,
+          "hotDays": 56,
+          "precipitationMm": 174.2,
+          "frostDays": null,
+          "heavyPrecipitationDays": 2
         }
       ],
       "periods": {
@@ -2879,6 +3014,51 @@
           "precipitationMm": 141.00000000000003,
           "frostDays": 1,
           "heavyPrecipitationDays": 0
+        },
+        {
+          "year": 2021,
+          "validDays": 91,
+          "meanTemperatureC": 15.486813186813187,
+          "hotDays": 3,
+          "precipitationMm": 207.79999999999998,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 2
+        },
+        {
+          "year": 2022,
+          "validDays": 91,
+          "meanTemperatureC": 16.42967032967033,
+          "hotDays": 3,
+          "precipitationMm": 283.19999999999993,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 3
+        },
+        {
+          "year": 2023,
+          "validDays": 91,
+          "meanTemperatureC": 17.794505494505493,
+          "hotDays": 15,
+          "precipitationMm": 149.4,
+          "frostDays": 0,
+          "heavyPrecipitationDays": 1
+        },
+        {
+          "year": 2024,
+          "validDays": 91,
+          "meanTemperatureC": 15.382417582417572,
+          "hotDays": 2,
+          "precipitationMm": 348.9999999999999,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 5
+        },
+        {
+          "year": 2025,
+          "validDays": 91,
+          "meanTemperatureC": 14.700000000000003,
+          "hotDays": 2,
+          "precipitationMm": 199,
+          "frostDays": 1,
+          "heavyPrecipitationDays": 1
         }
       ],
       "periods": {
@@ -2904,5 +3084,142 @@
         }
       }
     }
-  }
+  },
+  "extensions": [
+    {
+      "year": 2021,
+      "source": {
+        "provider": "Open-Meteo",
+        "model": "era5",
+        "timezone": "Europe/Rome",
+        "cellSelection": "land",
+        "elevationCorrection": "enabled",
+        "requestedCoordinates": {
+          "latitude": 44.4949,
+          "longitude": 11.3426
+        },
+        "returnedCoordinates": {
+          "latitude": 44.5,
+          "longitude": 11.25
+        },
+        "elevationM": 71,
+        "utcOffsetSeconds": 3600,
+        "requests": [
+          {
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.4949&longitude=11.3426&start_date=2020-12-01&end_date=2021-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+            "retrievedAt": "2026-11-02T17:32:56.208Z",
+            "sha256": "729ab9f2ad664c64231050a899b50a598d00f7f29df0837d98b83e5cc18cd963"
+          }
+        ]
+      }
+    },
+    {
+      "year": 2022,
+      "source": {
+        "provider": "Open-Meteo",
+        "model": "era5",
+        "timezone": "Europe/Rome",
+        "cellSelection": "land",
+        "elevationCorrection": "enabled",
+        "requestedCoordinates": {
+          "latitude": 44.4949,
+          "longitude": 11.3426
+        },
+        "returnedCoordinates": {
+          "latitude": 44.5,
+          "longitude": 11.25
+        },
+        "elevationM": 71,
+        "utcOffsetSeconds": 3600,
+        "requests": [
+          {
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.4949&longitude=11.3426&start_date=2021-12-01&end_date=2022-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+            "retrievedAt": "2026-11-02T17:33:26.248Z",
+            "sha256": "fa943e0720450022d3dd446132ab01568bef11c162a8ef44a131949dd7d1bc72"
+          }
+        ]
+      }
+    },
+    {
+      "year": 2023,
+      "source": {
+        "provider": "Open-Meteo",
+        "model": "era5",
+        "timezone": "Europe/Rome",
+        "cellSelection": "land",
+        "elevationCorrection": "enabled",
+        "requestedCoordinates": {
+          "latitude": 44.4949,
+          "longitude": 11.3426
+        },
+        "returnedCoordinates": {
+          "latitude": 44.5,
+          "longitude": 11.25
+        },
+        "elevationM": 71,
+        "utcOffsetSeconds": 3600,
+        "requests": [
+          {
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.4949&longitude=11.3426&start_date=2022-12-01&end_date=2023-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+            "retrievedAt": "2026-11-02T17:34:56.277Z",
+            "sha256": "0de6c79699cb8919c2dae48c1090913034e0a03b6340551f832b987712240045"
+          }
+        ]
+      }
+    },
+    {
+      "year": 2024,
+      "source": {
+        "provider": "Open-Meteo",
+        "model": "era5",
+        "timezone": "Europe/Rome",
+        "cellSelection": "land",
+        "elevationCorrection": "enabled",
+        "requestedCoordinates": {
+          "latitude": 44.4949,
+          "longitude": 11.3426
+        },
+        "returnedCoordinates": {
+          "latitude": 44.5,
+          "longitude": 11.25
+        },
+        "elevationM": 71,
+        "utcOffsetSeconds": 3600,
+        "requests": [
+          {
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.4949&longitude=11.3426&start_date=2023-12-01&end_date=2024-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+            "retrievedAt": "2026-11-02T17:35:26.272Z",
+            "sha256": "5ac835587f945daf1a568192fd7cc3be20ad239a6a5b351d0985dfaacec34c9f"
+          }
+        ]
+      }
+    },
+    {
+      "year": 2025,
+      "source": {
+        "provider": "Open-Meteo",
+        "model": "era5",
+        "timezone": "Europe/Rome",
+        "cellSelection": "land",
+        "elevationCorrection": "enabled",
+        "requestedCoordinates": {
+          "latitude": 44.4949,
+          "longitude": 11.3426
+        },
+        "returnedCoordinates": {
+          "latitude": 44.5,
+          "longitude": 11.25
+        },
+        "elevationM": 71,
+        "utcOffsetSeconds": 3600,
+        "requests": [
+          {
+            "url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.4949&longitude=11.3426&start_date=2024-12-01&end_date=2025-11-30&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&models=era5&timezone=Europe%2FRome&temperature_unit=celsius&precipitation_unit=mm&cell_selection=land",
+            "retrievedAt": "2026-11-02T17:36:26.285Z",
+            "sha256": "83bc892e1087addeccc4c1cfe55e796835f9d3f362ac6863b1a7fded40d67a88"
+          }
+        ]
+      }
+    }
+  ]
 }
