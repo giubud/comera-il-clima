@@ -1,5 +1,60 @@
 # Stato del progetto
 
+## B3 — 4 novembre 2026 — Verifiche locali e prove nell’agente superate
+
+Piano e dipendenze approvati dal proprietario; branch `feat/mcp-server`.
+Implementati quattro strumenti stdio in TypeScript strict nel pacchetto `mcp/` separato.
+Input Zod, dati JSON pubblici, cache in memoria, hash, tipi e calcoli condivisi con il sito.
+Unità, fonte ERA5, limiti, Non applicabile e avviso orario accompagnano le risposte.
+
+Passano 30 test MCP e una prova stdio reale sul sito online con i quattro strumenti e i
+numeri delle tre domande del proprietario. Sono documentate le configurazioni di Claude Code,
+Claude Desktop e Codex. Il job CI dedicato è configurato con sola lettura del repository.
+Verifica completa superata con Node 22: lint, formattazione, limiti dei 60 sorgenti,
+TypeScript del sito e del server, 57 test del sito, 30 test MCP, validazione dati,
+entrambe le build e 33 E2E. I JSON e i calcoli esistenti restano invariati.
+Le tre domande nell’app sono superate. Restano pubblicazione della PR e verifica CI remota.
+Il 04/11 il proprietario configura il server stdio in Codex e ne conferma l’abilitazione.
+Dopo il riavvio i quattro strumenti sono disponibili in questa chat Codex.
+La chiamata reale a list_cities restituisce 10 città, 4 stagioni e 5 indicatori, archivio
+1961–2025 e versione 153f99695e250a1e.
+Prima domanda superata in questa chat: list_cities e get_season restituiscono le 10 città e
+Milano Inverno 2024/25, dal 01/12/2024 al 28/02/2025, 90 giorni validi e 21 giorni di gelo.
+Fonte ERA5/Open-Meteo e limite delle celle di griglia espliciti; risultato uguale a Inspector.
+Seconda domanda superata in questa chat: compare_periods restituisce per Roma JJA le medie
+1961–1990 e 1996–2025: temperatura 23,2 e 25,3 °C (+2,1), caldo 31,7 e 57,9 giorni (+26,2),
+precipitazioni 115,6 e 78,9 mm (−36,7). Entrambi i periodi hanno 30 anni validi.
+La risposta espone il limite delle celle di griglia e il cambio da UTC+2 a UTC+1 dal 2021.
+Terza domanda superata in questa chat con rank_years: autunni più piovosi a Palermo
+2003 (389,2 mm), 1976 (337,1), 2019 (332,9), 1997 (332,6), 2021 (321,6).
+Tutte le risposte coincidono con le verifiche sui dati pubblici, versione 153f99695e250a1e.
+Git e pubblicazione restano al proprietario.
+Il proprietario collega Inspector 2.13.0 e verifica list_cities sui dati online.
+Corretti gli avvisi di portabilità: schemi espliciti per dati e provenienza e rami anyOf
+per i valori null, con test di regressione. Il verificatore di Inspector 2.13.0 applicato
+alla build finale segnala zero errori e zero avvisi sui quattro strumenti.
+Il proprietario esegue get_season in Inspector: Milano Inverno 2024/25, 90 giorni e 21 di gelo.
+Il proprietario riavvia Inspector e conferma visivamente i quattro strumenti senza avvisi.
+Sono superati il controllo manuale con Inspector e le tre domande nella chat Codex.
+Su PowerShell con script disabilitati si usa npx.cmd, senza cambiare la execution policy.
+Nel piano HTML sono inserite le tre domande confermate e note con verifiche passate e pendenti.
+La spunta Fatto resta al proprietario; B3 non è ancora pubblicato.
+
+## B2 — 3 novembre 2026 — Completato e pubblicato
+
+PR del codice n. 11 integrata dal proprietario, merge `f068aa3`. Il primo aggiornamento Actions
+ha superato due interruzioni HTTP 503 del servizio conservando cache e quote; il terzo tentativo
+ha validato 50 risposte annuali 2021–2025, eseguito tutti i controlli e creato la PR dati n. 12.
+Il proprietario ha autorizzato la CI n. 32 e integrato la PR il 03/11, merge `902a314`.
+CI su main n. 33 e pubblicazione Pages n. 21 riuscite; copia locale aggiornata dal proprietario.
+
+Archivio pubblico 1961–2025, 2.600 stagioni, versione `153f99695e250a1e`:
+15 JSON, 1.410.766 byte, storico conservato. Il proprietario conferma Milano Inverno 2024/25 online.
+Il secondo avvio Actions, run `41610950006`, termina verde: nessun download, nessun dato nuovo,
+versione invariata e proposta PR saltata. Ripassano 57 test unitari e 33 E2E.
+Le tre verifiche B2 nel piano personale HTML sono aggiornate; la spunta Fatto è del proprietario.
+Le sezioni seguenti descrivono stati storici precedenti alla pubblicazione.
+
 ## B2 — 2 novembre 2026 — Implementazione locale, pubblicazione ancora da eseguire
 
 Branch `ci/data-refresh`, lavoro locale completo e controllo manuale del proprietario superato.

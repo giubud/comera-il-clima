@@ -23,6 +23,10 @@ Usa Node.js 22, come indicato in `.nvmrc` e `package.json`.
 | Build                      | `npm run build`         |
 | E2E                        | `npm run test:e2e`      |
 
+Il server MCP richiede anche `npm ci --prefix mcp`. Verificalo con `npm run mcp:typecheck`,
+`npm run mcp:build` e `npm run mcp:test`; avvio stdio: `npm run mcp:start`.
+I sorgenti in `mcp/src/` rispettano gli stessi limiti di righe e larghezza di `src/`.
+
 Gli E2E avviano il server automaticamente e usano Microsoft Edge in locale.
 In CI installa Chromium con `npx playwright install --with-deps chromium` prima degli E2E.
 La pipeline dati è separata dalla build: non rigenerare i dataset senza necessità.
