@@ -14,7 +14,10 @@ async function sourceFiles(directory: string): Promise<string[]> {
   return files.sort();
 }
 
-const files = await sourceFiles(join(process.cwd(), 'src'));
+const files = [
+  ...(await sourceFiles(join(process.cwd(), 'src'))),
+  ...(await sourceFiles(join(process.cwd(), 'mcp/src'))),
+];
 const errors: string[] = [];
 for (const file of files) {
   const name = relative(process.cwd(), file);

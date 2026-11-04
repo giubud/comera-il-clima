@@ -343,3 +343,49 @@ e [quote](https://open-meteo.com/en/pricing), ricontrollate il 30 ottobre 2026.
 - README, metodologia, fonti, attribuzioni e istruzioni riflettono lo schema 2.
   Rimangono da svolgere revisione finale e percorso PR da parte del proprietario.
   Nessun commit, push, PR, merge o aggiornamento di main viene eseguito dall'agente.
+
+## 2026-11-03 — Server MCP locale e riuso dei dati pubblicati
+
+- Il proprietario approva firme, descrizioni, tre domande e le due dipendenze prima del codice.
+  Branch `feat/mcp-server`; pacchetto separato `mcp/`, Node 22, TypeScript strict con gli stessi
+  controlli su indici e proprietà opzionali. SDK richiesto `@modelcontextprotocol/sdk` 1.32.2
+  della linea 1.x e Zod 4.6.7, fissati nel lockfile. Nessuna dipendenza del sito è sostituita.
+- Si usa stdio con `list_cities`, `get_season`, `compare_periods`, `rank_years` in sola lettura.
+  Stdout contiene esclusivamente MCP, stderr i diagnostici. Avvio e client usano percorsi assoluti.
+- Inspector 2.13.0 ha segnalato due schemi di risposta troppo generici, validi per MCP ma
+  problematici per alcuni client. Gli output ora hanno contratti Zod espliciti per ciascuno
+  strumento, incluse tutte le misure e i campi di provenienza. Un test ne impedisce la regressione;
+  forma e valori delle risposte restano identici. La guida Windows usa npx.cmd quando ps1 è bloccato.
+  Il verificatore segnala anche le unioni compatte dei tipi nullable generate da Zod:
+  i rami annotati rendono espliciti numero/testo e null tramite anyOf, senza rendere opzionali
+  i campi. Il verificatore di Inspector 2.13.0 conferma infine zero errori e zero avvisi.
+- La sola fonte runtime è l’archivio JSON pubblicato su GitHub Pages, non l’API Open-Meteo.
+  Cache in memoria di dieci minuti, richieste concorrenti condivise e snapshot per chiamata.
+  Alla scadenza si rinnova il manifest; schema, calendario, città e SHA-256 devono coincidere.
+  Gli errori non sono memorizzati e non autorizzano dati scaduti o sintetici come ripiego.
+- I tipi e i validatori vengono da `src/data`; calendario e anno finale dell’inverno sono condivisi.
+  I riepiloghi usano `compactSeason`/`expandSeason`, esattamente come il sito, e le medie usano
+  `rangeStats` di `src/lib/aggregate.ts`. Si riusa anche il formato dei valori della vista.
+  Questa scelta evita scarti dovuti a calcoli su precisioni diverse dei JSON cittadini e compatti.
+- I periodi sono inclusivi; la differenza è B meno A. La classifica ordina il valore numerico
+  scelto e, in parità, l’anno crescente. Precipitazioni crescenti significa stagioni più secche.
+  HotDays in DJF e frostDays in JJA restano null con motivo; classifiche escluse sono esplicite.
+- Ogni risposta dichiara unità, versione, fonte ERA5/Open-Meteo, attribuzione, coordinate e limiti.
+  Ogni descrizione degli strumenti chiarisce che sono celle di griglia, non stazioni cittadine.
+  Le fonti per anno conservano la distinzione UTC+2/UTC+1: confronti e classifiche interessati
+  avvertono che le finestre giornaliere non sono omogenee sotto questo aspetto.
+- I test di CI usano JSON reali del repository e trasporto HTTPS simulato, con client ufficiale
+  per i quattro strumenti e un processo stdio reale da una cartella diversa. Le prove online
+  sono separate per non rendere la CI dipendente dalla disponibilità di GitHub Pages.
+  Il job `mcp` ha soltanto `contents: read`; non richiede segreti né può pubblicare dati.
+- Le configurazioni per Claude Code, Claude Desktop e Codex sono documentate, non installate
+  nelle impostazioni personali. Il proprietario farà prove nell’app, commit, push, PR e merge.
+
+Fonti consultate il 03/11/2026: [SDK ufficiale 1.x][b3-sdk], [strumenti MCP][b3-tools],
+[Claude Code][b3-claude], [server locali][b3-local], [OpenAI Docs per Codex][b3-codex].
+
+[b3-sdk]: https://github.com/modelcontextprotocol/typescript-sdk/tree/v1.x
+[b3-tools]: https://modelcontextprotocol.io/specification/2025-11-25/server/tools
+[b3-claude]: https://code.claude.com/docs/en/mcp
+[b3-local]: https://modelcontextprotocol.io/docs/develop/connect-local-servers
+[b3-codex]: https://developers.openai.com/codex/mcp

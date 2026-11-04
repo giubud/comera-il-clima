@@ -1,5 +1,35 @@
 # Struttura dell'applicazione
 
+## Server MCP — B3
+
+Il pacchetto `mcp/` aggiunge un processo Node 22 con trasporto stdio. Non entra nella build
+del sito e non offre un endpoint HTTP. `server.ts` registra quattro strumenti con SDK ufficiale,
+input e risultati strutturati Zod; `index.ts` avvia il trasporto con stdout riservato al protocollo.
+
+```mermaid
+flowchart TD
+    App[Claude, Codex o Inspector] -->|stdio| MCP[mcp: index e server]
+    MCP --> Service[mcp: service]
+    Service --> Shared[src/data, lib/aggregate e formato del sito]
+    Service --> Store[mcp: archive]
+    Store -->|HTTPS| Pages[JSON pubblici di GitHub Pages]
+    Service --> Provenance[mcp: provenance]
+```
+
+`ArchiveStore` condivide le letture concorrenti, conserva manifest e città per dieci minuti
+e assegna uno snapshot a ogni chiamata. Schema e hash impediscono di unire versioni diverse
+durante una pubblicazione parziale. Un errore scarta solo il caricamento fallito e non produce
+risposte con cache scaduta. L’unico indirizzo runtime è quello dei JSON statici pubblici.
+
+`service.ts` usa `compactSeason`/`expandSeason` per riprodurre la precisione del sito e
+`rangeStats` per le medie; calendario ed esclusioni sono condivisi. `provenance.ts` seleziona
+fonte estiva originale, annuale o estensione dell’anno e segnala scarti UTC differenti.
+Unità, licenza, versione e limiti accompagnano ciascun risultato; null non diventa zero.
+
+Il job CI `mcp` usa soltanto lettura del repository e non dipende dai servizi climatici.
+I test verificano i dati reali locali, i casi di errore, la cache, il protocollo e la build stdio.
+Configurazioni personali e prove manuali sono documentate in [mcp/README.md](../mcp/README.md).
+
 ## Aggiornamenti B2
 
 `data-refresh.yml` separa il job `prepare`, in sola lettura del repository, da `propose`,

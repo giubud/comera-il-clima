@@ -144,3 +144,23 @@ Riferimenti verificati il 02/11/2026:
 [cache](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching),
 [pianificazioni](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows),
 [quote Open-Meteo](https://open-meteo.com/en/pricing).
+
+## Server MCP
+
+La cartella `mcp/` contiene un pacchetto separato: dopo `npm ci` nella radice, eseguire
+`npm ci --prefix mcp`. Le sole dipendenze dirette aggiunte sono l’SDK MCP ufficiale e Zod,
+approvate dal proprietario. Entrambi i lockfile vanno mantenuti nel repository.
+
+Con Node 22 eseguire `npm run mcp:typecheck`, `npm run mcp:build` e `npm run mcp:test`.
+`npm run mcp:start` avvia stdio e attende un client. Configurazione delle app e Inspector:
+[mcp/README.md](mcp/README.md). I sorgenti MCP rispettano le stesse 300 righe e 100 colonne.
+
+I test del server leggono i JSON reali già presenti e simulano solo il trasporto HTTPS:
+non chiamano l’API climatica e non rigenerano i dati. Il test stdio avvia il file compilato
+con il client ufficiale. La verifica sul sito pubblico va svolta separatamente.
+Non introdurre un URL arbitrario tra gli input: il server legge soltanto l’archivio pubblico
+configurato, controlla schema e hash e riusa i calcoli esistenti.
+
+La CI ha un job `mcp` separato, con `contents: read`, che installa dai lockfile e verifica
+tipi, build e test. Il job `verify` continua a controllare sito, lint, formato e dimensioni,
+inclusi i sorgenti MCP. Prima di proporre il merge eseguire anche tutti i controlli ordinari.

@@ -203,6 +203,16 @@ nei dati. Si vedano [metodologia e limiti](docs/METHODOLOGY.md) e
 - [Verifica pilota della fonte](docs/DATA_CHECK.md)
 - [Piano operativo](docs/PLAN.md)
 
+## Server MCP per gli agenti
+
+Il [server MCP](mcp/README.md) espone `list_cities`, `get_season`, `compare_periods` e
+`rank_years` tramite stdio, con TypeScript strict, SDK ufficiale e input Zod. Legge soltanto
+i JSON pubblicati, conserva una cache in memoria e riusa tipi, precisione e calcoli del sito.
+Ogni risposta dichiara unità, versione, fonte ERA5 e limiti delle celle di griglia.
+
+La guida contiene installazione, Inspector e configurazioni per Claude Code, Claude Desktop
+e Codex. Il job CI `mcp` compila e testa il server senza dipendere dalla rete meteorologica.
+
 ## Contribuire
 
 Le istruzioni per aggiungere una città, rigenerare i dati ed eseguire le verifiche sono in

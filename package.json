@@ -23,7 +23,11 @@
     "screenshots": "tsx scripts/capture-screenshots.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "data:status": "tsx scripts/data-status.ts"
+    "data:status": "tsx scripts/data-status.ts",
+    "mcp:typecheck": "npm --prefix mcp run typecheck",
+    "mcp:build": "npm --prefix mcp run build",
+    "mcp:test": "npm --prefix mcp test",
+    "mcp:start": "npm --prefix mcp start"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
